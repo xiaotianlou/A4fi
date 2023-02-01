@@ -1,7 +1,7 @@
 # Assignment A2: Mesh Generator
 
   - Changhao Wu #1 [wu399@mcmaster.ca]
-  - Author #2 [email@mcmaster.ca]
+  - Xiaotian Lou #2 [loux8@mcmaster.ca]
   - Author #3 [email@mcmaster.ca]
 
 ## How to run the product
