@@ -2,7 +2,7 @@
 
   - Changhao Wu #1 [wu399@mcmaster.ca]
   - Xiaotian Lou #2 [loux8@mcmaster.ca]
-  - Author #3 [email@mcmaster.ca]
+  - Jiaming Li #3 [li130@mcmaster.ca]
 
 ## How to run the product
 
