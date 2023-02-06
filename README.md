@@ -4,8 +4,6 @@
   - Xiaotian Lou(Raynor) #2 [loux8@mcmaster.ca]
   - Jiaming Li #3 [li130@mcmaster.ca]
 
-#test
-
 ## How to run the product
 
 _This section needs to be edited to reflect how the user can interact with thefeature released in your project_
