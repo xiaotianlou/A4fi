@@ -41,9 +41,6 @@ public class DotGen {
         HashSet<Segment> segments = new HashSet<>();
         for(int x = 0; x < width; x += square_size) {
             for(int y = 0; y < height; y += square_size) {
-                findVertex(v_list,x,y);
-
-
                 segments.add(Segment.newBuilder().setV1Idx(findVertex(v_list,x,y)).setV2Idx(findVertex(v_list,x+square_size,y)).build());
                 segments.add(Segment.newBuilder().setV1Idx(findVertex(v_list,x,y)).setV2Idx(findVertex(v_list,x,y+square_size)).build());
                 segments.add(Segment.newBuilder().setV1Idx(findVertex(v_list,x+square_size,y)).setV2Idx(findVertex(v_list,x+square_size,y+square_size)).build());
@@ -52,7 +49,7 @@ public class DotGen {
         }
 
 
-        return Mesh.newBuilder().addAllVertices(verticesWithColors).addAllSegments(segments).build();
+        return Mesh.newBuilder().addAllVertices(v_list).addAllSegments(segments).build();
     }
     private int findVertex(List<Vertex> vertexList,double x,double y){
         int i=0;
@@ -63,7 +60,6 @@ public class DotGen {
             i++;
         }
         return -1;
-
     }
 
 
