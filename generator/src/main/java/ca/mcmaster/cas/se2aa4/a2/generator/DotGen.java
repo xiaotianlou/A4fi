@@ -1,9 +1,6 @@
 package ca.mcmaster.cas.se2aa4.a2.generator;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.Random;
+import java.util.*;
 
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Segment;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Vertex;
@@ -40,9 +37,19 @@ public class DotGen {
             Vertex colored = Vertex.newBuilder(v).addProperties(color).build();
             verticesWithColors.add(colored);
         }
-
+        List<Vertex> v_list = new LinkedList<>(verticesWithColors);
         HashSet<Segment> segments = new HashSet<>();
+        for(int x = 0; x < width; x += square_size) {
+            for(int y = 0; y < height; y += square_size) {
+                findVertex(v_list,x,y);
 
+
+                segments.add(Segment.newBuilder().setV1Idx(findVertex(v_list,x,y)).setV2Idx(findVertex(v_list,x+square_size,y)).build());
+                segments.add(Segment.newBuilder().setV1Idx(findVertex(v_list,x,y)).setV2Idx(findVertex(v_list,x,y+square_size)).build());
+                segments.add(Segment.newBuilder().setV1Idx(findVertex(v_list,x+square_size,y)).setV2Idx(findVertex(v_list,x+square_size,y+square_size)).build());
+                segments.add(Segment.newBuilder().setV1Idx(findVertex(v_list,x,y+square_size)).setV2Idx(findVertex(v_list,x+square_size,y+square_size)).build());
+            }
+        }
 
 
         return Mesh.newBuilder().addAllVertices(verticesWithColors).addAllSegments(segments).build();
