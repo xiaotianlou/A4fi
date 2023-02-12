@@ -37,7 +37,8 @@ public class DotGen {
             Vertex colored = Vertex.newBuilder(v).addProperties(color).build();
             verticesWithColors.add(colored);
         }
-        List<Vertex> v_list = new LinkedList<>(verticesWithColors);
+
+        List<Vertex> v_list = new ArrayList<>(verticesWithColors);
         HashSet<Segment> segments = new HashSet<>();
         for(int x = 0; x < width; x += square_size) {
             for(int y = 0; y < height; y += square_size) {
@@ -49,7 +50,11 @@ public class DotGen {
         }
 
 
-        return Mesh.newBuilder().addAllVertices(v_list).addAllSegments(segments).build();
+        return Mesh
+                .newBuilder()
+                .addAllVertices(v_list)
+                .addAllSegments(segments)
+                .build();
     }
     private int findVertex(List<Vertex> vertexList,double x,double y){
         int i=0;
