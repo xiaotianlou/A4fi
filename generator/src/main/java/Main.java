@@ -1,4 +1,5 @@
 import ca.mcmaster.cas.se2aa4.a2.generator.DotGen;
+import ca.mcmaster.cas.se2aa4.a2.generator.Mesh2;
 import ca.mcmaster.cas.se2aa4.a2.io.MeshFactory;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Mesh;
 
@@ -8,9 +9,9 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         DotGen generator = new DotGen();
-        Mesh myMesh = generator.generate();
+        Mesh2 mesh = generator.generate();
         MeshFactory factory = new MeshFactory();
-        factory.write(myMesh, args[0]);
+        factory.write(mesh, args[0]);
     }
 
 }
