@@ -1,8 +1,6 @@
 package ca.mcmaster.cas.se2aa4.a2.generator;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 class Point {
     private double x;
@@ -33,6 +31,9 @@ class Point {
     @Override
     public int hashCode() {
         return Objects.hash(x, y);
+    }
+    public String toString() {
+        return "(" + x + ", " + y + ")";
     }
 }
 
@@ -65,6 +66,9 @@ class Segment {
     public int hashCode() {
         return Objects.hash(start, end);
     }
+    public String toString() {
+        return "(" + start + " - " + end + ")";
+    }
 }
 
 public class Mesh2 {
@@ -92,4 +96,18 @@ public class Mesh2 {
     public List<Segment> getSegments() {
         return segments;
     }
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Mesh2:\n");
+        sb.append("Vertices:\n");
+        for (Point vertex : vertices) {
+            sb.append(vertex + "\n");
+        }
+        sb.append("Segments:\n");
+        for (Segment segment : segments) {
+            sb.append(segment + "\n");
+        }
+        return sb.toString();
+    }
 }
+

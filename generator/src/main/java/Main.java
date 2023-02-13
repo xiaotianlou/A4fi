@@ -9,9 +9,9 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         DotGen generator = new DotGen();
-        Mesh2 mesh = generator.generate();
+        Mesh myMesh = generator.generate();
         MeshFactory factory = new MeshFactory();
-        factory.write(mesh, args[0]);
+        factory.write(myMesh, args[0]);
     }
 
 }
