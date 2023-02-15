@@ -69,3 +69,5 @@ When you develop features and enrich the product, remember that you have first t
 |F02 | New generator for new mesh class| Jiaming Li | 2/12 | 2/13 | D |
 |F03 | RemoveDuplicates| Jiaming Li | 2/14 | 2/14 | D |
 |F04 | SetsScale| Jiaming Li | 2/14 | 2/14 | D |
+|F05 | GetCentroid| Jiaming Li | 2/15 | 2/15 | D |
+|F06 | GetNeighbours| Jiaming Li | 2/15 | 2/15 | D |
