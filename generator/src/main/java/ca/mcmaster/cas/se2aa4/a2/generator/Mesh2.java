@@ -109,5 +109,17 @@ public class Mesh2 {
         }
         return sb.toString();
     }
+
+    public void removeDuplicates() {
+        Set<Point> pointSet = new HashSet<>(vertices);
+        Set<Segment> segmentSet = new HashSet<>(segments);
+//        Set<Polygon> polygonSet = new HashSet<>(polygons);
+        vertices.clear();
+        segments.clear();
+//        polygons.clear();
+        vertices.addAll(pointSet);
+        segments.addAll(segmentSet);
+//        polygons.addAll(polygonSet);
+    }
 }
 
