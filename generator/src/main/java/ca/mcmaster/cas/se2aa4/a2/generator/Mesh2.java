@@ -1,86 +1,28 @@
 package ca.mcmaster.cas.se2aa4.a2.generator;
 
+import java.math.BigDecimal;
 import java.util.*;
-
-class Point {
-    private double x;
-    private double y;
-
-    public Point(double x, double y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Point point = (Point) o;
-        return Double.compare(point.x, x) == 0 &&
-                Double.compare(point.y, y) == 0;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(x, y);
-    }
-    public String toString() {
-        return "(" + x + ", " + y + ")";
-    }
-}
-
-class Segment {
-    private Point start;
-    private Point end;
-
-    public Segment(Point start, Point end) {
-        this.start = start;
-        this.end = end;
-    }
-
-    public Point getStart() {
-        return start;
-    }
-
-    public Point getEnd() {
-        return end;
-    }
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Segment edge = (Segment) o;
-        return Objects.equals(start, edge.start) &&
-                Objects.equals(end, edge.end);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(start, end);
-    }
-    public String toString() {
-        return "(" + start + " - " + end + ")";
-    }
-}
 
 public class Mesh2 {
     private List<Point> vertices;
     private List<Segment> segments;
+    private List<Polygon> polygons;
+    private int scale = 2;
 
     public Mesh2() {
         vertices = new ArrayList<>();
         segments = new ArrayList<>();
+        polygons = new ArrayList<>();
     }
 
     public void addVertex(Point point) {
+        double x = point.getX();
+        double y = point.getY();
+        BigDecimal bdX = new BigDecimal(x);
+        BigDecimal bdY = new BigDecimal(y);
+        x = bdX.setScale(scale,BigDecimal.ROUND_HALF_UP).doubleValue();
+        y = bdY.setScale(scale,BigDecimal.ROUND_HALF_UP).doubleValue();
+        point = new Point(x, y);
         vertices.add(point);
     }
 
@@ -89,12 +31,23 @@ public class Mesh2 {
         segments.add(segment);
     }
 
+    public void addPolygon(List<Point> vertices) {
+        Polygon polygon = new Polygon(vertices);
+        polygons.add(polygon);
+    }
+
     public List<Point> getVertices() {
         return vertices;
     }
 
     public List<Segment> getSegments() {
         return segments;
+    }
+    public List<Polygon> getPolygons() {
+        return polygons;
+    }
+    public void setScale(int scale) {
+        this.scale = scale;
     }
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -113,13 +66,13 @@ public class Mesh2 {
     public void removeDuplicates() {
         Set<Point> pointSet = new HashSet<>(vertices);
         Set<Segment> segmentSet = new HashSet<>(segments);
-//        Set<Polygon> polygonSet = new HashSet<>(polygons);
+        Set<Polygon> polygonSet = new HashSet<>(polygons);
         vertices.clear();
         segments.clear();
-//        polygons.clear();
+        polygons.clear();
         vertices.addAll(pointSet);
         segments.addAll(segmentSet);
-//        polygons.addAll(polygonSet);
+        polygons.addAll(polygonSet);
     }
 }
 
