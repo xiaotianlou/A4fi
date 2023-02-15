@@ -21,12 +21,40 @@ public class Polygon {
         }
     }
 
+
+
+
     public List<Point> getVertices() {
         return vertices;
     }
 
     public List<Segment> getSegments() {
         return segments;
+    }
+
+
+
+    public Point getCentroidIndex() {
+        double sumX = 0;
+        double sumY = 0;
+
+        for (int i = 0; i < vertices.size(); i++) {
+            Point vertex = vertices.get(i);
+            sumX += vertex.getX();
+            sumY += vertex.getY();
+        }
+
+        double avgX = sumX / vertices.size();
+        double avgY = sumY / vertices.size();
+
+//        for (int i = 0; i < vertices.size(); i++) {
+//            Point vertex = vertices.get(i);
+//            if (vertex.getX() == avgX && vertex.getY() == avgY) {
+//                return i;
+//            }
+//        }
+        Point centroid = new Point(avgX,avgX);
+        return centroid;
     }
 
 //    public List<Segment> makeSegmentsConsecutive(Polygon polygon) {

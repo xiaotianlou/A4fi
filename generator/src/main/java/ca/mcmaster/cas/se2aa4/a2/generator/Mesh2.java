@@ -20,8 +20,8 @@ public class Mesh2 {
         double y = point.getY();
         BigDecimal bdX = new BigDecimal(x);
         BigDecimal bdY = new BigDecimal(y);
-        x = bdX.setScale(scale,BigDecimal.ROUND_HALF_UP).doubleValue();
-        y = bdY.setScale(scale,BigDecimal.ROUND_HALF_UP).doubleValue();
+        x = bdX.setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue();
+        y = bdY.setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue();
         point = new Point(x, y);
         vertices.add(point);
     }
@@ -43,12 +43,15 @@ public class Mesh2 {
     public List<Segment> getSegments() {
         return segments;
     }
+
     public List<Polygon> getPolygons() {
         return polygons;
     }
+
     public void setScale(int scale) {
         this.scale = scale;
     }
+
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Mesh2:\n");
@@ -74,5 +77,6 @@ public class Mesh2 {
         segments.addAll(segmentSet);
         polygons.addAll(polygonSet);
     }
+
 }
 
