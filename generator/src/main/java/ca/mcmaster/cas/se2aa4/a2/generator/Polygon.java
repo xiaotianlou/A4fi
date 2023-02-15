@@ -9,6 +9,7 @@ import java.util.Set;
 public class Polygon {
     private List<Point> vertices;
     private List<Segment> segments;
+    private Set<Integer> neighbors;
 
     public Polygon(List<Point> vertices) {
         this.vertices = new ArrayList<>(vertices);
@@ -21,8 +22,11 @@ public class Polygon {
         }
     }
 
-
-
+    public void addNeighbor(int index) {
+        if (!neighbors.contains(index)) {
+            neighbors.add(index);
+        }
+    }
 
     public List<Point> getVertices() {
         return vertices;
@@ -32,7 +36,9 @@ public class Polygon {
         return segments;
     }
 
-
+    public Set<Integer> getNeighbors() {
+        return neighbors;
+    }
 
     public Point getCentroidIndex() {
         double sumX = 0;
