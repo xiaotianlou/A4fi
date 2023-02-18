@@ -5,10 +5,14 @@ import java.util.Objects;
 public class Segment {
     private Point start;
     private Point end;
+    private String color;
 
     public Segment(Point start, Point end) {
         this.start = start;
         this.end = end;
+    }
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public Point getStart() {
@@ -17,6 +21,9 @@ public class Segment {
 
     public Point getEnd() {
         return end;
+    }
+    public String getColor() {
+        return color;
     }
     @Override
     public boolean equals(Object o) {

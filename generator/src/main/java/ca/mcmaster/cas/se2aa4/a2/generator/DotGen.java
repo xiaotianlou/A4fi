@@ -18,14 +18,23 @@ public class DotGen {
     public Structs.Mesh transform(Mesh2 mesh) {
         Set<Structs.Vertex> verts = new HashSet<>();
         Set<Structs.Segment> segs = new HashSet<>();
+
         for (Point p : mesh.getVertices()) {
-            verts.add(Structs.Vertex.newBuilder().setX(p.getX()).setY(p.getY()).build());
+            Structs.Vertex v = Structs.Vertex.newBuilder().setX(p.getX()).setY(p.getY()).build();
+            Structs.Property color = Structs.Property.newBuilder().setKey("rgb_color").setValue(p.getColor()).build();
+            Structs.Vertex colored = Structs.Vertex.newBuilder(v).addProperties(color).build();
+            verts.add(colored);
         }
+
         List<Structs.Vertex> v_list = new LinkedList<>(verts);
         for (Segment s : mesh.getSegments()) {
-            segs.add(Structs.Segment.newBuilder().setV1Idx(findVertex(v_list, s.getStart().getX(),s.getStart().getY())).setV2Idx(findVertex(v_list, s.getEnd().getX(),s.getEnd().getY())).build());
+            Structs.Segment seg = Structs.Segment.newBuilder().setV1Idx(findVertex(v_list, s.getStart().getX(), s.getStart().getY())).setV2Idx(findVertex(v_list, s.getEnd().getX(), s.getEnd().getY())).build();
+            Structs.Property color = Structs.Property.newBuilder().setKey("rgb_color").setValue(s.getColor()).build();
+            Structs.Segment colored = Structs.Segment.newBuilder(seg).addProperties(color).build();
+            segs.add(seg);
         }
-        return Structs.Mesh.newBuilder().addAllVertices(verts).addAllSegments(segs).build();
+
+        return Structs.Mesh.newBuilder().addAllVertices(v_list).addAllSegments(segs).build();
     }
 
 
@@ -46,6 +55,24 @@ public class DotGen {
                 }
             }
         }
+        Random bag = new Random();
+        for (Point p : mesh.getVertices()) {
+            int red = bag.nextInt(255);
+            int green = bag.nextInt(255);
+            int blue = bag.nextInt(255);
+            int alpha = bag.nextInt(255);
+            String colorCode = red + "," + green + "," + blue + "," + alpha;
+            p.setColor(colorCode);
+        }
+
+        for (Segment s : mesh.getSegments()) {
+            int red = bag.nextInt(255);
+            int green = bag.nextInt(255);
+            int blue = bag.nextInt(255);
+            int alpha = bag.nextInt(255);
+            String colorCode = red + "," + green + "," + blue + "," + alpha;
+            s.setColor(colorCode);
+        }
         return transform(mesh);
     }
 
@@ -60,7 +87,7 @@ public class DotGen {
 //        }
 //    }
 //
-//    // Distribute colors randomly. Vertices are immutable, need to enrich them
+    // Distribute colors randomly. Vertices are immutable, need to enrich them
 //    Set<Vertex> verticesWithColors = new HashSet<>();
 //    Random bag = new Random();
 //        for(Vertex v: vertices){

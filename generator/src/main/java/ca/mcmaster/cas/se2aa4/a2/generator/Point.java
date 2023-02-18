@@ -5,10 +5,15 @@ import java.util.Objects;
 public class Point {
     private double x;
     private double y;
+    private String color;
 
     public Point(double x, double y) {
         this.x = x;
         this.y = y;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public double getX() {
@@ -17,6 +22,10 @@ public class Point {
 
     public double getY() {
         return y;
+    }
+
+    public String getColor() {
+        return color;
     }
 
     @Override
