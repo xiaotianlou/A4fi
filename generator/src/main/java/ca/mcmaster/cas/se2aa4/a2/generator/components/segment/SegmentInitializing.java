@@ -35,7 +35,11 @@ public class SegmentInitializing {
             Segment colored = Segment.newBuilder(s).addProperties(color).build();
             segmentsWithColors.add(colored);
         }
-        return segmentsWithColors;
+        for(Segment l:segments){
+            System.out.println(l);
+        }
+
+            return segmentsWithColors;
     }
     private static int findVertex(List<Vertex> vertexList, double x, double y){
         int i=0;

@@ -1,20 +1,18 @@
 package ca.mcmaster.cas.se2aa4.a2.generator.components.vertex;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import static ca.mcmaster.cas.se2aa4.a2.io.Structs.*;
 
 public class VertexInitializing {
     public static List<Vertex> vertexInitialize(int width, int height, int square_size){
         List<Vertex> vertices = new LinkedList<>();
-        for(int x = 0; x < width; x += square_size) {
-            for(int y = 0; y < height; y += square_size) {
+        for(int x = 0; x <= width; x += square_size) {
+            for(int y = 0; y <= height; y += square_size) {
                 vertices.add(Vertex.newBuilder().setX((double) x).setY((double) y).build());
-                vertices.add(Vertex.newBuilder().setX((double) x+square_size).setY((double) y).build());
-                vertices.add(Vertex.newBuilder().setX((double) x).setY((double) y+square_size).build());
-                vertices.add(Vertex.newBuilder().setX((double) x+square_size).setY((double) y+square_size).build());
+//                vertices.add(Vertex.newBuilder().setX((double) x+square_size).setY((double) y).build());
+//                vertices.add(Vertex.newBuilder().setX((double) x).setY((double) y+square_size).build());
+//                vertices.add(Vertex.newBuilder().setX((double) x+square_size).setY((double) y+square_size).build());
             }
         }
         List<Vertex> verticesWithColors = new LinkedList<>();
@@ -28,6 +26,10 @@ public class VertexInitializing {
             Vertex colored = Vertex.newBuilder(v).addProperties(color).build();
             verticesWithColors.add(colored);
         }
+        for(Vertex v:verticesWithColors){
+            System.out.println(v);
+        }
+        System.out.println("==============================================");
         return verticesWithColors;
     }
 
