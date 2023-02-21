@@ -42,9 +42,9 @@ public class SegmentInitializing {
             Segment colored = Segment.newBuilder(s).addProperties(color).build();
             segmentsWithColors.add(colored);
         }
-        for (Segment l : segments) {
-            System.out.println(l);
-        }
+//        for (Segment l : segments) {
+//            System.out.println(l);
+//        }
 
         return segmentsWithColors;
     }

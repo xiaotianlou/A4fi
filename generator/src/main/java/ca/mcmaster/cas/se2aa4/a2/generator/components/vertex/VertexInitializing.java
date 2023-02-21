@@ -26,10 +26,10 @@ public class VertexInitializing {
             Vertex colored = Vertex.newBuilder(v).addProperties(color).build();
             verticesWithColors.add(colored);
         }
-        for(Vertex v:verticesWithColors){
-            System.out.println(v);
-        }
-        System.out.println("==============================================");
+//        for(Vertex v:verticesWithColors){
+//            System.out.println(v);
+//        }
+//        System.out.println("==============================================");
         return verticesWithColors;
     }
 

@@ -1,12 +1,9 @@
 package ca.mcmaster.cas.se2aa4.a2.generator;
 
 import java.util.*;
+import ca.mcmaster.cas.se2aa4.a2.io.Structs.*;
 
-import ca.mcmaster.cas.se2aa4.a2.io.Structs.Segment;
-import ca.mcmaster.cas.se2aa4.a2.io.Structs.Vertex;
-import ca.mcmaster.cas.se2aa4.a2.io.Structs.Property;
-import ca.mcmaster.cas.se2aa4.a2.io.Structs.Mesh;
-
+import static ca.mcmaster.cas.se2aa4.a2.generator.components.polygon.PolygonInitializing.polygonInitialize;
 import static ca.mcmaster.cas.se2aa4.a2.generator.components.vertex.VertexInitializing.vertexInitialize;
 import static ca.mcmaster.cas.se2aa4.a2.generator.components.segment.SegmentInitializing.segmentInitialize;
 
@@ -22,9 +19,10 @@ public class DotGen {
         List<Vertex> verticesWithColors = vertexInitialize(width,height,square_size);
 
         List<Segment> segmentsWithColors = segmentInitialize(width,height,square_size,verticesWithColors);
+        List<Polygon> polygons = polygonInitialize(verticesWithColors,segmentsWithColors);
 
 //        return Mesh.newBuilder().addAllVertices(verticesWithColors).build();
 
-        return Mesh.newBuilder().addAllVertices(verticesWithColors).addAllSegments(segmentsWithColors).build();
+        return Mesh.newBuilder().addAllVertices(verticesWithColors).addAllSegments(segmentsWithColors).addAllPolygons(polygons).build();
     }
 }
