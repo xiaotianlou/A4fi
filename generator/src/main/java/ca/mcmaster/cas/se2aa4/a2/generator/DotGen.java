@@ -21,10 +21,10 @@ public class DotGen {
 
         List<Vertex> verticesWithColors = vertexInitialize(width,height,square_size);
 
-//        List<Segment> segmentsWithColors = segmentInitialize(width,height,square_size,verticesWithColors);
+        List<Segment> segmentsWithColors = segmentInitialize(width,height,square_size,verticesWithColors);
 
-        return Mesh.newBuilder().addAllVertices(verticesWithColors).build();
+//        return Mesh.newBuilder().addAllVertices(verticesWithColors).build();
 
-//        return Mesh.newBuilder().addAllVertices(verticesWithColors).addAllSegments(segmentsWithColors).build();
+        return Mesh.newBuilder().addAllVertices(verticesWithColors).addAllSegments(segmentsWithColors).build();
     }
 }
