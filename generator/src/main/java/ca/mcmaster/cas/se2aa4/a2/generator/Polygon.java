@@ -54,7 +54,7 @@ public class Polygon {
 
         centroid.setX(sumX / vertices.size());
         centroid.setY(sumY / vertices.size());
-
+        centroid.setColor(255 + "," + 0 + "," + 0 + "," + 0);
         return centroid;
     }
 
