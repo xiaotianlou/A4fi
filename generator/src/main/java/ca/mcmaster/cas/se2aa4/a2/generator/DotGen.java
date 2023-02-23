@@ -59,6 +59,7 @@ public class DotGen {
 
         for (Polygon polygon:mesh.getPolygons()){
             mesh.addVertex(polygon.getCentroid());
+
         }
 
         return mesh.transform();

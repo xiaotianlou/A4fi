@@ -106,6 +106,7 @@ public class Mesh2 {
     public Structs.Mesh transform() {
         Set<Structs.Vertex> verts = new HashSet<>();
         Set<Structs.Segment> segs = new HashSet<>();
+        Set<Structs.Polygon> polys = new HashSet<>();
 
         for (Point p : this.getVertices()) {
             Structs.Vertex v = Structs.Vertex.newBuilder().setX(p.getX()).setY(p.getY()).build();
@@ -121,8 +122,15 @@ public class Mesh2 {
             Structs.Segment colored = Structs.Segment.newBuilder(seg).addProperties(color).build();
             segs.add(colored);
         }
-
-        return Structs.Mesh.newBuilder().addAllVertices(v_list).addAllSegments(segs).build();
+        List<Structs.Segment> s_list = new LinkedList<>(segs);
+        for (Polygon p : this.getPolygons()) {
+            Structs.Polygon poly = Structs.Polygon.newBuilder().setCentroidIdx(findVertex(v_list,p.getCentroid().getX(),p.getCentroid().getY())).build();
+            for (Segment segment : p.getSegments()) {
+                poly = Structs.Polygon.newBuilder().addSegmentIdxs(findSegment(s_list, findVertex(v_list, segment.getStart().getX(), segment.getStart().getY()), findVertex(v_list, segment.getEnd().getX(), segment.getEnd().getY()))).build();
+                polys.add(poly);
+            }
+        }
+        return Structs.Mesh.newBuilder().addAllVertices(v_list).addAllSegments(segs).addAllPolygons(polys).build();
     }
 
     private int findVertex(List<Structs.Vertex> vertexList, double x, double y) {
@@ -135,6 +143,16 @@ public class Mesh2 {
         }
         return -1;
     }
-
+    private int findSegment(List<Structs.Segment>segmentlist, int x, int y) {
+        int i =0;
+        for (Structs.Segment s : segmentlist){
+            if (s.getV1Idx() == x && s.getV2Idx() == y){
+                return i;
+            }
+            i++;
+        }
+        return -1;
+    }
 }
+
 

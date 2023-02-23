@@ -36,6 +36,7 @@ public class GraphicRenderer {
         }
 
 
+
     }
 
     private Color extractColor(List<Property> properties) {

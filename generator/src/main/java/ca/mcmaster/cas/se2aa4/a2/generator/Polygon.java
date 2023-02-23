@@ -54,13 +54,6 @@ public class Polygon {
         centroid.setX(sumX / vertices.size());
         centroid.setY(sumY / vertices.size());
 
-//        for (int i = 0; i < vertices.size(); i++) {
-//            Point vertex = vertices.get(i);
-//            if (vertex.getX() == avgX && vertex.getY() == avgY) {
-//                return i;
-//            }
-//        }
-
         return centroid;
     }
 
