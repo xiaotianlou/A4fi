@@ -60,7 +60,7 @@ public class DotGen {
             String colorCode = red + "," + green + "," + blue + "," + alpha;
             s.setColor(colorCode);
         }
-        return mesh;
+        return mesh.transform();
     }
 
     //    Set<Vertex> vertices = new HashSet<>();
