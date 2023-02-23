@@ -59,14 +59,6 @@ public class DotGen {
 
         for (Polygon polygon:mesh.getPolygons()){
             mesh.addVertex(polygon.getCentroid());
-            for (Segment s : polygon.getSegments()) {
-                int red = bag.nextInt(255);
-                int green = bag.nextInt(255);
-                int blue = bag.nextInt(255);
-                int alpha = bag.nextInt(255);
-                String colorCode = red + "," + green + "," + blue + "," + alpha;
-                s.setColor(colorCode);
-            }
         }
 
         return mesh.transform();
