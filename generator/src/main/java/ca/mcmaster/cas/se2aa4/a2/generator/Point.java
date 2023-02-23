@@ -5,7 +5,8 @@ import java.util.Objects;
 public class Point {
     private double x;
     private double y;
-    private String color;
+    private String color=0 + "," + 0 + "," + 0;
+
 
     public Point(double x, double y) {
         this.x = x;
