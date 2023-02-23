@@ -123,6 +123,7 @@ public class Mesh2 {
             segs.add(colored);
         }
         List<Structs.Segment> s_list = new LinkedList<>(segs);
+        //
         for (Polygon p : this.getPolygons()) {
             for (Segment segment : p.getSegments()) {
                 Structs.Polygon poly = Structs.Polygon.newBuilder().setCentroidIdx(findVertex(v_list,p.getCentroid().getX(),p.getCentroid().getY())).addSegmentIdxs(findSegment(s_list, findVertex(v_list, segment.getStart().getX(), segment.getStart().getY()), findVertex(v_list, segment.getEnd().getX(), segment.getEnd().getY()))).build();
