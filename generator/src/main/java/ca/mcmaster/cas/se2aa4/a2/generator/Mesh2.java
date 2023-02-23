@@ -124,9 +124,8 @@ public class Mesh2 {
         }
         List<Structs.Segment> s_list = new LinkedList<>(segs);
         for (Polygon p : this.getPolygons()) {
-            Structs.Polygon poly = Structs.Polygon.newBuilder().setCentroidIdx(findVertex(v_list,p.getCentroid().getX(),p.getCentroid().getY())).build();
             for (Segment segment : p.getSegments()) {
-                poly = Structs.Polygon.newBuilder().addSegmentIdxs(findSegment(s_list, findVertex(v_list, segment.getStart().getX(), segment.getStart().getY()), findVertex(v_list, segment.getEnd().getX(), segment.getEnd().getY()))).build();
+                Structs.Polygon poly = Structs.Polygon.newBuilder().setCentroidIdx(findVertex(v_list,p.getCentroid().getX(),p.getCentroid().getY())).addSegmentIdxs(findSegment(s_list, findVertex(v_list, segment.getStart().getX(), segment.getStart().getY()), findVertex(v_list, segment.getEnd().getX(), segment.getEnd().getY()))).build();
                 polys.add(poly);
             }
         }
