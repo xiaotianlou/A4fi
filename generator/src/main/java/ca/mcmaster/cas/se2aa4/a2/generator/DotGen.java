@@ -1,6 +1,8 @@
 package ca.mcmaster.cas.se2aa4.a2.generator;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Segment;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Vertex;
@@ -37,20 +39,68 @@ public class DotGen {
             Vertex colored = Vertex.newBuilder(v).addProperties(color).build();
             verticesWithColors.add(colored);
         }
-        List<Vertex> v_list = new LinkedList<>(verticesWithColors);
+
+        List<Vertex> v_list = new ArrayList<>(verticesWithColors);
         HashSet<Segment> segments = new HashSet<>();
         for(int x = 0; x < width; x += square_size) {
             for(int y = 0; y < height; y += square_size) {
-                segments.add(Segment.newBuilder().setV1Idx(findVertex(v_list,x,y)).setV2Idx(findVertex(v_list,x+square_size,y)).build());
-                segments.add(Segment.newBuilder().setV1Idx(findVertex(v_list,x,y)).setV2Idx(findVertex(v_list,x,y+square_size)).build());
-                segments.add(Segment.newBuilder().setV1Idx(findVertex(v_list,x+square_size,y)).setV2Idx(findVertex(v_list,x+square_size,y+square_size)).build());
-                segments.add(Segment.newBuilder().setV1Idx(findVertex(v_list,x,y+square_size)).setV2Idx(findVertex(v_list,x+square_size,y+square_size)).build());
+                //color
+
+                Property line_color =cal_color(v_list.get(findVertex(v_list,x,y)),v_list.get(findVertex(v_list,x+square_size,y)));
+                segments.add(Segment.newBuilder().setV1Idx(findVertex(v_list,x,y)).setV2Idx(findVertex(v_list,x+square_size,y)).addProperties(line_color).build());
+
+                line_color =cal_color(v_list.get(findVertex(v_list,x,y)),v_list.get(findVertex(v_list,x,y+square_size)));
+                segments.add(Segment.newBuilder().setV1Idx(findVertex(v_list,x,y)).setV2Idx(findVertex(v_list,x,y+square_size)).addProperties(line_color).build());
+
+                line_color =cal_color(v_list.get(findVertex(v_list,x+square_size,y)),v_list.get(findVertex(v_list,x+square_size,y+square_size)));
+                segments.add(Segment.newBuilder().setV1Idx(findVertex(v_list,x+square_size,y)).setV2Idx(findVertex(v_list,x+square_size,y+square_size)).addProperties(line_color).build());
+
+                line_color=cal_color(v_list.get(findVertex(v_list,x,y+square_size)),v_list.get(findVertex(v_list,x+square_size,y+square_size)));
+                segments.add(Segment.newBuilder().setV1Idx(findVertex(v_list,x,y+square_size)).setV2Idx(findVertex(v_list,x+square_size,y+square_size)).addProperties(line_color).build());
+
+
+
             }
         }
 
 
-        return Mesh.newBuilder().addAllVertices(v_list).addAllSegments(segments).build();
+        return Mesh
+                .newBuilder()
+                .addAllVertices(v_list)
+                .addAllSegments(segments)
+                .build();
     }
+
+    private Property cal_color(Vertex a,Vertex b){
+
+        String val1 = null;
+        String val2 = null;
+        for (Property p : a.getPropertiesList()) {
+            if (p.getKey().equals("rgb_color")) {
+                System.out.println(p.getValue());
+                System.out.println("测试1");
+                val1 = p.getValue();
+            }
+        }
+        for (Property p : b.getPropertiesList()) {
+            if (p.getKey().equals("rgb_color")) {
+                System.out.println(p.getValue());
+                System.out.println("测试2");
+                val2 = p.getValue();
+            }
+        }
+        String[] raw = val1.split(",");
+        String[] raw1 = val2.split(",");
+        int red = (Integer.parseInt(raw[0])+Integer.parseInt(raw1[0]))/2;
+        int green =(Integer.parseInt(raw[1])+Integer.parseInt(raw1[1]))/2;
+        int blue = (Integer.parseInt(raw[2])+Integer.parseInt(raw1[2]))/2;
+
+
+        String colorCode = red + "," + green + "," + blue;
+        Property color = Property.newBuilder().setKey("rgb_color").setValue(colorCode).build();
+        return  color;
+    }
+
     private int findVertex(List<Vertex> vertexList,double x,double y){
         int i=0;
         for (Vertex v:vertexList){
