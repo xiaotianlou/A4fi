@@ -41,7 +41,7 @@ public class Polygon {
         return neighbors;
     }
 
-    public Point getCentroidIndex() {
+    public Point getCentroid() {
         double sumX = 0;
         double sumY = 0;
 

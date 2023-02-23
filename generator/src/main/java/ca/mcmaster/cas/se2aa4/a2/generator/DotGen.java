@@ -5,7 +5,7 @@ import java.util.*;
 //import ca.mcmaster.cas.se2aa4.a2.io.Structs.Segment;
 //import ca.mcmaster.cas.se2aa4.a2.io.Structs.Vertex;
 //import ca.mcmaster.cas.se2aa4.a2.io.Structs.Property;
-//import ca.mcmaster.cas.se2aa4.a2.io.Structs.Mesh;
+import ca.mcmaster.cas.se2aa4.a2.io.Structs.Mesh;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs;
 
 
@@ -20,21 +20,28 @@ public class DotGen {
 
     public Structs.Mesh generate() {
         Mesh2 mesh = new Mesh2();
+        List<Point>vertices = new ArrayList<>();
         // Create all the vertices
         for (int x = 0; x < width; x += square_size) {
             for (int y = 0; y < height; y += square_size) {
-                Point start = new Point(x, y);
-                Point end1 = new Point(x, y + square_size);
-                Point end2 = new Point(x + square_size, y);
-                mesh.addVertex(start);
-                if (y + square_size < 500) {
-                    mesh.addSegment(start, end1);
-                }
-                if (x + square_size < 500) {
-                    mesh.addSegment(start, end2);
-                }
+                Point p1 = new Point(x, y);
+                Point p2 = new Point(x, y + square_size);
+                Point p3 = new Point(x + square_size, y);
+                Point p4 = new Point(x + square_size, y + square_size);
+                mesh.addVertex(p1);
+                vertices.add(p1);
+                vertices.add(p2);
+                vertices.add(p3);
+                vertices.add(p4);
+                mesh.addPolygon(vertices);
+                vertices.clear();
             }
         }
+
+        for (Polygon polygon:mesh.getPolygons()){
+            mesh.addVertex(polygon.getCentroid());
+        }
+
         Random bag = new Random();
         for (Point p : mesh.getVertices()) {
             int red = bag.nextInt(255);
@@ -53,7 +60,7 @@ public class DotGen {
             String colorCode = red + "," + green + "," + blue + "," + alpha;
             s.setColor(colorCode);
         }
-        return Mesh2.transform(mesh);
+        return mesh;
     }
 
     //    Set<Vertex> vertices = new HashSet<>();

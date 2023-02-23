@@ -103,7 +103,7 @@ public class Mesh2 {
         }
     }
 
-    public static Structs.Mesh transform(Mesh2 mesh) {
+    public Structs.Mesh transform(Mesh2 mesh) {
         Set<Structs.Vertex> verts = new HashSet<>();
         Set<Structs.Segment> segs = new HashSet<>();
 
@@ -119,13 +119,13 @@ public class Mesh2 {
             Structs.Segment seg = Structs.Segment.newBuilder().setV1Idx(findVertex(v_list, s.getStart().getX(), s.getStart().getY())).setV2Idx(findVertex(v_list, s.getEnd().getX(), s.getEnd().getY())).build();
             Structs.Property color = Structs.Property.newBuilder().setKey("rgb_color").setValue(s.getColor()).build();
             Structs.Segment colored = Structs.Segment.newBuilder(seg).addProperties(color).build();
-            segs.add(seg);
+            segs.add(colored);
         }
 
         return Structs.Mesh.newBuilder().addAllVertices(v_list).addAllSegments(segs).build();
     }
 
-    private static int findVertex(List<Structs.Vertex> vertexList, double x, double y) {
+    private int findVertex(List<Structs.Vertex> vertexList, double x, double y) {
         int i = 0;
         for (Structs.Vertex v : vertexList) {
             if (v.getX() == x && v.getY() == y) {
