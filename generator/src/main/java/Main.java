@@ -1,8 +1,13 @@
 import ca.mcmaster.cas.se2aa4.a2.generator.DotGen;
+import ca.mcmaster.cas.se2aa4.a2.generator.Mesh2;
 import ca.mcmaster.cas.se2aa4.a2.io.MeshFactory;
+import ca.mcmaster.cas.se2aa4.a2.io.Structs;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Mesh;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 
 public class Main {
 
@@ -12,5 +17,6 @@ public class Main {
         MeshFactory factory = new MeshFactory();
         factory.write(myMesh, args[0]);
     }
+
 
 }
