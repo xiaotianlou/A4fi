@@ -56,10 +56,9 @@ public class DotGen {
             String colorCode = red + "," + green + "," + blue + "," + alpha;
             s.setColor(colorCode);
         }
-
+        System.out.println(mesh.getPolygons());
         for (Polygon polygon:mesh.getPolygons()){
             mesh.addVertex(polygon.getCentroid());
-
         }
 
         return mesh.transform();

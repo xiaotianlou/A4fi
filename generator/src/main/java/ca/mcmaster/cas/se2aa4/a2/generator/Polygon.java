@@ -15,6 +15,7 @@ public class Polygon {
     public Polygon(List<Point> vertices) {
         this.vertices = new ArrayList<>(vertices);
         this.segments = new ArrayList<>();
+        this.centroid = new Point(0,0);
         for (int i = 0; i < vertices.size(); i++) {
             Point start = vertices.get(i);
             Point end = vertices.get((i + 1) % vertices.size());

@@ -14,8 +14,9 @@ public class Main {
     public static void main(String[] args) throws IOException {
         DotGen generator = new DotGen();
         Mesh myMesh = generator.generate();
-        MeshFactory factory = new MeshFactory();
-        factory.write(myMesh, args[0]);
+        System.out.println(myMesh.getPolygonsList());
+//        MeshFactory factory = new MeshFactory();
+//        factory.write(myMesh, args[0]);
     }
 
 
