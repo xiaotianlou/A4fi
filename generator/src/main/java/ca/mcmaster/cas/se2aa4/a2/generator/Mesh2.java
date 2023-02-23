@@ -1,5 +1,7 @@
 package ca.mcmaster.cas.se2aa4.a2.generator;
 
+import ca.mcmaster.cas.se2aa4.a2.io.Structs;
+
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -32,6 +34,11 @@ public class Mesh2 {
     }
 
     public void addPolygon(List<Point> vertices) {
+        Polygon polygon = new Polygon(vertices);
+        polygons.add(polygon);
+    }
+
+    public void addCentroid() {
         Polygon polygon = new Polygon(vertices);
         polygons.add(polygon);
     }
@@ -94,6 +101,39 @@ public class Mesh2 {
                 }
             }
         }
+    }
+
+    public static Structs.Mesh transform(Mesh2 mesh) {
+        Set<Structs.Vertex> verts = new HashSet<>();
+        Set<Structs.Segment> segs = new HashSet<>();
+
+        for (Point p : mesh.getVertices()) {
+            Structs.Vertex v = Structs.Vertex.newBuilder().setX(p.getX()).setY(p.getY()).build();
+            Structs.Property color = Structs.Property.newBuilder().setKey("rgb_color").setValue(p.getColor()).build();
+            Structs.Vertex colored = Structs.Vertex.newBuilder(v).addProperties(color).build();
+            verts.add(colored);
+        }
+
+        List<Structs.Vertex> v_list = new LinkedList<>(verts);
+        for (Segment s : mesh.getSegments()) {
+            Structs.Segment seg = Structs.Segment.newBuilder().setV1Idx(findVertex(v_list, s.getStart().getX(), s.getStart().getY())).setV2Idx(findVertex(v_list, s.getEnd().getX(), s.getEnd().getY())).build();
+            Structs.Property color = Structs.Property.newBuilder().setKey("rgb_color").setValue(s.getColor()).build();
+            Structs.Segment colored = Structs.Segment.newBuilder(seg).addProperties(color).build();
+            segs.add(seg);
+        }
+
+        return Structs.Mesh.newBuilder().addAllVertices(v_list).addAllSegments(segs).build();
+    }
+
+    private static int findVertex(List<Structs.Vertex> vertexList, double x, double y) {
+        int i = 0;
+        for (Structs.Vertex v : vertexList) {
+            if (v.getX() == x && v.getY() == y) {
+                return i;
+            }
+            i++;
+        }
+        return -1;
     }
 
 }

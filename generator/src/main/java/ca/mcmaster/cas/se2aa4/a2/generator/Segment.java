@@ -11,6 +11,15 @@ public class Segment {
         this.start = start;
         this.end = end;
     }
+
+    public void setStart(Point start) {
+        this.start = start;
+    }
+
+    public void setEnd(Point end) {
+        this.end = end;
+    }
+
     public void setColor(String color) {
         this.color = color;
     }

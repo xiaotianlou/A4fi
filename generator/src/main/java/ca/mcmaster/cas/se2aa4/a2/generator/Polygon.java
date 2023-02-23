@@ -10,6 +10,7 @@ public class Polygon {
     private List<Point> vertices;
     private List<Segment> segments;
     private Set<Integer> neighbors;
+    private Point centroid;
 
     public Polygon(List<Point> vertices) {
         this.vertices = new ArrayList<>(vertices);
@@ -50,8 +51,8 @@ public class Polygon {
             sumY += vertex.getY();
         }
 
-        double avgX = sumX / vertices.size();
-        double avgY = sumY / vertices.size();
+        centroid.setX(sumX / vertices.size());
+        centroid.setY(sumY / vertices.size());
 
 //        for (int i = 0; i < vertices.size(); i++) {
 //            Point vertex = vertices.get(i);
@@ -59,7 +60,7 @@ public class Polygon {
 //                return i;
 //            }
 //        }
-        Point centroid = new Point(avgX,avgX);
+
         return centroid;
     }
 

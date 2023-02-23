@@ -15,27 +15,7 @@ public class DotGen {
     private final int height = 500;
     private final int square_size = 20;
 
-    public Structs.Mesh transform(Mesh2 mesh) {
-        Set<Structs.Vertex> verts = new HashSet<>();
-        Set<Structs.Segment> segs = new HashSet<>();
 
-        for (Point p : mesh.getVertices()) {
-            Structs.Vertex v = Structs.Vertex.newBuilder().setX(p.getX()).setY(p.getY()).build();
-            Structs.Property color = Structs.Property.newBuilder().setKey("rgb_color").setValue(p.getColor()).build();
-            Structs.Vertex colored = Structs.Vertex.newBuilder(v).addProperties(color).build();
-            verts.add(colored);
-        }
-
-        List<Structs.Vertex> v_list = new LinkedList<>(verts);
-        for (Segment s : mesh.getSegments()) {
-            Structs.Segment seg = Structs.Segment.newBuilder().setV1Idx(findVertex(v_list, s.getStart().getX(), s.getStart().getY())).setV2Idx(findVertex(v_list, s.getEnd().getX(), s.getEnd().getY())).build();
-            Structs.Property color = Structs.Property.newBuilder().setKey("rgb_color").setValue(s.getColor()).build();
-            Structs.Segment colored = Structs.Segment.newBuilder(seg).addProperties(color).build();
-            segs.add(seg);
-        }
-
-        return Structs.Mesh.newBuilder().addAllVertices(v_list).addAllSegments(segs).build();
-    }
 
 
     public Structs.Mesh generate() {
@@ -73,7 +53,7 @@ public class DotGen {
             String colorCode = red + "," + green + "," + blue + "," + alpha;
             s.setColor(colorCode);
         }
-        return transform(mesh);
+        return Mesh2.transform(mesh);
     }
 
     //    Set<Vertex> vertices = new HashSet<>();
@@ -113,16 +93,7 @@ public class DotGen {
 //
 //        return Mesh.newBuilder().addAllVertices(v_list).addAllSegments(segments).build();
 //}
-    private int findVertex(List<Structs.Vertex> vertexList, double x, double y) {
-        int i = 0;
-        for (Structs.Vertex v : vertexList) {
-            if (v.getX() == x && v.getY() == y) {
-                return i;
-            }
-            i++;
-        }
-        return -1;
-    }
+
 }
 
 
