@@ -91,9 +91,9 @@ public class DotGen {
         }
         String[] raw = val1.split(",");
         String[] raw1 = val2.split(",");
-        int red = Integer.parseInt(raw[0])+Integer.parseInt(raw1[0]);
-        int green = Integer.parseInt(raw[1])+Integer.parseInt(raw1[1]);
-        int blue = Integer.parseInt(raw[2])+Integer.parseInt(raw1[2]);
+        int red = (Integer.parseInt(raw[0])+Integer.parseInt(raw1[0]))/2;
+        int green =(Integer.parseInt(raw[1])+Integer.parseInt(raw1[1]))/2;
+        int blue = (Integer.parseInt(raw[2])+Integer.parseInt(raw1[2]))/2;
 
 
         String colorCode = red + "," + green + "," + blue;

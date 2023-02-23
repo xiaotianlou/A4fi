@@ -29,11 +29,12 @@ public class GraphicRenderer {
         }
 
         for (Segment line : aMesh.getSegmentsList()) {
+            canvas.setColor(Color.BLACK);
+            canvas.setStroke(stroke);
 
             canvas.setColor(extractColor(line.getPropertiesList()));
 
-            canvas.draw(
-                    new Line2D.Double(aMesh.getVerticesList().get(line.getV1Idx()).getX(),aMesh.getVerticesList().get(line.getV1Idx()).getY(),aMesh.getVerticesList().get(line.getV2Idx()).getX(), aMesh.getVerticesList().get(line.getV2Idx()).getY()));
+            canvas.draw(new Line2D.Double(aMesh.getVerticesList().get(line.getV1Idx()).getX(),aMesh.getVerticesList().get(line.getV1Idx()).getY(),aMesh.getVerticesList().get(line.getV2Idx()).getX(), aMesh.getVerticesList().get(line.getV2Idx()).getY()));
         }
 
 
