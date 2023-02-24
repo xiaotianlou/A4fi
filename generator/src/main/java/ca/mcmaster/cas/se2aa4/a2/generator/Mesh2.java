@@ -9,7 +9,7 @@ public class Mesh2 {
     private List<Point> vertices;
     private List<Segment> segments;
     private List<Polygon> polygons;
-    private int scale = 4;
+    private int scale = 2;
 
     public Mesh2() {
         vertices = new ArrayList<>();
@@ -17,11 +17,10 @@ public class Mesh2 {
         polygons = new ArrayList<>();
     }
 
-    public Point addVertex(Point point) {
+    public void addVertex(Point point) {
         for(Point p : this.vertices){
             if (p.getX() == point.getX() && p.getY()==point.getY()){
-                point = p;
-                return p;
+                return ;
             }
         }
         double x = point.getX();
@@ -33,37 +32,28 @@ public class Mesh2 {
         point.setX(x);
         point.setY(y);
         point.setId(vertices.size());
-        Color.setColor(point);
         vertices.add(point);
-        return point;
     }
 
-    public Segment addSegment(Segment segment) {
+    public void addSegment(Segment segment) {
         for (Segment s: this.segments){
             if ((segment.getStart().equals(s.getStart()) && segment.getEnd().equals(s.getEnd())) || (segment.getStart().equals(s.getEnd()) && segment.getEnd().equals(s.getStart()))) {
                 for (int id : segment.getUsedBy()){
                     s.addUsedBy(id);
                 }
-                for (int id : s.getUsedBy()){
-                    segment.addUsedBy(id);
-                }
-                segment.setId(s.getId());
-                return s;
+                return;
             }
         }
         segment.setId(segments.size());
         segments.add(segment);
-
         this.addVertex(segment.getStart());
         this.addVertex(segment.getEnd());
-        return segment;
     }
 
-    public Polygon addPolygon(Polygon polygon) {
+    public void addPolygon(Polygon polygon) {
         for (Polygon p:this.polygons){
             if (p.getVertices() == polygon.getVertices()){
-                polygon.setId(p.getId());
-                return p;
+                return ;
             }
         }
         polygon.setId(polygons.size());
@@ -76,7 +66,6 @@ public class Mesh2 {
             s.addUsedBy(polygon.getId());
             this.addSegment(s);
         }
-        return polygon;
 
     }
 
@@ -122,36 +111,51 @@ public class Mesh2 {
 
         List<Structs.Segment> s_list = new ArrayList<>();
         for (Segment s : this.segments) {
-            Structs.Segment seg = Structs.Segment.newBuilder().setV1Idx(s.getStart().getId()).setV2Idx(s.getEnd().getId()).build();
-//            Structs.Property color = Structs.Property.newBuilder().setKey("rgb_color").setValue(s.getColor().getColorCode()).build();
-//            Structs.Segment colored = Structs.Segment.newBuilder(seg).addProperties(color).build();
-//            s_list.add(colored);
+            Structs.Segment seg = Structs.Segment.newBuilder().setV1Idx(getPoint(s.getStart()).getId()).setV2Idx(getPoint(s.getEnd()).getId()).build();
+            Structs.Property color = Structs.Property.newBuilder().setKey("rgb_color").setValue(getSegment(s).getColor().getColorCode()).build();
+            Structs.Segment colored = Structs.Segment.newBuilder(seg).addProperties(color).build();
+            s_list.add(colored);
         }
 
         List<Structs.Polygon> p_list = new ArrayList<>();
         for (Polygon p : this.polygons) {
-            Structs.Polygon poly = Structs.Polygon.newBuilder().setCentroidIdx(p.getCentroid().getId()).build();
+            Structs.Polygon poly = Structs.Polygon.newBuilder().setCentroidIdx(getPoint(p.getCentroid()).getId()).build();
             for (Segment s : p.getSegments()) {
-                System.out.println(s.getId());
-                poly.newBuilder().addSegmentIdxs(s.getId()).build();
-                for (int neighbour : s.getUsedBy()){
-                    if (neighbour != p.getId()){
+                poly.newBuilder().addSegmentIdxs(getSegment(s).getId()).build();
+                for (int neighbour : getSegment(s).getUsedBy()){
+                    if (neighbour != getPolygon(p).getId()){
                         p.addNeighbor(neighbour);
                     }
                 }
                 poly.newBuilder().addAllNeighborIdxs(p.getNeighbors());
             }
-            System.out.println(p.getNeighbors());
             p_list.add(poly);
         }
         return Structs.Mesh.newBuilder().addAllVertices(v_list).addAllSegments(s_list).addAllPolygons(p_list).build();
     }
-    public int findPolygonId(Polygon polygon){
-        for (Polygon p : this.polygons){
-            if (p.getVertices() == polygon.getVertices()){
-                return p.getId();
+
+    public Point getPoint(Point point){
+        for(Point p : this.vertices){
+            if (p.getX() == point.getX() && p.getY()==point.getY()){
+                return p;
             }
         }
-        return -1;
+        return point;
+    }
+    public Segment getSegment(Segment segment){
+        for (Segment s: this.segments){
+            if ((segment.getStart().equals(s.getStart()) && segment.getEnd().equals(s.getEnd())) || (segment.getStart().equals(s.getEnd()) && segment.getEnd().equals(s.getStart()))) {
+                return s;
+            }
+        }
+        return segment;
+    }
+    public Polygon getPolygon(Polygon polygon){
+        for (Polygon p:this.polygons){
+            if (p.getVertices() == polygon.getVertices()){
+                return p;
+            }
+        }
+        return polygon;
     }
 }

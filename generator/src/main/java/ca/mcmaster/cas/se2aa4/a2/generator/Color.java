@@ -17,14 +17,8 @@ public class Color {
         return colorCode;
     }
 
-    public static void setColor(Point p) {
-        Random bag = new Random();
-        int red = bag.nextInt(255);
-        int green = bag.nextInt(255);
-        int blue = bag.nextInt(255);
-        int alpha = bag.nextInt(255);
-        String colorCode = red + "," + green + "," + blue + "," + alpha;
-        Color c = new Color(colorCode);
+    public static void setColor(Point p, String pc) {
+        Color c = new Color(pc);
         p.setColor(c);
     }
 
@@ -40,10 +34,10 @@ public class Color {
         String c2 = p2.colorCode;
         int[] p1c = extractColor_Number(c1);
         int[] p2c = extractColor_Number(c2);
-        int[] sc = {(p1c[0] + p2c[0]) / 2, (p1c[1] + p2c[1]) / 2, (p1c[2] + p2c[2]) / 2, (p1c[3] + p2c[3]) / 2};
-        String colorCode = sc[0] + "," + sc[1] + "," + sc[2] + "," + sc[3];
-        Color c = new Color(colorCode);
-        return c;
+        int[] ac = {(p1c[0] + p2c[0]) / 2, (p1c[1] + p2c[1]) / 2, (p1c[2] + p2c[2]) / 2, (p1c[3] + p2c[3]) / 2};
+        String colorCode = ac[0] + "," + ac[1] + "," + ac[2] + "," + ac[3];
+        Color sc = new Color(colorCode);
+        return sc;
 
     }
 

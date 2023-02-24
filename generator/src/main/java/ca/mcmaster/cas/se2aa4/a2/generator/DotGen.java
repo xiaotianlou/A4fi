@@ -33,19 +33,22 @@ public class DotGen {
                 vertices.add(p3);
                 vertices.add(p4);
                 Polygon polygon = new Polygon(vertices);
+                for (Point p : polygon.getVertices()) {
+                    Random bag = new Random();
+                    int red = bag.nextInt(255);
+                    int green = bag.nextInt(255);
+                    int blue = bag.nextInt(255);
+                    int alpha = bag.nextInt(255);
+                    String colorCode = red + "," + green + "," + blue + "," + alpha;
+                    Color.setColor(p,colorCode);
+                }
+                for (Segment s : polygon.getSegments()) {
+                    Color.setColor(s);
+                }
                 mesh.addPolygon(polygon);
                 vertices.clear();
             }
         }
-
-
-        for (Point p : mesh.getVertices()) {
-            Color.setColor(p);
-        }
-
-//        for (Segment s : mesh.getSegments()) {
-//            Color.setColor(s);
-//        }
 
         return mesh.transform();
     }
