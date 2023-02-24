@@ -26,9 +26,8 @@ public class DotGen {
             for (int y = 0; y < height; y += square_size) {
                 Point p1 = new Point(x, y);
                 Point p2 = new Point(x, y + square_size);
-                Point p3 = new Point(x + square_size, y);
-                Point p4 = new Point(x + square_size, y + square_size);
-                mesh.addVertex(p1);
+                Point p3 = new Point(x + square_size, y + square_size);
+                Point p4 = new Point(x + square_size, y);
                 vertices.add(p1);
                 vertices.add(p2);
                 vertices.add(p3);
