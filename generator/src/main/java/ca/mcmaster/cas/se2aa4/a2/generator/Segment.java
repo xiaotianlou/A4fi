@@ -6,6 +6,7 @@ public class Segment {
     private Point start;
     private Point end;
     private String color;
+    private int id;
 
     public Segment(Point start, Point end) {
         this.start = start;
@@ -20,6 +21,9 @@ public class Segment {
     public void setEnd(Point end) {
         this.end = end;
     }
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public void setColor(String color) {
         this.color = color;
@@ -31,6 +35,9 @@ public class Segment {
 
     public Point getEnd() {
         return end;
+    }
+    public int getId() {
+        return id;
     }
     public String getColor() {
         return color;
