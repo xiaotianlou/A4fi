@@ -85,7 +85,6 @@ public class Mesh2 {
         polygons.addAll(polygonSet);
     }
 
-
     public Structs.Mesh transform() {
         Set<Structs.Vertex> verts = new HashSet<>();
         Set<Structs.Segment> segs = new HashSet<>();
@@ -97,7 +96,7 @@ public class Mesh2 {
             verts.add(colored);
         }
 
-        List<Structs.Vertex> v_list = new LinkedList<>(verts);
+        List<Structs.Vertex> v_list = new ArrayList<>(verts);
         for (Segment s : this.getSegments()) {
             Structs.Segment seg = Structs.Segment.newBuilder().setV1Idx(findVertex(v_list, s.getStart().getX(), s.getStart().getY())).setV2Idx(findVertex(v_list, s.getEnd().getX(), s.getEnd().getY())).build();
             Structs.Property color = Structs.Property.newBuilder().setKey("rgb_color").setValue(s.getColor()).build();
@@ -105,53 +104,57 @@ public class Mesh2 {
             segs.add(colored);
         }
 
-        List<Structs.Segment> s_list = new LinkedList<>(segs);
+        List<Structs.Segment> s_list = new ArrayList<>(segs);
         for (Polygon p : this.getPolygons()) {
+            Structs.Polygon poly = Structs.Polygon.newBuilder().setCentroidIdx(findVertex(v_list, p.getCentroid().getX(), p.getCentroid().getY())).build();
             for (Segment s : p.getSegments()) {
-                Structs.Polygon poly = Structs.Polygon.newBuilder().addSegmentIdxs(findSegment(s_list, findVertex(v_list, s.getStart().getX(), s.getStart().getY()), findVertex(v_list, s.getEnd().getX(), s.getEnd().getY()))).build();
-                polys.add(poly);
+                poly.newBuilder().addSegmentIdxs(findSegment(s_list, findVertex(v_list, s.getStart().getX(), s.getStart().getY()), findVertex(v_list, s.getEnd().getX(), s.getEnd().getY()))).build();
+            }
+            polys.add(poly);
+        }
+        List<Structs.Polygon> p_list = new ArrayList<>(polys);
+        for (Polygon p : this.getPolygons()) {
+            for (Structs.Polygon polygon : p_list) {
+                if (v_list.get(polygon.getCentroidIdx()).getX() == p.getCentroid().getX()&&v_list.get(polygon.getCentroidIdx()).getY() == p.getCentroid().getY()) {
+                    for(Polygon neighbour : p.getNeighbors()){
+                        polygon.newBuilder().addNeighborIdxs(findPolygon(p_list,findVertex(v_list, neighbour.getCentroid().getX(), neighbour.getCentroid().getY()))).build();
+                    }
+                }
             }
         }
-
-        return Structs.Mesh.newBuilder().addAllVertices(v_list).addAllSegments(segs).addAllPolygons(polys).build();
-    }
-
-
-
-
-    public Structs.Mesh transform_DEBUG() {
-        //debug mode
-
-
-
-        return Structs.Mesh.newBuilder().addAllVertices(v_list).addAllSegments(segs).addAllPolygons(polys).build();
-    }
-
-
-
-
-
-
-    private int findVertex(List<Structs.Vertex> vertexList, double x, double y) {
-        int i = 0;
-        for (Structs.Vertex v : vertexList) {
-            if (v.getX() == x && v.getY() == y) {
-                return i;
-            }
-            i++;
+            return Structs.Mesh.newBuilder().addAllVertices(v_list).addAllSegments(s_list).addAllPolygons(p_list).build();
         }
-        return -1;
-    }
-    private int findSegment(List<Structs.Segment>segmentlist, int x, int y) {
-        int i =0;
-        for (Structs.Segment s : segmentlist){
-            if (s.getV1Idx() == x && s.getV2Idx() == y){
-                return i;
+        private int findVertex (List < Structs.Vertex > vertexList,double x, double y){
+            int i = 0;
+            for (Structs.Vertex v : vertexList) {
+                if (v.getX() == x && v.getY() == y) {
+                    return i;
+                }
+                i++;
             }
-            i++;
+            return -1;
         }
-        return -1;
+        private int findSegment (List < Structs.Segment > segmentlist,int x, int y){
+            int i = 0;
+            for (Structs.Segment s : segmentlist) {
+                if (s.getV1Idx() == x && s.getV2Idx() == y) {
+                    return i;
+                }
+                i++;
+            }
+            return -1;
+        }
+
+        private int findPolygon (List < Structs.Polygon > polygonlist,int x){
+            int i = 0;
+            for (Structs.Polygon p : polygonlist) {
+                if (p.getCentroidIdx() == x) {
+                    return i;
+                }
+                i++;
+            }
+            return -1;
+        }
     }
-}
 
 

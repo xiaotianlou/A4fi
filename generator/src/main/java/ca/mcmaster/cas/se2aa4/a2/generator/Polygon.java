@@ -9,7 +9,7 @@ import java.util.Set;
 public class Polygon {
     private List<Point> vertices;
     private List<Segment> segments;
-    private Set<Integer> neighbors;
+    private List<Polygon> neighbors;
     private Point centroid;
 
     public Polygon(List<Point> vertices) {
@@ -24,9 +24,9 @@ public class Polygon {
         }
     }
 
-    public void addNeighbor(int index) {
-        if (!neighbors.contains(index)) {
-            neighbors.add(index);
+    public void addNeighbor(Polygon polygon) {
+        if (!neighbors.contains(polygon)) {
+            neighbors.add(polygon);
         }
     }
 
@@ -38,10 +38,10 @@ public class Polygon {
         return segments;
     }
 
-    public Set<Integer> getNeighbors() {
+    public List<Polygon> getNeighbors() {
         return neighbors;
     }
-    public void findNeighbors() {
+    public void findNeighbors(List<Polygon> polygons) {
         for (int i = 0; i < polygons.size(); i++) {
             Polygon polygon = polygons.get(i);
             for (int j = 0; j < polygons.size(); j++) {
@@ -51,8 +51,8 @@ public class Polygon {
                 Polygon other = polygons.get(j);
                 for (Segment segment : polygon.getSegments()) {
                     if (other.getSegments().contains(segment)) {
-                        polygon.addNeighbor(j);
-                        other.addNeighbor(i);
+                        polygon.addNeighbor(polygon);
+                        other.addNeighbor(other);
                         break;
                     }
                 }
