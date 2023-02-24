@@ -47,9 +47,16 @@ public class MeshADT {
         polygons.add(p);
         return p;
     }
+    private void centroidToVertex(){
+        for (PolygonADT p:polygons){
+            vertices.add(p.getCentroid());
+        }
+    }
+
 
     public Structs.Mesh toMesh(){
         Structs.Mesh.Builder builder = Structs.Mesh.newBuilder();
+        centroidToVertex();
         for (VertexADT v:vertices){
             builder.addVertices(v.toVertex());
         }

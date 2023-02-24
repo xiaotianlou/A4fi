@@ -47,9 +47,7 @@ public class PolygonADT {
             x += v.getX();
             y += v.getY();
         }
-        VertexADT v = mesh.getVertex(x/segments.size(),y/segments.size());
-        Structs.Mesh.newBuilder().addVertices(v.toVertex());
-        return v;
+        return mesh.getVertex(x/segments.size(),y/segments.size());
     }
 
     public Structs.Polygon toPolygon(){
