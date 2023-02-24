@@ -41,7 +41,11 @@ public class Polygon {
     public Set<Integer> getNeighbors() {
         return neighbors;
     }
-    public void findNeighbors() {
+
+    public int findNeighbors(List polygons) {
+
+
+
         for (int i = 0; i < polygons.size(); i++) {
             Polygon polygon = polygons.get(i);
             for (int j = 0; j < polygons.size(); j++) {
