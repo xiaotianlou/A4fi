@@ -133,6 +133,16 @@ public class Mesh2 {
         return Structs.Mesh.newBuilder().addAllVertices(v_list).addAllSegments(segs).addAllPolygons(polys).build();
     }
 
+    public Structs.Mesh transform_DEBUG() {
+
+        return Structs.Mesh.newBuilder().addAllVertices(v_list).addAllSegments(segs).addAllPolygons(polys).build();
+    }
+
+
+
+
+
+
     private int findVertex(List<Structs.Vertex> vertexList, double x, double y) {
         int i = 0;
         for (Structs.Vertex v : vertexList) {
