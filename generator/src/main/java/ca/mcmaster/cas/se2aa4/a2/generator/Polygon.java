@@ -48,23 +48,14 @@ public class Polygon {
     public List<Integer> getNeighbors() {
         return neighbors;
     }
-    public void findNeighbors(List<Polygon> polygons) {
-        for (int i = 0; i < polygons.size(); i++) {
-            Polygon polygon = polygons.get(i);
-            for (int j = 0; j < polygons.size(); j++) {
-                if (i == j) {
-                    continue;
-                }
-                Polygon other = polygons.get(j);
-                for (Segment segment : polygon.getSegments()) {
-                    if (other.getSegments().contains(segment)) {
-                        polygon.addNeighbor(other.getId());
-                        other.addNeighbor(polygon.getId());
-                        break;
-                    }
-                }
-            }
-        }
+    public void findNeighbors() {
+//        for (Segment s : this.segments) {
+//            for (Polygon neighbour : s.getUsedBy()){
+//                if (neighbour != this){
+//                    neighbors.add(neighbour.getId());
+//                }
+//            }
+//        }
     }
 
     public Point getCentroid() {
@@ -79,7 +70,8 @@ public class Polygon {
 
         centroid.setX(sumX / vertices.size());
         centroid.setY(sumY / vertices.size());
-        centroid.setColor(255 + "," + 0 + "," + 0 + "," + 0);
+        Color centroidc = new Color(255 + "," + 0 + "," + 0 + "," + 0);
+        centroid.setColor(centroidc);
         return centroid;
     }
 

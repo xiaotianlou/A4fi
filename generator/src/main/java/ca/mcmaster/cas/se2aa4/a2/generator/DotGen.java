@@ -38,34 +38,14 @@ public class DotGen {
             }
         }
 
-        Random bag = new Random();
+
         for (Point p : mesh.getVertices()) {
-            int red = bag.nextInt(255);
-            int green = bag.nextInt(255);
-            int blue = bag.nextInt(255);
-            int alpha = bag.nextInt(255);
-            String colorCode = red + "," + green + "," + blue + "," + alpha;
-            p.setColor(colorCode);
+            Color.setColor(p);
         }
 
-        for (Segment s : mesh.getSegments()) {
-            int red = bag.nextInt(255);
-            int green = bag.nextInt(255);
-            int blue = bag.nextInt(255);
-            int alpha = bag.nextInt(255);
-            String colorCode = red + "," + green + "," + blue + "," + alpha;
-            s.setColor(colorCode);
-        }
-
-        for (Polygon polygon:mesh.getPolygons()){
-            mesh.addVertex(polygon.getCentroid());
-            for (Point p: polygon.getVertices()) {
-                mesh.addVertex(p);
-            }
-            for (Segment s : polygon.getSegments()) {
-                mesh.addSegment(s);
-            }
-        }
+//        for (Segment s : mesh.getSegments()) {
+//            Color.setColor(s);
+//        }
 
         return mesh.transform();
     }
