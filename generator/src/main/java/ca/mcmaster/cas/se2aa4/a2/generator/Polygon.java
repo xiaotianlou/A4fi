@@ -41,6 +41,24 @@ public class Polygon {
     public Set<Integer> getNeighbors() {
         return neighbors;
     }
+    public void findNeighbors() {
+        for (int i = 0; i < polygons.size(); i++) {
+            Polygon polygon = polygons.get(i);
+            for (int j = 0; j < polygons.size(); j++) {
+                if (i == j) {
+                    continue;
+                }
+                Polygon other = polygons.get(j);
+                for (Segment segment : polygon.getSegments()) {
+                    if (other.getSegments().contains(segment)) {
+                        polygon.addNeighbor(j);
+                        other.addNeighbor(i);
+                        break;
+                    }
+                }
+            }
+        }
+    }
 
     public Point getCentroid() {
         double sumX = 0;
