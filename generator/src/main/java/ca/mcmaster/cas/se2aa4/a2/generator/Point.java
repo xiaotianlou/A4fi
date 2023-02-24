@@ -6,6 +6,7 @@ public class Point {
     private double x;
     private double y;
     private String color=0 + "," + 0 + "," + 0;
+    private int id;
 
 
     public Point(double x, double y) {
@@ -22,6 +23,10 @@ public class Point {
         this.y = y;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setColor(String color) {
         this.color = color;
     }
@@ -32,6 +37,10 @@ public class Point {
 
     public double getY() {
         return y;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getColor() {

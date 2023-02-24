@@ -3,13 +3,13 @@ package ca.mcmaster.cas.se2aa4.a2.generator;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 
 public class Polygon {
     private List<Point> vertices;
     private List<Segment> segments;
-    private Set<Integer> neighbors;
+    private List<Integer> neighbors;
+    private int id;
     private Point centroid;
 
     public Polygon(List<Point> vertices) {
@@ -23,10 +23,16 @@ public class Polygon {
             segments.add(segment);
         }
     }
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public void addNeighbor(int index) {
-        if (!neighbors.contains(index)) {
-            neighbors.add(index);
+    public void addNeighbor(int id) {
+        if (!neighbors.contains(id)) {
+            neighbors.add(id);
         }
     }
 
@@ -38,14 +44,10 @@ public class Polygon {
         return segments;
     }
 
-    public Set<Integer> getNeighbors() {
+    public List<Integer> getNeighbors() {
         return neighbors;
     }
-
-    public int findNeighbors(List polygons) {
-
-
-
+    public void findNeighbors(List<Polygon> polygons) {
         for (int i = 0; i < polygons.size(); i++) {
             Polygon polygon = polygons.get(i);
             for (int j = 0; j < polygons.size(); j++) {
@@ -55,8 +57,8 @@ public class Polygon {
                 Polygon other = polygons.get(j);
                 for (Segment segment : polygon.getSegments()) {
                     if (other.getSegments().contains(segment)) {
-                        polygon.addNeighbor(j);
-                        other.addNeighbor(i);
+                        polygon.addNeighbor(other.getId());
+                        other.addNeighbor(polygon.getId());
                         break;
                     }
                 }

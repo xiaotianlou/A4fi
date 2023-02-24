@@ -32,7 +32,8 @@ public class DotGen {
                 vertices.add(p2);
                 vertices.add(p3);
                 vertices.add(p4);
-                mesh.addPolygon(vertices);
+                Polygon polygon = new Polygon(vertices);
+                mesh.addPolygon(polygon);
                 vertices.clear();
             }
         }
@@ -62,7 +63,7 @@ public class DotGen {
                 mesh.addVertex(p);
             }
             for (Segment s : polygon.getSegments()) {
-                mesh.getSegments().add(s);
+                mesh.addSegment(s);
             }
         }
 
