@@ -18,29 +18,55 @@ public class Mesh2 {
     }
 
     public void addVertex(Point point) {
+        for(Point p : this.vertices){
+            if (p.getX() == point.getX() && p.getY()==point.getY()){
+                return ;
+            }
+        }
         double x = point.getX();
         double y = point.getY();
         BigDecimal bdX = new BigDecimal(x);
         BigDecimal bdY = new BigDecimal(y);
         x = bdX.setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue();
         y = bdY.setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue();
-        point = new Point(x, y);
+        point.setX(x);
+        point.setY(y);
+        point.setId(vertices.size());
         vertices.add(point);
     }
 
-    public void addSegment(Point start, Point end) {
-        Segment segment = new Segment(start, end);
+    public void addSegment(Segment segment) {
+        for (Segment s: this.segments){
+            if ((segment.getStart().equals(s.getStart()) && segment.getEnd().equals(s.getEnd())) || (segment.getStart().equals(s.getEnd()) && segment.getEnd().equals(s.getStart()))) {
+                for (int id : segment.getUsedBy()){
+                    s.addUsedBy(id);
+                }
+                return;
+            }
+        }
+        segment.setId(segments.size());
         segments.add(segment);
+        this.addVertex(segment.getStart());
+        this.addVertex(segment.getEnd());
     }
 
-    public void addPolygon(List<Point> vertices) {
-        Polygon polygon = new Polygon(vertices);
+    public void addPolygon(Polygon polygon) {
+        for (Polygon p:this.polygons){
+            if (p.getVertices() == polygon.getVertices()){
+                return ;
+            }
+        }
+        polygon.setId(polygons.size());
         polygons.add(polygon);
-    }
+        this.addVertex(polygon.getCentroid());
+        for (Point p: polygon.getVertices()) {
+            this.addVertex(p);
+        }
+        for (Segment s : polygon.getSegments()) {
+            s.addUsedBy(polygon.getId());
+            this.addSegment(s);
+        }
 
-    public void addCentroid() {
-        Polygon polygon = new Polygon(vertices);
-        polygons.add(polygon);
     }
 
     public List<Point> getVertices() {
@@ -73,68 +99,63 @@ public class Mesh2 {
         return sb.toString();
     }
 
-    public void removeDuplicates() {
-        Set<Point> pointSet = new HashSet<>(vertices);
-        Set<Segment> segmentSet = new HashSet<>(segments);
-        Set<Polygon> polygonSet = new HashSet<>(polygons);
-        vertices.clear();
-        segments.clear();
-        polygons.clear();
-        vertices.addAll(pointSet);
-        segments.addAll(segmentSet);
-        polygons.addAll(polygonSet);
-    }
-    public void findNeighbors() {
-        for (int i = 0; i < polygons.size(); i++) {
-            Polygon polygon = polygons.get(i);
-            for (int j = 0; j < polygons.size(); j++) {
-                if (i == j) {
-                    continue;
-                }
-                Polygon other = polygons.get(j);
-                for (Segment segment : polygon.getSegments()) {
-                    if (other.getSegments().contains(segment)) {
-                        polygon.addNeighbor(j);
-                        other.addNeighbor(i);
-                        break;
+    public Structs.Mesh transform() {
+        List<Structs.Vertex> v_list = new ArrayList<>();
+        for (Point p : this.vertices) {
+            Structs.Vertex v = Structs.Vertex.newBuilder().setX(p.getX()).setY(p.getY()).build();
+            Structs.Property color = Structs.Property.newBuilder().setKey("rgb_color").setValue(p.getColor().getColorCode()).build();
+            Structs.Vertex colored = Structs.Vertex.newBuilder(v).addProperties(color).build();
+            v_list.add(colored);
+        }
+
+
+        List<Structs.Segment> s_list = new ArrayList<>();
+        for (Segment s : this.segments) {
+            Structs.Segment seg = Structs.Segment.newBuilder().setV1Idx(getPoint(s.getStart()).getId()).setV2Idx(getPoint(s.getEnd()).getId()).build();
+            Structs.Property color = Structs.Property.newBuilder().setKey("rgb_color").setValue(getSegment(s).getColor().getColorCode()).build();
+            Structs.Segment colored = Structs.Segment.newBuilder(seg).addProperties(color).build();
+            s_list.add(colored);
+        }
+
+        List<Structs.Polygon> p_list = new ArrayList<>();
+        for (Polygon p : this.polygons) {
+            Structs.Polygon poly = Structs.Polygon.newBuilder().setCentroidIdx(getPoint(p.getCentroid()).getId()).build();
+            for (Segment s : p.getSegments()) {
+                poly.newBuilder().addSegmentIdxs(getSegment(s).getId()).build();
+                for (int neighbour : getSegment(s).getUsedBy()){
+                    if (neighbour != getPolygon(p).getId()){
+                        p.addNeighbor(neighbour);
                     }
                 }
+                poly.newBuilder().addAllNeighborIdxs(p.getNeighbors());
+            }
+            p_list.add(poly);
+        }
+        return Structs.Mesh.newBuilder().addAllVertices(v_list).addAllSegments(s_list).addAllPolygons(p_list).build();
+    }
+
+    public Point getPoint(Point point){
+        for(Point p : this.vertices){
+            if (p.getX() == point.getX() && p.getY()==point.getY()){
+                return p;
             }
         }
+        return point;
     }
-
-    public static Structs.Mesh transform(Mesh2 mesh) {
-        Set<Structs.Vertex> verts = new HashSet<>();
-        Set<Structs.Segment> segs = new HashSet<>();
-
-        for (Point p : mesh.getVertices()) {
-            Structs.Vertex v = Structs.Vertex.newBuilder().setX(p.getX()).setY(p.getY()).build();
-            Structs.Property color = Structs.Property.newBuilder().setKey("rgb_color").setValue(p.getColor()).build();
-            Structs.Vertex colored = Structs.Vertex.newBuilder(v).addProperties(color).build();
-            verts.add(colored);
-        }
-
-        List<Structs.Vertex> v_list = new LinkedList<>(verts);
-        for (Segment s : mesh.getSegments()) {
-            Structs.Segment seg = Structs.Segment.newBuilder().setV1Idx(findVertex(v_list, s.getStart().getX(), s.getStart().getY())).setV2Idx(findVertex(v_list, s.getEnd().getX(), s.getEnd().getY())).build();
-            Structs.Property color = Structs.Property.newBuilder().setKey("rgb_color").setValue(s.getColor()).build();
-            Structs.Segment colored = Structs.Segment.newBuilder(seg).addProperties(color).build();
-            segs.add(seg);
-        }
-
-        return Structs.Mesh.newBuilder().addAllVertices(v_list).addAllSegments(segs).build();
-    }
-
-    private static int findVertex(List<Structs.Vertex> vertexList, double x, double y) {
-        int i = 0;
-        for (Structs.Vertex v : vertexList) {
-            if (v.getX() == x && v.getY() == y) {
-                return i;
+    public Segment getSegment(Segment segment){
+        for (Segment s: this.segments){
+            if ((segment.getStart().equals(s.getStart()) && segment.getEnd().equals(s.getEnd())) || (segment.getStart().equals(s.getEnd()) && segment.getEnd().equals(s.getStart()))) {
+                return s;
             }
-            i++;
         }
-        return -1;
+        return segment;
     }
-
+    public Polygon getPolygon(Polygon polygon){
+        for (Polygon p:this.polygons){
+            if (p.getVertices() == polygon.getVertices()){
+                return p;
+            }
+        }
+        return polygon;
+    }
 }
-

@@ -36,8 +36,7 @@ public class GraphicRenderer {
 
             canvas.draw(new Line2D.Double(aMesh.getVerticesList().get(line.getV1Idx()).getX(),aMesh.getVerticesList().get(line.getV1Idx()).getY(),aMesh.getVerticesList().get(line.getV2Idx()).getX(), aMesh.getVerticesList().get(line.getV2Idx()).getY()));
         }
-
-
+        
     }
 
     private Color extractColor(List<Property> properties) {

@@ -3,18 +3,20 @@ package ca.mcmaster.cas.se2aa4.a2.generator;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 
 public class Polygon {
     private List<Point> vertices;
     private List<Segment> segments;
-    private Set<Integer> neighbors;
+    private List<Integer> neighbors;
+    private int id;
     private Point centroid;
 
     public Polygon(List<Point> vertices) {
         this.vertices = new ArrayList<>(vertices);
         this.segments = new ArrayList<>();
+        this.centroid = new Point(0,0);
+        this.neighbors = new ArrayList<>();
         for (int i = 0; i < vertices.size(); i++) {
             Point start = vertices.get(i);
             Point end = vertices.get((i + 1) % vertices.size());
@@ -22,10 +24,16 @@ public class Polygon {
             segments.add(segment);
         }
     }
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public void addNeighbor(int index) {
-        if (!neighbors.contains(index)) {
-            neighbors.add(index);
+    public void addNeighbor(int id) {
+        if (!neighbors.contains(id)) {
+            neighbors.add(id);
         }
     }
 
@@ -37,11 +45,20 @@ public class Polygon {
         return segments;
     }
 
-    public Set<Integer> getNeighbors() {
+    public List<Integer> getNeighbors() {
         return neighbors;
     }
+    public void findNeighbors() {
+//        for (Segment s : this.segments) {
+//            for (Polygon neighbour : s.getUsedBy()){
+//                if (neighbour != this){
+//                    neighbors.add(neighbour.getId());
+//                }
+//            }
+//        }
+    }
 
-    public Point getCentroidIndex() {
+    public Point getCentroid() {
         double sumX = 0;
         double sumY = 0;
 
@@ -53,14 +70,8 @@ public class Polygon {
 
         centroid.setX(sumX / vertices.size());
         centroid.setY(sumY / vertices.size());
-
-//        for (int i = 0; i < vertices.size(); i++) {
-//            Point vertex = vertices.get(i);
-//            if (vertex.getX() == avgX && vertex.getY() == avgY) {
-//                return i;
-//            }
-//        }
-
+        Color centroidc = new Color(255 + "," + 0 + "," + 0 + "," + 0);
+        centroid.setColor(centroidc);
         return centroid;
     }
 

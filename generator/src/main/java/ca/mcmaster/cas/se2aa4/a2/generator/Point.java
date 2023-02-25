@@ -5,7 +5,9 @@ import java.util.Objects;
 public class Point {
     private double x;
     private double y;
-    private String color;
+    private Color color;
+    private int id;
+
 
     public Point(double x, double y) {
         this.x = x;
@@ -20,7 +22,11 @@ public class Point {
         this.y = y;
     }
 
-    public void setColor(String color) {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setColor(Color color) {
         this.color = color;
     }
 
@@ -32,7 +38,11 @@ public class Point {
         return y;
     }
 
-    public String getColor() {
+    public int getId() {
+        return id;
+    }
+
+    public Color getColor() {
         return color;
     }
 
