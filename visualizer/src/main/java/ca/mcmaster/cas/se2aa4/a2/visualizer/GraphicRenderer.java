@@ -38,6 +38,30 @@ public class GraphicRenderer {
         }
         
     }
+    public void renderDebug(Mesh aMesh, Graphics2D canvas) {
+        canvas.setColor(Color.BLACK);
+        Stroke stroke = new BasicStroke(0.5f);
+        canvas.setStroke(stroke);
+        for (Vertex v : aMesh.getVerticesList()) {
+            double centre_x = v.getX() - (THICKNESS / 2.0d);
+            double centre_y = v.getY() - (THICKNESS / 2.0d);
+            Color old = canvas.getColor();
+            canvas.setColor(extractColor(v.getPropertiesList()));
+            Ellipse2D point = new Ellipse2D.Double(centre_x, centre_y, THICKNESS, THICKNESS);
+            canvas.fill(point);
+            canvas.setColor(old);
+        }
+
+        for (Segment line : aMesh.getSegmentsList()) {
+            canvas.setColor(Color.BLACK);
+            canvas.setStroke(stroke);
+
+            canvas.setColor(extractColor(line.getPropertiesList()));
+
+            canvas.draw(new Line2D.Double(aMesh.getVerticesList().get(line.getV1Idx()).getX(),aMesh.getVerticesList().get(line.getV1Idx()).getY(),aMesh.getVerticesList().get(line.getV2Idx()).getX(), aMesh.getVerticesList().get(line.getV2Idx()).getY()));
+        }
+
+    }
 
     private Color extractColor(List<Property> properties) {
         String val = null;
