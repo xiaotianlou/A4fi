@@ -48,7 +48,6 @@ public class GraphicRenderer {
             double centre_x = v.getX() - (THICKNESS / 2.0d);
             double centre_y = v.getY() - (THICKNESS / 2.0d);
 
-
             canvas.setColor(new Color(0, 0, 0));
             for (var a : aMesh.getPolygonsList()) {
                 if (v.equals( aMesh.getVertices(a.getCentroidIdx()))) {
@@ -60,18 +59,13 @@ public class GraphicRenderer {
             canvas.fill(point);
         }
 
-
-
         for (Segment line : aMesh.getSegmentsList()) {
             canvas.setColor(Color.BLACK);
             //all association in black
             canvas.setStroke(stroke);
             canvas.draw(new Line2D.Double(aMesh.getVerticesList().get(line.getV1Idx()).getX(), aMesh.getVerticesList().get(line.getV1Idx()).getY(), aMesh.getVerticesList().get(line.getV2Idx()).getX(), aMesh.getVerticesList().get(line.getV2Idx()).getY()));
         }
-
-
         //draw neighbour
-
 
         for (Structs.Polygon t : aMesh.getPolygonsList()) {
             int centroid = t.getCentroidIdx();
@@ -86,8 +80,6 @@ public class GraphicRenderer {
               double targetX= aMesh.getVerticesList().get(aMesh.getPolygonsList().get((int)n).getCentroidIdx()).getX();
               double targetY=aMesh.getVerticesList().get(aMesh.getPolygonsList().get((int)n).getCentroidIdx()).getY();
                 canvas.draw(new Line2D.Double(centroX, centroY,targetX,targetY ));
-
-
             }
         }
     }
