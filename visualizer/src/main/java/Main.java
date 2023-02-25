@@ -26,10 +26,19 @@ public class Main {
         GraphicRenderer renderer = new GraphicRenderer();
 
         // Painting the mesh on the canvas
-        renderer.render(aMesh, canvas);
+
+        if(args.length==2)
+        {
+            renderer.render(aMesh, canvas);
+//            System.out.println("1111");
 
 
-        // Storing the result in an SVG file
+        }else if(args.length==3&args[2].equals("-X")){
+//            System.out.println("22222");
+            renderer.renderDebug(aMesh,canvas);
+        }
+
+//         Storing the result in an SVG file
         SVGCanvas.write(canvas, output);
         // Dump the mesh to stdout
         MeshDump dumper = new MeshDump();
