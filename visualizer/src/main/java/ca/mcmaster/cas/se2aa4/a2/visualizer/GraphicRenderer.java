@@ -75,17 +75,13 @@ public class GraphicRenderer {
             double centroX = aMesh.getVerticesList().get(centroid).getX();
             double centroY = aMesh.getVerticesList().get(centroid).getY();
 
-            for (var n : neigh) {
 
+            for (var n : neigh) {
               double targetX= aMesh.getVerticesList().get(aMesh.getPolygonsList().get((int)n).getCentroidIdx()).getX();
               double targetY=aMesh.getVerticesList().get(aMesh.getPolygonsList().get((int)n).getCentroidIdx()).getY();
-
                 canvas.draw(new Line2D.Double(centroX, centroY,targetX,targetY ));
             }
-
         }
-
-
     }
 
 
