@@ -13,7 +13,6 @@ public class DotGen {
     public Structs.Mesh generate() {
         Mesh2 mesh = new Mesh2();
         List<Point>vertices = new ArrayList<>();
-        // Create all the vertices
         for (int x = 0; x < width; x += square_size) {
             for (int y = 0; y < height; y += square_size) {
                 Point p1 = new Point(x, y);
