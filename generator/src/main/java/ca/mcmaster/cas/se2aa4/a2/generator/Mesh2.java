@@ -132,6 +132,11 @@ public class Mesh2 {
             Structs.Polygon poly = builder.build();
             p_list.add(poly);
         }
+        //neighbor infomation
+
+
+
+
         return Structs.Mesh.newBuilder().addAllVertices(v_list).addAllSegments(s_list).addAllPolygons(p_list).build();
     }
 
