@@ -102,8 +102,9 @@ public class Mesh2 {
         List<Structs.Vertex> v_list = new ArrayList<>();
         for (Point p : this.vertices) {
             Structs.Vertex v = Structs.Vertex.newBuilder().setX(p.getX()).setY(p.getY()).build();
+            Structs.Property thickness = Structs.Property.newBuilder().setKey("thickness").setValue(p.getThickness()).build();
             Structs.Property color = Structs.Property.newBuilder().setKey("rgb_color").setValue(p.getColor().getColorCode()).build();
-            Structs.Vertex colored = Structs.Vertex.newBuilder(v).addProperties(color).build();
+            Structs.Vertex colored = Structs.Vertex.newBuilder(v).addProperties(color).addProperties(thickness).build();
             v_list.add(colored);
         }
 
@@ -111,8 +112,9 @@ public class Mesh2 {
         List<Structs.Segment> s_list = new ArrayList<>();
         for (Segment s : this.segments) {
             Structs.Segment seg = Structs.Segment.newBuilder().setV1Idx(getPoint(s.getStart()).getId()).setV2Idx(getPoint(s.getEnd()).getId()).build();
+            Structs.Property thickness = Structs.Property.newBuilder().setKey("thickness").setValue(s.getThickness()).build();
             Structs.Property color = Structs.Property.newBuilder().setKey("rgb_color").setValue(getSegment(s).getColor().getColorCode()).build();
-            Structs.Segment colored = Structs.Segment.newBuilder(seg).addProperties(color).build();
+            Structs.Segment colored = Structs.Segment.newBuilder(seg).addProperties(color).addProperties(thickness).build();
             s_list.add(colored);
         }
 
