@@ -5,14 +5,14 @@ import java.util.Objects;
 public class Point {
     private double x;
     private double y;
-    private String color=0 + "," + 0 + "," + 0;
+    private Color color;
     private int id;
+    private String thickness;
 
 
     public Point(double x, double y) {
         this.x = x;
         this.y = y;
-        this.color = 255 + "," + 0 + "," + 0 + "," + 0;
     }
 
     public void setX(double x) {
@@ -27,8 +27,16 @@ public class Point {
         this.id = id;
     }
 
-    public void setColor(String color) {
+    public void setColor(Color color) {
         this.color = color;
+    }
+
+    public String getThickness() {
+        return thickness;
+    }
+
+    public void setThickness(String thickness) {
+        this.thickness = thickness;
     }
 
     public double getX() {
@@ -43,7 +51,7 @@ public class Point {
         return id;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 

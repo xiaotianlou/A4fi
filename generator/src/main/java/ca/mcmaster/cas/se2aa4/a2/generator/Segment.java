@@ -1,17 +1,20 @@
 package ca.mcmaster.cas.se2aa4.a2.generator;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Segment {
     private Point start;
     private Point end;
-    private String color;
+
+    final ArrayList<Integer> usedBy = new ArrayList<>();
+    private Color color;
     private int id;
+    private String thickness;
 
     public Segment(Point start, Point end) {
         this.start = start;
         this.end = end;
-        this.color = 255 + "," + 0 + "," + 0 + "," + 0;
     }
 
     public void setStart(Point start) {
@@ -25,8 +28,16 @@ public class Segment {
         this.id = id;
     }
 
-    public void setColor(String color) {
+    public void setColor(Color color) {
         this.color = color;
+    }
+
+    public String getThickness() {
+        return thickness;
+    }
+
+    public void setThickness(String thickness) {
+        this.thickness = thickness;
     }
 
     public Point getStart() {
@@ -39,8 +50,21 @@ public class Segment {
     public int getId() {
         return id;
     }
-    public String getColor() {
+    public Color getColor() {
         return color;
+    }
+
+    public ArrayList<Integer> getUsedBy() {
+        return usedBy;
+    }
+
+    public void addUsedBy(int polygonId) {
+        for (int id : this.usedBy){
+            if(polygonId == id){
+                return;
+            }
+        }
+        this.usedBy.add(polygonId);
     }
     @Override
     public boolean equals(Object o) {
