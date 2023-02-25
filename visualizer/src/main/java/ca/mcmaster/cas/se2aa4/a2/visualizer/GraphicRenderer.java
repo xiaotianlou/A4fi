@@ -41,6 +41,12 @@ public class GraphicRenderer {
     public void renderDebug(Mesh aMesh, Graphics2D canvas) {
         System.out.println("debug mode");
 
+
+
+
+
+
+
     }
 
 
