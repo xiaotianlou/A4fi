@@ -118,16 +118,18 @@ public class Mesh2 {
 
         List<Structs.Polygon> p_list = new ArrayList<>();
         for (Polygon p : this.polygons) {
-            Structs.Polygon poly = Structs.Polygon.newBuilder().setCentroidIdx(getPoint(p.getCentroid()).getId()).build();
+            Structs.Polygon.Builder builder = Structs.Polygon.newBuilder();
+            builder.setCentroidIdx(getPoint(p.getCentroid()).getId()).build();
             for (Segment s : p.getSegments()) {
-                poly.newBuilder().addSegmentIdxs(getSegment(s).getId()).build();
+                builder.addSegmentIdxs(getSegment(s).getId()).build();
                 for (int neighbour : getSegment(s).getUsedBy()){
                     if (neighbour != getPolygon(p).getId()){
                         p.addNeighbor(neighbour);
                     }
                 }
-                poly.newBuilder().addAllNeighborIdxs(p.getNeighbors());
             }
+            builder.addAllNeighborIdxs(p.getNeighbors());
+            Structs.Polygon poly = builder.build();
             p_list.add(poly);
         }
         return Structs.Mesh.newBuilder().addAllVertices(v_list).addAllSegments(s_list).addAllPolygons(p_list).build();
