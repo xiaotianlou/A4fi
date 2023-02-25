@@ -30,11 +30,11 @@ public class Main {
         if(args.length==2)
         {
             renderer.render(aMesh, canvas);
-            System.out.println("1111");
+//            System.out.println("1111");
 
 
         }else if(args.length==3&args[2].equals("-X")){
-            System.out.println("22222");
+//            System.out.println("22222");
             renderer.renderDebug(aMesh,canvas);
         }
 
