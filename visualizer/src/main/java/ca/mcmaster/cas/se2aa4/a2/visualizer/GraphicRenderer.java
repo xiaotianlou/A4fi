@@ -87,7 +87,20 @@ public class GraphicRenderer {
 
 
 
-
+    private Double extractThickness(List<Property> properties) {
+        String val = null;
+        for (Property p : properties) {
+            if (p.getKey().equals("thcikness")) {
+                System.out.println(p.getValue());
+                val = p.getValue();
+            }
+        }
+        if (val == null)
+            return 1d;
+        else {
+            return Double.parseDouble(val);
+        }
+    }
 
 
 
