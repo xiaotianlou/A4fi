@@ -47,18 +47,16 @@ public class GraphicRenderer {
         for (Vertex v : aMesh.getVerticesList()) {
             double centre_x = v.getX() - (THICKNESS / 2.0d);
             double centre_y = v.getY() - (THICKNESS / 2.0d);
-            Color old = canvas.getColor();
 
             canvas.setColor(new Color(0, 0, 0));
             for (var a : aMesh.getPolygonsList()) {
-                if (v == aMesh.getVertices(a.getCentroidIdx())) {
+                if (v.equals( aMesh.getVertices(a.getCentroidIdx()))) {
                     canvas.setColor(new Color(255, 0, 0));
                 }//red color for centre
             }
             //all centre red
             Ellipse2D point = new Ellipse2D.Double(centre_x, centre_y, THICKNESS, THICKNESS);
             canvas.fill(point);
-            canvas.setColor(old);
         }
 
         for (Segment line : aMesh.getSegmentsList()) {
