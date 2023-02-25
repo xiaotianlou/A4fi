@@ -1,5 +1,6 @@
 package ca.mcmaster.cas.se2aa4.a2.visualizer;
 
+import ca.mcmaster.cas.se2aa4.a2.io.Structs;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Mesh;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Property;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Segment;
@@ -68,7 +69,7 @@ public class GraphicRenderer {
         }
         //draw neighbour
 
-        for (var t : aMesh.getPolygonsList()) {
+        for (Structs.Polygon t : aMesh.getPolygonsList()) {
             int centroid = t.getCentroidIdx();
             List neigh = t.getNeighborIdxsList();
             canvas.setColor(Color.LIGHT_GRAY);
@@ -77,8 +78,13 @@ public class GraphicRenderer {
             double centroY = aMesh.getVerticesList().get(centroid).getY();
 
             for (var n : neigh) {
-                canvas.draw(new Line2D.Double(centroX, centroY, aMesh.getVerticesList().get((int) n).getX(), aMesh.getVerticesList().get((int) n).getY()));
+
+              double targetX= aMesh.getVerticesList().get(aMesh.getPolygonsList().get((int)n).getCentroidIdx()).getX();
+              double targetY=aMesh.getVerticesList().get(aMesh.getPolygonsList().get((int)n).getCentroidIdx()).getY();
+
+                canvas.draw(new Line2D.Double(centroX, centroY,targetX,targetY ));
             }
+
         }
 
 
