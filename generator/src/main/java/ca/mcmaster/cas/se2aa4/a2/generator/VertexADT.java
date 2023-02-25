@@ -42,9 +42,7 @@ public class VertexADT {
         return color;
     }
 
-    public int getId() {
-        return id;
-    }
+    public int getId() { return id; }
 
     public Structs.Vertex toVertex(){
         Structs.Vertex v= Structs.Vertex.newBuilder().setX(x).setY(y).build();

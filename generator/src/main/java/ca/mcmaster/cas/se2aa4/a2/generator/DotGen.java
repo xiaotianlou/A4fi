@@ -1,11 +1,23 @@
 package ca.mcmaster.cas.se2aa4.a2.generator;
 
-import java.util.*;
-import ca.mcmaster.cas.se2aa4.a2.io.Structs.*;
+import ca.mcmaster.cas.se2aa4.a2.io.Structs.Mesh;
 
-import static ca.mcmaster.cas.se2aa4.a2.generator.components.polygon.PolygonInitializing.polygonInitialize;
-import static ca.mcmaster.cas.se2aa4.a2.generator.components.vertex.VertexInitializing.vertexInitialize;
-import static ca.mcmaster.cas.se2aa4.a2.generator.components.segment.SegmentInitializing.segmentInitialize;
+
+import java.util.Random;
+
+import org.locationtech.jts.geom.*;
+import org.locationtech.jts.triangulate.VoronoiDiagramBuilder;
+
+import java.util.*;
+import org.locationtech.jts.algorithm.*;
+import org.locationtech.jts.geom.*;
+import org.locationtech.jts.triangulate.*;
+import org.locationtech.jts.triangulate.quadedge.*;
+
+import org.locationtech.jts.triangulate.DelaunayTriangulationBuilder
+
+
+import static org.locationtech.jts.algorithm.Centroid.getCentroid;
 
 
 public class DotGen {
@@ -15,43 +27,205 @@ public class DotGen {
     private final int square_size = 20;
 
     public Mesh generate() {
+        final int MIN_COORDINATE = 0;
+        final int MAX_COORDINATE = 100;
+        final int NUM_POINTS = 10;
+        int numRelaxations = 5;
         MeshADT mesh = new MeshADT();
-        for(int x = 0; x < width; x += square_size) {
-            for(int y = 0; y < height; y += square_size) {
-                List<VertexADT> verticesPolygon = new LinkedList<>();
-                List<SegmentADT> segmentsPolygon = new LinkedList<>();
-                VertexADT a =  mesh.getVertex(x,y);
-                VertexADT b =  mesh.getVertex(x+square_size,y);
-                VertexADT c =  mesh.getVertex(x,y+square_size);
-                VertexADT d =  mesh.getVertex(x+square_size,y+square_size);
-                verticesPolygon.add(a);
-                verticesPolygon.add(b);
-                verticesPolygon.add(c);
-                verticesPolygon.add(d);
-                SegmentADT ab = mesh.getSegment(a,b);
-                SegmentADT bd = mesh.getSegment(b,d);
-                SegmentADT dc = mesh.getSegment(d,c);
-                SegmentADT ca = mesh.getSegment(c,a);
-                segmentsPolygon.add(ab);
-                segmentsPolygon.add(bd);
-                segmentsPolygon.add(dc);
-                segmentsPolygon.add(ca);
-                mesh.getPolygon(mesh,verticesPolygon,segmentsPolygon);
-//                        (Vertex.newBuilder().setX((double) x).setY((double) y).build());
-//                vertices.add(Vertex.newBuilder().setX((double) x+square_size).setY((double) y).build());
-//                vertices.add(Vertex.newBuilder().setX((double) x).setY((double) y+square_size).build());
-//                vertices.add(Vertex.newBuilder().setX((double) x+square_size).setY((double) y+square_size).build());
-            }
+        Random random = new Random();
+
+        // create a list to hold the randomly generated points
+        List<Coordinate> points = new ArrayList<>(NUM_POINTS);
+        for (int i = 0; i < NUM_POINTS; i++) {
+            // generate random x and y coordinates within the specified range
+            double x = MIN_COORDINATE + random.nextDouble() * (MAX_COORDINATE - MIN_COORDINATE);
+            double y = MIN_COORDINATE + random.nextDouble() * (MAX_COORDINATE - MIN_COORDINATE);
+            mesh.getVertex(x, y);
+            // add the new coordinate to the list
+            points.add(new Coordinate(x, y));
         }
 
-//        List<Vertex> verticesWithColors = vertexInitialize(width,height,square_size);
-//
-//        List<Segment> segmentsWithColors = segmentInitialize(width,height,square_size,verticesWithColors);
-//        List<Polygon> polygons = polygonInitialize(verticesWithColors,segmentsWithColors);
+        VoronoiDiagramBuilder builder = new VoronoiDiagramBuilder();
+        builder.setSites(points);
+        PrecisionModel precisionModel = new PrecisionModel(0.01);
 
-//        return Mesh.newBuilder().addAllVertices(verticesWithColors).build();
+        GeometryFactory geometryFactory = new GeometryFactory(precisionModel);
+        Geometry diagram = builder.getDiagram(geometryFactory);
+
+        for (int i = 0; i < numRelaxations; i++) {
+            Coordinate[] centroids = new Coordinate[points.size()];
+            for (int j = 0; j < points.size(); j++) {
+                centroids[j] = getCentroid(diagram.getGeometryN(j));
+            }
+
+            builder.setSites(Arrays.asList(centroids));
+            diagram = builder.getDiagram(geometryFactory);
+        }
+
+        Envelope envelope = new Envelope(0, width, 0, height);
+        Geometry croppedDiagram = diagram.intersection(geometryFactory.toGeometry(envelope));
+
+        DelaunayTriangulationBuilder delaunayTriangulationBuilder = new DelaunayTriangulationBuilder();
+
+        delaunayTriangulationBuilder.setSites(croppedDiagram);
+
+        QuadEdgeSubdivision quadEdgeSubdivision = delaunayTriangulationBuilder.getSubdivision();
+
+        Map<Integer, List<Integer>> neighbours = new HashMap<>();
+        for (Object q:quadEdgeSubdivision.){
+
+        }
+
+
+//        for (int i = 0; i < points.size(); i++) {
+//            List<Integer> adjacentPolygons = new ArrayList<>();
+//            Collection quadEdge = quadEdgeSubdivision.getEdges();
+//
+//            do {
+//                int polygonIndex = edge.;
+//                if (polygonIndex != i && !adjacentPolygons.contains(polygonIndex)) {
+//                    adjacentPolygons.add(polygonIndex);
+//                }
+//                edge = edge.oNext();
+//            } while (edge != start);
+//            neighbours.put(i, adjacentPolygons);
+//        }
+
+
+        // iterate over the Voronoi polygons and print their coordinates
+        for (int i = 0; i < diagram.getNumGeometries(); i++) {
+            List<VertexADT> verticesPolygon = new LinkedList<>();
+            Geometry polygon = diagram.getGeometryN(i);
+            System.out.println("Polygon " + i + ": " + polygon);
+        }
+
+
+
+
 
 
         return mesh.toMesh();
     }
+
 }
+
+
+
+
+
+//        Random r = new Random();
+//        for (int x = 0; x <= width; x += 2*square_size) {
+//            for (int y = 0; y <= height; y += 2*square_size) {
+//                VertexADT v = mesh.getVertex(x+r.nextInt(square_size),y+r.nextInt(square_size));
+//            }
+//        }
+//
+//        int numRelaxations = 5;
+//
+//        Coordinate[] vertexCoordinate = new Coordinate[mesh.getVertices().size()];
+//
+//        for (int n = 0;n<vertexCoordinate.length;n++){
+//            vertexCoordinate[n] = new Coordinate(mesh.getVertices().get(n).getX(),mesh.getVertices().get(n).getY());
+//        }
+//
+//
+//        PrecisionModel precisionModel = new PrecisionModel();
+//        GeometryFactory geometryFactory = new GeometryFactory(precisionModel);
+//
+//
+//        VoronoiDiagramBuilder voronoiDiagramBuilder = new  VoronoiDiagramBuilder();
+//        voronoiDiagramBuilder.setSites(Arrays.asList(vertexCoordinate));
+//        Geometry diagram = voronoiDiagramBuilder.getDiagram(geometryFactory);
+//
+//
+//        for (int i = 0 ;i<numRelaxations;i++){
+//            Coordinate[] centroids = new Coordinate[vertexCoordinate.length];
+//            for (int j = 0; j< mesh.getVertices().size();j++){
+//                centroids[j] = getCentroid(diagram.getGeometryN(j));
+//            }
+//
+//
+//            vertexCoordinate = centroids;
+//
+//
+//            points = new Point[vertexCoordinate.length];
+//            for (int j = 0; j < vertexCoordinate.length; j++) {
+//                points[j] = geometryFactory.createPoint(vertexCoordinate[j]);
+//            }
+//            voronoiDiagramBuilder.setSites(Arrays.asList(points));
+//            diagram = voronoiDiagramBuilder.getDiagram(geometryFactory);
+//        }
+
+
+//        Envelope envelope = new Envelope(0, width, 0, height);
+//        Geometry croppedDiagram = diagram.intersection(geometryFactory.toGeometry(envelope));
+//
+//        DelaunayTriangulationBuilder delaunayBuilder = new DelaunayTriangulationBuilder();
+//        delaunayBuilder.setSites(croppedDiagram);
+//        QuadEdgeSubdivision subdivision = delaunayBuilder.getSubdivision();
+
+
+//        Map<Integer, List<Integer>> neighbors = new HashMap<>();
+//        for (int i = 0; i < vertexCoordinate.length; i++) {
+//            List<Integer> adjacentPolygons = new ArrayList<>();
+//            QuadEdge start = subdivision.locate(subdivision[i]);
+//            QuadEdge edge = start;
+//            do {
+//                int polygonIndex = edge.dest().getVertexIndex();
+//                if (polygonIndex != i && !adjacentPolygons.contains(polygonIndex)) {
+//                    adjacentPolygons.add(polygonIndex);
+//                }
+//                edge = edge.oNext();
+//            } while (edge != start);
+//            neighbors.put(i, adjacentPolygons);
+
+
+
+
+
+
+//    private static Coordinate getCentroid(Geometry polygon) {
+//        Coordinate[] coordinates = polygon.getCoordinates();
+//        double xSum = 0;
+//        double ySum = 0;
+//        for (int i = 0; i < coordinates.length - 1; i++) {
+//            double xi = coordinates[i].x;
+//            double yi = coordinates[i].y;
+//            double xip1 = coordinates[i+1].x;
+//            double yip1 = coordinates[i+1].y;
+//            xSum += (xi + xip1) * (xi*yip1 - xip1*yi);
+//            ySum += (yi + yip1) * (xi*yip1 - xip1*yi);
+//        }
+//        double area = polygon.getArea();
+//        return new Coordinate(xSum / (6 * area), ySum / (6 * area));
+
+
+//        MeshADT mesh = new MeshADT();
+//        for(int x = 0; x < width; x += square_size) {
+//            for(int y = 0; y < height; y += square_size) {
+//                List<VertexADT> verticesPolygon = new LinkedList<>();
+//                List<SegmentADT> segmentsPolygon = new LinkedList<>();
+//                Random r = new Random();
+//                int n = r.nextInt(100);
+//                VertexADT a =  mesh.getVertex(x,y);
+//                VertexADT b =  mesh.getVertex(x+square_size,y);
+//                VertexADT c =  mesh.getVertex(x,y+square_size);
+//                VertexADT d =  mesh.getVertex(x+square_size,y+square_size);
+//                verticesPolygon.add(a);
+//                verticesPolygon.add(b);
+//                verticesPolygon.add(c);
+//                verticesPolygon.add(d);
+//                SegmentADT ab = mesh.getSegment(a,b);
+//                SegmentADT bd = mesh.getSegment(b,d);
+//                SegmentADT dc = mesh.getSegment(d,c);
+//                SegmentADT ca = mesh.getSegment(c,a);
+//                segmentsPolygon.add(ab);
+//                segmentsPolygon.add(bd);
+//                segmentsPolygon.add(dc);
+//                segmentsPolygon.add(ca);
+//                mesh.getPolygon(mesh,verticesPolygon,segmentsPolygon);
+//            }
+////        }
+//    }
+//
+//}

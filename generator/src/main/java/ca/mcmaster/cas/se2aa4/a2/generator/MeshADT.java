@@ -4,6 +4,8 @@ import ca.mcmaster.cas.se2aa4.a2.io.Structs;
 
 import java.util.ArrayList;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class MeshADT {
@@ -37,7 +39,8 @@ public class MeshADT {
         return s;
     }
 
-    public PolygonADT getPolygon(MeshADT mesh,List<VertexADT> vertices, List<SegmentADT> segments){
+
+    public PolygonADT getPolygon(MeshADT mesh, List<VertexADT> vertices, List<SegmentADT> segments){
         for (PolygonADT p:polygons){
             if (p.equals(vertices,segments)){
                 return p;
@@ -52,7 +55,6 @@ public class MeshADT {
             vertices.add(p.getCentroid());
         }
     }
-
 
     public Structs.Mesh toMesh(){
         Structs.Mesh.Builder builder = Structs.Mesh.newBuilder();
