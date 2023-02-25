@@ -49,9 +49,9 @@ public class GraphicRenderer {
             Color old = canvas.getColor();
 
             canvas.setColor(new Color(0, 0, 0));
-            for(var a:aMesh.getPolygonsList()){
-                if(v==aMesh.getVertices(a.getCentroidIdx())){
-                 canvas.setColor(new Color(255,0,0));
+            for (var a : aMesh.getPolygonsList()) {
+                if (v == aMesh.getVertices(a.getCentroidIdx())) {
+                    canvas.setColor(new Color(255, 0, 0));
                 }//red color for centre
             }
             //all centre red
@@ -64,20 +64,31 @@ public class GraphicRenderer {
             canvas.setColor(Color.BLACK);
             //all association in black
             canvas.setStroke(stroke);
-            canvas.draw(new Line2D.Double(aMesh.getVerticesList().get(line.getV1Idx()).getX(),aMesh.getVerticesList().get(line.getV1Idx()).getY(),aMesh.getVerticesList().get(line.getV2Idx()).getX(), aMesh.getVerticesList().get(line.getV2Idx()).getY()));
+            canvas.draw(new Line2D.Double(aMesh.getVerticesList().get(line.getV1Idx()).getX(), aMesh.getVerticesList().get(line.getV1Idx()).getY(), aMesh.getVerticesList().get(line.getV2Idx()).getX(), aMesh.getVerticesList().get(line.getV2Idx()).getY()));
         }
-        //draw neighbour realtion
+        //draw neighbour
 
+        for (var t : aMesh.getPolygonsList()) {
+            int centroid = t.getCentroidIdx();
+            List neigh = t.getNeighborIdxsList();
+            canvas.setColor(Color.LIGHT_GRAY);
+            canvas.setStroke(stroke);
+            double centroX = aMesh.getVerticesList().get(centroid).getX();
+            double centroY = aMesh.getVerticesList().get(centroid).getY();
 
-
-
-
-
-
-
+            for (var n : neigh) {
+                canvas.draw(new Line2D.Double(centroX, centroY, aMesh.getVerticesList().get((int) n).getX(), aMesh.getVerticesList().get((int) n).getY()));
+            }
+        }
 
 
     }
+
+
+
+
+
+
 
 
 
