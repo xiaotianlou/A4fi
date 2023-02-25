@@ -16,6 +16,7 @@ public class MeshADT {
     public VertexADT getVertex(double x,double y){
         for (VertexADT v:vertices){
             if(v.getX() == x && v.getY()==y){
+//                ((v.getX() - x)<0.01||x-v.getX()<0.01) && ((v.getY() - y)<0.01||y-v.getY()<0.01)
                 return v;
             }
         }
@@ -39,6 +40,13 @@ public class MeshADT {
         return s;
     }
 
+    public ArrayList<VertexADT> getVertices() {
+        return vertices;
+    }
+
+    public ArrayList<SegmentADT> getSegments() {
+        return segments;
+    }
 
     public PolygonADT getPolygon(MeshADT mesh, List<VertexADT> vertices, List<SegmentADT> segments){
         for (PolygonADT p:polygons){

@@ -9,6 +9,8 @@ public class PolygonADT {
     private final MeshADT mesh;
     private List<SegmentADT> segments;
     private List<VertexADT> vertices;
+
+    private List<PolygonADT> polygons;
     final int id;
 
     public PolygonADT(MeshADT mesh,List<SegmentADT> segments, List<VertexADT> vertices, int id) {

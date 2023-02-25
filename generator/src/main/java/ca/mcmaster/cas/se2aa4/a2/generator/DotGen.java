@@ -1,6 +1,8 @@
 package ca.mcmaster.cas.se2aa4.a2.generator;
 
+import ca.mcmaster.cas.se2aa4.a2.io.Structs;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Mesh;
+import org.locationtech.jts.geom.PrecisionModel;
 
 
 import java.util.Random;
@@ -14,7 +16,7 @@ import org.locationtech.jts.geom.*;
 import org.locationtech.jts.triangulate.*;
 import org.locationtech.jts.triangulate.quadedge.*;
 
-import org.locationtech.jts.triangulate.DelaunayTriangulationBuilder
+import org.locationtech.jts.triangulate.DelaunayTriangulationBuilder;
 
 
 import static org.locationtech.jts.algorithm.Centroid.getCentroid;
@@ -28,8 +30,8 @@ public class DotGen {
 
     public Mesh generate() {
         final int MIN_COORDINATE = 0;
-        final int MAX_COORDINATE = 100;
-        final int NUM_POINTS = 10;
+        final int MAX_COORDINATE = 500;
+        final int NUM_POINTS = 100;
         int numRelaxations = 5;
         MeshADT mesh = new MeshADT();
         Random random = new Random();
@@ -51,9 +53,8 @@ public class DotGen {
 
         GeometryFactory geometryFactory = new GeometryFactory(precisionModel);
         Geometry diagram = builder.getDiagram(geometryFactory);
-
+        Coordinate[] centroids = new Coordinate[points.size()];
         for (int i = 0; i < numRelaxations; i++) {
-            Coordinate[] centroids = new Coordinate[points.size()];
             for (int j = 0; j < points.size(); j++) {
                 centroids[j] = getCentroid(diagram.getGeometryN(j));
             }
@@ -62,19 +63,102 @@ public class DotGen {
             diagram = builder.getDiagram(geometryFactory);
         }
 
+//        for (int i = 0; i < diagram.getNumGeometries(); i++) {
+//            List<VertexADT> verticesPolygon = new LinkedList<>();
+//            Geometry polygon = diagram.getGeometryN(i);
+//            Coordinate centroid = getCentroid(diagram.getGeometryN(i));
+//            System.out.println("Polygon " + i + ": " + polygon);
+//            System.out.println("Centroid:"+centroid);
+//        }
+
         Envelope envelope = new Envelope(0, width, 0, height);
         Geometry croppedDiagram = diagram.intersection(geometryFactory.toGeometry(envelope));
 
-        DelaunayTriangulationBuilder delaunayTriangulationBuilder = new DelaunayTriangulationBuilder();
+        for (int i = 0; i < croppedDiagram.getNumGeometries(); i++) {
 
-        delaunayTriangulationBuilder.setSites(croppedDiagram);
+            Geometry polygon = croppedDiagram.getGeometryN(i);
+            ConvexHull convexHull = new ConvexHull(polygon);
+            Geometry hull = convexHull.getConvexHull();
+            Coordinate[] hullCoords = hull.getCoordinates();
+            Geometry reorderedDiagram = geometryFactory.createPolygon(hullCoords);
 
-        QuadEdgeSubdivision quadEdgeSubdivision = delaunayTriangulationBuilder.getSubdivision();
+//            System.out.println("------------------------------------");
+//
+////            Geometry centroid = polygon.getCentroid();
+//            System.out.println("Polygon " + i + ": " + reorderedDiagram);
+//            System.out.println("Centroid:"+centroid);
 
-        Map<Integer, List<Integer>> neighbours = new HashMap<>();
-        for (Object q:quadEdgeSubdivision.){
+//            for (Coordinate c:reorderedDiagram.getCoordinates()){
+////                mesh.getVertex(c.x,c.y);
+//                System.out.println(c);
+//            }
+
+            for (int j=1;j<reorderedDiagram.getCoordinates().length;j++){
+                Coordinate c_1 = reorderedDiagram.getCoordinates()[j-1];
+                Coordinate c_2 = reorderedDiagram.getCoordinates()[j];
+                Coordinate centroid = getCentroid(reorderedDiagram);
+                VertexADT a = mesh.getVertex(c_1.x,c_1.y);
+                VertexADT b = mesh.getVertex(c_2.x,c_2.y);
+                VertexADT c = mesh.getVertex(centroid.x,centroid.y);
+
+                SegmentADT ab = mesh.getSegment(a,b);
+
+//                System.out.println(c_1);
+//                System.out.println(c_2);
+//                System.out.println(centroid);
+//                System.out.println('!');
+            }
 
         }
+
+
+
+
+        DelaunayTriangulationBuilder delaunayTriangulationBuilder = new DelaunayTriangulationBuilder();
+
+
+//        for (int i = 0; i < croppedDiagram.getNumGeometries(); i++) {
+//            List<VertexADT> verticesPolygon = new LinkedList<>();
+//            Geometry polygon = croppedDiagram.getGeometryN(i);
+//            Geometry centroid = polygon.getCentroid();
+//            System.out.println("Polygon " + i + ": " + polygon);
+//            System.out.println("Centroid:"+centroid);
+//        }
+
+//        for (int i = 0; i < croppedDiagram.getNumGeometries(); i++) {
+//            Coordinate polygon = croppedDiagram.getCoordinate();
+//            System.out.println(polygon);
+//
+//        }
+
+
+
+        List<Coordinate> centroidList = new ArrayList<>();
+        for (int i = 0; i < centroids.length; i++) {
+            centroidList.add(centroids[i]);
+        }
+        delaunayTriangulationBuilder.setSites(centroidList);
+
+//        for (Coordinate c:centroidList){
+//            System.out.println(c);
+//        }
+
+        GeometryCollection triangles = (GeometryCollection) delaunayTriangulationBuilder.getTriangles(geometryFactory);
+
+        Map<Polygon, Set<Polygon>> neighbours = new HashMap<>();
+
+        for (VertexADT v:mesh.getVertices()){
+            System.out.println(v.getX() +"  "+v.getY());
+            System.out.println("!");
+
+        }
+
+
+
+
+        return mesh.toMesh();
+    }
+}
 
 
 //        for (int i = 0; i < points.size(); i++) {
@@ -91,23 +175,23 @@ public class DotGen {
 //            neighbours.put(i, adjacentPolygons);
 //        }
 
-
-        // iterate over the Voronoi polygons and print their coordinates
-        for (int i = 0; i < diagram.getNumGeometries(); i++) {
-            List<VertexADT> verticesPolygon = new LinkedList<>();
-            Geometry polygon = diagram.getGeometryN(i);
-            System.out.println("Polygon " + i + ": " + polygon);
-        }
-
-
-
-
-
-
-        return mesh.toMesh();
-    }
-
-}
+//
+//        // iterate over the Voronoi polygons and print their coordinates
+//        for (int i = 0; i < diagram.getNumGeometries(); i++) {
+//            List<VertexADT> verticesPolygon = new LinkedList<>();
+//            Geometry polygon = diagram.getGeometryN(i);
+//            System.out.println("Polygon " + i + ": " + polygon);
+//        }
+//
+//
+//
+//
+//
+//
+//        return mesh.toMesh();
+//    }
+//
+//}
 
 
 
