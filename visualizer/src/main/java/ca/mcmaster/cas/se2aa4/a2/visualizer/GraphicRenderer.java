@@ -47,7 +47,15 @@ public class GraphicRenderer {
             double centre_x = v.getX() - (THICKNESS / 2.0d);
             double centre_y = v.getY() - (THICKNESS / 2.0d);
             Color old = canvas.getColor();
-            canvas.setColor(new Color(255, 0, 0));
+
+            canvas.setColor(new Color(0, 0, 0));
+            for(var a:aMesh.getPolygonsList()){
+                if(v==aMesh.getVertices(a.getCentroidIdx())){
+                 canvas.setColor(new Color(255,0,0));
+                }//red color for centre
+            }
+
+
             //all centre red
             Ellipse2D point = new Ellipse2D.Double(centre_x, centre_y, THICKNESS, THICKNESS);
             canvas.fill(point);
@@ -60,6 +68,8 @@ public class GraphicRenderer {
             canvas.setStroke(stroke);
             canvas.draw(new Line2D.Double(aMesh.getVerticesList().get(line.getV1Idx()).getX(),aMesh.getVerticesList().get(line.getV1Idx()).getY(),aMesh.getVerticesList().get(line.getV2Idx()).getX(), aMesh.getVerticesList().get(line.getV2Idx()).getY()));
         }
+
+
 
 
 
