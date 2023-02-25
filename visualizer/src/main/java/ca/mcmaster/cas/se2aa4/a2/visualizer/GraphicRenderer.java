@@ -63,6 +63,7 @@ public class GraphicRenderer {
             canvas.setColor(Color.BLACK);
             //all association in black
             canvas.setStroke(stroke);
+            canvas.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, 0.2f));// 1.0f为透明度 ，值从0-1.0，依次变得不透明
             canvas.draw(new Line2D.Double(aMesh.getVerticesList().get(line.getV1Idx()).getX(), aMesh.getVerticesList().get(line.getV1Idx()).getY(), aMesh.getVerticesList().get(line.getV2Idx()).getX(), aMesh.getVerticesList().get(line.getV2Idx()).getY()));
         }
         //draw neighbour
@@ -87,7 +88,7 @@ public class GraphicRenderer {
 
 
 
-    private Double extractThickness(List<Property> properties) {
+    private double extractThickness(List<Property> properties) {
         String val = null;
         for (Property p : properties) {
             if (p.getKey().equals("thcikness")) {
@@ -96,12 +97,24 @@ public class GraphicRenderer {
             }
         }
         if (val == null)
-            return 1d;
+            return 1f;
         else {
-            return Double.parseDouble(val);
+            return Float.parseFloat(val);
         }
     }
-
+    private float extractAlpha(List<Property> properties) {
+        String val = null;
+        for (Property p : properties) {
+            if (p.getKey().equals("rgb_color")) {
+                System.out.println(p.getValue());
+                val = p.getValue();
+            }
+        }
+        if (val == null)
+            return 1f;
+        String[] raw = val.split(",");
+        return Float.parseFloat(raw[3]);
+    }
 
 
 

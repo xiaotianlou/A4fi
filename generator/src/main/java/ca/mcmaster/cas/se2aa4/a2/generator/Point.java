@@ -7,7 +7,7 @@ public class Point {
     private double y;
     private Color color;
     private int id;
-    private String thickness;
+    private String thickness="1";
 
 
     public Point(double x, double y) {

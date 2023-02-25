@@ -11,7 +11,7 @@ public class Polygon {
     private List<Integer> neighbors;
     private int id;
     private Point centroid;
-    private String thickness;
+    private String thickness="1";
 
     public Polygon(List<Point> vertices) {
         this.vertices = new ArrayList<>(vertices);
