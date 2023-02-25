@@ -38,10 +38,10 @@ public class Main {
             renderer.renderDebug(aMesh,canvas);
         }
 
-        // Storing the result in an SVG file
-//        SVGCanvas.write(canvas, output);
-//        // Dump the mesh to stdout
-//        MeshDump dumper = new MeshDump();
-//        dumper.dump(aMesh);
+         Storing the result in an SVG file
+        SVGCanvas.write(canvas, output);
+        // Dump the mesh to stdout
+        MeshDump dumper = new MeshDump();
+        dumper.dump(aMesh);
     }
 }
