@@ -54,8 +54,6 @@ public class GraphicRenderer {
                  canvas.setColor(new Color(255,0,0));
                 }//red color for centre
             }
-
-
             //all centre red
             Ellipse2D point = new Ellipse2D.Double(centre_x, centre_y, THICKNESS, THICKNESS);
             canvas.fill(point);
@@ -68,6 +66,8 @@ public class GraphicRenderer {
             canvas.setStroke(stroke);
             canvas.draw(new Line2D.Double(aMesh.getVerticesList().get(line.getV1Idx()).getX(),aMesh.getVerticesList().get(line.getV1Idx()).getY(),aMesh.getVerticesList().get(line.getV2Idx()).getX(), aMesh.getVerticesList().get(line.getV2Idx()).getY()));
         }
+        //draw neighbour realtion
+
 
 
 
