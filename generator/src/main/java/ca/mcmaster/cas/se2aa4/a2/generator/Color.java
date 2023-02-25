@@ -1,11 +1,5 @@
 package ca.mcmaster.cas.se2aa4.a2.generator;
 
-import java.util.Random;
-
-
-import java.util.ArrayList;
-import java.util.Random;
-
 public class Color {
     private String colorCode;
 
