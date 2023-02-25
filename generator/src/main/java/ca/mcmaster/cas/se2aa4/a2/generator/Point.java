@@ -7,6 +7,7 @@ public class Point {
     private double y;
     private Color color;
     private int id;
+    private String thickness;
 
 
     public Point(double x, double y) {
@@ -28,6 +29,14 @@ public class Point {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public String getThickness() {
+        return thickness;
+    }
+
+    public void setThickness(String thickness) {
+        this.thickness = thickness;
     }
 
     public double getX() {

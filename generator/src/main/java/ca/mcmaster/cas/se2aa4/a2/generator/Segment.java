@@ -10,6 +10,7 @@ public class Segment {
     final ArrayList<Integer> usedBy = new ArrayList<>();
     private Color color;
     private int id;
+    private String thickness;
 
     public Segment(Point start, Point end) {
         this.start = start;
@@ -29,6 +30,14 @@ public class Segment {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public String getThickness() {
+        return thickness;
+    }
+
+    public void setThickness(String thickness) {
+        this.thickness = thickness;
     }
 
     public Point getStart() {
