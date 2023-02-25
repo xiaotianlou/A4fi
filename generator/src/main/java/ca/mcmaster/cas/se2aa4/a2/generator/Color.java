@@ -18,7 +18,7 @@ public class Color {
 
     public static void setColor(Segment s) {
         Color p1 = s.getStart().getColor();
-        Color p2 = s.getStart().getColor();
+        Color p2 = s.getEnd().getColor();
         s.setColor(combineColor(p1,p2));
 
     }
