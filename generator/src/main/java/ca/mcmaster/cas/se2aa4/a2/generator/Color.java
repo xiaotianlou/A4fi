@@ -11,7 +11,7 @@ public class Color {
         int red = bag.nextInt(255);
         int green = bag.nextInt(255);
         int blue = bag.nextInt(255);
-        float alpha = bag.nextFloat(1);
+        float alpha = 0.1f+bag.nextFloat(0.9f);
         this.colorCode=red + "," + green + "," + blue + "," + alpha;;
     }
 
