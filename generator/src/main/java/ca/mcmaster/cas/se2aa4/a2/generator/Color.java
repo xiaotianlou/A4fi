@@ -11,7 +11,7 @@ public class Color {
         return colorCode;
     }
 
-    public static void setColor(Point p, String pc) {
+    public static void setColor(Vertex2 p, String pc) {
         Color c = new Color(pc);
         p.setColor(c);
     }

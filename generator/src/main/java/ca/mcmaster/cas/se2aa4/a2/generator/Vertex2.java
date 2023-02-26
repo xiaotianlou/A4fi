@@ -2,7 +2,7 @@ package ca.mcmaster.cas.se2aa4.a2.generator;
 
 import java.util.Objects;
 
-public class Point {
+public class Vertex2 {
     private double x;
     private double y;
     private Color color;
@@ -10,7 +10,7 @@ public class Point {
     private String thickness="1";
 
 
-    public Point(double x, double y) {
+    public Vertex2(double x, double y) {
         this.x = x;
         this.y = y;
     }
@@ -59,9 +59,9 @@ public class Point {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Point point = (Point) o;
-        return Double.compare(point.x, x) == 0 &&
-                Double.compare(point.y, y) == 0;
+        Vertex2 vertex2 = (Vertex2) o;
+        return Double.compare(vertex2.x, x) == 0 &&
+                Double.compare(vertex2.y, y) == 0;
     }
     @Override
     public int hashCode() {

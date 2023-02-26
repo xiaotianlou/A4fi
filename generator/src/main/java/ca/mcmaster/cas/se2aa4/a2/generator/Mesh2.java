@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import java.util.*;
 
 public class Mesh2 {
-    private List<Point> vertices;
+    private List<Vertex2> vertices;
     private List<Segment> segments;
     private List<Polygon> polygons;
     private int scale = 2;
@@ -16,22 +16,22 @@ public class Mesh2 {
         polygons = new ArrayList<>();
     }
 
-    public void addVertex(Point point) {
-        for(Point p : this.vertices){
-            if (p.getX() == point.getX() && p.getY()==point.getY()){
+    public void addVertex(Vertex2 vertex2) {
+        for(Vertex2 p : this.vertices){
+            if (p.getX() == vertex2.getX() && p.getY()== vertex2.getY()){
                 return ;
             }
         }
-        double x = point.getX();
-        double y = point.getY();
+        double x = vertex2.getX();
+        double y = vertex2.getY();
         BigDecimal bdX = new BigDecimal(x);
         BigDecimal bdY = new BigDecimal(y);
         x = bdX.setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue();
         y = bdY.setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue();
-        point.setX(x);
-        point.setY(y);
-        point.setId(vertices.size());
-        vertices.add(point);
+        vertex2.setX(x);
+        vertex2.setY(y);
+        vertex2.setId(vertices.size());
+        vertices.add(vertex2);
     }
 
     public void addSegment(Segment segment) {
@@ -58,7 +58,7 @@ public class Mesh2 {
         polygon.setId(polygons.size());
         polygons.add(polygon);
         this.addVertex(polygon.getCentroid());
-        for (Point p: polygon.getVertices()) {
+        for (Vertex2 p: polygon.getVertices()) {
             this.addVertex(p);
         }
         for (Segment s : polygon.getSegments()) {
@@ -68,7 +68,7 @@ public class Mesh2 {
 
     }
 
-    public List<Point> getVertices() {
+    public List<Vertex2> getVertices() {
         return vertices;
     }
 
@@ -88,7 +88,7 @@ public class Mesh2 {
         StringBuilder sb = new StringBuilder();
         sb.append("Mesh2:\n");
         sb.append("Vertices:\n");
-        for (Point vertex : vertices) {
+        for (Vertex2 vertex : vertices) {
             sb.append(vertex + "\n");
         }
         sb.append("Segments:\n");
@@ -100,7 +100,7 @@ public class Mesh2 {
 
     public Structs.Mesh transform() {
         List<Structs.Vertex> v_list = new ArrayList<>();
-        for (Point p : this.vertices) {
+        for (Vertex2 p : this.vertices) {
             Structs.Vertex v = Structs.Vertex.newBuilder().setX(p.getX()).setY(p.getY()).build();
 
             Structs.Property thickness = Structs.Property.newBuilder().setKey("thickness").setValue(p.getThickness()).build();
@@ -144,13 +144,13 @@ public class Mesh2 {
         return Structs.Mesh.newBuilder().addAllVertices(v_list).addAllSegments(s_list).addAllPolygons(p_list).build();
     }
 
-    public Point getPoint(Point point){
-        for(Point p : this.vertices){
-            if (p.getX() == point.getX() && p.getY()==point.getY()){
+    public Vertex2 getPoint(Vertex2 vertex2){
+        for(Vertex2 p : this.vertices){
+            if (p.getX() == vertex2.getX() && p.getY()== vertex2.getY()){
                 return p;
             }
         }
-        return point;
+        return vertex2;
     }
     public Segment getSegment(Segment segment){
         for (Segment s: this.segments){

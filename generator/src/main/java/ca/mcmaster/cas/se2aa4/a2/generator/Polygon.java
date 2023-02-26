@@ -6,21 +6,21 @@ import java.util.List;
 
 
 public class Polygon {
-    private List<Point> vertices;
+    private List<Vertex2> vertices;
     private List<Segment> segments;
     private List<Integer> neighbors;
     private int id;
-    private Point centroid;
+    private Vertex2 centroid;
     private String thickness="1";
 
-    public Polygon(List<Point> vertices) {
+    public Polygon(List<Vertex2> vertices) {
         this.vertices = new ArrayList<>(vertices);
         this.segments = new ArrayList<>();
-        this.centroid = new Point(0,0);
+        this.centroid = new Vertex2(0,0);
         this.neighbors = new ArrayList<>();
         for (int i = 0; i < vertices.size(); i++) {
-            Point start = vertices.get(i);
-            Point end = vertices.get((i + 1) % vertices.size());
+            Vertex2 start = vertices.get(i);
+            Vertex2 end = vertices.get((i + 1) % vertices.size());
             Segment segment = new Segment(start, end);
             segments.add(segment);
         }
@@ -47,7 +47,7 @@ public class Polygon {
         }
     }
 
-    public List<Point> getVertices() {
+    public List<Vertex2> getVertices() {
         return vertices;
     }
 
@@ -59,12 +59,12 @@ public class Polygon {
         return neighbors;
     }
 
-    public Point getCentroid() {
+    public Vertex2 getCentroid() {
         double sumX = 0;
         double sumY = 0;
 
         for (int i = 0; i < vertices.size(); i++) {
-            Point vertex = vertices.get(i);
+            Vertex2 vertex = vertices.get(i);
             sumX += vertex.getX();
             sumY += vertex.getY();
         }

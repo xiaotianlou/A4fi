@@ -2,8 +2,6 @@ package ca.mcmaster.cas.se2aa4.a2.generator;
 
 import java.util.*;
 
-import ca.mcmaster.cas.se2aa4.a2.io.Structs.Vertex;
-import ca.mcmaster.cas.se2aa4.a2.io.Structs.Property;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Mesh;
 import org.locationtech.jts.algorithm.ConvexHull;
 import org.locationtech.jts.geom.*;
@@ -111,9 +109,9 @@ public Mesh generate() {
             Coordinate c_2 = croppedDiagram.getCoordinates()[j];
             Coordinate centroid = getCentroid(croppedDiagram);
 
-            Point a = mesh.addVertex(c_1.x,c_1.y);
-            Point b = mesh.addVertex(c_2.x,c_2.y);
-            Point c = mesh.addVertex(centroid.x,centroid.y);
+            Vertex2 a = mesh.addVertex(c_1.x,c_1.y);
+            Vertex2 b = mesh.addVertex(c_2.x,c_2.y);
+            Vertex2 c = mesh.addVertex(centroid.x,centroid.y);
 
             Segment ab = mesh.getSegment(a,b);
 
@@ -136,7 +134,7 @@ public Mesh generate() {
 
     Map<Polygon, Set<Polygon>> neighbours = new HashMap<>();
 
-    for (Point v:mesh.getVertices()){
+    for (Vertex2 v:mesh.getVertices()){
         System.out.println(v.getX() +"  "+v.getY());
         System.out.println("!");
 
