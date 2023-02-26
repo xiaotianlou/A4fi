@@ -104,7 +104,6 @@ public class Mesh2 {
             Structs.Vertex v = Structs.Vertex.newBuilder().setX(p.getX()).setY(p.getY()).build();
 
             Structs.Property thickness = Structs.Property.newBuilder().setKey("thickness").setValue(p.getThickness()).build();
-
             Structs.Property color = Structs.Property.newBuilder().setKey("rgb_color").setValue(p.getColor().getColorCode()).build();
 
             Structs.Vertex colored = Structs.Vertex.newBuilder(v).addProperties(color).addProperties(thickness).build();

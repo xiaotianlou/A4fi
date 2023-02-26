@@ -29,6 +29,10 @@ public class GraphicRenderer {
             canvas.setColor(old);
         }
 
+        canvas.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0f));// 1.0f为透明度 ，值从0-1.0，依次变得不透明
+        canvas.draw(new Line2D.Double(0,0,100,100));
+        canvas.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER));
+        canvas.dispose();
         for (Segment line : aMesh.getSegmentsList()) {
             canvas.setColor(Color.BLACK);
             canvas.setStroke(stroke);
@@ -36,6 +40,7 @@ public class GraphicRenderer {
             canvas.setColor(extractColor(line.getPropertiesList()));
 
             canvas.draw(new Line2D.Double(aMesh.getVerticesList().get(line.getV1Idx()).getX(),aMesh.getVerticesList().get(line.getV1Idx()).getY(),aMesh.getVerticesList().get(line.getV2Idx()).getX(), aMesh.getVerticesList().get(line.getV2Idx()).getY()));
+
         }
         
     }
@@ -63,7 +68,7 @@ public class GraphicRenderer {
             canvas.setColor(Color.BLACK);
             //all association in black
             canvas.setStroke(stroke);
-            canvas.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, 0.2f));// 1.0f为透明度 ，值从0-1.0，依次变得不透明
+//            canvas.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, 0.2f));// 1.0f为透明度 ，值从0-1.0，依次变得不透明
             canvas.draw(new Line2D.Double(aMesh.getVerticesList().get(line.getV1Idx()).getX(), aMesh.getVerticesList().get(line.getV1Idx()).getY(), aMesh.getVerticesList().get(line.getV2Idx()).getX(), aMesh.getVerticesList().get(line.getV2Idx()).getY()));
         }
         //draw neighbour
