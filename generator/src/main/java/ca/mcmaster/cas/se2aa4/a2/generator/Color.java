@@ -23,7 +23,7 @@ public class Color {
         return colorCode;
     }
 
-    public static void setColor(Vertex_ADT p, String pc) {
+    public static void setColor(VertexADT p, String pc) {
         Color c = new Color(pc);
         p.setColor(c);
     }

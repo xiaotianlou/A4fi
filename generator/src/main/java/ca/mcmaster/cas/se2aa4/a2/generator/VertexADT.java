@@ -2,7 +2,7 @@ package ca.mcmaster.cas.se2aa4.a2.generator;
 
 import java.util.Objects;
 
-public class Vertex_ADT {
+public class VertexADT {
     private double x;
     private double y;
     private Color color= new Color();
@@ -10,7 +10,7 @@ public class Vertex_ADT {
     private String thickness="1";
 
 
-    public Vertex_ADT(double x, double y) {
+    public VertexADT(double x, double y) {
         this.x = x;
         this.y = y;
     }
@@ -59,7 +59,7 @@ public class Vertex_ADT {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Vertex_ADT vertexADT = (Vertex_ADT) o;
+        VertexADT vertexADT = (VertexADT) o;
         return Double.compare(vertexADT.x, x) == 0 &&
                 Double.compare(vertexADT.y, y) == 0;
     }

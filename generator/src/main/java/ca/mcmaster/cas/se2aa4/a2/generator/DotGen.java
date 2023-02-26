@@ -29,7 +29,7 @@ public class DotGen {
 //                vertices.add(p2);
 //                vertices.add(p3);
 //                vertices.add(p4);
-//                Polygon polygon = new Polygon(vertices);
+//                PolygonADT polygon = new PolygonADT(vertices);
 //                for (Point p : polygon.getVertices()) {
 //                    Random bag = new Random();
 //                    int red = bag.nextInt(255);
@@ -103,21 +103,42 @@ public Mesh generate() {
 
         Geometry croppedDiagram = reorderedDiagram.intersection(geometryFactory.toGeometry(envelope));
 
-
+        List<VertexADT> vertices = null;
         for (int j=1;j<croppedDiagram.getCoordinates().length;j++){
             Coordinate c_1 = croppedDiagram.getCoordinates()[j-1];
             Coordinate c_2 = croppedDiagram.getCoordinates()[j];
             Coordinate centroid = getCentroid(croppedDiagram);
 
 
-            Vertex_ADT a=new Vertex_ADT(c_1.x,c_1.y);
-            Vertex_ADT b =new Vertex_ADT(c_2.x,c_2.y);
+            VertexADT a=new VertexADT(c_1.x,c_1.y);
+            VertexADT b =new VertexADT(c_2.x,c_2.y);
+            vertices.add(a);
+            vertices.add(b);
             mesh.addVertex(a);
             mesh.addVertex(b);
-            mesh.addVertex(new Vertex_ADT(centroid.x,centroid.y));
+            mesh.addVertex(new VertexADT(centroid.x,centroid.y));
+//            mesh.addSegment(new mesh.getSegment(a,b););
+
+
+//                    public PolygonADT(List<VertexADT> vertices) {
+//                this.vertices = new ArrayList<>(vertices);
+//                this.segments = new ArrayList<>();
+//                this.centroid = new VertexADT(0,0);
+//                this.neighbors = new ArrayList<>();
+//                for (int i = 0; i < vertices.size(); i++) {
+//                    VertexADT start = vertices.get(i);
+//                    VertexADT end = vertices.get((i + 1) % vertices.size());
+//                    Segment segment = new Segment(start, end);
+//                    segments.add(segment);
+//
+//            }
+
+
             mesh.addSegment(new Segment(a,b));
 
         }
+        PolygonADT a = new PolygonADT(vertices);
+        mesh.addPolygon(a);
 
     }
     //https://code-with-me.global.jetbrains.com/7QReUBUN_KcRKu6LbcuUtA#p=IU&fp=AD3A4FF761491603226549EAB97CF974C646E8200F4028D29293D6628C9A54AF
@@ -135,9 +156,9 @@ public Mesh generate() {
 
     GeometryCollection triangles = (GeometryCollection) delaunayTriangulationBuilder.getTriangles(geometryFactory);
 
-    Map<Polygon, Set<Polygon>> neighbours = new HashMap<>();
+    Map<PolygonADT, Set<PolygonADT>> neighbours = new HashMap<>();
 
-    for (Vertex_ADT v:mesh.getVertices()){
+    for (VertexADT v:mesh.getVertices()){
         System.out.println(v.getX() +"  "+v.getY());
         System.out.println("!");
 

@@ -67,7 +67,7 @@ When you develop features and enrich the product, remember that you have first t
 |:--:|---------------|------|-------|-----|--------|
 |F01 | New vertice class| Jiaming Li | 2/12 | 2/12 | D |
 |F02 | New segment class| Jiaming Li | 2/12 | 2/12 | D |
-|F03 | New polygon class| Jiaming Li | 2/12 | 2/12 | D |
+|F03 | New polygonADT class| Jiaming Li | 2/12 | 2/12 | D |
 |F04 | New mesh class| Jiaming Li | 2/12 | 2/12 | D |
 |F05 | New generator| Jiaming Li | 2/12 | 2/13 | D |
 |F06 | RemoveDuplicates| Jiaming Li | 2/14 | 2/14 | D |

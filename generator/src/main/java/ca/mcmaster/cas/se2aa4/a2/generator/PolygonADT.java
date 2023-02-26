@@ -5,22 +5,22 @@ import java.util.HashSet;
 import java.util.List;
 
 
-public class Polygon {
-    private List<Vertex_ADT> vertices;
+public class PolygonADT {
+    private List<VertexADT> vertices;
     private List<Segment> segments;
     private List<Integer> neighbors;
     private int id;
-    private Vertex_ADT centroid;
+    private VertexADT centroid;
     private String thickness="1";
 
-    public Polygon(List<Vertex_ADT> vertices) {
+    public PolygonADT(List<VertexADT> vertices) {
         this.vertices = new ArrayList<>(vertices);
         this.segments = new ArrayList<>();
-        this.centroid = new Vertex_ADT(0,0);
+        this.centroid = new VertexADT(0,0);
         this.neighbors = new ArrayList<>();
         for (int i = 0; i < vertices.size(); i++) {
-            Vertex_ADT start = vertices.get(i);
-            Vertex_ADT end = vertices.get((i + 1) % vertices.size());
+            VertexADT start = vertices.get(i);
+            VertexADT end = vertices.get((i + 1) % vertices.size());
             Segment segment = new Segment(start, end);
             segments.add(segment);
         }
@@ -47,7 +47,7 @@ public class Polygon {
         }
     }
 
-    public List<Vertex_ADT> getVertices() {
+    public List<VertexADT> getVertices() {
         return vertices;
     }
 
@@ -59,12 +59,12 @@ public class Polygon {
         return neighbors;
     }
 
-    public Vertex_ADT getCentroid() {
+    public VertexADT getCentroid() {
         double sumX = 0;
         double sumY = 0;
 
         for (int i = 0; i < vertices.size(); i++) {
-            Vertex_ADT vertex = vertices.get(i);
+            VertexADT vertex = vertices.get(i);
             sumX += vertex.getX();
             sumY += vertex.getY();
         }
@@ -78,8 +78,8 @@ public class Polygon {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Polygon) {
-            Polygon other = (Polygon) obj;
+        if (obj instanceof PolygonADT) {
+            PolygonADT other = (PolygonADT) obj;
             return new HashSet<>(segments).equals(new HashSet<>(other.segments));
         }
         return false;

@@ -5,19 +5,19 @@ import java.math.BigDecimal;
 import java.util.*;
 
 public class Mesh2 {
-    private List<Vertex_ADT> vertices;
+    private List<VertexADT> vertices;
     private List<Segment> segments;
-    private List<Polygon> polygons;
+    private List<PolygonADT> polygonADTS;
     private int scale = 2;
 
     public Mesh2() {
         vertices = new ArrayList<>();
         segments = new ArrayList<>();
-        polygons = new ArrayList<>();
+        polygonADTS = new ArrayList<>();
     }
 
-    public void addVertex(Vertex_ADT vertexADT) {
-        for(Vertex_ADT p : this.vertices){
+    public void addVertex(VertexADT vertexADT) {
+        for(VertexADT p : this.vertices){
             if (p.getX() == vertexADT.getX() && p.getY()== vertexADT.getY()){
                 return ;
             }
@@ -49,26 +49,26 @@ public class Mesh2 {
         this.addVertex(segment.getEnd());
     }
 
-    public void addPolygon(Polygon polygon) {
-        for (Polygon p:this.polygons){
-            if (p.getVertices() == polygon.getVertices()){
+    public void addPolygon(PolygonADT polygonADT) {
+        for (PolygonADT p:this.polygonADTS){
+            if (p.getVertices() == polygonADT.getVertices()){
                 return ;
             }
         }
-        polygon.setId(polygons.size());
-        polygons.add(polygon);
-        this.addVertex(polygon.getCentroid());
-        for (Vertex_ADT p: polygon.getVertices()) {
+        polygonADT.setId(polygonADTS.size());
+        polygonADTS.add(polygonADT);
+        this.addVertex(polygonADT.getCentroid());
+        for (VertexADT p: polygonADT.getVertices()) {
             this.addVertex(p);
         }
-        for (Segment s : polygon.getSegments()) {
-            s.addUsedBy(polygon.getId());
+        for (Segment s : polygonADT.getSegments()) {
+            s.addUsedBy(polygonADT.getId());
             this.addSegment(s);
         }
 
     }
 
-    public List<Vertex_ADT> getVertices() {
+    public List<VertexADT> getVertices() {
         return vertices;
     }
 
@@ -76,8 +76,8 @@ public class Mesh2 {
         return segments;
     }
 
-    public List<Polygon> getPolygons() {
-        return polygons;
+    public List<PolygonADT> getPolygons() {
+        return polygonADTS;
     }
 
     public void setScale(int scale) {
@@ -88,7 +88,7 @@ public class Mesh2 {
         StringBuilder sb = new StringBuilder();
         sb.append("Mesh2:\n");
         sb.append("Vertices:\n");
-        for (Vertex_ADT vertex : vertices) {
+        for (VertexADT vertex : vertices) {
             sb.append(vertex + "\n");
         }
         sb.append("Segments:\n");
@@ -100,7 +100,7 @@ public class Mesh2 {
 
     public Structs.Mesh transform() {
         List<Structs.Vertex> v_list = new ArrayList<>();
-        for (Vertex_ADT p : this.vertices) {
+        for (VertexADT p : this.vertices) {
             Structs.Vertex v = Structs.Vertex.newBuilder().setX(p.getX()).setY(p.getY()).build();
 
             Structs.Property thickness = Structs.Property.newBuilder().setKey("thickness").setValue(p.getThickness()).build();
@@ -121,7 +121,7 @@ public class Mesh2 {
         }
 
         List<Structs.Polygon> p_list = new ArrayList<>();
-        for (Polygon p : this.polygons) {
+        for (PolygonADT p : this.polygonADTS) {
             Structs.Polygon.Builder builder = Structs.Polygon.newBuilder();
             builder.setCentroidIdx(getPoint(p.getCentroid()).getId()).build();
             for (Segment s : p.getSegments()) {
@@ -144,8 +144,8 @@ public class Mesh2 {
         return Structs.Mesh.newBuilder().addAllVertices(v_list).addAllSegments(s_list).addAllPolygons(p_list).build();
     }
 
-    public Vertex_ADT getPoint(Vertex_ADT vertexADT){
-        for(Vertex_ADT p : this.vertices){
+    public VertexADT getPoint(VertexADT vertexADT){
+        for(VertexADT p : this.vertices){
             if (p.getX() == vertexADT.getX() && p.getY()== vertexADT.getY()){
                 return p;
             }
@@ -160,12 +160,12 @@ public class Mesh2 {
         }
         return segment;
     }
-    public Polygon getPolygon(Polygon polygon){
-        for (Polygon p:this.polygons){
-            if (p.getVertices() == polygon.getVertices()){
+    public PolygonADT getPolygon(PolygonADT polygonADT){
+        for (PolygonADT p:this.polygonADTS){
+            if (p.getVertices() == polygonADT.getVertices()){
                 return p;
             }
         }
-        return polygon;
+        return polygonADT;
     }
 }
