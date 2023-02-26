@@ -109,6 +109,9 @@ public Mesh generate() {
             Coordinate c_2 = croppedDiagram.getCoordinates()[j];
             Coordinate centroid = getCentroid(croppedDiagram);
 
+            Ve p1 = new Point(c_1.x,c_1.y);
+
+
             Vertex_ADT a = mesh.addVertex(c_1.x,c_1.y);
             Vertex_ADT b = mesh.addVertex(c_2.x,c_2.y);
             Vertex_ADT c = mesh.addVertex(centroid.x,centroid.y);
@@ -118,6 +121,7 @@ public Mesh generate() {
         }
 
     }
+    //https://code-with-me.global.jetbrains.com/7QReUBUN_KcRKu6LbcuUtA#p=IU&fp=AD3A4FF761491603226549EAB97CF974C646E8200F4028D29293D6628C9A54AF
 
 
     DelaunayTriangulationBuilder delaunayTriangulationBuilder = new DelaunayTriangulationBuilder();
