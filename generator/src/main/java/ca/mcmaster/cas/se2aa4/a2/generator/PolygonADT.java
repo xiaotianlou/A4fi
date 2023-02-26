@@ -75,6 +75,10 @@ public class PolygonADT {
         centroid.setColor(centroidc);
         return centroid;
     }
+    public void setCentroid(VertexADT cent) {
+        vertices.set(centroid.getId(),cent);
+    }
+
 
     @Override
     public boolean equals(Object obj) {
