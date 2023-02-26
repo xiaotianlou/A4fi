@@ -109,9 +109,9 @@ public Mesh generate() {
             Coordinate c_2 = croppedDiagram.getCoordinates()[j];
             Coordinate centroid = getCentroid(croppedDiagram);
 
-            Vertex2 a = mesh.addVertex(c_1.x,c_1.y);
-            Vertex2 b = mesh.addVertex(c_2.x,c_2.y);
-            Vertex2 c = mesh.addVertex(centroid.x,centroid.y);
+            Vertex_ADT a = mesh.addVertex(c_1.x,c_1.y);
+            Vertex_ADT b = mesh.addVertex(c_2.x,c_2.y);
+            Vertex_ADT c = mesh.addVertex(centroid.x,centroid.y);
 
             Segment ab = mesh.getSegment(a,b);
 
@@ -134,7 +134,7 @@ public Mesh generate() {
 
     Map<Polygon, Set<Polygon>> neighbours = new HashMap<>();
 
-    for (Vertex2 v:mesh.getVertices()){
+    for (Vertex_ADT v:mesh.getVertices()){
         System.out.println(v.getX() +"  "+v.getY());
         System.out.println("!");
 

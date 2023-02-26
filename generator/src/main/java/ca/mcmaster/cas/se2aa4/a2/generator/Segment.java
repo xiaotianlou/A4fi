@@ -4,24 +4,24 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Segment {
-    private Vertex2 start;
-    private Vertex2 end;
+    private Vertex_ADT start;
+    private Vertex_ADT end;
 
     final ArrayList<Integer> usedBy = new ArrayList<>();
     private Color color;
     private int id;
     private String thickness="1";
 
-    public Segment(Vertex2 start, Vertex2 end) {
+    public Segment(Vertex_ADT start, Vertex_ADT end) {
         this.start = start;
         this.end = end;
     }
 
-    public void setStart(Vertex2 start) {
+    public void setStart(Vertex_ADT start) {
         this.start = start;
     }
 
-    public void setEnd(Vertex2 end) {
+    public void setEnd(Vertex_ADT end) {
         this.end = end;
     }
     public void setId(int id) {
@@ -40,11 +40,11 @@ public class Segment {
         this.thickness = thickness;
     }
 
-    public Vertex2 getStart() {
+    public Vertex_ADT getStart() {
         return start;
     }
 
-    public Vertex2 getEnd() {
+    public Vertex_ADT getEnd() {
         return end;
     }
     public int getId() {
