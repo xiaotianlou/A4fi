@@ -78,11 +78,14 @@ public class PolygonADT {
         centroid.setY(sumY / vertices.size());
         Color centroidc = new Color(255 + "," + 0 + "," + 0 + "," + 0);
         centroid.setColor(centroidc);
+
         return centroid;
     }
     public void setCentroid(VertexADT cent) {
         vertices.set(centroid.getId(),cent);
     }
+
+
 
 
     @Override

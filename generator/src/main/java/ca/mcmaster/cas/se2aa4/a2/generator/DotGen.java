@@ -123,27 +123,12 @@ public Mesh generate() {
             mesh.addVertex(a);
             mesh.addVertex(b);
             mesh.addVertex(new VertexADT(centroid.x,centroid.y));
-//            mesh.addSegment(new mesh.getSegment(a,b););
-
-
-//                    public PolygonADT(List<VertexADT> vertices) {
-//                this.vertices = new ArrayList<>(vertices);
-//                this.segments = new ArrayList<>();
-//                this.centroid = new VertexADT(0,0);
-//                this.neighbors = new ArrayList<>();
-//                for (int i = 0; i < vertices.size(); i++) {
-//                    VertexADT start = vertices.get(i);
-//                    VertexADT end = vertices.get((i + 1) % vertices.size());
-//                    Segment segment = new Segment(start, end);
-//                    segments.add(segment);
-//
-//            }
-
-
             mesh.addSegment(new Segment(a,b));
 
         }
         PolygonADT a = new PolygonADT(vertices);
+        VertexADT c = new VertexADT(centroid.x,centroid.y);
+        a.setCentroid(c);
         mesh.addPolygon(a);
 
     }
