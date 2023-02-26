@@ -2,7 +2,6 @@ package ca.mcmaster.cas.se2aa4.a2.generator;
 
 import java.util.*;
 
-import ca.mcmaster.cas.se2aa4.a2.io.Structs.Segment;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Vertex;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Property;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Mesh;
@@ -10,6 +9,8 @@ import org.locationtech.jts.algorithm.ConvexHull;
 import org.locationtech.jts.geom.*;
 import org.locationtech.jts.triangulate.DelaunayTriangulationBuilder;
 import org.locationtech.jts.triangulate.VoronoiDiagramBuilder;
+
+import static org.locationtech.jts.algorithm.Centroid.getCentroid;
 
 public class DotGen {
 
@@ -66,7 +67,7 @@ public Mesh generate() {
     final int MAX_COORDINATE = 500;
     final int NUM_POINTS = 100;
     int numRelaxations = 200;
-    MeshADT mesh = new MeshADT();
+    Mesh2 mesh = new Mesh2();
     Random random = new Random();
 
     List<Coordinate> points = new ArrayList<>(NUM_POINTS);
@@ -109,11 +110,12 @@ public Mesh generate() {
             Coordinate c_1 = croppedDiagram.getCoordinates()[j-1];
             Coordinate c_2 = croppedDiagram.getCoordinates()[j];
             Coordinate centroid = getCentroid(croppedDiagram);
-            VertexADT a = mesh.getVertex(c_1.x,c_1.y);
-            VertexADT b = mesh.getVertex(c_2.x,c_2.y);
-            VertexADT c = mesh.getVertex(centroid.x,centroid.y);
 
-            SegmentADT ab = mesh.getSegment(a,b);
+            Point a = mesh.addVertex(c_1.x,c_1.y);
+            Point b = mesh.addVertex(c_2.x,c_2.y);
+            Point c = mesh.addVertex(centroid.x,centroid.y);
+
+            Segment ab = mesh.getSegment(a,b);
 
         }
 
@@ -134,13 +136,13 @@ public Mesh generate() {
 
     Map<Polygon, Set<Polygon>> neighbours = new HashMap<>();
 
-    for (VertexADT v:mesh.getVertices()){
+    for (Point v:mesh.getVertices()){
         System.out.println(v.getX() +"  "+v.getY());
         System.out.println("!");
 
     }
 
-    return mesh.toMesh();
+    return mesh.transform();
 }
 
 
