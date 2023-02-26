@@ -25,6 +25,11 @@ public class PolygonADT {
             segments.add(segment);
         }
     }
+
+//    public void setCentroid(VertexADT centroid) {
+//        this.centroid = centroid;
+//    }
+
     public int getId() {
         return id;
     }

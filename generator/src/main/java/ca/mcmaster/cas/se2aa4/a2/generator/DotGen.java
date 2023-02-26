@@ -2,6 +2,7 @@ package ca.mcmaster.cas.se2aa4.a2.generator;
 
 import java.util.*;
 
+import ca.mcmaster.cas.se2aa4.a2.io.Structs;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Mesh;
 import org.locationtech.jts.algorithm.ConvexHull;
 import org.locationtech.jts.geom.*;
@@ -63,7 +64,7 @@ public class DotGen {
 public Mesh generate() {
     final int MIN_COORDINATE = 0;
     final int MAX_COORDINATE = 500;
-    final int NUM_POINTS = 100;
+    final int NUM_POINTS = 50;
     int numRelaxations = 200;
     Mesh2 mesh = new Mesh2();
     Random random = new Random();
@@ -108,10 +109,11 @@ public Mesh generate() {
         Geometry croppedDiagram = reorderedDiagram.intersection(geometryFactory.toGeometry(envelope));
 
         List<VertexADT> vertices = new ArrayList<>();
+        Coordinate centroid = null;
         for (int j=1;j<croppedDiagram.getCoordinates().length;j++){
             Coordinate c_1 = croppedDiagram.getCoordinates()[j-1];
             Coordinate c_2 = croppedDiagram.getCoordinates()[j];
-            Coordinate centroid = getCentroid(croppedDiagram);
+            centroid = getCentroid(croppedDiagram);
 
 
             VertexADT a=new VertexADT(c_1.x,c_1.y);
@@ -158,13 +160,20 @@ public Mesh generate() {
 
     Map<PolygonADT, Set<PolygonADT>> neighbours = new HashMap<>();
 
-    for (VertexADT v:mesh.getVertices()){
-        System.out.println(v.getX() +"  "+v.getY());
-        System.out.println("!");
+//    for (VertexADT v:mesh.getVertices()){
+//        System.out.println(v.getX() +"  "+v.getY());
+//        System.out.println("!");
+//
+//    }
 
+    Mesh m = mesh.transform();
+
+    for (Structs.Polygon p: m.getPolygonsList()){
+        System.out.println(p);
     }
 
-    return mesh.transform();
+
+    return m;
 }
 
 
