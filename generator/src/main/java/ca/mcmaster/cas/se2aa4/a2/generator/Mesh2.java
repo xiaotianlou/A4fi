@@ -17,11 +17,6 @@ public class Mesh2 {
     }
 
     public void addVertex(VertexADT vertexADT) {
-        for(VertexADT p : this.vertices){
-            if (p.getX()-vertexADT.getX()>=-0.1&&p.getX()-vertexADT.getX()<=0.1 && p.getY()-vertexADT.getY()<=0.1&&p.getY()-vertexADT.getY()>=-0.1){
-                return ;
-            }
-        }
         double x = vertexADT.getX();
         double y = vertexADT.getY();
         BigDecimal bdX = new BigDecimal(x);
