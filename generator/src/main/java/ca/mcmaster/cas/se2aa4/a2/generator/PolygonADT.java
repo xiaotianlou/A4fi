@@ -65,6 +65,8 @@ public class PolygonADT {
     }
 
     public VertexADT getCentroid() {
+
+        if(centroid==null){
         double sumX = 0;
         double sumY = 0;
 
@@ -77,12 +79,13 @@ public class PolygonADT {
         centroid.setX(sumX / vertices.size());
         centroid.setY(sumY / vertices.size());
         Color centroidc = new Color(255 + "," + 0 + "," + 0 + "," + 0);
-        centroid.setColor(centroidc);
+        centroid.setColor(centroidc);}
 
         return centroid;
     }
     public void setCentroid(VertexADT cent) {
         vertices.set(centroid.getId(),cent);
+        this.centroid=cent;
     }
 
 
