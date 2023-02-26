@@ -29,18 +29,19 @@ public class GraphicRenderer {
             canvas.setColor(old);
         }
 
-        canvas.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0f));// 1.0f为透明度 ，值从0-1.0，依次变得不透明
-        canvas.draw(new Line2D.Double(0,0,100,100));
-        canvas.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER));
+
+
+
         canvas.dispose();
         for (Segment line : aMesh.getSegmentsList()) {
             canvas.setColor(Color.BLACK);
             canvas.setStroke(stroke);
 
             canvas.setColor(extractColor(line.getPropertiesList()));
-
+            float al=extractAlpha(line.getPropertiesList());
+            canvas.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, al));// 1.0f为透明度 ，值从0-1.0，依次变得不透明
             canvas.draw(new Line2D.Double(aMesh.getVerticesList().get(line.getV1Idx()).getX(),aMesh.getVerticesList().get(line.getV1Idx()).getY(),aMesh.getVerticesList().get(line.getV2Idx()).getX(), aMesh.getVerticesList().get(line.getV2Idx()).getY()));
-
+            canvas.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER));
         }
         
     }
@@ -137,10 +138,10 @@ public class GraphicRenderer {
         if (val == null)
             return Color.BLACK;
         String[] raw = val.split(",");
-        int red = Integer.parseInt(raw[0]);
-        int green = Integer.parseInt(raw[1]);
-        int blue = Integer.parseInt(raw[2]);
-        return new Color(red, green, blue);
+        float red =  Float.parseFloat(raw[0]);
+        float green =  Float.parseFloat(raw[1]);
+        float blue = Float.parseFloat(raw[2]);
+        return new Color((int)red, (int)green, (int)blue);
     }
 
 }

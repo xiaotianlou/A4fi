@@ -26,22 +26,22 @@ public class Color {
     private static Color combineColor(Color p1, Color p2) {
         String c1 = p1.colorCode;
         String c2 = p2.colorCode;
-        int[] p1c = extractColor_Number(c1);
-        int[] p2c = extractColor_Number(c2);
-        int[] ac = {(p1c[0] + p2c[0]) / 2, (p1c[1] + p2c[1]) / 2, (p1c[2] + p2c[2]) / 2, (p1c[3] + p2c[3]) / 2};
+        float[] p1c = extractColor_Number(c1);
+        float[] p2c = extractColor_Number(c2);
+        float[] ac = {(p1c[0] + p2c[0]) / 2, (p1c[1] + p2c[1]) / 2, (p1c[2] + p2c[2]) / 2, (p1c[3] + p2c[3]) / 2};
         String colorCode = ac[0] + "," + ac[1] + "," + ac[2] + "," + ac[3];
         Color sc = new Color(colorCode);
         return sc;
 
     }
 
-    private static int[] extractColor_Number(String val) {
+    private static float[] extractColor_Number(String val) {
         String[] raw = val.split(",");
         int red = Integer.parseInt(raw[0]);
         int green = Integer.parseInt(raw[1]);
         int blue = Integer.parseInt(raw[2]);
-        int alpha = Integer.parseInt(raw[3]);
-        return new int[]{red, green, blue, alpha};
+        float alpha = Float.parseFloat(raw[3]);
+        return new float[]{red, green, blue, alpha};
     }
 }
 
