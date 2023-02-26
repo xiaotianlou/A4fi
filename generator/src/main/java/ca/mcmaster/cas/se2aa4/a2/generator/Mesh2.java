@@ -21,8 +21,8 @@ public class Mesh2 {
         double y = vertexADT.getY();
         BigDecimal bdX = new BigDecimal(x);
         BigDecimal bdY = new BigDecimal(y);
-        x = bdX.setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue();
-        y = bdY.setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue();
+        x = bdX.setScale(scale, BigDecimal.ROUND_DOWN).doubleValue();
+        y = bdY.setScale(scale, BigDecimal.ROUND_DOWN).doubleValue();
         vertexADT.setX(x);
         vertexADT.setY(y);
         for(VertexADT p : this.vertices){
