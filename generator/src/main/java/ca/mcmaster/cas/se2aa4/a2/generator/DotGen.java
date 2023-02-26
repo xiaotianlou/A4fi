@@ -89,14 +89,6 @@ public Mesh generate() {
         diagram = builder.getDiagram(geometryFactory);
     }
 
-//        for (int i = 0; i < diagram.getNumGeometries(); i++) {
-//            List<VertexADT> verticesPolygon = new LinkedList<>();
-//            Geometry polygon = diagram.getGeometryN(i);
-//            Coordinate centroid = getCentroid(diagram.getGeometryN(i));
-//            System.out.println("Polygon " + i + ": " + polygon);
-//            System.out.println("Centroid:"+centroid);
-//        }
-
 
     for (int i = 0; i < diagram.getNumGeometries(); i++) {
 
@@ -109,16 +101,6 @@ public Mesh generate() {
 
         Geometry croppedDiagram = reorderedDiagram.intersection(geometryFactory.toGeometry(envelope));
 
-//            System.out.println("------------------------------------");
-//
-////            Geometry centroid = polygon.getCentroid();
-//            System.out.println("Polygon " + i + ": " + reorderedDiagram);
-//            System.out.println("Centroid:"+centroid);
-
-//            for (Coordinate c:reorderedDiagram.getCoordinates()){
-////                mesh.getVertex(c.x,c.y);
-//                System.out.println(c);
-//            }
 
         for (int j=1;j<croppedDiagram.getCoordinates().length;j++){
             Coordinate c_1 = croppedDiagram.getCoordinates()[j-1];
@@ -130,10 +112,6 @@ public Mesh generate() {
 
             SegmentADT ab = mesh.getSegment(a,b);
 
-//                System.out.println(c_1);
-//                System.out.println(c_2);
-//                System.out.println(centroid);
-//                System.out.println('!');
         }
 
     }
@@ -143,21 +121,6 @@ public Mesh generate() {
 
 
     DelaunayTriangulationBuilder delaunayTriangulationBuilder = new DelaunayTriangulationBuilder();
-
-
-//        for (int i = 0; i < croppedDiagram.getNumGeometries(); i++) {
-//            List<VertexADT> verticesPolygon = new LinkedList<>();
-//            Geometry polygon = croppedDiagram.getGeometryN(i);
-//            Geometry centroid = polygon.getCentroid();
-//            System.out.println("Polygon " + i + ": " + polygon);
-//            System.out.println("Centroid:"+centroid);
-//        }
-
-//        for (int i = 0; i < croppedDiagram.getNumGeometries(); i++) {
-//            Coordinate polygon = croppedDiagram.getCoordinate();
-//            System.out.println(polygon);
-//
-//        }
 
 
 
