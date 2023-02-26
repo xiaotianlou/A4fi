@@ -120,9 +120,6 @@ public Mesh generate() {
     }
 
 
-
-
-
     DelaunayTriangulationBuilder delaunayTriangulationBuilder = new DelaunayTriangulationBuilder();
 
 
@@ -133,8 +130,6 @@ public Mesh generate() {
     }
     delaunayTriangulationBuilder.setSites(centroidList);
 
-
-
     GeometryCollection triangles = (GeometryCollection) delaunayTriangulationBuilder.getTriangles(geometryFactory);
 
     Map<Polygon, Set<Polygon>> neighbours = new HashMap<>();
@@ -144,9 +139,6 @@ public Mesh generate() {
         System.out.println("!");
 
     }
-
-
-
 
     return mesh.toMesh();
 }
