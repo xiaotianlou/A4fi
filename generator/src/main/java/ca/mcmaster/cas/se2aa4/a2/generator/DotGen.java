@@ -32,18 +32,14 @@ public class DotGen {
         final int MIN_COORDINATE = 0;
         final int MAX_COORDINATE = 500;
         final int NUM_POINTS = 100;
-        int numRelaxations = 5;
+        int numRelaxations = 200;
         MeshADT mesh = new MeshADT();
         Random random = new Random();
 
-        // create a list to hold the randomly generated points
         List<Coordinate> points = new ArrayList<>(NUM_POINTS);
         for (int i = 0; i < NUM_POINTS; i++) {
-            // generate random x and y coordinates within the specified range
             double x = MIN_COORDINATE + random.nextDouble() * (MAX_COORDINATE - MIN_COORDINATE);
             double y = MIN_COORDINATE + random.nextDouble() * (MAX_COORDINATE - MIN_COORDINATE);
-            mesh.getVertex(x, y);
-            // add the new coordinate to the list
             points.add(new Coordinate(x, y));
         }
 
@@ -71,16 +67,17 @@ public class DotGen {
 //            System.out.println("Centroid:"+centroid);
 //        }
 
-        Envelope envelope = new Envelope(0, width, 0, height);
-        Geometry croppedDiagram = diagram.intersection(geometryFactory.toGeometry(envelope));
 
-        for (int i = 0; i < croppedDiagram.getNumGeometries(); i++) {
+        for (int i = 0; i < diagram.getNumGeometries(); i++) {
 
-            Geometry polygon = croppedDiagram.getGeometryN(i);
+            Geometry polygon = diagram.getGeometryN(i);
             ConvexHull convexHull = new ConvexHull(polygon);
             Geometry hull = convexHull.getConvexHull();
             Coordinate[] hullCoords = hull.getCoordinates();
             Geometry reorderedDiagram = geometryFactory.createPolygon(hullCoords);
+            Envelope envelope = new Envelope(0, width, 0, height);
+
+            Geometry croppedDiagram = reorderedDiagram.intersection(geometryFactory.toGeometry(envelope));
 
 //            System.out.println("------------------------------------");
 //
@@ -93,10 +90,10 @@ public class DotGen {
 //                System.out.println(c);
 //            }
 
-            for (int j=1;j<reorderedDiagram.getCoordinates().length;j++){
-                Coordinate c_1 = reorderedDiagram.getCoordinates()[j-1];
-                Coordinate c_2 = reorderedDiagram.getCoordinates()[j];
-                Coordinate centroid = getCentroid(reorderedDiagram);
+            for (int j=1;j<croppedDiagram.getCoordinates().length;j++){
+                Coordinate c_1 = croppedDiagram.getCoordinates()[j-1];
+                Coordinate c_2 = croppedDiagram.getCoordinates()[j];
+                Coordinate centroid = getCentroid(croppedDiagram);
                 VertexADT a = mesh.getVertex(c_1.x,c_1.y);
                 VertexADT b = mesh.getVertex(c_2.x,c_2.y);
                 VertexADT c = mesh.getVertex(centroid.x,centroid.y);
@@ -110,6 +107,7 @@ public class DotGen {
             }
 
         }
+
 
 
 
@@ -139,9 +137,7 @@ public class DotGen {
         }
         delaunayTriangulationBuilder.setSites(centroidList);
 
-//        for (Coordinate c:centroidList){
-//            System.out.println(c);
-//        }
+
 
         GeometryCollection triangles = (GeometryCollection) delaunayTriangulationBuilder.getTriangles(geometryFactory);
 
