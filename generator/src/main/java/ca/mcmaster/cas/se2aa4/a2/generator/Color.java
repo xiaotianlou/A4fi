@@ -8,15 +8,15 @@ public class Color {
     public Color(){
 
         Random bag = new Random();
-//        int red = bag.nextInt(255);
-//        int green = bag.nextInt(255);
-//        int blue = bag.nextInt(255);
-//        float alpha = 0.1f+bag.nextFloat(0.9f);
+        int red = bag.nextInt(255);
+        int green = bag.nextInt(255);
+        int blue = bag.nextInt(255);
+        float alpha = 0.1f+bag.nextFloat(0.9f);
 
-        int red = 59;
-        int green = 42;
-        int blue = 204;
-        float alpha = 1;
+//        int red = 59;
+//        int green = 42;
+//        int blue = 204;
+//        float alpha = 1;
         this.colorCode=red + "," + green + "," + blue + "," + alpha;;
     }
 
