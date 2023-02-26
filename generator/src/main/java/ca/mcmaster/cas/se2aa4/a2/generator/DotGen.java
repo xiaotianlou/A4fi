@@ -80,6 +80,10 @@ public Mesh generate() {
     PrecisionModel precisionModel = new PrecisionModel(0.01);
 
     GeometryFactory geometryFactory = new GeometryFactory(precisionModel);
+
+
+
+
     Geometry diagram = builder.getDiagram(geometryFactory);
     Coordinate[] centroids = new Coordinate[points.size()];
     for (int i = 0; i < numRelaxations; i++) {
@@ -141,12 +145,8 @@ public Mesh generate() {
         mesh.addPolygon(a);
 
     }
-    //https://code-with-me.global.jetbrains.com/7QReUBUN_KcRKu6LbcuUtA#p=IU&fp=AD3A4FF761491603226549EAB97CF974C646E8200F4028D29293D6628C9A54AF
-
 
     DelaunayTriangulationBuilder delaunayTriangulationBuilder = new DelaunayTriangulationBuilder();
-
-
 
     List<Coordinate> centroidList = new ArrayList<>();
     for (int i = 0; i < centroids.length; i++) {
