@@ -18,7 +18,7 @@ public class Mesh2 {
 
     public void addVertex(VertexADT vertexADT) {
         for(VertexADT p : this.vertices){
-            if (p.getX() == vertexADT.getX() && p.getY()== vertexADT.getY()){
+            if (p.getX()-vertexADT.getX()>=-0.1&&p.getX()-vertexADT.getX()<=0.1 && p.getY()-vertexADT.getY()<=0.1&&p.getY()-vertexADT.getY()>=-0.1){
                 return ;
             }
         }
