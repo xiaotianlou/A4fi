@@ -1,7 +1,19 @@
 package ca.mcmaster.cas.se2aa4.a2.generator;
 
+import java.util.Random;
+
 public class Color {
+
     private String colorCode;
+    public Color(){
+
+        Random bag = new Random();
+        int red = bag.nextInt(255);
+        int green = bag.nextInt(255);
+        int blue = bag.nextInt(255);
+        float alpha = bag.nextFloat(1);
+        this.colorCode=red + "," + green + "," + blue + "," + alpha;;
+    }
 
     public Color(String colorCode) {
         this.colorCode = colorCode;

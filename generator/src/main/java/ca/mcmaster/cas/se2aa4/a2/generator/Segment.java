@@ -8,7 +8,7 @@ public class Segment {
     private Vertex_ADT end;
 
     final ArrayList<Integer> usedBy = new ArrayList<>();
-    private Color color;
+    private Color color =new Color();
     private int id;
     private String thickness="1";
 

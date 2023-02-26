@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Vertex_ADT {
     private double x;
     private double y;
-    private Color color;
+    private Color color= new Color();
     private int id;
     private String thickness="1";
 
