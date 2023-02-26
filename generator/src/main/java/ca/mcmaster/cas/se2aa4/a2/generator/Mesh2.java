@@ -8,7 +8,7 @@ public class Mesh2 {
     private List<VertexADT> vertices;
     private List<Segment> segments;
     private List<PolygonADT> polygonADTS;
-    private int scale = 2;
+    private int scale = 1;
 
     public Mesh2() {
         vertices = new ArrayList<>();
@@ -25,6 +25,11 @@ public class Mesh2 {
         y = bdY.setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue();
         vertexADT.setX(x);
         vertexADT.setY(y);
+        for(VertexADT p : this.vertices){
+            if (p.getX() == vertexADT.getX() && p.getY()== vertexADT.getY()){
+                return ;
+            }
+        }
         vertexADT.setId(vertices.size());
         vertices.add(vertexADT);
     }
