@@ -109,14 +109,13 @@ public Mesh generate() {
             Coordinate c_2 = croppedDiagram.getCoordinates()[j];
             Coordinate centroid = getCentroid(croppedDiagram);
 
-            Ve p1 = new Point(c_1.x,c_1.y);
 
-
-            Vertex_ADT a = mesh.addVertex(c_1.x,c_1.y);
-            Vertex_ADT b = mesh.addVertex(c_2.x,c_2.y);
-            Vertex_ADT c = mesh.addVertex(centroid.x,centroid.y);
-
-            Segment ab = mesh.getSegment(a,b);
+            Vertex_ADT a=new Vertex_ADT(c_1.x,c_1.y);
+            Vertex_ADT b =new Vertex_ADT(c_2.x,c_2.y);
+            mesh.addVertex(a);
+            mesh.addVertex(b);
+            mesh.addVertex(new Vertex_ADT(centroid.x,centroid.y));
+            mesh.addSegment(new Segment(a,b));
 
         }
 
