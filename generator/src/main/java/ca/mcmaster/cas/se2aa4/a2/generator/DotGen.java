@@ -11,7 +11,7 @@ public class DotGen {
     private final int square_size = 20;
 
     public Structs.Mesh generate() {
-        Mesh2 mesh = new Mesh2();
+        Mesh2 step2 = new Mesh2();
         List<Point>vertices = new ArrayList<>();
         for (int x = 0; x < width; x += square_size) {
             for (int y = 0; y < height; y += square_size) {
@@ -36,11 +36,21 @@ public class DotGen {
                 for (Segment s : polygon.getSegments()) {
                     Color.setColor(s);
                 }
-                mesh.addPolygon(polygon);
+                step2.addPolygon(polygon);
                 vertices.clear();
             }
         }
 
-        return mesh.transform();
+
+
+
+
+
+
+
+
+
+
+        return step2.transform();
     }
 }
