@@ -107,7 +107,7 @@ public Mesh generate() {
 
         Geometry croppedDiagram = reorderedDiagram.intersection(geometryFactory.toGeometry(envelope));
 
-        List<VertexADT> vertices = null;
+        List<VertexADT> vertices = new ArrayList<>();
         for (int j=1;j<croppedDiagram.getCoordinates().length;j++){
             Coordinate c_1 = croppedDiagram.getCoordinates()[j-1];
             Coordinate c_2 = croppedDiagram.getCoordinates()[j];
