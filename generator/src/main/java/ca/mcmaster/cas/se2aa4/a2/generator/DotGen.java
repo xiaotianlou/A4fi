@@ -159,6 +159,6 @@ public Mesh generate(MeshKind mk,int num_poly,int levelRelax) {
     }
 }
     public Mesh generate() {
-        return this.generate(MeshKind.grid,50,200);
+        return this.generate(MeshKind.irregular,50,200);
     }
 }
