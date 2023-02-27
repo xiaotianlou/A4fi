@@ -26,7 +26,11 @@ To run the generator, run `generator` configuration, or use `java -jar` to run t
 
 ```
 mosser@azrael A2 % cd generator 
-mosser@azrael generator % java -jar generator.jar sample.mesh
+               
+                -k for mesh type, uses: -k grid, -k irregular
+                -o for change the name of output,default is sampleS.mesh
+                
+mosser@azrael generator % java -jar generator.jar -o sampleS.mesh -k irregular
 mosser@azrael generator % ls -lh sample.mesh
 -rw-r--r--  1 mosser  staff    29K 29 Jan 10:52 sample.mesh
 mosser@azrael generator % 
