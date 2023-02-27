@@ -14,7 +14,7 @@ public class Main {
         String outputname="sampleS.mesh";
 //
         MeshKind mode=MeshKind.irregular;
-        int numPoly=50;
+        int numPoly=500;
         int levelRelax=200;
         CommandLine cmd;
         CommandLineParser parser = new BasicParser();
@@ -48,7 +48,7 @@ public class Main {
                         mode=MeshKind.grid;
                         break;
                     case "irregular":
-                        mode=MeshKind.grid;
+                        mode=MeshKind.irregular;
                         break;
                     default:
                         System.out.println("Invalid input,grid or irregular\n");

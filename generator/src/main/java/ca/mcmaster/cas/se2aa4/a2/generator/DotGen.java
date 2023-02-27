@@ -78,7 +78,7 @@ public class DotGen {
             for (int j = 1; j < croppedDiagram.getCoordinates().length; j++) {
                 Coordinate c_1 = croppedDiagram.getCoordinates()[j - 1];
                 Coordinate c_2 = croppedDiagram.getCoordinates()[j];
-                centroid = getCentroid(croppedDiagram);
+                centroid = getCentroid(croppedDiagram);//error
 
 
                 VertexADT a = new VertexADT(c_1.x, c_1.y);
