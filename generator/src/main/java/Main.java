@@ -11,18 +11,57 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        DotGen generator = new DotGen();
-
-        Mesh myMesh = generator.generate();
-        MeshFactory factory = new MeshFactory();
-        factory.write(myMesh, args[0]);
+        String outputname="sample.mesh";
+//
         CommandLine cmd;
         CommandLineParser parser = new BasicParser();
         HelpFormatter helper = new HelpFormatter();
 
         Options options = new Options();
-        Option alpha = new Option("h", "help", true, "help mode");
+        Option alpha = new Option("h", "help", false, "help mode");
+        Option b = new Option("k", "meshkind", true, "change mesh");
+        Option out = new Option("o", "output", true, "output name");
         options.addOption(alpha);
+        options.addOption(b);
+        options.addOption(out);
+        try {
+            cmd = parser.parse(options, args);
+            if(cmd.hasOption("h")){
+                System.out.println("Help option:");
+                System.out.println("-k for mesh type, uses: -k grid, -k irregular");
+                System.exit(0);
+            }
+            if (cmd.hasOption("k")) {
+                String mks = cmd.getOptionValue("k");
+                MeshKind mode=MeshKind.irregular;
+                switch(mks){
+                    case "grid":
+                        mode=MeshKind.grid;
+                        break;
+                    case "irregular":
+                        mode=MeshKind.grid;
+                        break;
+                    default:
+                        System.out.println("Invalid input,grid or irregular\n");
+                        System.exit(0);
+                }
+
+            }
+            if (cmd.hasOption("o")) {
+                outputname= cmd.getOptionValue("o");
+
+            }
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        DotGen generator = new DotGen();
+
+        Mesh myMesh = generator.generate();
+        MeshFactory factory = new MeshFactory();
+
+        factory.write(myMesh, outputname);
 
 //    Option config = Option.builder("h").longOpt("help")
 //            .argName("temp")
@@ -31,25 +70,6 @@ public class Main {
 //            .desc("help mode").build();
 //    options.addOption(config);
 
-        try {
-            cmd = parser.parse(options, args);
-            if(cmd.hasOption("h")){
-                System.out.println("help option");
-
-            }
-            if (cmd.hasOption("n")) {
-                int opt_config = Integer.parseInt(cmd.getOptionValue("number"));
-                total=opt_config;
-            }
-            if (!cmd.hasOption("cc")&&!cmd.hasOption("n")&&args.length!=0) {
 
 
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
-
-
-}
+}}
