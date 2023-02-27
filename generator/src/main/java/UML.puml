@@ -4,6 +4,13 @@
 
 class Color{
 -String colorCode;
++Color()
++Color(String colorCode)
++String getColorCode()
++{static} void setColor(VertexADT p, String pc)
+static void setColor(Segment s)
+static Color combineColor(Color p1, Color p2)
+
 
 }
 
@@ -12,17 +19,19 @@ class DotGen
 class Mesh2
 class PolygonADT
 class Segment
-
-List <|-- AbstractList
-Collection <|-- AbstractCollection
-
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
-
+class VertexADT
 enum MeshKind {
     grid,irregular
 }
+
+'List <|-- AbstractList
+'Collection <|-- AbstractCollection
+'
+'Collection <|- List
+'AbstractCollection <|- AbstractList
+'AbstractList <|-- ArrayList
+
+
+
 
 @enduml
