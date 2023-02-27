@@ -126,7 +126,10 @@ public class DotGen {
                 vertices.add(p2);
                 vertices.add(p3);
                 vertices.add(p4);
+                VertexADT cen= new VertexADT(x + square_size/2,y + square_size/2);
+                step2.addVertex(cen);//centre
                 PolygonADT polygon = new PolygonADT(vertices);
+                polygon.setCentroid(cen);
                 for (VertexADT p : polygon.getVertices()) {
                     Random bag = new Random();
                     int red = bag.nextInt(255);
@@ -140,6 +143,7 @@ public class DotGen {
                     Color.setColor(s);
                 }
                 step2.addPolygon(polygon);
+
                 vertices.clear();
             }
         }
@@ -155,6 +159,6 @@ public Mesh generate(MeshKind mk,int num_poly,int levelRelax) {
     }
 }
     public Mesh generate() {
-        return this.generate(MeshKind.irregular,50,200);
+        return this.generate(MeshKind.grid,50,200);
     }
 }
