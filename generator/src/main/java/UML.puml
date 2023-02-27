@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+class Color{
+-String colorCode;
+
+}
+
+
+class DotGen
+class Mesh2
+class PolygonADT
+class Segment
+
+List <|-- AbstractList
+Collection <|-- AbstractCollection
+
+Collection <|- List
+AbstractCollection <|- AbstractList
+AbstractList <|-- ArrayList
+
+
+enum MeshKind {
+    grid,irregular
+}
+
+@enduml
