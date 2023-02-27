@@ -27,11 +27,11 @@ public class DotGen {
         }
         return -1;
     }
-    private Mesh step3_irregular(){
+    private Mesh step3_irregular(int num_poly,int levelRelax){
         final int MIN_COORDINATE = 0;
         final int MAX_COORDINATE = 500;
-        final int NUM_POINTS = 50;
-        int numRelaxations = 200;
+        final int NUM_POINTS = num_poly;
+        int numRelaxations = levelRelax;
         Mesh2 mesh = new Mesh2();
         Random random = new Random();
 
@@ -146,12 +146,15 @@ public class DotGen {
 
         return step2.transform();}
 
-public Mesh generate(MeshKind mk) {
+public Mesh generate(MeshKind mk,int num_poly,int levelRelax) {
     Mesh m;
     if(mk.equals(MeshKind.irregular)) {
-        return step3_irregular();
+        return step3_irregular(num_poly,levelRelax);
     }else {
         return step2_grid();
     }
 }
+    public Mesh generate() {
+        return this.generate(MeshKind.irregular,50,200);
+    }
 }

@@ -12,7 +12,7 @@ public class Main {
 
         DotGen generator = new DotGen();
 
-        Mesh myMesh = generator.generate(MeshKind.irregular);
+        Mesh myMesh = generator.generate();
         MeshFactory factory = new MeshFactory();
         factory.write(myMesh, args[0]);
 
