@@ -11,8 +11,9 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        String outputname="sample.mesh";
+        String outputname="sampleS.mesh";
 //
+        MeshKind mode=MeshKind.irregular;
         CommandLine cmd;
         CommandLineParser parser = new BasicParser();
         HelpFormatter helper = new HelpFormatter();
@@ -29,11 +30,11 @@ public class Main {
             if(cmd.hasOption("h")){
                 System.out.println("Help option:");
                 System.out.println("-k for mesh type, uses: -k grid, -k irregular");
+                System.out.println("-o for change the name of output,default is sampleS.mesh ");
                 System.exit(0);
             }
             if (cmd.hasOption("k")) {
                 String mks = cmd.getOptionValue("k");
-                MeshKind mode=MeshKind.irregular;
                 switch(mks){
                     case "grid":
                         mode=MeshKind.grid;
@@ -45,30 +46,19 @@ public class Main {
                         System.out.println("Invalid input,grid or irregular\n");
                         System.exit(0);
                 }
-
             }
             if (cmd.hasOption("o")) {
                 outputname= cmd.getOptionValue("o");
 
             }
-
-
         }catch (Exception e){
             e.printStackTrace();
         }
+
         DotGen generator = new DotGen();
-
-        Mesh myMesh = generator.generate();
+        Mesh myMesh = generator.generate(mode,50,200);
         MeshFactory factory = new MeshFactory();
-
         factory.write(myMesh, outputname);
-
-//    Option config = Option.builder("h").longOpt("help")
-//            .argName("temp")
-//            .hasArg(false)
-//            .required(false)
-//            .desc("help mode").build();
-//    options.addOption(config);
 
 
 
