@@ -115,6 +115,7 @@ public class DotGen {
         return mesh.transform();
 
     }
+
     private Mesh step2_grid(){Mesh2 step2 = new Mesh2();
         List<VertexADT>vertices = new ArrayList<>();
         for (int x = 0; x < width; x += square_size) {
