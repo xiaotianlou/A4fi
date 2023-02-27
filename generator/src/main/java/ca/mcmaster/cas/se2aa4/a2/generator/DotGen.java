@@ -27,9 +27,7 @@ public class DotGen {
         }
         return -1;
     }
-public Mesh generate(MeshKind mk) {
-    Mesh m;
-    if(mk.equals(MeshKind.irregular)) {
+    private Mesh step3_irregular(){
         final int MIN_COORDINATE = 0;
         final int MAX_COORDINATE = 500;
         final int NUM_POINTS = 50;
@@ -114,8 +112,9 @@ public Mesh generate(MeshKind mk) {
 
 
         return mesh.transform();
-    }else {
-        Mesh2 step2 = new Mesh2();
+
+    }
+    private Mesh step2_grid(){Mesh2 step2 = new Mesh2();
         List<VertexADT>vertices = new ArrayList<>();
         for (int x = 0; x < width; x += square_size) {
             for (int y = 0; y < height; y += square_size) {
@@ -145,7 +144,14 @@ public Mesh generate(MeshKind mk) {
             }
         }
 
-        return step2.transform();
+        return step2.transform();}
+
+public Mesh generate(MeshKind mk) {
+    Mesh m;
+    if(mk.equals(MeshKind.irregular)) {
+        return step3_irregular();
+    }else {
+        return step2_grid();
     }
 }
 }
