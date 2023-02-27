@@ -57,15 +57,12 @@ public class Main {
             }
             if (cmd.hasOption("o")) {
                 outputname= cmd.getOptionValue("o");
-
             }
             if (cmd.hasOption("n")) {
                 numPoly= Integer.parseInt(cmd.getOptionValue("n"));
-
             }
             if (cmd.hasOption("l")) {
                 levelRelax= Integer.parseInt(cmd.getOptionValue("l"));
-
             }
         }catch (Exception e){
             e.printStackTrace();
