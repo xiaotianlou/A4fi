@@ -1,0 +1,114 @@
+@startuml
+class ca.mcmaster.cas.se2aa4.a2.generator.PolygonADT {
+- List<VertexADT> vertices
+- List<Segment> segments
+- List<Integer> neighbors
+- int id
+- VertexADT centroid
+- String thickness
++ <<Create>> PolygonADT(List<VertexADT>)
++ int getId()
++ String getThickness()
++ void setThickness(String)
++ void setId(int)
++ void addNeighbor(int)
++ List<VertexADT> getVertices()
++ List<Segment> getSegments()
++ List<Integer> getNeighbors()
++ VertexADT getCentroid()
++ void setCentroid(VertexADT)
++ boolean equals(Object)
++ int hashCode()
+}
+class Main {
++ {static} void main(String[])
+}
+class ca.mcmaster.cas.se2aa4.a2.generator.Segment {
+- VertexADT start
+- VertexADT end
+~ ArrayList<Integer> usedBy
+- Color color
+- int id
+- String thickness
++ <<Create>> Segment(VertexADT,VertexADT)
++ void setStart(VertexADT)
++ void setEnd(VertexADT)
++ void setId(int)
++ void setColor(Color)
++ String getThickness()
++ void setThickness(String)
++ VertexADT getStart()
++ VertexADT getEnd()
++ int getId()
++ Color getColor()
++ ArrayList<Integer> getUsedBy()
++ void addUsedBy(int)
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+}
+class ca.mcmaster.cas.se2aa4.a2.generator.Color {
+- String colorCode
++ <<Create>> Color()
++ <<Create>> Color(String)
++ String getColorCode()
++ {static} void setColor(VertexADT,String)
++ {static} void setColor(Segment)
+- {static} Color combineColor(Color,Color)
+- {static} float[] extractColor_Number(String)
+}
+class ca.mcmaster.cas.se2aa4.a2.generator.VertexADT {
+- double x
+- double y
+- Color color
+- int id
+- String thickness
++ <<Create>> VertexADT(double,double)
++ void setX(double)
++ void setY(double)
++ void setId(int)
++ void setColor(Color)
++ String getThickness()
++ void setThickness(String)
++ double getX()
++ double getY()
++ int getId()
++ Color getColor()
++ boolean equals(Object)
++ int hashCode()
++ String toString()
+}
+class ca.mcmaster.cas.se2aa4.a2.generator.Mesh2 {
+- List<VertexADT> vertices
+- List<Segment> segments
+- List<PolygonADT> polygonADTS
+- int scale
++ <<Create>> Mesh2()
++ void addVertex(VertexADT)
++ void addSegment(Segment)
++ void addPolygon(PolygonADT)
++ List<VertexADT> getVertices()
++ List<Segment> getSegments()
++ List<PolygonADT> getPolygons()
++ void setScale(int)
++ String toString()
++ Structs.Mesh transform()
++ VertexADT getPoint(VertexADT)
++ Segment getSegment(Segment)
++ PolygonADT getPolygon(PolygonADT)
+}
+class ca.mcmaster.cas.se2aa4.a2.generator.DotGen {
+- int width
+- int height
+- int square_size
+- int findVertex(List<Structs.Vertex>,double,double)
+- Mesh step3_irregular(int,int)
+- Mesh step2_grid()
++ Mesh generate(MeshKind,int,int)
++ Mesh generate()
+}
+enum ca.mcmaster.cas.se2aa4.a2.generator.MeshKind {
++  grid
++  irregular
+}
+@enduml
