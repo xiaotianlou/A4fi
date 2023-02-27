@@ -14,6 +14,8 @@ public class Main {
         String outputname="sampleS.mesh";
 //
         MeshKind mode=MeshKind.irregular;
+        int numPoly=50;
+        int levelRelax=200;
         CommandLine cmd;
         CommandLineParser parser = new BasicParser();
         HelpFormatter helper = new HelpFormatter();
@@ -22,15 +24,21 @@ public class Main {
         Option alpha = new Option("h", "help", false, "help mode");
         Option b = new Option("k", "meshkind", true, "change mesh");
         Option out = new Option("o", "output", true, "output name");
+        Option nP = new Option("n", "numPoly", true, "change number of poly");
+        Option lR = new Option("l", "levelRelax", true, "change number of relax");
         options.addOption(alpha);
         options.addOption(b);
         options.addOption(out);
+        options.addOption(nP);
+        options.addOption(lR);
         try {
             cmd = parser.parse(options, args);
             if(cmd.hasOption("h")){
                 System.out.println("Help option:");
-                System.out.println("-k for mesh type, uses: -k grid, -k irregular");
+                System.out.println("-k for mesh type, uses: -k grid, -k irregular default is irregular");
                 System.out.println("-o for change the name of output,default is sampleS.mesh ");
+                System.out.println("-n for change number of poly default is 50");
+                System.out.println("-l change the level relax default is 200");
                 System.exit(0);
             }
             if (cmd.hasOption("k")) {
@@ -51,12 +59,20 @@ public class Main {
                 outputname= cmd.getOptionValue("o");
 
             }
+            if (cmd.hasOption("n")) {
+                numPoly= Integer.parseInt(cmd.getOptionValue("n"));
+
+            }
+            if (cmd.hasOption("l")) {
+                levelRelax= Integer.parseInt(cmd.getOptionValue("l"));
+
+            }
         }catch (Exception e){
             e.printStackTrace();
         }
 
         DotGen generator = new DotGen();
-        Mesh myMesh = generator.generate(mode,50,200);
+        Mesh myMesh = generator.generate(mode,numPoly,levelRelax);
         MeshFactory factory = new MeshFactory();
         factory.write(myMesh, outputname);
 
