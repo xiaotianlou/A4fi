@@ -31,12 +31,33 @@ public class DotGenTest {
 
     }
     @Test
-    public void generatorCorrect(){
+    public void generatorCorrectStep3(){
         DotGen generator = new DotGen();
         Structs.Mesh aMesh = generator.generate(MeshKind.irregular,50,200);
         assertTrue(new File("sampleS.mesh").exists());
-
     }
+    @Test
+    public void generatorCorrectStep3WithBigValue(){
+        DotGen generator = new DotGen();
+        Structs.Mesh aMesh = generator.generate(MeshKind.irregular,400,200);
+        assertTrue(new File("sampleS.mesh").exists());
+    }
+
+    @Test
+    public void generatorCorrectStep2(){
+        DotGen generator = new DotGen();
+        Structs.Mesh aMesh = generator.generate(MeshKind.grid,50,200);
+        assertTrue(new File("sampleS.mesh").exists());
+    }
+    @Test
+    public void generatorCorrectStep3WithSmallValue(){
+        DotGen generator = new DotGen();
+        Structs.Mesh aMesh = generator.generate(MeshKind.irregular,0,200);
+        assertTrue(new File("sampleS.mesh").exists());
+//        Structs.Mesh aMesh = generator.generate(MeshKind.irregular,300,200);
+//        assertTrue(new File("sampleS.mesh").exists());
+    }
+
 
 
 
