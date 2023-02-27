@@ -111,5 +111,14 @@ enum ca.mcmaster.cas.se2aa4.a2.generator.MeshKind {
 +  grid
 +  irregular
 }
-
+Main *-- ca.mcmaster.cas.se2aa4.a2.generator.DotGen
+Main *-- ca.mcmaster.cas.se2aa4.a2.generator.Mesh2
+ca.mcmaster.cas.se2aa4.a2.generator.Mesh2 o-- ca.mcmaster.cas.se2aa4.a2.generator.VertexADT
+ca.mcmaster.cas.se2aa4.a2.generator.Mesh2 o-- ca.mcmaster.cas.se2aa4.a2.generator.Segment
+ca.mcmaster.cas.se2aa4.a2.generator.Mesh2 o-- ca.mcmaster.cas.se2aa4.a2.generator.PolygonADT
+ca.mcmaster.cas.se2aa4.a2.generator.VertexADT o-- ca.mcmaster.cas.se2aa4.a2.generator.Color
+ca.mcmaster.cas.se2aa4.a2.generator.Segment o-- ca.mcmaster.cas.se2aa4.a2.generator.Color
+ca.mcmaster.cas.se2aa4.a2.generator.PolygonADT o-- ca.mcmaster.cas.se2aa4.a2.generator.Color
+ca.mcmaster.cas.se2aa4.a2.generator.MeshKind<..ca.mcmaster.cas.se2aa4.a2.generator.DotGen:using
+ca.mcmaster.cas.se2aa4.a2.generator.MeshKind<..Main:using
 @enduml
