@@ -93,3 +93,5 @@ When you develop features and enrich the product, remember that you have first t
 |F15 | draw segment | xiaotian Lou | 2/10 | 2/15 | D |
 |F16 | visulization | xiaotian Lou | 2/10 | 2/15 | D |
 |F17 | visulizationDEbug | xiaotian Lou | 2/10 | 2/15 | D |
+|F18 | runconfig | xiaotian Lou | 2/10 | 2/15 | D |
+
