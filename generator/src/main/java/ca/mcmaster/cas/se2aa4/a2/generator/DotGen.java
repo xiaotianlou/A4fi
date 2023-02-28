@@ -197,8 +197,6 @@ public class DotGen {
 
 public Mesh generate(MeshKind mk,int num_poly,int levelRelax) {
     Mesh m;
-
-
     if(mk.equals(MeshKind.irregular)) {
         return step3_irregular(num_poly,levelRelax);
     }else if(mk.equals(MeshKind.grid)){
