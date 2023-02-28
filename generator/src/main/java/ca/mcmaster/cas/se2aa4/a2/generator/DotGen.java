@@ -15,9 +15,10 @@ import static org.locationtech.jts.algorithm.Centroid.getCentroid;
 
 public class DotGen {
 
-    private final int width = 500;
-    private final int height = 500;
-    private final int square_size = 20;
+    private static final int width = 500;
+    private static final int height = 500;
+    private static final int square_size = 20;
+    static Random random = new Random();
 
     private Mesh step3_irregular(int num_poly,int levelRelax){
         final int MIN_COORDINATE = 0;
@@ -25,7 +26,7 @@ public class DotGen {
         final int NUM_POINTS = num_poly;
         int numRelaxations = levelRelax;
         Mesh2 mesh = new Mesh2();
-        Random random = new Random();
+
 
         List<Coordinate> points = new ArrayList<>(NUM_POINTS);
         for (int i = 0; i < NUM_POINTS; i++) {
@@ -115,7 +116,6 @@ public class DotGen {
         final int NUM_POINTS = 50;
         int numRelaxations = 200;
         Mesh2 mesh = new Mesh2();
-        Random random = new Random();
 
         List<Coordinate> points = new ArrayList<>(NUM_POINTS);
 
@@ -211,7 +211,7 @@ public class DotGen {
                 PolygonADT polygon = new PolygonADT(vertices);
                 polygon.setCentroid(cen);
                 for (VertexADT p : polygon.getVertices()) {
-                    Random bag = new Random();
+                    Random bag =random;
                     int red = bag.nextInt(255);
                     int green = bag.nextInt(255);
                     int blue = bag.nextInt(255);
