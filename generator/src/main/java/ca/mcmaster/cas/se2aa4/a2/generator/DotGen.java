@@ -119,19 +119,9 @@ public class DotGen {
 
         List<Coordinate> points = new ArrayList<>(NUM_POINTS);
 
-//        for (int x = 0; x < width; x += square_size) {
-//            for (int y = 0; y < height; y += square_size) {
-//                points.add(new Coordinate(x, y));
-//                points.add(new Coordinate(x, y + square_size));
-//                points.add(new Coordinate(x + square_size, y + square_size));
-//                points.add(new Coordinate(x + square_size, y));
-//
-//            }
-//        }
-
         for (int i = 0; i < NUM_POINTS; i++) {
-            double x = MIN_COORDINATE + random.nextDouble() * (MAX_COORDINATE - MIN_COORDINATE);
-            double y = MIN_COORDINATE + random.nextDouble() * (MAX_COORDINATE - MIN_COORDINATE);
+            double x = (double)MIN_COORDINATE + random.nextDouble() * (double)(MAX_COORDINATE - MIN_COORDINATE);
+            double y = (double)MIN_COORDINATE + random.nextDouble() * (double)(MAX_COORDINATE - MIN_COORDINATE);
             points.add(new Coordinate(x, y));
         }
 
@@ -147,16 +137,6 @@ public class DotGen {
         Geometry diagram = builder.getTriangles(geometryFactory);
 
         Coordinate[] centroids = new Coordinate[points.size()];
-
-//        for (int i = 0; i < numRelaxations+1; i++) {
-//            for (int j = 0; j < points.size()+1; j++) {
-//                centroids[j] = getCentroid(diagram.getGeometryN(j));
-//            }
-//
-//            builder.setSites(Arrays.asList(centroids));
-//            diagram = builder.getTriangles(geometryFactory);
-//        }
-
 
         for (int i = 0; i < diagram.getNumGeometries(); i++) {
 
@@ -199,14 +179,14 @@ public class DotGen {
         for (int x = 0; x < width; x += square_size) {
             for (int y = 0; y < height; y += square_size) {
                 VertexADT p1 = new VertexADT(x, y);
-                VertexADT p2 = new  VertexADT(x, y + square_size);
-                VertexADT p3 = new  VertexADT(x + square_size, y + square_size);
-                VertexADT p4 = new  VertexADT(x + square_size, y);
+                VertexADT p2 = new  VertexADT(x, y + (double)square_size);
+                VertexADT p3 = new  VertexADT(x + (double)square_size, y + (double)square_size);
+                VertexADT p4 = new  VertexADT(x + (double)square_size, y);
                 vertices.add(p1);
                 vertices.add(p2);
                 vertices.add(p3);
                 vertices.add(p4);
-                VertexADT cen= new VertexADT(x + square_size/2,y + square_size/2);
+                VertexADT cen= new VertexADT(x + square_size/2d,y + square_size/2d);
                 step2.addVertex(cen);//centre
                 PolygonADT polygon = new PolygonADT(vertices);
                 polygon.setCentroid(cen);
