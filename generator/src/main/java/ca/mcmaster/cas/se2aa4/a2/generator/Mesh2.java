@@ -19,8 +19,8 @@ public class Mesh2 {
     public void addVertex(VertexADT vertexADT) {
         double x = vertexADT.getX();
         double y = vertexADT.getY();
-        BigDecimal bdX = new BigDecimal(x);
-        BigDecimal bdY = new BigDecimal(y);
+        BigDecimal bdX = BigDecimal.valueOf(x);
+        BigDecimal bdY = BigDecimal.valueOf(y);
         x = bdX.setScale(scale, BigDecimal.ROUND_DOWN).doubleValue();
         y = bdY.setScale(scale, BigDecimal.ROUND_DOWN).doubleValue();
         vertexADT.setX(x);
