@@ -97,4 +97,4 @@ When you develop features and enrich the product, remember that you have first t
 |F19 | SwitchMode | xiaotian Lou | 2/10 | 2/15 | D |
 |F20 | Foundneighbourindebug | xiaotian Lou | 2/10 | 2/15 | D |
 |F21 | addthcikness | xiaotian Lou | 2/10 | 2/15 | D |
-
+|F22 | addAlphaimplement | xiaotian Lou | 2/10 | 2/15 | D |
