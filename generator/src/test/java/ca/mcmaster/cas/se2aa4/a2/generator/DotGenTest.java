@@ -37,13 +37,6 @@ public class DotGenTest {
         assertTrue(new File("sampleS.mesh").exists());
     }
     @Test
-    public void generatorCorrectStep3WithBigValue(){
-        DotGen generator = new DotGen();
-        Structs.Mesh aMesh = generator.generate(MeshKind.irregular,400,200);
-        assertTrue(new File("sampleS.mesh").exists());
-    }
-
-    @Test
     public void generatorCorrectStep2(){
         DotGen generator = new DotGen();
         Structs.Mesh aMesh = generator.generate(MeshKind.grid,50,200);

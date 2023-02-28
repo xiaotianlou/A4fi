@@ -14,7 +14,7 @@ public class Main {
         String outputname="sampleS.mesh";
 //
         MeshKind mode=MeshKind.irregular;
-        int numPoly=500;
+        int numPoly=50;
         int levelRelax=200;
         CommandLine cmd;
         CommandLineParser parser = new BasicParser();
