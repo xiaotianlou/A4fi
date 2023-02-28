@@ -35,7 +35,7 @@ public class Main {
             cmd = parser.parse(options, args);
             if(cmd.hasOption("h")){
                 System.out.println("Help option:");
-                System.out.println("-k for mesh type, uses: -k grid, -k irregular default is irregular");
+                System.out.println("-k for mesh type, uses: -k grid, -k irregular,-k BONUS default is irregular");
                 System.out.println("-o for change the name of output,default is sampleS.mesh ");
                 System.out.println("-n for change number of poly default is 50");
                 System.out.println("-l change the level relax default is 200");
@@ -50,9 +50,13 @@ public class Main {
                     case "irregular":
                         mode=MeshKind.irregular;
                         break;
+                    case"bonus":
+                        mode=MeshKind.BONUS;
+                            break;
                     default:
                         System.out.println("Invalid input,grid or irregular\n");
                         System.exit(0);
+                        break;
                 }
             }
             if (cmd.hasOption("o")) {

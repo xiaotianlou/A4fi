@@ -5,5 +5,5 @@ package ca.mcmaster.cas.se2aa4.a2.generator;
  * @date 2023/2/27 10:14
  */
 public enum MeshKind {
-    grid,irregular
+    grid, irregular, BONUS
 }
