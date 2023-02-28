@@ -2,9 +2,7 @@ package ca.mcmaster.cas.se2aa4.a2.generator;
 
 import java.util.*;
 
-import ca.mcmaster.cas.se2aa4.a2.io.Structs;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Mesh;
-import org.apache.commons.cli.*;
 import org.locationtech.jts.algorithm.ConvexHull;
 import org.locationtech.jts.geom.*;
 import org.locationtech.jts.triangulate.DelaunayTriangulationBuilder;
@@ -15,9 +13,9 @@ import static org.locationtech.jts.algorithm.Centroid.getCentroid;
 
 public class DotGen {
 
-    private static final int width = 500;
-    private static final int height = 500;
-    private static final int square_size = 20;
+    private static final int WIDTH = 500;
+    private static final int HEIGHT = 500;
+    private static final int SQUARE_SIZE = 20;
     static Random random = new Random();
 
     private Mesh step3_irregular(int num_poly,int levelRelax){
@@ -64,7 +62,7 @@ public class DotGen {
             Geometry hull = convexHull.getConvexHull();
             Coordinate[] hullCoords = hull.getCoordinates();
             Geometry reorderedDiagram = geometryFactory.createPolygon(hullCoords);
-            Envelope envelope = new Envelope(0, width, 0, height);
+            Envelope envelope = new Envelope(0, WIDTH, 0, HEIGHT);
 
             Geometry croppedDiagram = reorderedDiagram.intersection(geometryFactory.toGeometry(envelope));
 
@@ -145,7 +143,7 @@ public class DotGen {
             Geometry hull = convexHull.getConvexHull();
             Coordinate[] hullCoords = hull.getCoordinates();
             Geometry reorderedDiagram = geometryFactory.createPolygon(hullCoords);
-            Envelope envelope = new Envelope(0, width, 0, height);
+            Envelope envelope = new Envelope(0, WIDTH, 0, HEIGHT);
 
             Geometry croppedDiagram = reorderedDiagram.intersection(geometryFactory.toGeometry(envelope));
 
@@ -176,17 +174,17 @@ public class DotGen {
 
     private Mesh step2_grid(){Mesh2 step2 = new Mesh2();
         List<VertexADT>vertices = new ArrayList<>();
-        for (int x = 0; x < width; x += square_size) {
-            for (int y = 0; y < height; y += square_size) {
+        for (int x = 0; x < WIDTH; x += SQUARE_SIZE) {
+            for (int y = 0; y < HEIGHT; y += SQUARE_SIZE) {
                 VertexADT p1 = new VertexADT(x, y);
-                VertexADT p2 = new  VertexADT(x, y + (double)square_size);
-                VertexADT p3 = new  VertexADT(x + (double)square_size, y + (double)square_size);
-                VertexADT p4 = new  VertexADT(x + (double)square_size, y);
+                VertexADT p2 = new  VertexADT(x, y + (double) SQUARE_SIZE);
+                VertexADT p3 = new  VertexADT(x + (double) SQUARE_SIZE, y + (double) SQUARE_SIZE);
+                VertexADT p4 = new  VertexADT(x + (double) SQUARE_SIZE, y);
                 vertices.add(p1);
                 vertices.add(p2);
                 vertices.add(p3);
                 vertices.add(p4);
-                VertexADT cen= new VertexADT(x + square_size/2d,y + square_size/2d);
+                VertexADT cen= new VertexADT(x + SQUARE_SIZE /2d,y + SQUARE_SIZE /2d);
                 step2.addVertex(cen);//centre
                 PolygonADT polygon = new PolygonADT(vertices);
                 polygon.setCentroid(cen);
