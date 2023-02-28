@@ -88,3 +88,8 @@ When you develop features and enrich the product, remember that you have first t
 |F10 | SetColor| Changhao Wu | 2/17 | 2/18 | D |
 |F11 | id | Changhao Wu | 2/23 | 2/24 | D |
 |F12 | transform | Changhao Wu Jiaming Li | 2/23 | 2/24 | D |
+|F13 | UML | xiaotian Lou | 2/25 | 2/27 | D |
+|F14 | Cli | xiaotian Lou | 2/25 | 2/27 | D |
+|F15 | draw segment | xiaotian Lou | 2/10 | 2/15 | D |
+|F16 | visulization | xiaotian Lou | 2/10 | 2/15 | D |
+|F17 | visulizationDEbug | xiaotian Lou | 2/10 | 2/15 | D |
