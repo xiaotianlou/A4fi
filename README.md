@@ -102,4 +102,4 @@ When you develop features and enrich the product, remember that you have first t
 |F20 | Foundneighbourindebug | xiaotian Lou | 2/10 | 2/15 | D |
 |F21 | addthcikness | xiaotian Lou | 2/10 | 2/15 | D |
 |F22 | addAlphaimplement | xiaotian Lou | 2/10 | 2/15 | D |
-|F22 | Bonus | xiaotian Lou | 2/26 | 2/27 | D |
+|F23 | Bonus | xiaotian Lou | 2/26 | 2/27 | D |
