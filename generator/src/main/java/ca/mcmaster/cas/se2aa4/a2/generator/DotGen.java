@@ -91,19 +91,6 @@ public class DotGen {
 
         }
 
-        DelaunayTriangulationBuilder delaunayTriangulationBuilder = new DelaunayTriangulationBuilder();
-
-        List<Coordinate> centroidList = new ArrayList<>();
-        for (int i = 0; i < centroids.length; i++) {
-            centroidList.add(centroids[i]);
-        }
-        delaunayTriangulationBuilder.setSites(centroidList);
-
-        GeometryCollection triangles = (GeometryCollection) delaunayTriangulationBuilder.getTriangles(geometryFactory);
-
-        Map<PolygonADT, Set<PolygonADT>> neighbours = new HashMap<>();
-
-
 
         return mesh.transform();
 
@@ -118,8 +105,8 @@ public class DotGen {
         List<Coordinate> points = new ArrayList<>(NUM_POINTS);
 
         for (int i = 0; i < NUM_POINTS; i++) {
-            double x = (double)MIN_COORDINATE + random.nextDouble() * (double)(MAX_COORDINATE - MIN_COORDINATE);
-            double y = (double)MIN_COORDINATE + random.nextDouble() * (double)(MAX_COORDINATE - MIN_COORDINATE);
+            double x = MIN_COORDINATE + random.nextDouble() * (MAX_COORDINATE - MIN_COORDINATE);
+            double y = MIN_COORDINATE + random.nextDouble() * (MAX_COORDINATE - MIN_COORDINATE);
             points.add(new Coordinate(x, y));
         }
 
