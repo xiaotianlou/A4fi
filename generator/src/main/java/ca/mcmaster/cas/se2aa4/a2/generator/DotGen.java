@@ -235,7 +235,6 @@ public Mesh generate(MeshKind mk,int num_poly,int levelRelax) {
 
 
     if(mk.equals(MeshKind.irregular)) {
-//        return bonus();
         return step3_irregular(num_poly,levelRelax);
     }else if(mk.equals(MeshKind.grid)){
         return step2_grid();

@@ -27,10 +27,14 @@ To run the generator, run `generator` configuration, or use `java -jar` to run t
 ```
 mosser@azrael A2 % cd generator 
                
-                -k for mesh type, uses: -k grid, -k irregular
+                -k for mesh type, uses: -k grid, -k irregular,-k BONUS default is irregular
                 -o for change the name of output,default is sampleS.mesh
-                
-mosser@azrael generator % java -jar generator.jar -o sampleS.mesh -k irregular
+                -n for change number of poly default is 50
+                -l change the level relax default is 200
+
+mosser@azrael generator % java -jar generator.jar -o sampleS.mesh -k irregular -n 30 -l 200
+acvating bonus by java -jar generator.jar -k bonus
+
 mosser@azrael generator % ls -lh sample.mesh
 -rw-r--r--  1 mosser  staff    29K 29 Jan 10:52 sample.mesh
 mosser@azrael generator % 

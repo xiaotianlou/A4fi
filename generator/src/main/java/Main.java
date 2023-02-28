@@ -50,7 +50,7 @@ public class Main {
                     case "irregular":
                         mode=MeshKind.irregular;
                         break;
-                    case"bonus":
+                    case "bonus":
                         mode=MeshKind.BONUS;
                             break;
                     default:
