@@ -1,5 +1,8 @@
 package ca.mcmaster.cas.se2aa4.a2.generator.adt;
 
+import ca.mcmaster.cas.se2aa4.a2.generator.neighborhoud.DelaunayNeighbourhood;
+import ca.mcmaster.cas.se2aa4.a2.generator.neighborhoud.Neighborhood;
+
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -24,15 +27,14 @@ public class Mesh implements Iterable<Polygon> {
         return this.polygons.iterator();
     }
 
-    public void populateNeighbours() {
-        Neighbourhood neighbourhood = new Neighbourhood(this.polygons);
+    public void populateNeighbours(Neighborhood neighbourhood) {
+        neighbourhood.build(this.polygons);
         for(Polygon p: this) {
             for(Polygon n: neighbourhood.neighbors(p)) {
                 p.registerAsNeighbour(n);
             }
         }
     }
-
 
     @Override
     public String toString() {

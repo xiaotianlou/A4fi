@@ -7,7 +7,7 @@ import org.locationtech.jts.geom.GeometryFilter;
 
 import java.util.*;
 
-public class ExtractNeighbours implements GeometryFilter {
+public class ExtractTriangles implements GeometryFilter {
     @Override
     public void filter(Geometry geometry) {
         if (geometry instanceof org.locationtech.jts.geom.Polygon) {

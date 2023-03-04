@@ -7,6 +7,7 @@ import ca.mcmaster.cas.se2aa4.a2.generator.configuration.Configuration;
 import ca.mcmaster.cas.se2aa4.a2.generator.geomfilters.BoundingBox;
 import ca.mcmaster.cas.se2aa4.a2.generator.geomfilters.ExtractCentroids;
 import ca.mcmaster.cas.se2aa4.a2.generator.geomfilters.ToPolygons;
+import ca.mcmaster.cas.se2aa4.a2.generator.neighborhoud.DelaunayNeighbourhood;
 import org.locationtech.jts.geom.*;
 import org.locationtech.jts.triangulate.VoronoiDiagramBuilder;
 
@@ -37,7 +38,7 @@ public class IrregularSpecification implements Buildable {
         for (Polygon p: polygons){
             result.register(p);
         }
-        result.populateNeighbours();
+        result.populateNeighbours(new DelaunayNeighbourhood());
         return result;
     }
 
@@ -51,7 +52,6 @@ public class IrregularSpecification implements Buildable {
     }
 
     private Set<Polygon> generate(int relaxation, Set<Coordinate> sites) {
-        //System.out.println("\n\n\n"+sites);
         GeometryCollection result = tesselate(sites);
         if (relaxation == 0) {
             ToPolygons transformer = new ToPolygons();
