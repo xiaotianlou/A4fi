@@ -18,14 +18,8 @@ package adt {
         + populateNeighborhood()
     }
 
-    Mesh ..> Neighborhood
     Mesh *--> Polygon
 
-    class Neighborhood {
-        + this(polygons: Set<Polygons>)
-        --
-        + neighbors(p: Polygon): Set<Polygon>
-    }
 
     class PairOfVertex {
         + this(v1: Vertex, v2: Vertex)
@@ -73,17 +67,14 @@ package adt {
     }
 }
 
-package JDT {
-    class DelaunayTriangulationBuilder
+
+package neighborhood {
+    abstract class Neighborhood {
+        + build()
+        + neighbors(p: Polygon): Set<Polygon>
+    }
 }
 
-package geomfilters {
-    class ExtractNeighbors
-}
-
-JDT.DelaunayTriangulationBuilder <. adt.Neighborhood
-geomfilters.ExtractNeighbors <. adt.Neighborhood
-
-geomfilters.ExtractNeighbors .[hidden].> DelaunayTriangulationBuilder
+neighborhood.Neighborhood <. adt.Mesh
 
 @enduml

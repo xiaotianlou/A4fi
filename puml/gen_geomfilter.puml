@@ -16,7 +16,7 @@ package geomfilters {
         + centroids(): Set<Coordinate>
     }
 
-    class ExtractNeighbors implements JTS.GeometryFilter {
+    class ExtractTriangles implements JTS.GeometryFilter {
         + getLinks(): Map<Vertex, Set<Vertex>>
     }
 
@@ -33,7 +33,7 @@ package adt {
     class Vertex
 }
 
-geomfilters.ExtractNeighbors ..> adt.Vertex
+geomfilters.ExtractTriangles ..> adt.Vertex
 
 package JTS {
 

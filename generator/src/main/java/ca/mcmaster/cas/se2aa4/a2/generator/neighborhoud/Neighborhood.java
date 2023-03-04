@@ -34,11 +34,11 @@ public abstract class Neighborhood {
         neighbors.forEach(n -> register(p,n));
     }
 
-    protected Set<Vertex> registeredCentroids() {
+    protected final Set<Vertex> registeredCentroids() {
         return this.registry.keySet();
     }
 
-    protected Polygon polygonAt(Vertex centroid) {
+    protected final Polygon polygonAt(Vertex centroid) {
         return this.registry.get(centroid);
     }
 

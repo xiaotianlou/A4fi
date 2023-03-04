@@ -10,10 +10,13 @@ package specification{}
 package JTS LightSalmon {}
 package "Apache CLI" LightSalmon {}
 package io LightBlue {}
+package neighborhood {}
 
-adt <.> geomfilters
+adt <.> neighborhood
+neighborhood .> geomfilters
 
 JTS <.. geomfilters
+JTS <.. adt
 configuration .> "Apache CLI"
 
 io <. export
