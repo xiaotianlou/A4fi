@@ -21,4 +21,5 @@ public class Main {
         }
         new MeshFactory().write(exported, config.export(Configuration.FILENAME));
     }
+
 }
