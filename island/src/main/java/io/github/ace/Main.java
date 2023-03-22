@@ -1,5 +1,7 @@
 package src.main.java.io.github.ace;
 
+import java.io.File;
+
 /**
  * @author loux8@mcmaster.ca
  * @date ${DATE} ${TIME}
@@ -7,6 +9,7 @@ package src.main.java.io.github.ace;
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
-
+        File input =new File("img/input.mesh");
+//        IslandGenerator = new IslandGenerator(input);
     }
 }
