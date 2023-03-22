@@ -1,4 +1,4 @@
-package io.github.ace-design;
+package src.main.java.io.github.ace;
 
 /**
  * @author loux8@mcmaster.ca
