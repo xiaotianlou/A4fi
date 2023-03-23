@@ -10,7 +10,7 @@ import java.awt.*;
  */
 public class BackGroundEnricher implements Enricher{
 
-    Color backgound = new Color(0,0,255);
+    Color backgound = new Color(7, 194, 250);
 
     public void changeBackGound(Color newBackGround){
         this.backgound=newBackGround;
