@@ -16,6 +16,7 @@ public class Main {
         Buildable specification = SpecificationFactory.create(config);
 
         Mesh theMesh = specification.build();
+
         Structs.Mesh exported = new Exporter().run(theMesh);
 
 

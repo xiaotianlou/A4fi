@@ -20,8 +20,16 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) throws IOException {
 
-        Structs.Mesh exported = new MeshFactory().read("img/input.mesh");
-            exported = new BackGroundEnricher().process(exported);
-        new MeshFactory().write(exported, "img/og.mesh");
+        Configuration config = new Configuration("generator/generator.jar -k irregular -h 1920 -w 1920 -p 1000 -r 5 -o ireg.mesh".split(" "));
+
+        Buildable specification = SpecificationFactory.create(config);
+
+        Mesh theMesh = specification.build();
+
+        Structs.Mesh exported =new Exporter().run(theMesh);
+
+
+        exported = new BackGroundEnricher().process(exported);
+        new MeshFactory().write(exported, "og.mesh");
     }
 }
