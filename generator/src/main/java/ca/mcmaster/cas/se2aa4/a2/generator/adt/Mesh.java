@@ -9,6 +9,10 @@ import java.util.Set;
 
 public class Mesh implements Iterable<Polygon> {
 
+    public Set<Polygon> getPolygons() {
+        return polygons;
+    }
+
     private Set<Polygon> polygons;
     private int width, height;
 

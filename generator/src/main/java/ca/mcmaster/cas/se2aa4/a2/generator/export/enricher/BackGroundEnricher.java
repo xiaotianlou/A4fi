@@ -10,12 +10,15 @@ import java.awt.*;
  */
 public class BackGroundEnricher implements Enricher{
 
-    Color backgound = new Color(7, 194, 250);
+    Color backgound = new Color(5, 100, 208);
 
     public void changeBackGound(Color newBackGround){
         this.backgound=newBackGround;
     }
+    public BackGroundEnricher(Color c){
+        this.backgound=c;
 
+    }
 
     @Override
     public Structs.Mesh process(Structs.Mesh aMesh) {
