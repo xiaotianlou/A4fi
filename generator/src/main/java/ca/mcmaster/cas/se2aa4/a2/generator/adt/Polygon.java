@@ -1,12 +1,15 @@
 package ca.mcmaster.cas.se2aa4.a2.generator.adt;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 import java.util.Objects;
 
 public class Polygon implements Cropable<Polygon>, Iterable<Vertex> {
     private final List<Vertex> hull;
 
     private final Set<Polygon> neighbors;
+
 
     public Polygon() {
         this(new ArrayList<>());
