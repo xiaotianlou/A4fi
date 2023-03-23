@@ -15,10 +15,9 @@ import java.io.File;
 public class Main {
     public static void main(String[] args) {
         Configuration config = new Configuration(args);
-
         Buildable specification = SpecificationFactory.create(config);
-
         Mesh theMesh = specification.build();
+
 
     }
 }
