@@ -64,3 +64,6 @@ Note: PDF versions of the SVG files were created with `rsvg-convert`.
 |F22 | addAlphaimplement | xiaotian Lou | 2/10 | 2/15 | D |
 |F23 | Bonus | xiaotian Lou | 2/26 | 2/27 | D |
 |FA01 | Accept mesh to adt | xiaotian Lou |  | |  |
+|FA01 | draw colour block | xiaotian Lou |  | |  |
+|FA01 | making circle | xiaotian Lou |  | |  |
+
