@@ -53,9 +53,9 @@ public class Main {
         }
 
         Structs.Mesh exported =new Exporter().run(theMesh);
-        exported = new BackGroundEnricher(new Color(70,130,180)).process(exported);
+        exported = new BackGroundEnricher(new Color(13, 108, 185)).process(exported);
         exported = new CircleIslandEnricher(new Color(153, 220, 211),centre_bag).process(exported);
-        exported = new CircleIslandEnricher(new Color(253, 255, 255),centre_bag2).process(exported);
+        exported = new CircleIslandEnricher(new Color(146, 198, 250),centre_bag2).process(exported);
 
 
         new MeshFactory().write(exported, "og.mesh");
