@@ -16,6 +16,8 @@ public class Mesh implements Iterable<Polygon> {
     private Set<Polygon> polygons;
     private int width, height;
 
+
+
     public Mesh(int width, int height) {
         this.width = width;
         this.height = height;

@@ -17,12 +17,13 @@ import java.util.List;
  * @author loux8@mcmaster.ca
  * @date 2023/3/23 16:03
  */
-public class LagoonRenderer extends Renderer {
+public class LagoonRenderer  {
+
+    Mesh m;
     public LagoonRenderer(Mesh m) {
-        super(m);
+        this.m=m;
     }
 
-    @Override
     public Structs.Mesh Rendering() {
         //get centreid of centre poly relax
         int cen_x = 1920 / 2;

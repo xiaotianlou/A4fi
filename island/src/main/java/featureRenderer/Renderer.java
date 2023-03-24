@@ -14,6 +14,6 @@ public abstract class Renderer implements Renderable{
     public Renderer(Mesh m){
         this.m=m;
     }
-    public abstract Structs.Mesh Rendering();
+
 
 }
