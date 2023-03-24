@@ -13,7 +13,7 @@ public class ElevationRenderer extends Renderer{
     }
 
     @Override
-    public Structs.Mesh Rendering() {
+    public Mesh Rendering() {
         return null;
     }
 }
