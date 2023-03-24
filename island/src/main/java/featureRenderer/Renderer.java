@@ -7,7 +7,7 @@ import ca.mcmaster.cas.se2aa4.a2.io.Structs;
  * @author loux8@mcmaster.ca
  * @date 2023/3/23 15:57
  */
-public abstract class Renderer {
+public abstract class Renderer implements Renderable{
 
     Mesh m;
 
