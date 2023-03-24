@@ -19,6 +19,6 @@ public class Main {
         Buildable specification = SpecificationFactory.create(config);
         Mesh theMesh = specification.build();
         Renderer mvp = new LagoonRenderer(theMesh);
-        new MeshFactory().write(mvp.Rendering(), "og.mesh");
+        new MeshFactory().write(mvp.Rendering(), "og.mesh");//
     }
 }
