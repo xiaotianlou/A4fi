@@ -37,6 +37,15 @@ public class SegmentADT {
         this.color = color;
     }
 
+    public void setColor(String c) {
+        int n = 0;
+        for (String s:c.split(",")){
+            color[n] = Integer.parseInt(s);
+            n++;
+        }
+    }
+
+
     public int[] getColor() {
         return color;
     }

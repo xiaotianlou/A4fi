@@ -18,6 +18,7 @@ public interface Mesh2ADT {
     void registerPolygons(Structs.Mesh mesh);
 
     void registerSegments(Structs.Mesh mesh);
+
     void registerVertices(Structs.Mesh mesh);
 
 

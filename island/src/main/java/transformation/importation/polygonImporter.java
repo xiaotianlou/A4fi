@@ -15,7 +15,7 @@ public class polygonImporter implements Importer{
         for (var p:mesh.getPolygonsList()){
             ArrayList <VertexADT> vertices = new ArrayList<>();
             ArrayList <SegmentADT> segments = new ArrayList<>();
-//            VertexADT centroid = meshADT.getVertices().get(p.getCentroidIdx());
+            VertexADT centroid = meshADT.getVertices().get(p.getCentroidIdx());
             for (var s:p.getSegmentIdxsList()){
                 SegmentADT segment = meshADT.getSegments().get(s);
                 segments.add(segment);
@@ -26,7 +26,12 @@ public class polygonImporter implements Importer{
                     vertices.add(segment.getEnd());
                 }
             }
-            meshADT.getPolygon(vertices,segments);
+            PolygonADT polygonADT = meshADT.getPolygon(vertices,segments,centroid);
+            for (int n = mesh.getPropertiesCount();n>0;n--){
+                if (n == 1){
+                    polygonADT.setColor(p.getProperties(0).getValue());
+                }
+            }
         }
         for (int n=0;n<mesh.getPolygonsList().size();n++){
             ArrayList<PolygonADT> polygons = new ArrayList<>();

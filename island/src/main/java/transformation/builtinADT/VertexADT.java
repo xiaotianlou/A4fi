@@ -11,12 +11,12 @@ public class VertexADT {
     final ArrayList<SegmentADT> polygon = new ArrayList<>();
     private int[] color=new int[]{0, 0, 0};
 
-    private int elevation=0;
+    private double elevation=0;
     private double x;
     private double y;
     final int id;
 
-    public VertexADT(double y, double x, int id) {
+    public VertexADT(double x, double y, int id) {
         this.x = x;
         this.y = y;
         this.id = id;
@@ -34,6 +34,22 @@ public class VertexADT {
         this.color = color;
     }
 
+    public void setColor(String c){
+        int n = 0;
+        for (String s:c.split(",")){
+            color[n] = Integer.parseInt(s);
+            n++;
+        }
+    }
+
+    public void setElevation(int elevation){
+        this.elevation = elevation;
+    }
+
+    public double getElevation(){
+        return elevation;
+    }
+
     public double getX() {
         return x;
     }
@@ -47,7 +63,7 @@ public class VertexADT {
     }
 
     public String getColorCode() {
-        return "red"+color[0]+"，"+color[1]+","+color[2];
+        return color[0]+"，"+color[1]+","+color[2];
     }
 
     public int getId() { return id; }

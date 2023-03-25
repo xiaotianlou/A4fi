@@ -3,6 +3,7 @@ package transformation.builtinADT;
 import TerrainFeatures.Aquifer;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -19,16 +20,16 @@ public class PolygonADT {
     private boolean isIsland=false;
 
     private Aquifer waterContent;
-    private int[] color;
+    private int[] color = new int[]{0,0,0};
 
     private int temperature=25;
     final int id;
 
-    public PolygonADT(List<SegmentADT> segments, List<VertexADT> vertices, int id) {
-//        this.mesh = mesh;
+    public PolygonADT(List<SegmentADT> segments, List<VertexADT> vertices, VertexADT centroid,int id) {
         this.segments = segments;
         this.vertices = vertices;
         this.id = id;
+        this.centroid = centroid;
     }
     public int getId() {
         return id;
@@ -57,6 +58,14 @@ public class PolygonADT {
 
     public void setColor(int[] color) {
         this.color = color;
+    }
+
+    public void setColor(String c){
+        int n = 0;
+        for (String s:c.split(",")){
+            color[n] = Integer.parseInt(s);
+            n++;
+        }
     }
 
     public int[] getColor() {
@@ -115,18 +124,30 @@ public class PolygonADT {
         this.temperature = temperature;
     }
 
+    public List<PolygonADT> getPolygons() {
+        return polygons;
+    }
+
+    public List<SegmentADT> getSegments() {
+        return segments;
+    }
+
+    public void setSegments(List<SegmentADT> segments) {
+        this.segments = segments;
+    }
+
     public Structs.Polygon toPolygon(){
         Structs.Polygon.Builder builder = Structs.Polygon.newBuilder();
-        HashSet<Integer> neighbours = new HashSet<>();
+        List<Integer> neighbours = new ArrayList<>();
         for (SegmentADT s:segments){
             builder.addSegmentIdxs(s.getId());
-            for (PolygonADT neighbourPolygon:s.polygons){
-                if (neighbourPolygon != this) neighbours.add(neighbourPolygon.getId());
-            }
+        }
+        for (PolygonADT neighbourPolygon:polygons){
+            builder.addNeighborIdxs(neighbourPolygon.getId());
         }
         Structs.Property.Builder propertyBuilder = Structs.Property.newBuilder();
 
-//        builder.addProperties(propertyBuilder.setValue("rgb_color").setValue(getColorCode()));
+        builder.addProperties(propertyBuilder.setValue("rgb_color").setValue(getColorCode()));
 
         builder.addProperties(propertyBuilder.setValue("elevation").setValue(String.valueOf(elevation)));
 
@@ -134,7 +155,7 @@ public class PolygonADT {
 
         builder.addProperties(propertyBuilder.setValue("waterContent").setValue("0"));
 
-//        builder.setCentroidIdx(centroid.id);
+        builder.setCentroidIdx(centroid.id);
 
         builder.addAllNeighborIdxs(neighbours);
 

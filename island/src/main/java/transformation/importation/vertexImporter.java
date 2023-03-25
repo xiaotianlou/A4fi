@@ -9,7 +9,12 @@ public class vertexImporter implements Importer{
     public void read(Structs.Mesh mesh, MeshADT meshADT) {
         for (var v:mesh.getVerticesList()){
 //            VertexADT vertexADT = new VertexADT(v);
-            meshADT.getVertex(v.getX(), v.getY());
+            VertexADT vertexADT = meshADT.getVertex(v.getX(), v.getY());
+            for (int n = mesh.getPropertiesCount();n>0;n--){
+                if (n == 1){
+                    vertexADT.setColor(v.getProperties(0).getValue());
+                }
+            }
         }
 
 

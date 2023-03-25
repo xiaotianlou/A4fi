@@ -49,13 +49,13 @@ public class MeshADT {
         return polygons;
     }
 
-    public PolygonADT getPolygon(List<VertexADT> vertices, List<SegmentADT> segments){
+    public PolygonADT getPolygon(List<VertexADT> vertices,List<SegmentADT> segments,VertexADT centroid){
         for (PolygonADT p:polygons){
             if (p.equals(vertices,segments)){
                 return p;
             }
         }
-        PolygonADT p = new PolygonADT(segments,vertices,polygons.size());
+        PolygonADT p = new PolygonADT(segments,vertices,centroid,polygons.size());
         polygons.add(p);
         return p;
     }
@@ -77,9 +77,9 @@ public class MeshADT {
         for (PolygonADT p:polygons){
             builder.addPolygons(p.toPolygon());
         }
-        for (Structs.Polygon p:builder.getPolygonsList()){
-            System.out.println(p);
-        }
+//        for (Structs.Polygon p:builder.getPolygonsList()){
+//            System.out.println(p);
+//        }
 //        for (Structs.Segment s:builder.getSegmentsList()){
 //            System.out.println(s);
 //        }
