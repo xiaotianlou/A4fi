@@ -32,7 +32,7 @@ public class MeshADT {
                 return s;
             }
         }
-        SegmentADT s = new SegmentADT(start,end,null,segments.size());
+        SegmentADT s = new SegmentADT(start,end,segments.size());
         segments.add(s);
         return s;
     }

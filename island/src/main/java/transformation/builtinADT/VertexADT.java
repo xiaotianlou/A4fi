@@ -74,9 +74,6 @@ public class VertexADT {
         Structs.Property.Builder propertyBuilder = Structs.Property.newBuilder();
         builder.addProperties(propertyBuilder.setKey("rgb_color").setValue(getColorCode()));
         builder.addProperties(propertyBuilder.setKey("elevation").setValue(String.valueOf(elevation)));
-//        Structs.Vertex v= Structs.Vertex.newBuilder().setX(x).setY(y).build();
-//        Structs.Property color = Structs.Property.newBuilder().setKey("rgb_color").setValue(getColorCode()).build();
-//        Structs.Vertex colored = Structs.Vertex.newBuilder(v).addProperties(color).build();
         return builder.build();
     }
 
