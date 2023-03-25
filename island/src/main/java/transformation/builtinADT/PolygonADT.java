@@ -126,7 +126,7 @@ public class PolygonADT {
         }
         Structs.Property.Builder propertyBuilder = Structs.Property.newBuilder();
 
-        builder.addProperties(propertyBuilder.setValue("rgb_color").setValue(getColorCode()));
+//        builder.addProperties(propertyBuilder.setValue("rgb_color").setValue(getColorCode()));
 
         builder.addProperties(propertyBuilder.setValue("elevation").setValue(String.valueOf(elevation)));
 
@@ -134,7 +134,7 @@ public class PolygonADT {
 
         builder.addProperties(propertyBuilder.setValue("waterContent").setValue("0"));
 
-        builder.setCentroidIdx(centroid.id);
+//        builder.setCentroidIdx(centroid.id);
 
         builder.addAllNeighborIdxs(neighbours);
 

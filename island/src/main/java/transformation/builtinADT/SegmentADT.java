@@ -48,8 +48,9 @@ public class SegmentADT {
 
     public Structs.Segment toSegment(){
         Structs.Segment s = Structs.Segment.newBuilder().setV1Idx(start.getId()).setV2Idx(end.getId()).build();
-        Structs.Property color = Structs.Property.newBuilder().setKey("rgb_color").setValue(getColorCode()).build();
-        Structs.Segment colored_s = Structs.Segment.newBuilder(s).addProperties(color).build();
-        return colored_s;
+//        Structs.Property color = Structs.Property.newBuilder().setKey("rgb_color").setValue(getColorCode()).build();
+//        Structs.Segment colored_s = Structs.Segment.newBuilder(s).addProperties(color).build();
+//        return colored_s;
+    return s;
     }
 }

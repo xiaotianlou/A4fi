@@ -20,9 +20,15 @@ import java.io.IOException;
  */
 public class Main {
     public static void main(String[] args) throws IOException {
+//        Configuration config = new Configuration("generator/generator.jar -k irregular -h 1920 -w 1920 -p 1000 -r 5 -o ireg.mesh".split(" "));
+//        Mesh theMesh = specification.build();
+//        new MeshFactory().write(mvp.Rendering(), "og.mesh");
+
+
+
 
         MeshADT meshADT = new MeshADT();
-        String input = args[0];
+        String input = "C:\\Users\\22091\\IdeaProjects\\a2---mesh-generator-team-28_new1\\inputoff.mesh";
         Structs.Mesh aMesh = new MeshFactory().read(input);
 
         Importer polygonImporter = new polygonImporter();
@@ -31,6 +37,9 @@ public class Main {
         vertexImporter.read(aMesh,meshADT);
         segmentImporter.read(aMesh,meshADT);
         polygonImporter.read(aMesh,meshADT);
+
+        Structs.Mesh output= meshADT.toMesh();
+                new MeshFactory().write(output, "outputoff.mesh");//
 
 
 

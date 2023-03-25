@@ -15,7 +15,7 @@ public class polygonImporter implements Importer{
         for (var p:mesh.getPolygonsList()){
             ArrayList <VertexADT> vertices = new ArrayList<>();
             ArrayList <SegmentADT> segments = new ArrayList<>();
-            VertexADT centroid = meshADT.getVertices().get(p.getCentroidIdx());
+//            VertexADT centroid = meshADT.getVertices().get(p.getCentroidIdx());
             for (var s:p.getSegmentIdxsList()){
                 SegmentADT segment = meshADT.getSegments().get(s);
                 segments.add(segment);
