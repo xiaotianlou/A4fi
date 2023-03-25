@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 
 public class PolygonADT {
-    private final MeshADT mesh;
+//    private final MeshADT mesh;
 
     private List<PolygonADT> polygons;
     private List<SegmentADT> segments;
@@ -16,21 +16,18 @@ public class PolygonADT {
     private VertexADT centroid;
     private int elevation =0;
 
-    boolean isIsland=false;
+    private boolean isIsland=false;
 
-    Aquifer waterContent;
+    private Aquifer waterContent;
     private int[] color;
 
-    int temperature=25;
+    private int temperature=25;
     final int id;
 
-    public PolygonADT(MeshADT mesh,List<SegmentADT> segments, List<VertexADT> vertices, int id) {
-        this.mesh = mesh;
+    public PolygonADT(List<SegmentADT> segments, List<VertexADT> vertices, int id) {
+//        this.mesh = mesh;
         this.segments = segments;
         this.vertices = vertices;
-        for (SegmentADT s:segments){
-            s.polygons.add(this);
-        }
         this.id = id;
     }
     public int getId() {
@@ -54,6 +51,10 @@ public class PolygonADT {
         return true;
     }
 
+    public void setPolygons(List<PolygonADT> polygons) {
+        this.polygons = polygons;
+    }
+
     public void setColor(int[] color) {
         this.color = color;
     }
@@ -64,6 +65,54 @@ public class PolygonADT {
 
     public String getColorCode() {
         return "red"+color[0]+"，"+color[1]+","+color[2];
+    }
+
+    public List<VertexADT> getVertices() {
+        return vertices;
+    }
+
+    public void setVertices(List<VertexADT> vertices) {
+        this.vertices = vertices;
+    }
+
+    public VertexADT getCentroid() {
+        return centroid;
+    }
+
+    public void setCentroid(VertexADT centroid) {
+        this.centroid = centroid;
+    }
+
+    public int getElevation() {
+        return elevation;
+    }
+
+    public void setElevation(int elevation) {
+        this.elevation = elevation;
+    }
+
+    public boolean isIsland() {
+        return isIsland;
+    }
+
+    public void setIsland(boolean island) {
+        isIsland = island;
+    }
+
+    public Aquifer getWaterContent() {
+        return waterContent;
+    }
+
+    public void setWaterContent(Aquifer waterContent) {
+        this.waterContent = waterContent;
+    }
+
+    public int getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(int temperature) {
+        this.temperature = temperature;
     }
 
     public Structs.Polygon toPolygon(){
@@ -85,7 +134,7 @@ public class PolygonADT {
 
         builder.addProperties(propertyBuilder.setValue("waterContent").setValue("0"));
 
-        builder.setCentroidIdx(getCentroid());
+        builder.setCentroidIdx(centroid.id);
 
         builder.addAllNeighborIdxs(neighbours);
 

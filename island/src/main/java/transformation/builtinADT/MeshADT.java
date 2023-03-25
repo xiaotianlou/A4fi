@@ -45,25 +45,29 @@ public class MeshADT {
         return segments;
     }
 
-    public PolygonADT getPolygon(MeshADT mesh, List<VertexADT> vertices, List<SegmentADT> segments){
+    public ArrayList<PolygonADT> getPolygons() {
+        return polygons;
+    }
+
+    public PolygonADT getPolygon(List<VertexADT> vertices, List<SegmentADT> segments){
         for (PolygonADT p:polygons){
             if (p.equals(vertices,segments)){
                 return p;
             }
         }
-        PolygonADT p = new PolygonADT(mesh,segments,vertices,polygons.size());
+        PolygonADT p = new PolygonADT(segments,vertices,polygons.size());
         polygons.add(p);
         return p;
     }
-    private void centroidToVertex(){
-        for (PolygonADT p:polygons){
-            vertices.add(p.getCentroid());
-        }
-    }
+//    private void centroidToVertex(){
+//        for (PolygonADT p:polygons){
+//            vertices.add(p.getCentroid());
+//        }
+//    }
 
     public Structs.Mesh toMesh(){
         Structs.Mesh.Builder builder = Structs.Mesh.newBuilder();
-        centroidToVertex();
+//        centroidToVertex();
         for (VertexADT v:vertices){
             builder.addVertices(v.toVertex());
         }
