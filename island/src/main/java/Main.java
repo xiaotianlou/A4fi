@@ -28,7 +28,7 @@ public class Main {
 
 
         MeshADT meshADT = new MeshADT();
-        String input = "C:\\Users\\22091\\IdeaProjects\\a2---mesh-generator-team-28_new1\\inputoff.mesh";
+        String input = "inputoff.mesh";
         Structs.Mesh aMesh = new MeshFactory().read(input);
 
         Importer polygonImporter = new polygonImporter();
@@ -39,7 +39,7 @@ public class Main {
         polygonImporter.read(aMesh,meshADT);
 
         Structs.Mesh output= meshADT.toMesh();
-                new MeshFactory().write(output, "outputoff.mesh");//
+                new MeshFactory().write(output, "visualizer/outputoff.mesh");//
 
 
 
