@@ -16,6 +16,8 @@ public class VertexADT {
 
     private boolean isCentroid = true;
 
+    private boolean aroundWater = true;
+
     public VertexADT(double x, double y, int id) {
         this.x = x;
         this.y = y;
@@ -23,12 +25,12 @@ public class VertexADT {
     }
 
     public double getElevation() {
+        for (var p: this.polygons){
+            this.elevation += p.getElevation();
+        }
         return elevation;
     }
 
-    public void setElevation(int elevation) {
-        this.elevation = elevation;
-    }
 
     public double getX() {
         return x;
@@ -106,9 +108,6 @@ public class VertexADT {
         this.polygons.add(polygonADT);
     }
 
-    public void setElevation(double elevation) {
-        this.elevation = elevation;
-    }
 
     public boolean isCentroid() {
         return isCentroid;
