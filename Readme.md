@@ -47,6 +47,7 @@ Note: PDF versions of the SVG files were created with `rsvg-convert`.
 |F7 | Lakes| Changhao Wu | 3/25 | 3/26 | D |
 |F8 | Rivers| Changhao Wu | 3/25 | 3/26 | D |
 |F9 | River flow| Changhao Wu | 3/25 | 3/26 | D |
+|F06 | Aquifers| Changhao Wu | 3/25 | 3/26 | D |
 |F10 | SetColor| Changhao Wu | 3/25 | 3/26 | D |
 |F11 |Biomes| Jiaming Li | 3/25 | 3/26 | D |
 |F12| Whittaker Diagrams| Jiaming Li | 3/25 | 3/26 | D |
