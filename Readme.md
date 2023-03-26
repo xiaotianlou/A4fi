@@ -47,9 +47,11 @@ Note: PDF versions of the SVG files were created with `rsvg-convert`.
 |F7 | Lakes| Changhao Wu | 3/25 | 3/26 | D |
 |F8 | Rivers| Changhao Wu | 3/25 | 3/26 | D |
 |F9 | River flow| Changhao Wu | 3/25 | 3/26 | D |
-|F10 | SetColor| Changhao Wu | 3/25 | 3/26 | D |
-|F11 |Biomes| Jiaming Li | 3/25 | 3/26 | D |
-|F12| Whittaker Diagrams| Jiaming Li | 3/25 | 3/26 | D |
-|F13 | RemoveDuplicates| Jiaming Li| 3/25 | 3/26 | D |
+|F10 | Aquifers| Changhao Wu | 3/25 | 3/26 | D |
+|F11 | SetColor| Changhao Wu | 3/25 | 3/26 | D |
+|F12 |Biomes| Jiaming Li | 3/25 | 3/26 | D |
+|F13 |Soil absorption| Jiaming Li | 3/25 | 3/26 | D |
+|F14| Whittaker Diagrams| Jiaming Li | 3/25 | 3/26 | D |
+|F15 | RemoveDuplicates| Jiaming Li| 3/25 | 3/26 | D |
 
 
