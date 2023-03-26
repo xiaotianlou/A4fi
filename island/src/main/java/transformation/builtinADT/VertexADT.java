@@ -120,4 +120,12 @@ public class VertexADT {
     public ArrayList<VertexADT> getVertices() {
         return vertices;
     }
+
+    public boolean isAroundWater() {
+        return aroundWater;
+    }
+
+    public void setAroundWater(boolean aroundWater) {
+        this.aroundWater = aroundWater;
+    }
 }

@@ -1,6 +1,6 @@
 package transformation.builtinADT;
 
-import TerrainFeatures.Aquifer;
+import TerrainFeatures.Aquifers;
 
 public class InfoSet {
 
@@ -8,7 +8,7 @@ public class InfoSet {
     private Biome biome = Biome.None;
 
     private int elevation = -1;
-    private Aquifer waterContent;
+    private int waterContent;
     private int temperature = 25;
 
     public int[] getColor() {
@@ -51,11 +51,11 @@ public class InfoSet {
         this.elevation = elevation;
     }
 
-    public Aquifer getWaterContent() {
+    public int getWaterContent() {
         return waterContent;
     }
 
-    public void setWaterContent(Aquifer waterContent) {
+    public void setWaterContent(int waterContent) {
         this.waterContent = waterContent;
     }
 
