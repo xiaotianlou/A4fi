@@ -11,7 +11,6 @@ public class SegmentADT {
     private int[] color = new int[]{0,0,0};
 
     private int thickness;
-
     final int id;
 
     public SegmentADT(VertexADT start, VertexADT end, int id) {

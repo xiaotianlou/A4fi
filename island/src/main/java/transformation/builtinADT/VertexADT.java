@@ -10,7 +10,6 @@ public class VertexADT {
 
     final ArrayList<SegmentADT> polygon = new ArrayList<>();
     private int[] color=new int[]{0, 0, 0};
-
     private double elevation=0;
     private double x;
     private double y;
@@ -71,6 +70,11 @@ public class VertexADT {
     public Structs.Vertex toVertex(){
         Structs.Vertex.Builder builder = Structs.Vertex.newBuilder();
         builder.setX(x).setY(y);
+//        Structs.Property p = Structs.Property.newBuilder()
+//                .setKey("rgb_color")
+//                .setValue(getColorCode())
+//                .build();
+//        builder.addProperties(p);
         Structs.Property.Builder propertyBuilder = Structs.Property.newBuilder();
         builder.addProperties(propertyBuilder.setKey("rgb_color").setValue(getColorCode()));
         builder.addProperties(propertyBuilder.setKey("elevation").setValue(String.valueOf(elevation)));

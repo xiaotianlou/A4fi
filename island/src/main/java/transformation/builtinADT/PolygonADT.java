@@ -9,18 +9,15 @@ import java.util.List;
 
 public class PolygonADT {
 //    private final MeshADT mesh;
-
+    private int[] color = new int[]{0,0,0};
     private List<PolygonADT> polygons;
     private List<SegmentADT> segments;
     private List<VertexADT> vertices;
+    private boolean isIsland=false;
 
     private VertexADT centroid;
     private int elevation =0;
-
-    private boolean isIsland=false;
-
     private Aquifer waterContent;
-    private int[] color = new int[]{0,0,0};
 
     private int temperature=25;
     final int id;
@@ -73,7 +70,7 @@ public class PolygonADT {
     }
 
     public String getColorCode() {
-        return "red"+color[0]+"，"+color[1]+","+color[2];
+        return "red"+color[0]+","+color[1]+","+color[2];
     }
 
     public List<VertexADT> getVertices() {
