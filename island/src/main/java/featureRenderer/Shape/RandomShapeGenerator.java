@@ -12,8 +12,11 @@ public class RandomShapeGenerator implements Generable {
     @Override
     public MeshADT Genering(MeshADT m, Seed seed) {
 
-        double cen_x = (1920 / 2)*Simulink(seed.getSeedArray().get(seed.getSeedArray().size()/2)-5);
-        double cen_y = (1920 / 2)*Simulink(seed.getSeedArray().get(seed.getSeedArray().size()/6)-5);
+        double para1=Simulink((seed.getSeedArray().get(seed.getSeedArray().size()/2))-5);
+        double para2=Simulink((seed.getSeedArray().get(seed.getSeedArray().size()/6))-5);
+        double cen_x = (1920 / 2)*para1;
+        double cen_y = (1920 / 2)*para2;
+
 
         double circle_size = Simulink(seed.getSeedArray().get(1)-5)*450+500;
         System.out.println(seed.getSeedArray().get(1)-3+"   "+circle_size);
