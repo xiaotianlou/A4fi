@@ -12,7 +12,7 @@ public class ShapeRenderer implements Renderable{
     public MeshADT Rendering(MeshADT m, Seed seed) {
 
 
-        return new LagoonGenerator().Rendering(m,new Seed());
+        return new LagoonGenerator().Genering(m,new Seed());
 
 
 

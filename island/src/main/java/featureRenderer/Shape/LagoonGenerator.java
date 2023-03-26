@@ -10,12 +10,17 @@ import java.awt.*;
 
 public class LagoonGenerator implements Generable{
 
+
+
     @Override
-    public MeshADT Rendering(MeshADT m, Seed seed) {
+    public MeshADT Genering(MeshADT m, Seed seed) {
 
         int cen_x = 1920 / 2;
         int cen_y = 1920 / 2;
+
         int circle_size = 800;
+
+
         double space = Math.sqrt(1920 * 1920 / 1000);
 
 

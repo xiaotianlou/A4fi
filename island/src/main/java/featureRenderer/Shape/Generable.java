@@ -6,7 +6,7 @@ import transformation.builtinADT.MeshADT;
 
 public interface Generable {
 
-    MeshADT Rendering(MeshADT m, Seed seed);
+    MeshADT Genering(MeshADT m, Seed seed);
 
 
 }
