@@ -18,6 +18,20 @@ class MainTest {
 
     @Test
     void main() throws IOException {
+
+    }
+    @Test
+    void testSimulink(){
+        System.out.println(new Generable() {
+            @Override
+            public MeshADT Genering(MeshADT m, Seed seed) {
+                return null;
+            }
+        }.Simulink(1)*700);
+    }
+
+    @Test
+    void  testShape() throws IOException {
         MeshADT meshADT = new MeshADT();
         String input_c="C:\\Users\\22091\\IdeaProjects\\a2---mesh-generator-team-28_new1\\IOArea\\inputoff.mesh";
         Structs.Mesh aMesh = new MeshFactory().read(input_c);
@@ -34,18 +48,6 @@ class MainTest {
 
         new MeshFactory().write(output, "C:\\Users\\22091\\IdeaProjects\\a2---mesh-generator-team-28_new1\\IOArea\\lagtest.mesh");//
 //        java -jar visualizer/visualizer.jar -i C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtest.mesh -o C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtest.svg -x
-
-
-    }
-    @Test
-    void testSimulink(){
-        System.out.println(new Generable() {
-            @Override
-            public MeshADT Genering(MeshADT m, Seed seed) {
-                return null;
-            }
-        }.Simulink(1)*700);
-
 
 
     }
