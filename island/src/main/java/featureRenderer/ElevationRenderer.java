@@ -3,6 +3,7 @@ package featureRenderer;
 import Reproducibility.Seed;
 import ca.mcmaster.cas.se2aa4.a2.generator.adt.Mesh;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs;
+import featureRenderer.Elevation.BasicElevationGenerator;
 import featureRenderer.Elevation.VolcanoGenerator;
 import transformation.builtinADT.InfoSet;
 import transformation.builtinADT.MeshADT;
@@ -22,8 +23,8 @@ public class ElevationRenderer implements Renderable{
 
     @Override
     public MeshADT Rendering(MeshADT m, Seed seed) {
-        return new VolcanoGenerator().Genering(m,seed);
-
-
+        m = new VolcanoGenerator().Genering(m,seed);
+        m= new BasicElevationGenerator().Genering(m,seed);
+        return m;
     }
 }

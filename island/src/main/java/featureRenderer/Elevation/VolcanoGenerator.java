@@ -21,15 +21,13 @@ public class VolcanoGenerator implements Generable {
         for (PolygonADT p : m.getPolygons()) {
             if (p.getInfoSet().isIsland()) {
                 land.add(p);
-                System.out.println(2);
             }
-            System.out.println(1);
         }
-        Collections.shuffle(land);
-        PolygonADT top = land.get(0);
+        PolygonADT top = land.get(seed.getSeed()%land.size());
         InfoSet i = top.getInfoSet();
         i.setElevation(100);
         volcanoDescentAlgorithm(top);
+
 
         return m;
     }
@@ -39,12 +37,14 @@ public class VolcanoGenerator implements Generable {
         InfoSet t;
         for (PolygonADT p : neighbor){
             if(p.isIsland()){
-            t=p.getInfoSet();
-            if(t.getElevation()<=0&&top.getInfoSet().getElevation()>=10){
-                t.setElevation(t.getElevation()-10);
+                t=p.getInfoSet();
+            if(t.getElevation()==-1&&top.getInfoSet().getElevation()>=10){
+                t.setElevation(top.getElevation()-10);
+                volcanoDescentAlgorithm(p);
             }
-            volcanoDescentAlgorithm(p);
-        }}
+        }
+
+        }
     }
 
 

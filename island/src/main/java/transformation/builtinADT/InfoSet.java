@@ -7,7 +7,7 @@ public class InfoSet {
     private boolean isIsland = false;
     private Biome biome = Biome.None;
 
-    private int elevation = 0;
+    private int elevation = -1;
     private Aquifer waterContent;
     private int temperature = 25;
 

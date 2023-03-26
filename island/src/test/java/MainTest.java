@@ -12,6 +12,7 @@ import transformation.importation.polygonImporter;
 import transformation.importation.segmentImporter;
 import transformation.importation.vertexImporter;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -68,6 +69,7 @@ class MainTest {
         segmentImporter.read(aMesh, meshADT);
         polygonImporter.read(aMesh, meshADT);
         int seedint = (int) (Math.random() * 1000000);
+        seedint =148000;
         System.out.println("seed is:"+seedint );
         Seed s = new Seed(seedint);
 //    s= new Seed(802517);
@@ -77,14 +79,55 @@ class MainTest {
         new MeshFactory().write(output, "C:\\Users\\22091\\IdeaProjects\\a2---mesh-generator-team-28_new1\\IOArea\\lagtest.mesh");//
 //java -jar visualizer/visualizer.jar -i C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtest.mesh -o C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtest1.svg -x
 
-        ArrayList<PolygonADT> p =meshADT.getPolygons();
+        new Color(22, 241, 140);
+        for (PolygonADT temp : meshADT.getPolygons()){
+            var info =temp.getInfoSet();
+            if (info.isIsland()){
+                int h=info.getElevation();
+                if(h>90) {
+                    info.setColor(new int[]{229, 5, 5});//red
+                }
+                else if(h>80){
+                    info.setColor(new int[]{158, 232, 29});//yellow
+                }
+                else if(h>70){
+                    info.setColor(new int[]{31, 34, 225});//blue
+                }
+                else if(h>60){
+                    info.setColor(new int[]{22, 241, 140});//green
+                    System.out.println(info.getElevation());
+                }
+                else if(h>50){
+                    info.setColor(new int[]{22, 241, 140});//green
+                    System.out.println(info.getElevation());
+                }
+                else if(h>40){
+                    info.setColor(new int[]{22, 241, 140});//green
+                    System.out.println(info.getElevation());
+                }
+                else if(h>30){
+                    info.setColor(new int[]{22, 241, 140});//green
+                    System.out.println(info.getElevation());
+                }
+                else if(h>20){
+                    info.setColor(new int[]{22, 241, 140});//green
+                    System.out.println(info.getElevation());
+                }
+                else if(h>=0){
+                    info.setColor(new int[]{22, 241, 140});//green
+                    System.out.println(info.getElevation());
+                }
+                else if(h==-1){
+                    info.setColor(new int[]{0,0,0});//black
+                    System.out.println(info.getElevation());
+                }
 
-        for (PolygonADT temp : p){
-            temp.getInfoSet().setColor(new int[]{255,255,255-temp.getInfoSet().getElevation()});
+
+            }
         }
         Structs.Mesh output2 = meshADT.toMesh();
-        new MeshFactory().write(output, "C:\\Users\\22091\\IdeaProjects\\a2---mesh-generator-team-28_new1\\IOArea\\lagtestH.mesh");//
-//        java -jar visualizer/visualizer.jar -i C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtestH.mesh -o C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtest1H.svg -x
+        new MeshFactory().write(output2, "C:\\Users\\22091\\IdeaProjects\\a2---mesh-generator-team-28_new1\\IOArea\\lagtestH.mesh");//
+//java -jar visualizer/visualizer.jar -i C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtestH.mesh -o C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtest1H.svg -x
 
 
     }
