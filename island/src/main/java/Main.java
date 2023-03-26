@@ -21,9 +21,12 @@ public class Main {
 //        Mesh theMesh = specification.build();
 //        new MeshFactory().write(mvp.Rendering(), "og.mesh");
 
+
+
         MeshADT meshADT = new MeshADT();
-        String input = "inputoff.mesh";
-        Structs.Mesh aMesh = new MeshFactory().read(input);
+//        String input = "IOArea/inputoff.mesh";
+        String input_c="IOArea/inputoffC.mesh";
+        Structs.Mesh aMesh = new MeshFactory().read(input_c);
 
         Importer polygonImporter = new polygonImporter();
         Importer segmentImporter = new segmentImporter();
@@ -36,7 +39,7 @@ public class Main {
         Structs.Mesh output= meshADT.toMesh();
 
 
-        new MeshFactory().write(output, "visualizer/outputoff.mesh");//
+        new MeshFactory().write(output, "IOArea/outputC.mesh");//
 
 
 
