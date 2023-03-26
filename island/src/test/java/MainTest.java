@@ -24,6 +24,38 @@ class MainTest {
     void main() throws IOException {
 
     }
+
+    @Test
+    void Etolake() throws IOException {
+        MeshADT meshADT = new MeshADT();
+        String input_c = "C:\\Users\\22091\\IdeaProjects\\a2---mesh-generator-team-28_new1\\IOArea\\inputoff.mesh";
+        Structs.Mesh aMesh = new MeshFactory().read(input_c);
+
+        Importer polygonImporter = new polygonImporter();
+        Importer segmentImporter = new segmentImporter();
+        Importer vertexImporter = new vertexImporter();
+        vertexImporter.read(aMesh, meshADT);
+        segmentImporter.read(aMesh, meshADT);
+        polygonImporter.read(aMesh, meshADT);
+
+
+        int seedint = (int) (Math.random() * 1000000);
+        seedint =148000;
+        System.out.println("seed is:"+seedint );
+        Seed s = new Seed(seedint);
+//    s= new Seed(802517);
+        meshADT = new ShapeRenderer().Rendering(meshADT,s);
+        meshADT = new ElevationRenderer().Rendering(meshADT,s);
+        Structs.Mesh output = meshADT.toMesh();
+        new MeshFactory().write(output, "C:\\Users\\22091\\IdeaProjects\\a2---mesh-generator-team-28_new1\\IOArea\\lagtest.mesh");//
+
+//java -jar visualizer/visualizer.jar -i C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtest.mesh -o C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtest1.svg -x
+
+
+
+    }
+
+
     @Test
     void MVP() throws IOException {
         MeshADT meshADT = new MeshADT();
