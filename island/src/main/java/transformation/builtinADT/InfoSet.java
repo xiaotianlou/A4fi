@@ -26,7 +26,7 @@ public class InfoSet {
     }
 
     public void setIsland(boolean island) {
-        isIsland = island;
+        this.isIsland = island;
     }
 
     public Biome getBiome() {

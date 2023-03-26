@@ -21,7 +21,9 @@ public class VolcanoGenerator implements Generable {
         for (PolygonADT p : m.getPolygons()) {
             if (p.isIsland()) {
                 land.add(p);
+                System.out.println(2);
             }
+            System.out.println(1);
         }
         Collections.shuffle(land);
         PolygonADT top = land.get(0);
