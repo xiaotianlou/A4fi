@@ -1,6 +1,6 @@
 package transformation.builtinADT;
 
-import TerrainFeatures.Aquifer;
+import TerrainFeatures.Aquifers;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs;
 
 import java.util.ArrayList;
@@ -107,11 +107,11 @@ public class PolygonADT {
         isIsland = island;
     }
 
-    public Aquifer getWaterContent() {
+    public int getWaterContent() {
         return infoSet.getWaterContent();
     }
 
-    public void setWaterContent(Aquifer waterContent) {
+    public void setWaterContent(int waterContent) {
         infoSet.setWaterContent(waterContent);
     }
 
