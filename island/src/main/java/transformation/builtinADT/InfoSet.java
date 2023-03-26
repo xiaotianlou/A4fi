@@ -1,14 +1,14 @@
 package transformation.builtinADT;
 
-import TerrainFeatures.Aquifer;
+import TerrainFeatures.Aquifers;
 
 public class InfoSet {
 
     private boolean isIsland = false;
     private Biome biome = Biome.None;
 
-    private int elevation = -1;
-    private Aquifer waterContent;
+    private int elevation = 0;
+    private int waterContent;
     private int temperature = 25;
 
     public int[] getColor() {
@@ -26,7 +26,7 @@ public class InfoSet {
     }
 
     public void setIsland(boolean island) {
-        this.isIsland = island;
+        isIsland = island;
     }
 
     public Biome getBiome() {
@@ -51,11 +51,11 @@ public class InfoSet {
         this.elevation = elevation;
     }
 
-    public Aquifer getWaterContent() {
+    public int getWaterContent() {
         return waterContent;
     }
 
-    public void setWaterContent(Aquifer waterContent) {
+    public void setWaterContent(int waterContent) {
         this.waterContent = waterContent;
     }
 

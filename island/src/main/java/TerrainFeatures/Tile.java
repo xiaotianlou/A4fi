@@ -14,5 +14,5 @@ public abstract class Tile {
 
     int Elevation;
     Color color;
-    Aquifer aq;
+    Aquifers aq;
 }

@@ -1,3 +1,4 @@
+import TerrainFeatures.Aquifers;
 import ca.mcmaster.cas.se2aa4.a2.io.MeshFactory;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs;
 import transformation.builtinADT.MeshADT;
@@ -27,6 +28,12 @@ public class Main {
         vertexImporter.read(aMesh,meshADT);
         segmentImporter.read(aMesh,meshADT);
         polygonImporter.read(aMesh,meshADT);
+        Aquifers aquifers = new Aquifers(meshADT,1);
+        MeshADT meshADT_A = aquifers.aquifersInitialization();
+
+
+
+
         Structs.Mesh output= meshADT.toMesh();
 
 
