@@ -2,6 +2,7 @@ package featureRenderer.Shape;
 
 import Reproducibility.Seed;
 
+import transformation.builtinADT.InfoSet;
 import transformation.builtinADT.MeshADT;
 import transformation.builtinADT.PolygonADT;
 
@@ -24,19 +25,21 @@ public class LagoonGenerator implements Generable{
             //先找
             double distance = Math.sqrt(Math.pow(x - cen_x, 2) + Math.pow(y - cen_y, 2));
             Color c = new Color(13, 108, 185);
+            InfoSet i =p.getInfoSet();
+
             p.setColor(new int[]{c.getRed(),c.getGreen(),c.getBlue()});
             if (distance < circle_size) {
                  c = new Color(153, 220, 211);
-                p.setColor(new int[]{c.getRed(),c.getGreen(),c.getBlue()});
+                i.setColor(new int[]{c.getRed(),c.getGreen(),c.getBlue()});
                 if (distance < circle_size - space) {
                     c=new Color(255, 255, 255);
-                    p.setColor(new int[]{c.getRed(),c.getGreen(),c.getBlue()});
+                    i.setColor(new int[]{c.getRed(),c.getGreen(),c.getBlue()});
                     if (distance < circle_size / 2) {
                         c=new Color(153, 220, 211);
-                        p.setColor(new int[]{c.getRed(),c.getGreen(),c.getBlue()});
+                        i.setColor(new int[]{c.getRed(),c.getGreen(),c.getBlue()});
                         if (distance < circle_size / 2 - space) {
                             c=new Color(146, 198, 250);
-                            p.setColor(new int[]{c.getRed(),c.getGreen(),c.getBlue()});
+                            i.setColor(new int[]{c.getRed(),c.getGreen(),c.getBlue()});
                         }
                     }
                 }
