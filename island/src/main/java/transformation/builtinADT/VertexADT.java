@@ -5,14 +5,18 @@ import ca.mcmaster.cas.se2aa4.a2.io.Structs;
 import java.util.ArrayList;
 
 public class VertexADT {
-    final ArrayList<SegmentADT> segments = new ArrayList<>();
-
-    final ArrayList<SegmentADT> polygon = new ArrayList<>();
+    private ArrayList<VertexADT> vertices = new ArrayList<>();
+    private ArrayList<SegmentADT> segments = new ArrayList<>();
+    private ArrayList<PolygonADT> polygons = new ArrayList<>();
     final int id;
     private int[] color = new int[]{0, 0, 0};
     private double elevation = 0;
     private double x;
     private double y;
+
+    private boolean isCentroid = true;
+
+    private boolean aroundWater = true;
 
     public VertexADT(double x, double y, int id) {
         this.x = x;
@@ -21,12 +25,12 @@ public class VertexADT {
     }
 
     public double getElevation() {
+        for (var p: this.polygons){
+            this.elevation += p.getElevation();
+        }
         return elevation;
     }
 
-    public void setElevation(int elevation) {
-        this.elevation = elevation;
-    }
 
     public double getX() {
         return x;
@@ -82,4 +86,38 @@ public class VertexADT {
         return builder.build();
     }
 
+    public ArrayList<SegmentADT> getSegments() {
+        return segments;
+    }
+
+    public void addSegments(SegmentADT segments) {
+        this.segments.add(segments);
+        if (segments.getStart()!=this){
+            this.vertices.add(segments.getStart());
+        }
+        if (segments.getEnd()!=this){
+            this.vertices.add(segments.getEnd());
+        }
+    }
+
+    public ArrayList<PolygonADT> getPolygons() {
+        return polygons;
+    }
+
+    public void addPolygons(PolygonADT polygonADT) {
+        this.polygons.add(polygonADT);
+    }
+
+
+    public boolean isCentroid() {
+        return isCentroid;
+    }
+
+    public void setCentroid(boolean centroid) {
+        isCentroid = centroid;
+    }
+
+    public ArrayList<VertexADT> getVertices() {
+        return vertices;
+    }
 }

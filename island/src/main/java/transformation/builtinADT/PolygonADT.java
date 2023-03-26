@@ -9,7 +9,7 @@ import java.util.List;
 public class PolygonADT {
     final int id;
     //    private final MeshADT mesh;
-
+    private int[] color = new int[]{125, 125, 125};
     private List<PolygonADT> polygons;
     private List<SegmentADT> segments;
     private List<VertexADT> vertices;
