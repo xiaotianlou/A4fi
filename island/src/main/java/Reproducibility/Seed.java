@@ -1,6 +1,8 @@
 package Reproducibility;
 
 
+import featureRenderer.Shape.Shape;
+
 import java.util.HashMap;
 
 public class Seed {
@@ -11,8 +13,10 @@ public class Seed {
 
     private int seed;
 
+
+
     public Seed(){
-        seed = 774123;
+        seed = 77123123;
     }
     public Seed(int seed){
         this.seed = seed;

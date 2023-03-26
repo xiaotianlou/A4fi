@@ -11,7 +11,10 @@ public class ShapeRenderer implements Renderable{
     @Override
     public MeshADT Rendering(MeshADT m, Seed seed) {
 
+
         return new LagoonGenerator().Rendering(m,new Seed());
+
+
 
     }
 }
