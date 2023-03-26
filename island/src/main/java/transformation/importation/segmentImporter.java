@@ -9,6 +9,8 @@ public class segmentImporter implements Importer{
     public void read(Structs.Mesh mesh, MeshADT meshADT) {
         for (var s:mesh.getSegmentsList()){
             SegmentADT segmentADT = meshADT.getSegment(meshADT.getVertices().get(s.getV1Idx()),meshADT.getVertices().get(s.getV2Idx()));
+            segmentADT.getStart().addSegments(segmentADT);
+            segmentADT.getEnd().addSegments(segmentADT);
             for (int n = mesh.getPropertiesCount();n>0;n--){
                 if (n == 1){
                    segmentADT .setColor(s.getProperties(0).getValue());

@@ -5,14 +5,16 @@ import ca.mcmaster.cas.se2aa4.a2.io.Structs;
 import java.util.ArrayList;
 
 public class VertexADT {
+    private ArrayList<VertexADT> vertices = new ArrayList<>();
     private ArrayList<SegmentADT> segments = new ArrayList<>();
-
     private ArrayList<PolygonADT> polygons = new ArrayList<>();
     final int id;
     private int[] color = new int[]{0, 0, 0};
     private double elevation = 0;
     private double x;
     private double y;
+
+    private boolean isCentroid = true;
 
     public VertexADT(double x, double y, int id) {
         this.x = x;
@@ -86,8 +88,14 @@ public class VertexADT {
         return segments;
     }
 
-    public void setSegments(ArrayList<SegmentADT> segments) {
-        this.segments = segments;
+    public void addSegments(SegmentADT segments) {
+        this.segments.add(segments);
+        if (segments.getStart()!=this){
+            this.vertices.add(segments.getStart());
+        }
+        if (segments.getEnd()!=this){
+            this.vertices.add(segments.getEnd());
+        }
     }
 
     public ArrayList<PolygonADT> getPolygons() {
@@ -100,5 +108,17 @@ public class VertexADT {
 
     public void setElevation(double elevation) {
         this.elevation = elevation;
+    }
+
+    public boolean isCentroid() {
+        return isCentroid;
+    }
+
+    public void setCentroid(boolean centroid) {
+        isCentroid = centroid;
+    }
+
+    public ArrayList<VertexADT> getVertices() {
+        return vertices;
     }
 }
