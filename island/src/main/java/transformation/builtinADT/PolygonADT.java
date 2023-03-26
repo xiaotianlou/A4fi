@@ -13,12 +13,10 @@ public class PolygonADT {
     private List<PolygonADT> polygons;
     private List<SegmentADT> segments;
     private List<VertexADT> vertices;
-    private boolean isIsland = false;
-    private Biome biome = Biome.None;
     private VertexADT centroid;
-    private int elevation = 0;
-    private Aquifer waterContent;
-    private int temperature = 25;
+    private boolean isIsland = false;
+    private final InfoSet infoSet = new InfoSet();
+
     public PolygonADT(List<SegmentADT> segments, List<VertexADT> vertices, VertexADT centroid, int id) {
         this.segments = segments;
         this.vertices = vertices;
@@ -26,12 +24,16 @@ public class PolygonADT {
         this.centroid = centroid;
     }
 
+    public InfoSet getInfoSet() {
+        return infoSet;
+    }
+
     public Biome getBiome() {
-        return biome;
+        return infoSet.getBiome();
     }
 
     public void setBiome(Biome biome) {
-        this.biome = biome;
+        infoSet.setBiome(biome);
     }
 
     public int getId() {
@@ -56,22 +58,20 @@ public class PolygonADT {
     }
 
     public int[] getColor() {
-        return color;
+        return infoSet.getColor();
     }
 
     public void setColor(int[] color) {
-        this.color = color;
+        infoSet.setColor(color);
     }
 
     public void setColor(String c) {
-        int n = 0;
-        for (String s : c.split(",")) {
-            color[n] = Integer.parseInt(s);
-            n++;
-        }
+        infoSet.setColor(c);
     }
 
     public String getColorCode() {
+
+        int[] color = infoSet.getColor();
         return color[0] + "," + color[1] + "," + color[2];
     }
 
@@ -92,11 +92,11 @@ public class PolygonADT {
     }
 
     public int getElevation() {
-        return elevation;
+        return infoSet.getElevation();
     }
 
     public void setElevation(int elevation) {
-        this.elevation = elevation;
+        infoSet.setElevation(elevation);
     }
 
     public boolean isIsland() {
@@ -108,19 +108,19 @@ public class PolygonADT {
     }
 
     public Aquifer getWaterContent() {
-        return waterContent;
+        return infoSet.getWaterContent();
     }
 
     public void setWaterContent(Aquifer waterContent) {
-        this.waterContent = waterContent;
+        infoSet.setWaterContent(waterContent);
     }
 
     public int getTemperature() {
-        return temperature;
+        return infoSet.getTemperature();
     }
 
     public void setTemperature(int temperature) {
-        this.temperature = temperature;
+        infoSet.setTemperature(temperature);
     }
 
     public List<PolygonADT> getPolygons() {
@@ -153,11 +153,11 @@ public class PolygonADT {
         builder.addProperties(propertyBuilder.setKey("rgb_color").setValue(getColorCode()));
 
 
-        builder.addProperties(propertyBuilder.setKey("elevation").setValue(String.valueOf(elevation)));
+        builder.addProperties(propertyBuilder.setKey("elevation").setValue(String.valueOf(getElevation())));
 
-        builder.addProperties(propertyBuilder.setKey("temperature").setValue("0"));
+        builder.addProperties(propertyBuilder.setKey("temperature").setValue(getTemperature() + ""));
 
-        builder.addProperties(propertyBuilder.setKey("waterContent").setValue("0"));
+        builder.addProperties(propertyBuilder.setKey("waterContent").setValue(getWaterContent() + ""));
 
         builder.setCentroidIdx(centroid.id);
 
