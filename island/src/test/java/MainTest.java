@@ -3,6 +3,8 @@ import ca.mcmaster.cas.se2aa4.a2.io.MeshFactory;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs;
 import featureRenderer.ElevationRenderer;
 import featureRenderer.Generable;
+import featureRenderer.Shape.BackGroundGenerator;
+import featureRenderer.Shape.LagoonGenerator;
 import featureRenderer.ShapeRenderer;
 import org.junit.jupiter.api.Test;
 import transformation.builtinADT.MeshADT;
@@ -20,6 +22,30 @@ class MainTest {
 
     @Test
     void main() throws IOException {
+
+    }
+    @Test
+    void MVP() throws IOException {
+        MeshADT meshADT = new MeshADT();
+        String input_c = "inputoff.mesh";
+        Structs.Mesh aMesh = new MeshFactory().read(input_c);
+
+        Importer polygonImporter = new polygonImporter();
+        Importer segmentImporter = new segmentImporter();
+        Importer vertexImporter = new vertexImporter();
+        vertexImporter.read(aMesh, meshADT);
+        segmentImporter.read(aMesh, meshADT);
+        polygonImporter.read(aMesh, meshADT);
+        int seedint = (int) (Math.random() * 100000);
+        System.out.println("seed is:"+seedint );
+        Seed s = new Seed(seedint);
+//    s= new Seed(802517);
+        meshADT = new BackGroundGenerator().Genering(meshADT,s);
+        meshADT = new LagoonGenerator().Genering(meshADT,s);
+    Structs.Mesh out=meshADT.toMesh();
+        new MeshFactory().write(out, "MVP.mesh");//
+//        java -jar visualizer/visualizer.jar -i C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtest.mesh -o C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtest.svg -x
+
 
     }
 
@@ -45,7 +71,7 @@ class MainTest {
         vertexImporter.read(aMesh, meshADT);
         segmentImporter.read(aMesh, meshADT);
         polygonImporter.read(aMesh, meshADT);
-        int seedint = (int) (Math.random() * 1000000);
+        int seedint = (int) (Math.random() * 100000);
         System.out.println("seed is:"+seedint );
         Seed s = new Seed(seedint);
 //    s= new Seed(802517);
@@ -53,7 +79,6 @@ class MainTest {
         Structs.Mesh output = meshADT.toMesh();
         new MeshFactory().write(output, "C:\\Users\\22091\\IdeaProjects\\a2---mesh-generator-team-28_new1\\IOArea\\lagtest.mesh");//
 //        java -jar visualizer/visualizer.jar -i C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtest.mesh -o C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtest.svg -x
-
 
     }
     @Test
