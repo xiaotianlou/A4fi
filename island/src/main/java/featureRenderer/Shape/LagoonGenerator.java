@@ -2,13 +2,14 @@ package featureRenderer.Shape;
 
 import Reproducibility.Seed;
 
+import featureRenderer.Generable;
 import transformation.builtinADT.InfoSet;
 import transformation.builtinADT.MeshADT;
 import transformation.builtinADT.PolygonADT;
 
 import java.awt.*;
 
-public class LagoonGenerator implements Generable{
+public class LagoonGenerator implements Generable {
 
 
 
