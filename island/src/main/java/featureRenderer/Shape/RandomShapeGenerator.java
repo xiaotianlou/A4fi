@@ -22,7 +22,10 @@ public class RandomShapeGenerator implements Generable {
             double x = p.getCentroid().getX();
             double y = p.getCentroid().getY();
             //先找
-            double distance = Math.sqrt(Math.pow(x - cen_x, 2) + Math.pow(y - cen_y, 2));
+            int range =seed.getSeedArray().size();
+            double seedpara1=Simulink(seed.getSeedArray().get(seed.getSeedArray().size()/2))*0.1;
+            double seedpara2=Simulink(seed.getSeedArray().get(seed.getSeedArray().size()/3))*0.1;
+            double distance = Math.sqrt(Math.pow(x - cen_x, 2+seedpara1) + Math.pow(y - cen_y, 2+seedpara2));
             Color c = new Color(13, 108, 185);
             InfoSet i =p.getInfoSet();
             i.setIsland(false);
