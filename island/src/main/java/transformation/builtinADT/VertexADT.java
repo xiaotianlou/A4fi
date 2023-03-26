@@ -5,9 +5,9 @@ import ca.mcmaster.cas.se2aa4.a2.io.Structs;
 import java.util.ArrayList;
 
 public class VertexADT {
-    final ArrayList<SegmentADT> segments = new ArrayList<>();
+    private ArrayList<SegmentADT> segments = new ArrayList<>();
 
-    final ArrayList<SegmentADT> polygon = new ArrayList<>();
+    private ArrayList<PolygonADT> polygons = new ArrayList<>();
     final int id;
     private int[] color = new int[]{0, 0, 0};
     private double elevation = 0;
@@ -82,4 +82,23 @@ public class VertexADT {
         return builder.build();
     }
 
+    public ArrayList<SegmentADT> getSegments() {
+        return segments;
+    }
+
+    public void setSegments(ArrayList<SegmentADT> segments) {
+        this.segments = segments;
+    }
+
+    public ArrayList<PolygonADT> getPolygons() {
+        return polygons;
+    }
+
+    public void addPolygons(PolygonADT polygonADT) {
+        this.polygons.add(polygonADT);
+    }
+
+    public void setElevation(double elevation) {
+        this.elevation = elevation;
+    }
 }

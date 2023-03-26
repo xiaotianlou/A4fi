@@ -7,12 +7,12 @@ import transformation.builtinADT.SegmentADT;
 import transformation.builtinADT.VertexADT;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class polygonImporter implements Importer{
     @Override
     public void read(Structs.Mesh mesh, MeshADT meshADT) {
         for (var p:mesh.getPolygonsList()){
+            ArrayList <VertexADT> temp = new ArrayList<>();
             ArrayList <VertexADT> vertices = new ArrayList<>();
             ArrayList <SegmentADT> segments = new ArrayList<>();
             VertexADT centroid = meshADT.getVertices().get(p.getCentroidIdx());
@@ -21,12 +21,19 @@ public class polygonImporter implements Importer{
                 segments.add(segment);
                 if (!vertices.contains(segment.getStart())){
                     vertices.add(segment.getStart());
+                    temp.add(segment.getStart());
                 }
                 if (!vertices.contains(segment.getEnd())){
                     vertices.add(segment.getEnd());
                 }
             }
+
             PolygonADT polygonADT = meshADT.getPolygon(vertices,segments,centroid);
+
+            for (var v:temp){
+                v.addPolygons(polygonADT);
+            }
+
             for (int n = p.getPropertiesCount();n>0;n--){
 
                 if (n == 1){
