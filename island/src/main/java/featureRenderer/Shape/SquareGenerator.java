@@ -1,20 +1,15 @@
 package featureRenderer.Shape;
 
 import Reproducibility.Seed;
-
 import transformation.builtinADT.InfoSet;
 import transformation.builtinADT.MeshADT;
 import transformation.builtinADT.PolygonADT;
 
 import java.awt.*;
 
-public class LagoonGenerator implements Generable{
-
-
-
+public class SquareGenerator implements Generable{
     @Override
     public MeshADT Genering(MeshADT m, Seed seed) {
-
         int cen_x = 1920 / 2;
         int cen_y = 1920 / 2;
 
@@ -37,7 +32,7 @@ public class LagoonGenerator implements Generable{
             p.setColor(new int[]{c.getRed(),c.getGreen(),c.getBlue()});
             if (distance < circle_size) {
                 i.setIsland(true);
-                 c = new Color(153, 220, 211);
+                c = new Color(153, 220, 211);
                 i.setColor(new int[]{c.getRed(),c.getGreen(),c.getBlue()});
                 if (distance < circle_size - space) {
                     c=new Color(255, 255, 255);
@@ -56,6 +51,5 @@ public class LagoonGenerator implements Generable{
         }
 
         return m;
-
     }
 }

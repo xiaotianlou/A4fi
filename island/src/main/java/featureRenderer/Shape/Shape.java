@@ -5,5 +5,5 @@ package featureRenderer.Shape;
  * @date 2023/3/23 15:40
  */
 public enum Shape {
-    lagoon,square
+    lagoon,random
 }
