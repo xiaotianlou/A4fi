@@ -56,8 +56,7 @@ class MainTest {
 
     }
     @Test
-    void testElevation() throws IOException {
-
+    void  testE2() throws IOException {
         MeshADT meshADT = new MeshADT();
         String input_c = "C:\\Users\\22091\\IdeaProjects\\a2---mesh-generator-team-28_new1\\IOArea\\inputoff.mesh";
         Structs.Mesh aMesh = new MeshFactory().read(input_c);
@@ -77,6 +76,7 @@ class MainTest {
         Structs.Mesh output = meshADT.toMesh();
         new MeshFactory().write(output, "C:\\Users\\22091\\IdeaProjects\\a2---mesh-generator-team-28_new1\\IOArea\\lagtest.mesh");//
 //java -jar visualizer/visualizer.jar -i C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtest.mesh -o C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtest1.svg -x
+
         ArrayList<PolygonADT> p =meshADT.getPolygons();
 
         for (PolygonADT temp : p){
@@ -88,4 +88,5 @@ class MainTest {
 
 
     }
+
 }
