@@ -19,7 +19,7 @@ public class VolcanoGenerator implements Generable {
 
 
         for (PolygonADT p : m.getPolygons()) {
-            if (p.isIsland()) {
+            if (p.getInfoSet().isIsland()) {
                 land.add(p);
                 System.out.println(2);
             }
