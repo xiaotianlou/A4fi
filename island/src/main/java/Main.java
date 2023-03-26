@@ -45,9 +45,10 @@ public class Main {
 
         //MVP
 //        Configuration config = new Configuration("generator/generator.jar -k irregular -h 1920 -w 1920 -p 1000 -r 5 -o ireg.mesh".split(" "));
+//        Buildable specification = SpecificationFactory.create(config);
 //        Mesh theMesh = specification.build();
 //        LagoonRenderer mvp = new LagoonRenderer(theMesh);
-//        new MeshFactory().write(mvp.Rendering(), "og.mesh");//
+//        new MeshFactory().write(mvp.Rendering(), "IOArea/full_color.mesh");//
 
 
     }
