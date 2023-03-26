@@ -2,6 +2,7 @@ package featureRenderer;
 
 import Reproducibility.Seed;
 import ca.mcmaster.cas.se2aa4.a2.generator.adt.Mesh;
+import featureRenderer.Shape.BackGroundGenerator;
 import featureRenderer.Shape.LagoonGenerator;
 import featureRenderer.Shape.RandomShapeGenerator;
 import transformation.builtinADT.MeshADT;
@@ -14,8 +15,15 @@ public class ShapeRenderer implements Renderable{
 //        int choose =seed.getSeedArray().get(seed.getSeedArray().size()/2)%2;
 
 //        return new LagoonGenerator().Genering(m,seed);
+        m=new BackGroundGenerator().Genering(m,seed);
+        for (int i = 0; i < seed.getSeedArray().get(seed.getSeedArray().size()/4); i++)
 
-        return  new RandomShapeGenerator().Genering(m,seed);
+        {
+            m=new RandomShapeGenerator().Genering(m,seed);
+        }
+        m=new RandomShapeGenerator().Genering(m,seed);
+
+        return  m;
 
 
     }

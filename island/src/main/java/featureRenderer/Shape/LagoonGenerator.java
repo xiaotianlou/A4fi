@@ -30,11 +30,10 @@ public class LagoonGenerator implements Generable{
             double y = p.getCentroid().getY();
             //先找
             double distance = Math.sqrt(Math.pow(x - cen_x, 2) + Math.pow(y - cen_y, 2));
-            Color c = new Color(13, 108, 185);
-            InfoSet i =p.getInfoSet();
-            i.setIsland(false);
 
-            p.setColor(new int[]{c.getRed(),c.getGreen(),c.getBlue()});
+            InfoSet i =p.getInfoSet();
+
+            Color c;
             if (distance < circle_size) {
                 i.setIsland(true);
                  c = new Color(153, 220, 211);

@@ -11,26 +11,21 @@ public class RandomShapeGenerator implements Generable {
     @Override
     public MeshADT Genering(MeshADT m, Seed seed) {
 
-        int cen_x = 1920 / 2;
-        int cen_y = 1920 / 2;
+        double cen_x = (1920 / 2)*Simulink(seed.getSeedArray().get(seed.getSeedArray().size()/2)-5);
+        double cen_y = (1920 / 2)*Simulink(seed.getSeedArray().get(seed.getSeedArray().size()/6)-5);
 
         double circle_size = Simulink(seed.getSeedArray().get(1)-5)*450+500;
         System.out.println(seed.getSeedArray().get(1)-3+"   "+circle_size);
-        double space = Math.sqrt(1920 * 1920 / 1000)+20;
 
+        Color c;
         for (PolygonADT p : m.getPolygons()) {
             double x = p.getCentroid().getX();
             double y = p.getCentroid().getY();
-            //先找
-            int range =seed.getSeedArray().size();
-            double seedpara1=Simulink(seed.getSeedArray().get(seed.getSeedArray().size()/2))*0.1;
-            double seedpara2=Simulink(seed.getSeedArray().get(seed.getSeedArray().size()/3))*0.1;
-            double distance = Math.sqrt(Math.pow(x - cen_x, 2+seedpara1) + Math.pow(y - cen_y, 2+seedpara2));
-            Color c = new Color(13, 108, 185);
-            InfoSet i =p.getInfoSet();
-            i.setIsland(false);
 
-            p.setColor(new int[]{c.getRed(),c.getGreen(),c.getBlue()});
+            double seedpara1=Simulink(seed.getSeedArray().get(seed.getSeedArray().size()/2))*0.01;
+            double seedpara2=Simulink(seed.getSeedArray().get(seed.getSeedArray().size()/3))*0.07;
+            double distance = Math.sqrt(Math.pow(x - cen_x, 2+seedpara1) + Math.pow(y - cen_y, 2+seedpara2));
+            InfoSet i =p.getInfoSet();
             if (distance < circle_size) {
                 i.setIsland(true);
                 c = new Color(255, 255, 255);
