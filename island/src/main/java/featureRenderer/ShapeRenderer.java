@@ -17,7 +17,7 @@ public class ShapeRenderer implements Renderable{
 //        return new LagoonGenerator().Genering(m,seed);
         m=new BackGroundGenerator().Genering(m,seed);
         int number=seed.getSeedArray().get(seed.getSeedArray().size()/4);
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < number; i++)
         {
             m=new RandomShapeGenerator().Genering(m,seed);
             seed = new Seed(seed.getSeed()*4);
