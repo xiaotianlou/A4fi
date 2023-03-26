@@ -13,7 +13,7 @@ public class RiversRenderer implements Renderable {
     public MeshADT Rendering(MeshADT meshADT, Seed seed) {
         int i = 3;
 
-        for (int n=2;n<0;n++){
+        for (int n=2;n>0;n--){
 
             VertexADT vertexADT = meshADT.getVertices().get(n*i*666%3000);
             int id = vertexADT.getId();
@@ -48,6 +48,9 @@ public class RiversRenderer implements Renderable {
                 }
                 if (!end) {
                     SegmentADT segmentADT = meshADT.getSegment(vertexADT, next_vertexADT);
+                    if(segmentADT.getThickness()!=1){
+                        segmentADT.setThickness();
+                    }
                     segmentADT.setColor(105 + "," + 200 + "," + 225);
                     vertexADT = next_vertexADT;
                 }

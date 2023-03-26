@@ -10,7 +10,7 @@ public class SegmentADT {
     private final VertexADT start;
     private final VertexADT end;
     private int[] color = new int[]{0, 0, 0};
-    private int thickness;
+    private int thickness = 1;
 
     public SegmentADT(VertexADT start, VertexADT end, int id) {
         this.start = start;
@@ -56,5 +56,13 @@ public class SegmentADT {
         Structs.Property color = Structs.Property.newBuilder().setKey("rgb_color").setValue(getColorCode()).build();
         Structs.Segment colored_s = Structs.Segment.newBuilder(s).addProperties(color).build();
         return colored_s;
+    }
+
+    public int getThickness() {
+        return thickness;
+    }
+
+    public void setThickness() {
+        this.thickness = this.thickness+1;
     }
 }
