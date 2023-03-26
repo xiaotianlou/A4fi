@@ -52,6 +52,3 @@ Note: PDF versions of the SVG files were created with `rsvg-convert`.
 |F12 |Biomes| Jiaming Li | 3/25 | 3/26 | D |
 |F13 |Soil absorption| Jiaming Li | 3/25 | 3/26 | D |
 |F14| Whittaker Diagrams| Jiaming Li | 3/25 | 3/26 | D |
-|F15 | RemoveDuplicates| Jiaming Li| 3/25 | 3/26 | D |
-
-
