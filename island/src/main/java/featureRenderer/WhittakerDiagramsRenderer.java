@@ -31,6 +31,8 @@ public class WhittakerDiagramsRenderer {
             p.setColor("154,205,50");
         }else if(biome == "Temperate_Deciduous_Forest") {
             p.setColor("46,139,87");
+        }else if(biome == "Temperate_Grassland_and_Desert") {
+            p.setColor("255,215,0");
         }
     }
 
