@@ -26,7 +26,21 @@ class MainTest {
     }
 
     @Test
-    void testBiomeRender(){
+    void testBiomeRender() throws IOException {
+        MeshADT meshADT = new MeshADT();
+        String input_c = "..//IOArea\\inputoff.mesh";
+        Structs.Mesh aMesh = new MeshFactory().read(input_c);
+        meshADT.readInputMesh(aMesh);
+        int seedint = (int) (Math.random() * 1000000);
+        System.out.println("seed is:"+seedint );
+        Seed s = new Seed(seedint);
+//    s= new Seed(802517);
+        new ShapeRenderer().Rendering(meshADT,s);
+        new ElevationRenderer().Rendering(meshADT,s);
+        Structs.Mesh output = meshADT.toMesh();
+        new MeshFactory().write(output, "C:\\Users\\22091\\IdeaProjects\\a2---mesh-generator-team-28_newnewnewn\\IOArea\\lagtest.mesh");//
+
+//java -jar visualizer/visualizer.jar -i C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtest.mesh -o C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtest1.svg -x
 
 
 
@@ -41,12 +55,6 @@ class MainTest {
         String input_c = "C:\\Users\\22091\\IdeaProjects\\a2---mesh-generator-team-28_newnewnewn\\IOArea\\inputoff.mesh";
         Structs.Mesh aMesh = new MeshFactory().read(input_c);
 
-        Importer polygonImporter = new polygonImporter();
-        Importer segmentImporter = new segmentImporter();
-        Importer vertexImporter = new vertexImporter();
-        vertexImporter.read(aMesh, meshADT);
-        segmentImporter.read(aMesh, meshADT);
-        polygonImporter.read(aMesh, meshADT);
         meshADT.readInputMesh(aMesh);
 
         int seedint = (int) (Math.random() * 1000000);
