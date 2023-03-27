@@ -9,6 +9,7 @@ public class BiomeRenderer {
         for (PolygonADT p: mesh.getPolygons()){
             int temperature = p.getTemperature();
             int humidity = p.getHumidity();
+            if(!p.isIsland()){continue;}
             if (20 <= temperature ) {
                 if( humidity >= 250){
                     p.setBiome(Biome.Tropical_Rain_Forest);
