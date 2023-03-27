@@ -21,6 +21,11 @@ public class Seed {
         n=n/10;
         Collections.reverse(l);
         }
+        if(l.size()==0){
+            l.add(5);
+            l.add(2);
+            l.add(7);
+        }
 
         return l;
     }
