@@ -64,9 +64,7 @@ public class InfoSet {
     }
 
     public int getTemperature() {
-
-
-
+        this.temperature = (int) (15-0.25*getElevation());
         return temperature;
     }
 
