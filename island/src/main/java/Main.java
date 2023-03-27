@@ -4,6 +4,8 @@ import ca.mcmaster.cas.se2aa4.a2.generator.specification.Buildable;
 import ca.mcmaster.cas.se2aa4.a2.io.MeshFactory;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs;
 import configuration.Configuration;
+import featureRenderer.ElevationRenderer;
+import featureRenderer.ShapeRenderer;
 import transformation.builtinADT.MeshADT;
 import transformation.importation.Importer;
 import transformation.importation.polygonImporter;
@@ -43,29 +45,30 @@ public class Main {
         Seed seed = new Seed((int)Math.random() * 100000);
         if(!options.get(Configuration.seed).isEmpty())
             seed=new Seed(Integer.parseInt(options.get(Configuration.seed).toString()));
-
-
-        Aquifers aquifers = new Aquifers(meshADT,1);
-
-
-
-
-
-
+        int water=1;
+        if(!options.get(Configuration.seed).isEmpty())
+            water=Integer.parseInt(options.get(Configuration.seed).toString());
+        Aquifers aquifers = new Aquifers(meshADT,water);
         Structs.Mesh aMesh = new MeshFactory().read(input_c);
-
         MeshADT m =readInputMesh(aMesh,meshADT);
 
 
+        if(!options.get(Configuration.shape).isEmpty())
+        m= new ShapeRenderer().Rendering(m,new Seed(Integer.parseInt(options.get(Configuration.shape).toString())));
+
+        if(!options.get(Configuration.altitude).isEmpty())
+        m= new ElevationRenderer().Rendering(m,new Integer.parseInt(options.get(Configuration.altitude).toString()));
+
+        m=aquifers.aquifersInitialization();
 
 
 
 
 
 
-        Aquifers aquifers = new Aquifers(meshADT,1);
 
-        MeshADT meshADT_A = aquifers.aquifersInitialization();
+
+//        MeshADT meshADT_A = aquifers.aquifersInitialization();
 
 
 
