@@ -4,6 +4,8 @@ import ca.mcmaster.cas.se2aa4.a2.io.MeshFactory;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs;
 import configuration.Configuration;
 import featureRenderer.ElevationRenderer;
+import featureRenderer.Shape.BackGroundGenerator;
+import featureRenderer.Shape.LagoonGenerator;
 import featureRenderer.ShapeRenderer;
 import transformation.builtinADT.MeshADT;
 import transformation.importation.Importer;
@@ -42,6 +44,19 @@ public class Main {
 
         String input_c = "C:\\Users\\22091\\IdeaProjects\\a2---mesh-generator-team-28_newnewnewn\\IOArea\\inputoff.mesh"; //use absolute address only
         String outputadress = "C:\\Users\\22091\\IdeaProjects\\a2---mesh-generator-team-28_newnewnewn\\IOArea\\inputoff.mesh";
+        if(options.get(Configuration.mode)=="lagoon"){
+            Structs.Mesh aMesh = new MeshFactory().read(options.get(Configuration.INPUT));
+            MeshADT m = readInputMesh(aMesh, meshADT);
+            int seedint = (int) (Math.random() * 100000);
+            System.out.println("seed is:"+seedint );
+            Seed s = new Seed(seedint);
+            meshADT = new BackGroundGenerator().Genering(meshADT,s);
+            meshADT = new LagoonGenerator().Genering(meshADT,s);
+            Structs.Mesh out=meshADT.toMesh();
+            new MeshFactory().write(out, options.get(Configuration.OUTPUT));//
+
+        }
+
         if (!(options.get(Configuration.INPUT) == (null))) {
             input_c = options.get(Configuration.INPUT);
         }
