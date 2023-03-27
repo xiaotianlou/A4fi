@@ -64,21 +64,7 @@ public class Main {
 
 
 
-
-
-
-
-//        MeshADT meshADT_A = aquifers.aquifersInitialization();
-
-
-
-
-
-        Structs.Mesh output= meshADT.toMesh();
-
-
-
-
+        Structs.Mesh output= m.toMesh();
         new MeshFactory().write(output, outputadress);//
 
 
