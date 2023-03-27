@@ -32,6 +32,6 @@ public class WhittakerDiagramsRenderer implements Renderable {
 
                 }
         }
-        return mesh;
+        return m;
     }
 }
