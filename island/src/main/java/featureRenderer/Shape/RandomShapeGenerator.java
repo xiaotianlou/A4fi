@@ -14,11 +14,16 @@ public class RandomShapeGenerator implements Generable {
 
         double para1=Simulink((seed.getSeedArray().get(seed.getSeedArray().size()/2))-5);
         double para2=Simulink((seed.getSeedArray().get(seed.getSeedArray().size()/6))-5);
-        double cen_x = (1920 / 2)*para1;
-        double cen_y = (1920 / 2)*para2;
 
+        double baisx=100;//shift x
+        double baisy=80;//shift y
 
-        double circle_size = Simulink(seed.getSeedArray().get(1)-5)*450+500;
+        double cen_x = (1920 / 2)*para1+baisx;
+        double cen_y = (1920 / 2)*para2+baisy;
+
+        double sizeIsland=0;//default
+
+        double circle_size = Simulink(seed.getSeedArray().get(1)-5)*450+500-50+sizeIsland;
         System.out.println(seed.getSeedArray().get(1)-3+"   "+circle_size);
 
         Color c;
