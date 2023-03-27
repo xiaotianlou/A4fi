@@ -26,6 +26,16 @@ class MainTest {
     }
 
     @Test
+    void testBiomeRender(){
+
+
+
+
+
+
+
+    }
+    @Test
     void Etolake() throws IOException {
         MeshADT meshADT = new MeshADT();
         String input_c = "C:\\Users\\22091\\IdeaProjects\\a2---mesh-generator-team-28_newnewnewn\\IOArea\\inputoff.mesh";

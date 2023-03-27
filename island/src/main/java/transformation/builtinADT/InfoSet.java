@@ -15,6 +15,10 @@ public class InfoSet {
         return color;
     }
 
+    public static int calculateHumidity(int waterContent, int distance) {
+        return (int) (100 * waterContent / (waterContent + 0.05 * distance));
+    }
+
     public void setColor(int[] color) {
         this.color = color;
     }
@@ -60,6 +64,9 @@ public class InfoSet {
     }
 
     public int getTemperature() {
+
+
+
         return temperature;
     }
 

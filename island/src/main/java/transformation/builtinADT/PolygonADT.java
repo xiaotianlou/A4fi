@@ -146,9 +146,6 @@ public class PolygonADT {
     public void setSegments(List<SegmentADT> segments) {
         this.segments = segments;
     }
-    public static int calculateHumidity(int waterContent, int distance) {
-        return (int) (100 * waterContent / (waterContent + 0.05 * distance));
-    }
 
     public Structs.Polygon toPolygon() {
         Structs.Polygon.Builder builder = Structs.Polygon.newBuilder();
