@@ -92,7 +92,7 @@ class MainTest {
     @Test
     void testShape() throws IOException {
         MeshADT meshADT = new MeshADT();
-        String input_c = "C:\\Users\\22091\\IdeaProjects\\a2---mesh-generator-team-28_new1\\IOArea\\inputoff.mesh";
+        String input_c = "../IOArea\\inputoff.mesh";
         Structs.Mesh aMesh = new MeshFactory().read(input_c);
 
         Importer polygonImporter = new polygonImporter();
@@ -101,14 +101,15 @@ class MainTest {
         vertexImporter.read(aMesh, meshADT);
         segmentImporter.read(aMesh, meshADT);
         polygonImporter.read(aMesh, meshADT);
-        int seedint = (int) (Math.random() * 100000);
+        int seedint = (int) (Math.random() * 10000+1000);
         System.out.println("seed is:"+seedint );
         Seed s = new Seed(seedint);
 //    s= new Seed(802517);
         meshADT = new ShapeRenderer().Rendering(meshADT,s);
         Structs.Mesh output = meshADT.toMesh();
-        new MeshFactory().write(output, "C:\\Users\\22091\\IdeaProjects\\a2---mesh-generator-team-28_newnewnewn\\IOArea\\lagtest.mesh");//
-//        java -jar visualizer/visualizer.jar -i C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtest.mesh -o C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtest.svg -x
+        new MeshFactory().write(output, "C:../IOArea\\example.mesh");//
+
+//java -jar visualizer/visualizer.jar -i C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_newnewnewn\IOArea\example.mesh -o C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_newnewnewn\IOArea\ex.svg -x
 
     }
     @Test

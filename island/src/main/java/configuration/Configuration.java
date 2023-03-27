@@ -11,6 +11,7 @@ import java.util.Map;
  */
 public class Configuration {
 
+    public static final String mode = "mode";
     public static final String INPUT = "i";
     public static final String OUTPUT = "o";
     public static final String shape = "s";
