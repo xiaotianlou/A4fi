@@ -40,17 +40,10 @@ class MainTest {
         new ElevationRenderer().Rendering(meshADT,s);
         new BiomeRenderer().Rendering(meshADT,s);
 
-
-
         Structs.Mesh output = meshADT.toMesh();
         new MeshFactory().write(output, "..//IOArea\\Biometest.mesh");//
 
 //java -jar visualizer/visualizer.jar -i IOArea//Biometest.mesh -o IOArea//Biometest.svg -x
-
-
-
-
-
 
 
     }

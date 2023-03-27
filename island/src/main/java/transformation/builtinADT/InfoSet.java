@@ -11,6 +11,7 @@ public class InfoSet {
     private int waterContent;
     private int temperature = 25;
 
+
     public int[] getColor() {
         return color;
     }
@@ -28,6 +29,7 @@ public class InfoSet {
     public boolean isIsland() {
         return isIsland;
     }
+
 
     public void setIsland(boolean island) {
         this.isIsland = island;
