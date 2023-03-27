@@ -17,18 +17,7 @@ import java.io.IOException;
 import java.util.Map;
 
 public class Main {
-    public static MeshADT readInputMesh(Structs.Mesh aMesh, MeshADT meshADT) {
 
-        Importer polygonImporter = new polygonImporter();
-        Importer segmentImporter = new segmentImporter();
-        Importer vertexImporter = new vertexImporter();
-        vertexImporter.read(aMesh, meshADT);
-        segmentImporter.read(aMesh, meshADT);
-        polygonImporter.read(aMesh, meshADT);
-
-
-        return meshADT;
-    }
 
     public static void main(String[] args) throws IOException {
         //MVP
@@ -46,7 +35,7 @@ public class Main {
         String outputadress = "C:\\Users\\22091\\IdeaProjects\\a2---mesh-generator-team-28_newnewnewn\\IOArea\\inputoff.mesh";
         if(options.get(Configuration.mode)=="lagoon"){
             Structs.Mesh aMesh = new MeshFactory().read(options.get(Configuration.INPUT));
-            MeshADT m = readInputMesh(aMesh, meshADT);
+            MeshADT m = MeshADT.readInputMesh(aMesh, meshADT);
             int seedint = (int) (Math.random() * 100000);
             System.out.println("seed is:"+seedint );
             Seed s = new Seed(seedint);
@@ -79,7 +68,7 @@ public class Main {
         Structs.Mesh aMesh = new MeshFactory().read(input_c);
 
 
-        MeshADT m = readInputMesh(aMesh, meshADT);
+        MeshADT m = MeshADT.readInputMesh(aMesh, meshADT);
 
 
         if (!(options.get(Configuration.shape) == (null))) {
