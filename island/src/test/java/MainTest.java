@@ -47,15 +47,15 @@ class MainTest {
         vertexImporter.read(aMesh, meshADT);
         segmentImporter.read(aMesh, meshADT);
         polygonImporter.read(aMesh, meshADT);
-
+        meshADT.readInputMesh(aMesh);
 
         int seedint = (int) (Math.random() * 1000000);
         seedint =148000;
         System.out.println("seed is:"+seedint );
         Seed s = new Seed(seedint);
 //    s= new Seed(802517);
-        meshADT = new ShapeRenderer().Rendering(meshADT,s);
-        meshADT = new ElevationRenderer().Rendering(meshADT,s);
+        new ShapeRenderer().Rendering(meshADT,s);
+         new ElevationRenderer().Rendering(meshADT,s);
         Structs.Mesh output = meshADT.toMesh();
         new MeshFactory().write(output, "C:\\Users\\22091\\IdeaProjects\\a2---mesh-generator-team-28_newnewnewn\\IOArea\\lagtest.mesh");//
 
@@ -80,8 +80,8 @@ class MainTest {
         System.out.println("seed is:"+seedint );
         Seed s = new Seed(seedint);
 //    s= new Seed(802517);
-        meshADT = new BackGroundGenerator().Genering(meshADT,s);
-        meshADT = new LagoonGenerator().Genering(meshADT,s);
+        new BackGroundGenerator().Genering(meshADT,s);
+        new LagoonGenerator().Genering(meshADT,s);
     Structs.Mesh out=meshADT.toMesh();
         new MeshFactory().write(out, "MVP.mesh");//
 //        java -jar visualizer/visualizer.jar -i C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtest.mesh -o C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtest.svg -x

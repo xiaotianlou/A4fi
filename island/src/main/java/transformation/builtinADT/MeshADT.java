@@ -89,17 +89,17 @@ public class MeshADT {
 //        }
         return builder.build();
     }
-    public static MeshADT readInputMesh(Structs.Mesh aMesh, MeshADT meshADT) {
+    public MeshADT readInputMesh(Structs.Mesh aMesh) {
 
         Importer polygonImporter = new polygonImporter();
         Importer segmentImporter = new segmentImporter();
         Importer vertexImporter = new vertexImporter();
-        vertexImporter.read(aMesh, meshADT);
-        segmentImporter.read(aMesh, meshADT);
-        polygonImporter.read(aMesh, meshADT);
+        vertexImporter.read(aMesh, this);
+        segmentImporter.read(aMesh, this);
+        polygonImporter.read(aMesh, this);
 
 
-        return meshADT;
+        return this;
     }
 
 }

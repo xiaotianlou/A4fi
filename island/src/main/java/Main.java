@@ -35,7 +35,7 @@ public class Main {
         String outputadress = "C:\\Users\\22091\\IdeaProjects\\a2---mesh-generator-team-28_newnewnewn\\IOArea\\inputoff.mesh";
         if(options.get(Configuration.mode)=="lagoon"){
             Structs.Mesh aMesh = new MeshFactory().read(options.get(Configuration.INPUT));
-            MeshADT m = MeshADT.readInputMesh(aMesh, meshADT);
+            meshADT.readInputMesh(aMesh);
             int seedint = (int) (Math.random() * 100000);
             System.out.println("seed is:"+seedint );
             Seed s = new Seed(seedint);
@@ -68,25 +68,25 @@ public class Main {
         Structs.Mesh aMesh = new MeshFactory().read(input_c);
 
 
-        MeshADT m = MeshADT.readInputMesh(aMesh, meshADT);
+        meshADT.readInputMesh(aMesh);
 
 
         if (!(options.get(Configuration.shape) == (null))) {
-            m = new ShapeRenderer().Rendering(m, new Seed(Integer.parseInt(options.get(Configuration.shape))));
+            new ShapeRenderer().Rendering(meshADT, new Seed(Integer.parseInt(options.get(Configuration.shape))));
         } else {
-            m = new ShapeRenderer().Rendering(m, seed);
+            new ShapeRenderer().Rendering(meshADT, seed);
 
         }
 
         if (!(options.get(Configuration.altitude) == (null))) {
-            m = new ElevationRenderer().Rendering(m, new Seed(Integer.parseInt(options.get(Configuration.altitude))));
+             new ElevationRenderer().Rendering(meshADT, new Seed(Integer.parseInt(options.get(Configuration.altitude))));
         } else {
-            m = new ElevationRenderer().Rendering(m, seed);
+             new ElevationRenderer().Rendering(meshADT, seed);
         }
 
-        m = aquifers.aquifersInitialization();
+        meshADT = aquifers.aquifersInitialization();
 
-        Structs.Mesh output = m.toMesh();
+        Structs.Mesh output = meshADT.toMesh();
         new MeshFactory().write(output, outputadress);//
 
 
