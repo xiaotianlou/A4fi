@@ -14,9 +14,6 @@ public class WhittakerDiagramsRenderer {
         Random random = new Random();
 
         int ran = seed.getSeedArray().get(p.getId()%seed.getSeedArray().size())%4;
-
-
-
         if(ran > 0.75 ){
             p.setColor("238,118,33");
         }else{
@@ -25,22 +22,25 @@ public class WhittakerDiagramsRenderer {
         return p;
     }
     public PolygonADT InnerColor(PolygonADT p,Seed seed, String biome){
-        if (biome == "Tropical_Rain_Forest"){
+        int ran = seed.getSeedArray().get(p.getId()%seed.getSeedArray().size())%5;
+        if(ran > 0.75 ){
+            p.setColor("46,139,87");}
+        else{
+            if (biome == "Tropical_Rain_Forest"){
             p.setColor("0,255,0");
-        }else if(biome == "Tropical_Seasonal_Forest"){
+            }else if(biome == "Tropical_Seasonal_Forest"){
             p.setColor("154,205,50");
-        }else if(biome == "Temperate_Deciduous_Forest") {
-            p.setColor("46,139,87");
-        }else if(biome == "Temperate_Grassland_and_Desert") {
+            }else if(biome == "Temperate_Grassland_and_Desert") {
             p.setColor("255,215,0");
-        }else if(biome == "Temperate_Rain_Forest") {
+            }else if(biome == "Temperate_Rain_Forest") {
             p.setColor("0,250,154");
-        }else if(biome == "Taiga") {
+            }else if(biome == "Taiga") {
             p.setColor("0,100,0");
-        }else if(biome == "Tundra") {
+            }else if(biome == "Tundra") {
             p.setColor("0,206,209");
-        }else  {
+            }else  {
             p.setColor("238,118,33");
+            }
         }
         return p;
     }
