@@ -1,6 +1,7 @@
 import Reproducibility.Seed;
 import ca.mcmaster.cas.se2aa4.a2.io.MeshFactory;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs;
+import featureRenderer.BiomeRenderer;
 import featureRenderer.ElevationRenderer;
 import featureRenderer.Generable;
 import featureRenderer.Shape.BackGroundGenerator;
@@ -37,10 +38,14 @@ class MainTest {
 //    s= new Seed(802517);
         new ShapeRenderer().Rendering(meshADT,s);
         new ElevationRenderer().Rendering(meshADT,s);
-        Structs.Mesh output = meshADT.toMesh();
-        new MeshFactory().write(output, "C:\\Users\\22091\\IdeaProjects\\a2---mesh-generator-team-28_newnewnewn\\IOArea\\lagtest.mesh");//
+        new BiomeRenderer().Rendering(meshADT,s);
 
-//java -jar visualizer/visualizer.jar -i C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtest.mesh -o C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtest1.svg -x
+
+
+        Structs.Mesh output = meshADT.toMesh();
+        new MeshFactory().write(output, "..//IOArea\\Biometest.mesh");//
+
+//java -jar visualizer/visualizer.jar -i IOArea//Biometest.mesh -o IOArea//Biometest.svg -x
 
 
 
