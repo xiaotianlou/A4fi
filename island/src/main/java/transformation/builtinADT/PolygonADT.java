@@ -14,7 +14,7 @@ public class PolygonADT {
     private List<SegmentADT> segments;
     private List<VertexADT> vertices;
     private VertexADT centroid;
-    private int humidity = 0;
+    private int humidity = 150;
     private final InfoSet infoSet = new InfoSet();
 
     public PolygonADT(List<SegmentADT> segments, List<VertexADT> vertices, VertexADT centroid, int id) {
