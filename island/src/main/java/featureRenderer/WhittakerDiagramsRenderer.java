@@ -1,6 +1,7 @@
 package featureRenderer;
 
 import Reproducibility.Seed;
+import transformation.builtinADT.Biome;
 import transformation.builtinADT.MeshADT;
 import transformation.builtinADT.PolygonADT;
 
@@ -23,12 +24,17 @@ public class WhittakerDiagramsRenderer {
         }
         return p;
     }
+    public PolygonADT InnerColor(PolygonADT p,Seed seed, String biome){
+        if (biome == "Tropical_Rain_Forest"){
+            p.setColor("0,255,0");
+        }
+    }
 
 
     public MeshADT Rendering(MeshADT m, Seed seed, String biome) {
         for (PolygonADT p: m.getPolygons()){
             if(p.isIsland()){
-                p.setColor();
+                InnerColor(p,seed,biome);
             }
             for(PolygonADT neighbour: p.getPolygons())
                 if (!neighbour.isIsland()){
