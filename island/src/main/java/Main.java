@@ -51,18 +51,13 @@ public class Main {
 
         RiversRenderer riversRenderer = new RiversRenderer();
 
-       riversRenderer.Rendering(meshADT,s);
+        riversRenderer.Rendering(meshADT,s);
 
 
-
-
-
-
-
-        for (var p: meshADT.getPolygons()){
-            System.out.println(p.isLake());
+        for (var ss:meshADT.getSegments()){
+            System.out.println("T");
+            System.out.println(ss.getThickness());
         }
-
 
 
 
@@ -76,15 +71,6 @@ public class Main {
 
 
         new MeshFactory().write(output, "IOArea/outputRiver.mesh");//
-
-
-
-        //MVP
-//        Configuration config = new Configuration("generator/generator.jar -k irregular -h 1920 -w 1920 -p 1000 -r 5 -o ireg.mesh".split(" "));
-//        Buildable specification = SpecificationFactory.create(config);
-//        Mesh theMesh = specification.build();
-//        LagoonRenderer mvp = new LagoonRenderer(theMesh);
-//        new MeshFactory().write(mvp.Rendering(), "IOArea/full_color.mesh");//
 
 
     }

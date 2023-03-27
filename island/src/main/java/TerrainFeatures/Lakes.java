@@ -16,25 +16,21 @@ public class Lakes extends Tile{
 
     public MeshADT lakeBuilder(MeshADT meshADT, int n){
         int i = n;
-        System.out.println("00000000");
+
         for (;0<i;i--) {
             boolean flag=false;
-            System.out.println("========");
+
             int count=0;
             for (var p : meshADT.getPolygons()) {
-                if (p.isIsland() & count > n) {
+                if (p.isIsland() && count > n && !flag) {
                     p.setIsland(false);
-                    System.out.println("+++");
-                    System.out.println(p.getId());
                     p.setColor("130,158,185");
                     p.setLake(true);
                     flag=true;
                     checkAround(p);
                 }
-                if (flag){
-                    break;
-                }
                 count +=1;
+                System.out.println(count);
             }
         }
         return meshADT;

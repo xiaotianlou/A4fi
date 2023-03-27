@@ -9,8 +9,8 @@ public class SegmentADT {
     final int id;
     private final VertexADT start;
     private final VertexADT end;
-    private int[] color = new int[]{255, 255, 255};
-    private int thickness = 1;
+    private int[] color = new int[]{125, 125, 125};
+    private float thickness = 1;
 
     public SegmentADT(VertexADT start, VertexADT end, int id) {
         this.start = start;
@@ -52,17 +52,19 @@ public class SegmentADT {
 
 
     public Structs.Segment toSegment() {
-        Structs.Segment s = Structs.Segment.newBuilder().setV1Idx(start.getId()).setV2Idx(end.getId()).build();
-        Structs.Property color = Structs.Property.newBuilder().setKey("rgb_color").setValue(getColorCode()).build();
-        Structs.Segment colored_s = Structs.Segment.newBuilder(s).addProperties(color).build();
-        return colored_s;
+        Structs.Segment.Builder builder = Structs.Segment.newBuilder();
+        builder.setV1Idx(start.getId()).setV2Idx(end.getId());
+        Structs.Property.Builder propertyBuilder = Structs.Property.newBuilder();
+        builder.addProperties(propertyBuilder.setKey("rgb_color").setValue(getColorCode()));
+        builder.addProperties(propertyBuilder.setKey("thickness").setValue(String.valueOf(getThickness())));
+        return builder.build();
     }
 
-    public int getThickness() {
+    public float getThickness() {
         return thickness;
     }
 
-    public void setThickness(int thickness) {
+    public void setThickness(float thickness) {
         this.thickness = thickness;
     }
 }

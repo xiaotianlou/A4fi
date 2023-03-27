@@ -31,6 +31,16 @@ public class GraphicRenderer implements Renderer {
 
             Optional<Color> fill = new ColorProperty().extract(segment.getPropertiesList());
             canvas.setColor(fill.get());
+
+            float temp = 0.2f;
+            for (var p:segment.getPropertiesList()){
+                if (p.getKey().equals("thickness")){
+                    temp = Float.parseFloat(p.getValue());
+                }
+            }
+            System.out.println(temp);
+            Stroke stroke = new BasicStroke(temp);
+            canvas.setStroke(stroke);
             canvas.draw(new Line2D.Double(aMesh.getVerticesList().get(segment.getV1Idx()).getX(),aMesh.getVerticesList().get(segment.getV1Idx()).getY(),aMesh.getVerticesList().get(segment.getV2Idx()).getX(), aMesh.getVerticesList().get(segment.getV2Idx()).getY()));
 
         }
@@ -66,14 +76,6 @@ public class GraphicRenderer implements Renderer {
             canvas.setColor(old);
         }
 
-//        for (var s:p.getSegmentIdxsList()){
-//            Optional<Color> fill2 = new ColorProperty().extract(aMesh.getSegments(s).getPropertiesList());
-//            if(fill2.isPresent()) {
-//                Color old = canvas.getColor();
-//                canvas.setColor(fill2.get());
-//                canvas.setColor(old);
-//            }
-//        }
     }
 
 }
