@@ -28,8 +28,13 @@ public class WhittakerDiagramsRenderer implements Renderable {
     public MeshADT Rendering(MeshADT m, Seed seed) {
         for (PolygonADT p: m.getPolygons()){
             for(PolygonADT neighbour: p.getPolygons())
-                if (neighbour.isIsland() == false){
-
+                if (!neighbour.isIsland()){
+                    BoundryColor(p,seed);
+                    for(PolygonADT nei: p.getPolygons()){
+                        if (neighbour.isIsland() ){
+                            BoundryColor(nei,seed);
+                        }
+                    }
                 }
         }
         return m;
