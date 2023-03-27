@@ -30,6 +30,9 @@ public class BiomeRenderer implements Renderable {
                 } else if (humidity >= 50) {
                     p.setBiome(Biome.Tropical_Seasonal_Forest);
                     setColor(p, new Color(154, 205, 50));
+                }else {
+                    p.setBiome(Biome.Subtropical_Desert);
+                    setColor(p, new Color(238, 118, 33));
                 }
             } else if (temperature >= 10) {
                 if (humidity >= 225) {
@@ -43,7 +46,9 @@ public class BiomeRenderer implements Renderable {
                 } else if (humidity >= 25) {
                     p.setBiome(Biome.Temperate_Grassland_and_Desert);
                     setColor(p, new Color(255, 215, 0));
-
+                }else {
+                    p.setBiome(Biome.Subtropical_Desert);
+                    setColor(p, new Color(238, 118, 33));
                 }
             } else if (temperature >= 3) {
                 if (humidity >= 200) {
@@ -57,7 +62,9 @@ public class BiomeRenderer implements Renderable {
                 } else if (humidity >= 15) {
                     p.setBiome(Biome.Temperate_Grassland_and_Desert);
                     setColor(p, new Color(255, 215, 0));
-
+                }else {
+                    p.setBiome(Biome.Subtropical_Desert);
+                    setColor(p, new Color(238, 118, 33));
                 }
             } else if (temperature >= -5) {
                 if (humidity >= 30) {
@@ -67,15 +74,14 @@ public class BiomeRenderer implements Renderable {
                 } else if (humidity >= 10) {
                     p.setBiome(Biome.Temperate_Grassland_and_Desert);
                     setColor(p, new Color(255, 215, 0));
+                }else {
+                    p.setBiome(Biome.Subtropical_Desert);
+                    setColor(p, new Color(238, 118, 33));
 
                 }
             } else if (temperature < -5) {
                 p.setBiome(Biome.Tundra);
                 setColor(p, new Color(0, 206, 209));
-
-            } else {
-                p.setBiome(Biome.Subtropical_Desert);
-                setColor(p, new Color(238, 118, 33));
 
             }
         }
