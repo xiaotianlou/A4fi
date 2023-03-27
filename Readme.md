@@ -34,6 +34,13 @@ mosser@azrael A2 % java -jar visualizer/visualizer.jar -i img/irregular.mesh -o 
 mosser@azrael A2 % java -jar visualizer/visualizer.jar -i img/irregular.mesh -o img/irregular_debug.svg -x
 ```
 
+### Create the graph
+```
+mosser@azrael A2 % java -jar island/island.jar -i xxxxxx -o xxxxx -help          
+
+```
+
+
 Note: PDF versions of the SVG files were created with `rsvg-convert`.
 ### Feature plan
 | Feature(id) | Feature title | Who? | Start | End | Status |

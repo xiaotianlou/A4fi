@@ -16,6 +16,7 @@ public class PolygonADT {
     private VertexADT centroid;
 
     private boolean isLake=false;
+    private int humidity = 150;
     private final InfoSet infoSet = new InfoSet();
 
     public PolygonADT(List<SegmentADT> segments, List<VertexADT> vertices, VertexADT centroid, int id) {
@@ -23,6 +24,19 @@ public class PolygonADT {
         this.vertices = vertices;
         this.id = id;
         this.centroid = centroid;
+    }
+
+    public int getHumidity() {
+        calHumidity();
+        return humidity;
+    }
+    public void calHumidity() {
+//     InfoSet.calculateHumidity(water,distance);
+        this.humidity=(int)(Math.random()*400);
+    }
+
+    public void setHumidity(int humidity) {
+        this.humidity = humidity;
     }
 
     public InfoSet getInfoSet() {

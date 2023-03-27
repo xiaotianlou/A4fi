@@ -10,8 +10,13 @@ public class InfoSet {
     private int waterContent;
     private int temperature = 25;
 
+
     public int[] getColor() {
         return color;
+    }
+
+    public static int calculateHumidity(int waterContent, int distance) {
+        return (int) (100 * waterContent / (waterContent + 0.05 * distance));
     }
 
     public void setColor(int[] color) {
@@ -23,6 +28,7 @@ public class InfoSet {
     public boolean isIsland() {
         return isIsland;
     }
+
 
     public void setIsland(boolean island) {
         this.isIsland = island;
@@ -59,6 +65,7 @@ public class InfoSet {
     }
 
     public int getTemperature() {
+        this.temperature = (int) (15-0.25*getElevation());
         return temperature;
     }
 

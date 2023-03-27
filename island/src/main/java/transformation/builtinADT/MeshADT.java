@@ -1,6 +1,10 @@
 package transformation.builtinADT;
 
 import ca.mcmaster.cas.se2aa4.a2.io.Structs;
+import transformation.importation.Importer;
+import transformation.importation.polygonImporter;
+import transformation.importation.segmentImporter;
+import transformation.importation.vertexImporter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,6 +88,18 @@ public class MeshADT {
 //            System.out.println(s);
 //        }
         return builder.build();
+    }
+    public MeshADT readInputMesh(Structs.Mesh aMesh) {
+
+        Importer polygonImporter = new polygonImporter();
+        Importer segmentImporter = new segmentImporter();
+        Importer vertexImporter = new vertexImporter();
+        vertexImporter.read(aMesh, this);
+        segmentImporter.read(aMesh, this);
+        polygonImporter.read(aMesh, this);
+
+
+        return this;
     }
 
 }

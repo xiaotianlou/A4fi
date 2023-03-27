@@ -16,7 +16,7 @@ import java.util.List;
  * @author loux8@mcmaster.ca
  * @date 2023/3/23 16:03
  */
-public class LagoonRenderer  { //独立的MVP类 和其他类无关
+public class LagoonRenderer  { //Separate MVP class with no relation to other classes
 
     Mesh m;
     public LagoonRenderer(Mesh m) {

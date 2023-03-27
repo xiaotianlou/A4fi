@@ -2,6 +2,7 @@ package Reproducibility;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Seed {
@@ -13,18 +14,27 @@ public class Seed {
     private int seed;
 
     public List<Integer> getSeedArray(){
-        ArrayList<Integer> t= new ArrayList();
-        for(char a :(seed+"").toCharArray()){
-            t.add(Integer.parseInt(a+""));
+        List<Integer> l = new ArrayList<Integer>();
+        int n =seed;
+        while (n>0){
+        l.add(n%10);
+        n=n/10;
+        Collections.reverse(l);
         }
-        return t;
+        if(l.size()==0){
+            l.add(5);
+            l.add(2);
+            l.add(7);
+        }
+
+        return l;
     }
 
 
 
 
     public Seed(){
-        seed = 77123123;
+        seed = (int) (Math.random() * 10000 + 1000);
     }
     public Seed(int seed){
         this.seed = seed;

@@ -23,12 +23,10 @@ public class BasicElevationGenerator implements Generable {
         }
         for (PolygonADT p : land) {
             InfoSet ti = p.getInfoSet();
-
             if (ti.getElevation() == -1) {
-                ti.setElevation(5+seed.getSeedArray().get(p.getId() % seed.getSeedArray().size()) * 40 / 10);
+                ti.setElevation(seed.getSeedArray().get(p.getId()*3 % seed.getSeedArray().size())+seed.getSeedArray().get(p.getId() % seed.getSeedArray().size()) * 70 / 10);
             }
         }
         return m;
-
     }
 }
