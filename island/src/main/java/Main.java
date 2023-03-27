@@ -31,38 +31,40 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
+
         Configuration config = new Configuration(args);
         Map<String, String> options = config.export();
         MeshADT meshADT = new MeshADT();
 
-        String input_c="../IOArea/inputoffC.mesh";
-        String outputadress="../IOArea/inputoffC.mesh";
-        if(!options.get(Configuration.INPUT).isEmpty()){
+        String input_c="../inputoff.mesh";
+//        input_c="C:\\Users\\22091\\IdeaProjects\\a2---mesh-generator-team-28_newnewnewn\\IOArea\\inputoff.svg";
+        String outputadress="../IOArea/output.svg";
+        if(!(options.get(Configuration.INPUT)==(null))){
         input_c=options.get(Configuration.INPUT).toString();}
-        if(!options.get(Configuration.OUTPUT).isEmpty()){
+        if(!(options.get(Configuration.OUTPUT)==(null))){
         outputadress=options.get(Configuration.OUTPUT).toString();}
 
-        Seed seed = new Seed((int)Math.random() * 100000);
-        if(!options.get(Configuration.seed).isEmpty()){
+        Seed seed = new Seed((int) (Math.random() * 10000+1000));
+        if(!(options.get(Configuration.seed)==(null))){
             seed=new Seed(Integer.parseInt(options.get(Configuration.seed).toString()));}
         int water=1;
-        if(!options.get(Configuration.seed).isEmpty()){
+        if(!(options.get(Configuration.aquifers)==(null))){
             water=Integer.parseInt(options.get(Configuration.seed).toString());}
         Aquifers aquifers = new Aquifers(meshADT,water);
+
         Structs.Mesh aMesh = new MeshFactory().read(input_c);
+
+
         MeshADT m =readInputMesh(aMesh,meshADT);
 
 
-        if(!options.get(Configuration.shape).isEmpty()){
+        if(!(options.get(Configuration.shape)==(null))){
 m= new ShapeRenderer().Rendering(m,new Seed(Integer.parseInt(options.get(Configuration.shape))));}
 
-        if(!options.get(Configuration.altitude).isEmpty()){
-m= new ElevationRenderer().Rendering(m,new Integer.parseInt(options.get(Configuration.altitude)));}
+        if(!(options.get(Configuration.altitude)==(null))){
+m= new ElevationRenderer().Rendering(m, new Seed(Integer.parseInt(options.get(Configuration.altitude))));}
 
         m=aquifers.aquifersInitialization();
-
-
-
 
         Structs.Mesh output= m.toMesh();
         new MeshFactory().write(output, outputadress);//

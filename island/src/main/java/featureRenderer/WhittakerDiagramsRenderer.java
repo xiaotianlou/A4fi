@@ -28,7 +28,7 @@ public class WhittakerDiagramsRenderer {
     public MeshADT Rendering(MeshADT m, Seed seed, String biome) {
         for (PolygonADT p: m.getPolygons()){
             if(p.isIsland()){
-                p.setColor();
+//                p.setColor();
             }
             for(PolygonADT neighbour: p.getPolygons())
                 if (!neighbour.isIsland()){
