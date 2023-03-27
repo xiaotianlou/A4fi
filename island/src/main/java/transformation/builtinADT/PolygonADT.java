@@ -27,6 +27,10 @@ public class PolygonADT {
     public int getHumidity() {
         return humidity;
     }
+    public int getHumidity(int water, int distance) {
+     InfoSet.calculateHumidity(water,distance);
+        return humidity;
+    }
 
     public void setHumidity(int humidity) {
         this.humidity = humidity;
