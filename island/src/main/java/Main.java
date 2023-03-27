@@ -44,7 +44,7 @@ public class Main {
             outputadress = options.get(Configuration.OUTPUT);
         }
 
-        Seed seed = new Seed((int) (Math.random() * 10000 + 1000));
+        Seed seed = new Seed((int) (Math.random() * 1000000));
         System.out.println("seed is:   "+seed.getSeed());
         if (!(options.get(Configuration.seed) == (null))) {
             seed = new Seed(Integer.parseInt(options.get(Configuration.seed)));
