@@ -37,7 +37,12 @@ public class WhittakerDiagramsRenderer {
             p.setColor("0,250,154");
         }else if(biome == "Taiga") {
             p.setColor("0,100,0");
+        }else if(biome == "Tundra") {
+            p.setColor("0,206,209");
+        }else  {
+            p.setColor("238,118,33");
         }
+        return p;
     }
 
 
