@@ -8,11 +8,8 @@ import transformation.builtinADT.PolygonADT;
 import java.util.Random;
 
 public class WhittakerDiagramsRenderer {
-
-
     public PolygonADT BoundryColor(PolygonADT p,Seed seed){
         Random random = new Random();
-
         int ran = seed.getSeedArray().get(p.getId()%seed.getSeedArray().size())%4;
         if(ran > 0.75 ){
             p.setColor("238,118,33");
@@ -23,7 +20,7 @@ public class WhittakerDiagramsRenderer {
     }
     public PolygonADT InnerColor(PolygonADT p,Seed seed, String biome){
         int ran = seed.getSeedArray().get(p.getId()%seed.getSeedArray().size())%5;
-        if(ran > 0.75 ){
+        if(ran < 0.75 ){
             p.setColor("46,139,87");}
         else{
             if (biome == "Tropical_Rain_Forest"){
