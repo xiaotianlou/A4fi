@@ -1,3 +1,4 @@
+import Reproducibility.Seed;
 import TerrainFeatures.Aquifers;
 import ca.mcmaster.cas.se2aa4.a2.generator.specification.Buildable;
 import ca.mcmaster.cas.se2aa4.a2.io.MeshFactory;
@@ -28,14 +29,35 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-
         Configuration config = new Configuration(args);
         Map<String, String> options = config.export();
         MeshADT meshADT = new MeshADT();
-        String input_c="IOArea/inputoffC.mesh";
+
+        String input_c="../IOArea/inputoffC.mesh";
+        String outputadress="../IOArea/inputoffC.mesh";
+        if(!options.get(Configuration.INPUT).isEmpty())
+        input_c=options.get(Configuration.INPUT).toString();
+        if(!options.get(Configuration.OUTPUT).isEmpty())
+        outputadress=options.get(Configuration.OUTPUT).toString();
+
+        Seed seed = new Seed((int)Math.random() * 100000);
+        if(!options.get(Configuration.seed).isEmpty())
+            seed=new Seed(Integer.parseInt(options.get(Configuration.seed).toString()));
+
+
+        Aquifers aquifers = new Aquifers(meshADT,1);
+
+
+
+
+
 
         Structs.Mesh aMesh = new MeshFactory().read(input_c);
-        readInputMesh(aMesh,meshADT);
+
+        MeshADT m =readInputMesh(aMesh,meshADT);
+
+
+
 
 
 
@@ -54,7 +76,7 @@ public class Main {
 
 
 
-        new MeshFactory().write(output, "IOArea/outputC2333333333.mesh");//
+        new MeshFactory().write(output, outputadress);//
 
 
 
