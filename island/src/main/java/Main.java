@@ -11,6 +11,10 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+
+
+
+
 //        Configuration config = new Configuration("generator/generator.jar -k irregular -h 1920 -w 1920 -p 1000 -r 5 -o ireg.mesh".split(" "));
 //        Mesh theMesh = specification.build();
 //        new MeshFactory().write(mvp.Rendering(), "og.mesh");
