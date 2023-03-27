@@ -45,14 +45,14 @@ public class WhittakerDiagramsRenderer {
 
     public MeshADT Rendering(MeshADT m, Seed seed, String biome) {
         for (PolygonADT p: m.getPolygons()){
-            if(p.isIsland()){
+            if(!p.isIsland()){
                 InnerColor(p,seed,biome);
             }
             for(PolygonADT neighbour: p.getPolygons())
                 if (!neighbour.isIsland()){
                     BoundryColor(p,seed);
                     for(PolygonADT nei: p.getPolygons()){
-                        if (neighbour.isIsland() ){
+                        if (!neighbour.isIsland() ){
                             BoundryColor(nei,seed);
                         }
                     }
