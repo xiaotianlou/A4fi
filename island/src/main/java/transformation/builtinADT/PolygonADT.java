@@ -14,6 +14,8 @@ public class PolygonADT {
     private List<SegmentADT> segments;
     private List<VertexADT> vertices;
     private VertexADT centroid;
+
+    private boolean isLake=false;
     private final InfoSet infoSet = new InfoSet();
 
     public PolygonADT(List<SegmentADT> segments, List<VertexADT> vertices, VertexADT centroid, int id) {
@@ -165,4 +167,11 @@ public class PolygonADT {
         return builder.build();
     }
 
+    public boolean isLake() {
+        return isLake;
+    }
+
+    public void setLake(boolean lake) {
+        isLake = lake;
+    }
 }

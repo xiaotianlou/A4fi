@@ -1,6 +1,11 @@
+import Reproducibility.Seed;
 import TerrainFeatures.Aquifers;
+import TerrainFeatures.Lakes;
 import ca.mcmaster.cas.se2aa4.a2.io.MeshFactory;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs;
+import featureRenderer.ElevationRenderer;
+import featureRenderer.RiversRenderer;
+import featureRenderer.ShapeRenderer;
 import transformation.builtinADT.MeshADT;
 import transformation.importation.Importer;
 import transformation.importation.polygonImporter;
@@ -19,7 +24,7 @@ public class Main {
 
         MeshADT meshADT = new MeshADT();
 //        String input = "IOArea/inputoff.mesh";
-        String input_c="IOArea/inputoffC.mesh";
+        String input_c="IOArea/inputoff.mesh";
         Structs.Mesh aMesh = new MeshFactory().read(input_c);
 
         Importer polygonImporter = new polygonImporter();
@@ -28,8 +33,35 @@ public class Main {
         vertexImporter.read(aMesh,meshADT);
         segmentImporter.read(aMesh,meshADT);
         polygonImporter.read(aMesh,meshADT);
-        Aquifers aquifers = new Aquifers(meshADT,1);
-        MeshADT meshADT_A = aquifers.aquifersInitialization();
+        Aquifers aquifers = new Aquifers(meshADT,10);
+        meshADT = aquifers.aquifersInitialization();
+
+
+
+        int seedint = (int) (Math.random() * 1000000);
+        seedint =6082;
+        System.out.println("seed is:"+seedint );
+        Seed s = new Seed(seedint);
+//    s= new Seed(802517);
+        meshADT = new ShapeRenderer().Rendering(meshADT,s);
+        meshADT = new ElevationRenderer().Rendering(meshADT,s);
+
+        Lakes lakes = new Lakes();
+        meshADT = lakes.lakeBuilder(meshADT,20);
+
+        RiversRenderer riversRenderer = new RiversRenderer();
+
+       riversRenderer.Rendering(meshADT,s);
+
+
+
+
+
+
+
+        for (var p: meshADT.getPolygons()){
+            System.out.println(p.isLake());
+        }
 
 
 
@@ -39,7 +71,11 @@ public class Main {
 
 
 
-        new MeshFactory().write(output, "IOArea/outputC2333333333.mesh");//
+        System.out.println(output.getPolygonsCount());
+
+
+
+        new MeshFactory().write(output, "IOArea/outputRiver.mesh");//
 
 
 

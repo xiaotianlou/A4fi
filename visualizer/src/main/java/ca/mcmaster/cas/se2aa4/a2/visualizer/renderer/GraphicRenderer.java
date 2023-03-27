@@ -4,11 +4,13 @@ import ca.mcmaster.cas.se2aa4.a2.io.Structs;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Mesh;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Vertex;
 import ca.mcmaster.cas.se2aa4.a2.visualizer.renderer.properties.ColorProperty;
+import org.apache.batik.bridge.svg12.SVGSolidColorElementBridge;
 
 import java.awt.Graphics2D;
 import java.awt.Stroke;
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.geom.Line2D;
 import java.awt.geom.Path2D;
 import java.util.Iterator;
 import java.util.Optional;
@@ -21,6 +23,17 @@ public class GraphicRenderer implements Renderer {
         Stroke stroke = new BasicStroke(0.2f);
         canvas.setStroke(stroke);
         drawPolygons(aMesh,canvas);
+        drawSegments(aMesh,canvas);
+    }
+
+    private void drawSegments(Mesh aMesh,Graphics2D canvas){
+        for (Structs.Segment segment:aMesh.getSegmentsList()){
+
+            Optional<Color> fill = new ColorProperty().extract(segment.getPropertiesList());
+            canvas.setColor(fill.get());
+            canvas.draw(new Line2D.Double(aMesh.getVerticesList().get(segment.getV1Idx()).getX(),aMesh.getVerticesList().get(segment.getV1Idx()).getY(),aMesh.getVerticesList().get(segment.getV2Idx()).getX(), aMesh.getVerticesList().get(segment.getV2Idx()).getY()));
+
+        }
     }
 
     private void drawPolygons(Mesh aMesh, Graphics2D canvas) {
@@ -45,12 +58,22 @@ public class GraphicRenderer implements Renderer {
         path.closePath();
         canvas.draw(path);
         Optional<Color> fill = new ColorProperty().extract(p.getPropertiesList());
+
         if(fill.isPresent()) {
             Color old = canvas.getColor();
             canvas.setColor(fill.get());
             canvas.fill(path);
             canvas.setColor(old);
         }
+
+//        for (var s:p.getSegmentIdxsList()){
+//            Optional<Color> fill2 = new ColorProperty().extract(aMesh.getSegments(s).getPropertiesList());
+//            if(fill2.isPresent()) {
+//                Color old = canvas.getColor();
+//                canvas.setColor(fill2.get());
+//                canvas.setColor(old);
+//            }
+//        }
     }
 
 }

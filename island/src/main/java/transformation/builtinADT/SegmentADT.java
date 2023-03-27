@@ -9,7 +9,7 @@ public class SegmentADT {
     final int id;
     private final VertexADT start;
     private final VertexADT end;
-    private int[] color = new int[]{0, 0, 0};
+    private int[] color = new int[]{255, 255, 255};
     private int thickness = 1;
 
     public SegmentADT(VertexADT start, VertexADT end, int id) {
@@ -46,8 +46,8 @@ public class SegmentADT {
         }
     }
 
-    private String getColorCode() {
-        return color[0] + "，" + color[1] + "," + color[2];
+    public String getColorCode() {
+        return color[0] + "," + color[1] + "," + color[2];
     }
 
 
@@ -62,7 +62,7 @@ public class SegmentADT {
         return thickness;
     }
 
-    public void setThickness() {
-        this.thickness = this.thickness+1;
+    public void setThickness(int thickness) {
+        this.thickness = thickness;
     }
 }
