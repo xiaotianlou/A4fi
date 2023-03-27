@@ -26,7 +26,6 @@ public class PolygonADT {
 
     public int getHumidity() {
         calHumidity();
-        System.out.println(humidity);
         return humidity;
     }
     public void calHumidity() {

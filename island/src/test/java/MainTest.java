@@ -1,12 +1,9 @@
 import Reproducibility.Seed;
 import ca.mcmaster.cas.se2aa4.a2.io.MeshFactory;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs;
-import featureRenderer.BiomeRenderer;
-import featureRenderer.ElevationRenderer;
-import featureRenderer.Generable;
+import featureRenderer.*;
 import featureRenderer.Shape.BackGroundGenerator;
 import featureRenderer.Shape.LagoonGenerator;
-import featureRenderer.ShapeRenderer;
 import org.junit.jupiter.api.Test;
 import transformation.builtinADT.MeshADT;
 import transformation.builtinADT.PolygonADT;
@@ -14,17 +11,80 @@ import transformation.importation.Importer;
 import transformation.importation.polygonImporter;
 import transformation.importation.segmentImporter;
 import transformation.importation.vertexImporter;
-
+import java.io.BufferedReader;
 import java.awt.*;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 class MainTest {
+
+    private void exeCommands(String command) throws IOException {
+        Process p = Runtime.getRuntime().exec(command);
+        BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
+        String line;
+        String text = command + "\n";
+        System.out.println(text);
+        while ((line = input.readLine()) != null) {
+            text += line;
+            System.out.println("Line: " + line);
+        }
+    }
 
     @Test
     void main() throws IOException {
 
     }
+    @Test
+    void  testDW() throws IOException {
+
+        MeshADT meshADT = new MeshADT();
+        String input_c = "..//IOArea\\inputoff.mesh";
+        Structs.Mesh aMesh = new MeshFactory().read(input_c);
+        meshADT.readInputMesh(aMesh);
+        int seedint = (int) (Math.random() * 1000000);
+        System.out.println("seed is:"+seedint );
+        Seed s = new Seed(seedint);
+//    s= new Seed(802517);
+        new ShapeRenderer().Rendering(meshADT,s);
+        new ElevationRenderer().Rendering(meshADT,s);
+        new BiomeRenderer().Rendering(meshADT,s);
+        String type="Tropical_Seasonal_Forest";
+        new WhittakerDiagramsRenderer().Rendering(meshADT,s,type);
+
+        Structs.Mesh output = meshADT.toMesh();
+        new MeshFactory().write(output, "..//IOArea\\WDtest.mesh");//
+
+//java -jar visualizer/visualizer.jar -i IOArea//Biometest.mesh -o IOArea//Biometest.svg -x
+        String command = "java -jar visualizer/visualizer.jar -i IOArea//WDtest.mesh -o IOArea//WDtest.svg -x";
+        exeCommands(command);
+
+    }
+
+    @Test
+    void testLakeRender() throws IOException {
+        MeshADT meshADT = new MeshADT();
+        String input_c = "..//IOArea\\inputoff.mesh";
+        Structs.Mesh aMesh = new MeshFactory().read(input_c);
+        meshADT.readInputMesh(aMesh);
+        int seedint = (int) (Math.random() * 1000000);
+        System.out.println("seed is:"+seedint );
+        Seed s = new Seed(seedint);
+
+
+        new ShapeRenderer().Rendering(meshADT,s);
+        new ElevationRenderer().Rendering(meshADT,s);
+        new LakesRenderer().Rendering(meshADT,s);
+//        new BiomeRenderer().Rendering(meshADT,s);
+
+        Structs.Mesh output = meshADT.toMesh();
+        new MeshFactory().write(output, "..//IOArea\\Laketest.mesh");//
+//java -jar visualizer/visualizer.jar -i IOArea//Laketest.mesh -o IOArea//Laketest.svg -x
+        String command = "java -jar visualizer/visualizer.jar -i IOArea//Laketest.mesh -o IOArea//Laketest.svg -x";
+        exeCommands(command);
+    }
+
+
 
     @Test
     void testBiomeRender() throws IOException {
@@ -44,7 +104,8 @@ class MainTest {
         new MeshFactory().write(output, "..//IOArea\\Biometest.mesh");//
 
 //java -jar visualizer/visualizer.jar -i IOArea//Biometest.mesh -o IOArea//Biometest.svg -x
-
+        String command = "java -jar visualizer/visualizer.jar -i IOArea//Biometest.mesh -o IOArea//Biometest111.svg -x";
+        exeCommands(command);
 
     }
     @Test

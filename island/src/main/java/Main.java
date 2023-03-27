@@ -8,17 +8,13 @@ import featureRenderer.Shape.BackGroundGenerator;
 import featureRenderer.Shape.LagoonGenerator;
 import featureRenderer.ShapeRenderer;
 import transformation.builtinADT.MeshADT;
-import transformation.importation.Importer;
-import transformation.importation.polygonImporter;
-import transformation.importation.segmentImporter;
-import transformation.importation.vertexImporter;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Map;
 
 public class Main {
-
-
     public static void main(String[] args) throws IOException {
         //MVP
 //        Configuration config = new Configuration("generator/generator.jar -k irregular -h 1920 -w 1920 -p 1000 -r 5 -o ireg.mesh".split(" "));
@@ -33,15 +29,15 @@ public class Main {
 
         String input_c = "C:\\Users\\22091\\IdeaProjects\\a2---mesh-generator-team-28_newnewnewn\\IOArea\\inputoff.mesh"; //use absolute address only
         String outputadress = "C:\\Users\\22091\\IdeaProjects\\a2---mesh-generator-team-28_newnewnewn\\IOArea\\inputoff.mesh";
-        if(options.get(Configuration.mode)=="lagoon"){
+        if (options.get(Configuration.mode) == "lagoon") {
             Structs.Mesh aMesh = new MeshFactory().read(options.get(Configuration.INPUT));
             meshADT.readInputMesh(aMesh);
             int seedint = (int) (Math.random() * 100000);
-            System.out.println("seed is:"+seedint );
+            System.out.println("seed is:" + seedint);
             Seed s = new Seed(seedint);
-            meshADT = new BackGroundGenerator().Genering(meshADT,s);
-            meshADT = new LagoonGenerator().Genering(meshADT,s);
-            Structs.Mesh out=meshADT.toMesh();
+            meshADT = new BackGroundGenerator().Genering(meshADT, s);
+            meshADT = new LagoonGenerator().Genering(meshADT, s);
+            Structs.Mesh out = meshADT.toMesh();
             new MeshFactory().write(out, options.get(Configuration.OUTPUT));//
 
         }
@@ -55,7 +51,7 @@ public class Main {
         }
 
         Seed seed = new Seed((int) (Math.random() * 1000000));
-        System.out.println("seed is:   "+seed.getSeed());
+        System.out.println("seed is:   " + seed.getSeed());
         if (!(options.get(Configuration.seed) == (null))) {
             seed = new Seed(Integer.parseInt(options.get(Configuration.seed)));
         }
@@ -79,9 +75,9 @@ public class Main {
         }
 
         if (!(options.get(Configuration.altitude) == (null))) {
-             new ElevationRenderer().Rendering(meshADT, new Seed(Integer.parseInt(options.get(Configuration.altitude))));
+            new ElevationRenderer().Rendering(meshADT, new Seed(Integer.parseInt(options.get(Configuration.altitude))));
         } else {
-             new ElevationRenderer().Rendering(meshADT, seed);
+            new ElevationRenderer().Rendering(meshADT, seed);
         }
 
         meshADT = aquifers.aquifersInitialization();
@@ -90,8 +86,17 @@ public class Main {
         new MeshFactory().write(output, outputadress);//
 
 
+    }
 
-
-
+    private void exeCommands(String command) throws IOException {
+        Process p = Runtime.getRuntime().exec(command);
+        BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
+        String line;
+        String text = command + "\n";
+        System.out.println(text);
+        while ((line = input.readLine()) != null) {
+            text += line;
+            System.out.println("Line: " + line);
+        }
     }
 }
