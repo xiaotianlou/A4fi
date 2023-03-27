@@ -27,6 +27,8 @@ public class WhittakerDiagramsRenderer {
     public PolygonADT InnerColor(PolygonADT p,Seed seed, String biome){
         if (biome == "Tropical_Rain_Forest"){
             p.setColor("0,255,0");
+        }else if(biome == "Tropical_Seasonal_Forest"){
+            p.setColor("154,205,50");
         }
     }
 
