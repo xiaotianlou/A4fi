@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="newvisualizer" type="MavenRunConfiguration" factoryName="Maven" activateToolWindowBeforeRun="false">
+  <configuration default="false" name="testvisualizer" type="MavenRunConfiguration" factoryName="Maven" activateToolWindowBeforeRun="false">
     <MavenSettings>
       <option name="myGeneralSettings" />
       <option name="myRunnerSettings">
@@ -17,7 +17,7 @@
           <option name="passParentEnv" value="true" />
           <option name="runMavenInBackground" value="true" />
           <option name="skipTests" value="false" />
-          <option name="vmOptions" value="-Dexec.args=&quot;visualizer/visualizer.jar -i ..//IOArea//Shapetest.mesh -o ..//IOArea//Shapetest.svg -x&quot;" />
+          <option name="vmOptions" value="-Dexec.args=&quot;visualizer/visualizer.jar -i ..//IOArea//test.mesh -o ..//IOArea//test.svg -x&quot;" />
         </MavenRunnerSettings>
       </option>
       <option name="myRunnerParameters">

@@ -16,7 +16,7 @@ public class RandomShapeGenerator implements Generable {
         double para2=Simulink((seed.getSeedArray().get(seed.getSeedArray().size()/6))-5);
 
         double baisx=100;//shift x
-        double baisy=80;//shift y
+        double baisy=100;//shift y
 
         double cen_x = (1920 / 2)*para1+baisx;
         double cen_y = (1920 / 2)*para2+baisy;

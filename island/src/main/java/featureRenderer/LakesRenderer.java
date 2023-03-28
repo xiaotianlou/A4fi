@@ -5,6 +5,8 @@ import TerrainFeatures.Tile;
 import transformation.builtinADT.MeshADT;
 import transformation.builtinADT.PolygonADT;
 
+import java.awt.*;
+
 /**
  * @author loux8@mcmaster.ca
  * @date 2023/3/24 11:06
@@ -12,10 +14,12 @@ import transformation.builtinADT.PolygonADT;
 public class LakesRenderer extends Tile implements Renderable {
 
     private void checkAround(PolygonADT polygonADT){
+        Color c= new Color(83, 147, 222);
         for (var p:polygonADT.getPolygons()){
             if (p.getElevation()<polygonADT.getElevation()){
                 p.setIsland(false);
-                p.setColor("130,158,185");
+
+                p.setColor(new int[]{c.getRed(),c.getGreen(),c.getBlue()});
                 p.setLake(true);
                 checkAround(p);
                 System.out.println("-");
@@ -27,8 +31,8 @@ public class LakesRenderer extends Tile implements Renderable {
 
     @Override
     public MeshADT Rendering(MeshADT m, Seed seed) {
-        int i = seed.getSeedArray().get(seed.getSeedArray().size()/3)*2;
-
+        int i = seed.getSeedArray().get(seed.getSeedArray().size()/3)+3;
+        Color c= new Color(59, 145, 238);
         for (;0<i;i--) {
             boolean flag=false;
 
@@ -36,7 +40,7 @@ public class LakesRenderer extends Tile implements Renderable {
             for (var p : m.getPolygons()) {
                 if (p.isIsland() && count > i && !flag) {
                     p.setIsland(false);
-                    p.setColor("130,158,185");
+                    p.setColor(new int[]{c.getRed(),c.getGreen(),c.getBlue()});
                     p.setLake(true);
                     flag=true;
                     checkAround(p);

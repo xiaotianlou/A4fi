@@ -16,12 +16,6 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        //MVP
-//        Configuration config = new Configuration("generator/generator.jar -k irregular -h 1920 -w 1920 -p 1000 -r 5 -o ireg.mesh".split(" "));
-//        Buildable specification = SpecificationFactory.create(config);
-//        Mesh theMesh = specification.build();
-//        LagoonRenderer mvp = new LagoonRenderer(theMesh);
-//        new MeshFactory().write(mvp.Rendering(), "IOArea/full_color.mesh");//
 
         Configuration config = new Configuration(args);
         Map<String, String> options = config.export();
@@ -29,6 +23,14 @@ public class Main {
 
         String input_c = "..//IOArea\\inputoff.mesh";
         String outputadress = "..//IOArea\\outputoff.mesh";
+        Seed s = new Seed((int) (Math.random() * 100000));
+
+
+
+
+
+
+
         if (options.get(Configuration.mode) == "lagoon") {
             Structs.Mesh aMesh = new MeshFactory().read(options.get(Configuration.INPUT));
             meshADT.readInputMesh(aMesh);
