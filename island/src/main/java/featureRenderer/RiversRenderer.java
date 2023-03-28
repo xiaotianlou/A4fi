@@ -66,7 +66,7 @@ public class RiversRenderer implements Renderable {
                     }
                 }
                 if (!end) {
-                    SegmentADT segmentADT = meshADT.getSegment(vertexADT, next_vertexADT);
+                    SegmentADT segmentADT = meshADT.getSegment(next_vertexADT,vertexADT);
                     if (segmentADT.getThickness() == 1) {
                         segmentADT.setThickness(5);
                     }
