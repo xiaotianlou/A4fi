@@ -36,7 +36,7 @@ public class Main {
             meshADT.readInputMesh(aMesh);
             int seedint = (int) (Math.random() * 100000);
             System.out.println("seed is:" + seedint);
-            Seed s = new Seed(seedint);
+            Seed seed = new Seed(seedint);
             meshADT = new BackGroundGenerator().Genering(meshADT, s);
             meshADT = new LagoonGenerator().Genering(meshADT, s);
             Structs.Mesh out = meshADT.toMesh();
