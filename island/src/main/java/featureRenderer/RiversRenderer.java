@@ -73,6 +73,8 @@ public class RiversRenderer implements Renderable {
                         segmentADT.setThickness(5);
                     }
                     segmentADT.setColor(100+ "," + 155 + "," + 255);
+                    vertexADT.setLake(true);
+                    next_vertexADT.setLake(true);
                     vertexADT.setColor(255 + "," + 100 + "," + 100);
                     float temp = segmentADT.getThickness();
                     segmentADT.setThickness(5+temp);
