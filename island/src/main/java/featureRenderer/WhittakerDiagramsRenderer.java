@@ -48,15 +48,18 @@ public class WhittakerDiagramsRenderer {
             if(p.isIsland()){
                 InnerColor(p,seed,biome);
             }
-            for(PolygonADT neighbour: p.getPolygons())
-                if (!neighbour.isIsland()){
-                    BoundryColor(p,seed);
-                    for(PolygonADT nei: p.getPolygons()){
-                        if (nei.isIsland() ){
-                            BoundryColor(nei,seed);
+            for(PolygonADT neighbour: p.getPolygons()){
+                if(p.isIsland()){
+                    if (!neighbour.isIsland()){
+                        BoundryColor(p,seed);
+                        for(PolygonADT nei: p.getPolygons()){
+                            if (nei.isIsland() ){
+                                BoundryColor(nei,seed);
+                            }
                         }
                     }
                 }
+            }
         }
 
         return m;
