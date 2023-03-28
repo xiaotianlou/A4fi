@@ -5,10 +5,6 @@ import transformation.builtinADT.PolygonADT;
 
 import java.util.Map;
 
-/**
- * @author loux8@mcmaster.ca
- * @date 2023/3/24 11:06
- */
 public class Lakes extends Tile{
 
 

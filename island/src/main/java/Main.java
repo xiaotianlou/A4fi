@@ -35,131 +35,70 @@ public class Main {
 //        new MeshFactory().write(mvp.Rendering(), "og.mesh");
 
 
-
         MeshADT meshADT = new MeshADT();
 //        String input = "IOArea/inputoff.mesh";
-        String input_c="IOArea/inputoff.mesh";
+        String input_c = "IOArea/inputoff.mesh";
         Structs.Mesh aMesh = new MeshFactory().read(input_c);
 
         Importer polygonImporter = new polygonImporter();
         Importer segmentImporter = new segmentImporter();
         Importer vertexImporter = new vertexImporter();
-        vertexImporter.read(aMesh,meshADT);
-        segmentImporter.read(aMesh,meshADT);
-        polygonImporter.read(aMesh,meshADT);
-        Aquifers aquifers = new Aquifers(meshADT,10);
+        vertexImporter.read(aMesh, meshADT);
+        segmentImporter.read(aMesh, meshADT);
+        polygonImporter.read(aMesh, meshADT);
+        Aquifers aquifers = new Aquifers(meshADT, 10);
         meshADT = aquifers.aquifersInitialization();
 
 
-
         int seedint = (int) (Math.random() * 1000000);
-        seedint =6082;
-        System.out.println("seed is:"+seedint );
+        seedint = 6082;
+        System.out.println("seed is:" + seedint);
         Seed s = new Seed(seedint);
 //    s= new Seed(802517);
-        meshADT = new ShapeRenderer().Rendering(meshADT,s);
-        meshADT = new ElevationRenderer().Rendering(meshADT,s);
+        meshADT = new ShapeRenderer().Rendering(meshADT, s);
+        meshADT = new ElevationRenderer().Rendering(meshADT, s);
 
         Lakes lakes = new Lakes();
-        meshADT = lakes.lakeBuilder(meshADT,20);
+        meshADT = lakes.lakeBuilder(meshADT, 20);
 
         RiversRenderer riversRenderer = new RiversRenderer();
 
-        riversRenderer.Rendering(meshADT,s);
+        riversRenderer.Rendering(meshADT, s);
 
 
-        for (var ss:meshADT.getSegments()){
-            System.out.println("T");
-            System.out.println(ss.getThickness());
+//        for (var a:meshADT.getPolygons()){
+//            System.out.println("========");
+//            System.out.println(a.isLake());
+//            System.out.println(a.isIsland());
+//        }
+
+//        for (var a:meshADT.getVertices()){
+//            System.out.println("=========");
+//            System.out.println(a.isAroundWater());
+//            System.out.println(a.isLake());
+//            System.out.println(a.isCentroid());
+//        }
+
+        for (var a:meshADT.getPolygons()){
+            if (a.isIsland()){
+                for (var d: a.getVertices()) {
+                    System.out.println("===============");
+                    System.out.println(d.isAroundWater());
+                    System.out.println(d.isLake());
+                    System.out.println(d.isCentroid());
+                }
+            }
         }
 
 
-
-        Structs.Mesh output= meshADT.toMesh();
-
-
+        Structs.Mesh output = meshADT.toMesh();
 
 
         System.out.println(output.getPolygonsCount());
 
 
 
+
         new MeshFactory().write(output, "IOArea/outputRiver.mesh");//
-
-        Configuration config = new Configuration(args);
-        Map<String, String> options = config.export();
-        MeshADT meshADT = new MeshADT();
-
-        String input_c = "C:\\Users\\22091\\IdeaProjects\\a2---mesh-generator-team-28_newnewnewn\\IOArea\\inputoff.mesh"; //use absolute address only
-        String outputadress = "C:\\Users\\22091\\IdeaProjects\\a2---mesh-generator-team-28_newnewnewn\\IOArea\\inputoff.mesh";
-        if (options.get(Configuration.mode) == "lagoon") {
-            Structs.Mesh aMesh = new MeshFactory().read(options.get(Configuration.INPUT));
-            meshADT.readInputMesh(aMesh);
-            int seedint = (int) (Math.random() * 100000);
-            System.out.println("seed is:" + seedint);
-            Seed s = new Seed(seedint);
-            meshADT = new BackGroundGenerator().Genering(meshADT, s);
-            meshADT = new LagoonGenerator().Genering(meshADT, s);
-            Structs.Mesh out = meshADT.toMesh();
-            new MeshFactory().write(out, options.get(Configuration.OUTPUT));//
-
-        }
-
-        if (!(options.get(Configuration.INPUT) == (null))) {
-            input_c = options.get(Configuration.INPUT);
-        }
-        System.out.println(input_c);
-        if (!(options.get(Configuration.OUTPUT) == (null))) {
-            outputadress = options.get(Configuration.OUTPUT);
-        }
-
-        Seed seed = new Seed((int) (Math.random() * 1000000));
-        System.out.println("seed is:   " + seed.getSeed());
-        if (!(options.get(Configuration.seed) == (null))) {
-            seed = new Seed(Integer.parseInt(options.get(Configuration.seed)));
-        }
-        int water = 1;
-        if (!(options.get(Configuration.aquifers) == (null))) {
-            water = Integer.parseInt(options.get(Configuration.seed));
-        }
-        Aquifers aquifers = new Aquifers(meshADT, water);
-
-        Structs.Mesh aMesh = new MeshFactory().read(input_c);
-
-
-        meshADT.readInputMesh(aMesh);
-
-
-        if (!(options.get(Configuration.shape) == (null))) {
-            new ShapeRenderer().Rendering(meshADT, new Seed(Integer.parseInt(options.get(Configuration.shape))));
-        } else {
-            new ShapeRenderer().Rendering(meshADT, seed);
-
-        }
-
-        if (!(options.get(Configuration.altitude) == (null))) {
-            new ElevationRenderer().Rendering(meshADT, new Seed(Integer.parseInt(options.get(Configuration.altitude))));
-        } else {
-            new ElevationRenderer().Rendering(meshADT, seed);
-        }
-
-        meshADT = aquifers.aquifersInitialization();
-
-        Structs.Mesh output = meshADT.toMesh();
-        new MeshFactory().write(output, outputadress);//
-
-
-    }
-
-    private void exeCommands(String command) throws IOException {
-        Process p = Runtime.getRuntime().exec(command);
-        BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
-        String line;
-        String text = command + "\n";
-        System.out.println(text);
-        while ((line = input.readLine()) != null) {
-            text += line;
-            System.out.println("Line: " + line);
-        }
     }
 }
