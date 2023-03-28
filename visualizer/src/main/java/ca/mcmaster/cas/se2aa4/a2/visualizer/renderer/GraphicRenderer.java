@@ -38,7 +38,6 @@ public class GraphicRenderer implements Renderer {
                     temp = Float.parseFloat(p.getValue());
                 }
             }
-            System.out.println(temp);
             Stroke stroke = new BasicStroke(temp);
             canvas.setStroke(stroke);
             canvas.draw(new Line2D.Double(aMesh.getVerticesList().get(segment.getV1Idx()).getX(),aMesh.getVerticesList().get(segment.getV1Idx()).getY(),aMesh.getVerticesList().get(segment.getV2Idx()).getX(), aMesh.getVerticesList().get(segment.getV2Idx()).getY()));

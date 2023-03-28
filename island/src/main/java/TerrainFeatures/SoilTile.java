@@ -5,4 +5,5 @@ package TerrainFeatures;
  * @date 2023/3/24 11:06
  */
 public class SoilTile extends Tile{
+    
 }

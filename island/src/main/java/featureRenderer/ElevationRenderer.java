@@ -23,8 +23,8 @@ public class ElevationRenderer implements Renderable{
 
     @Override
     public MeshADT Rendering(MeshADT m, Seed seed) {
-        m = new VolcanoGenerator().Genering(m,seed);
-        m= new BasicElevationGenerator().Genering(m,seed);
+        new VolcanoGenerator().Genering(m,seed);
+        new BasicElevationGenerator().Genering(m,seed);
         return m;
     }
 }

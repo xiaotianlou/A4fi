@@ -19,7 +19,6 @@ public class LakeRenderer extends Tile implements Renderable {
                 p.setColor(new int[]{c.getRed(),c.getGreen(),c.getBlue()});
                 p.setLake(true);
                 checkAround(p);
-                System.out.println("-");
             }
 
         }
@@ -43,7 +42,6 @@ public class LakeRenderer extends Tile implements Renderable {
                     checkAround(p);
                 }
                 count +=1;
-                System.out.println(count);
             }
         }
         return m;

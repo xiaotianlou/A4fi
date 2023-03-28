@@ -29,10 +29,6 @@ public class PolygonADT {
     public int getHumidity() {
         return humidity;
     }
-    public void calHumidity() {
-//     InfoSet.calculateHumidity(water,distance);
-        this.humidity=(int)(Math.random()*400);
-    }
 
     public void setHumidity(int humidity) {
         this.humidity = humidity;
