@@ -52,7 +52,7 @@ public class WhittakerDiagramsRenderer {
                 if (!neighbour.isIsland()){
                     BoundryColor(p,seed);
                     for(PolygonADT nei: p.getPolygons()){
-                        if (neighbour.isIsland() ){
+                        if (nei.isIsland() ){
                             BoundryColor(nei,seed);
                         }
                     }
