@@ -4,6 +4,8 @@ import ca.mcmaster.cas.se2aa4.a2.io.Structs;
 import featureRenderer.*;
 import featureRenderer.Shape.BackGroundGenerator;
 import featureRenderer.Shape.LagoonGenerator;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import transformation.builtinADT.MeshADT;
 import transformation.builtinADT.PolygonADT;
@@ -18,6 +20,9 @@ import java.io.InputStreamReader;
 
 class MainTest {
 
+
+    MeshADT meshADT;
+
     private void exeCommands(String command) throws IOException {
         Process p = Runtime.getRuntime().exec(command);
         BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -29,15 +34,20 @@ class MainTest {
             System.out.println("Line: " + line);
         }
     }
-
-    @Test
-    void main() throws IOException {
-        MeshADT meshADT = new MeshADT();
+    @BeforeEach
+    void   initial() throws IOException {
+        this.meshADT = new MeshADT();
         String input_c = "..//IOArea\\inputoff.mesh";
         Structs.Mesh aMesh = new MeshFactory().read(input_c);
         meshADT.readInputMesh(aMesh);
+        System.out.println("test11111");
+
+    }
 
 
+
+    @Test
+    void main() throws IOException {
         int seedint = (int) (Math.random() * 1000000);
 //        seedint =148000;
         System.out.println("seed is:"+seedint );
@@ -59,12 +69,6 @@ class MainTest {
 
     @Test
     void testRiversRender() throws IOException {
-        MeshADT meshADT = new MeshADT();
-        String input_c = "..//IOArea\\inputoff.mesh";
-        Structs.Mesh aMesh = new MeshFactory().read(input_c);
-        meshADT.readInputMesh(aMesh);
-
-
         int seedint = (int) (Math.random() * 1000000);
 //        seedint =148000;
         System.out.println("seed is:"+seedint );
@@ -83,11 +87,6 @@ class MainTest {
     }
     @Test
     void  testDW() throws IOException {
-
-        MeshADT meshADT = new MeshADT();
-        String input_c = "..//IOArea\\inputoff.mesh";
-        Structs.Mesh aMesh = new MeshFactory().read(input_c);
-        meshADT.readInputMesh(aMesh);
         int seedint = (int) (Math.random() * 1000000);
         System.out.println("seed is:"+seedint );
         Seed s = new Seed(seedint);
@@ -111,12 +110,6 @@ class MainTest {
 
     @Test
     void testLakeRender() throws IOException {
-        MeshADT meshADT = new MeshADT();
-        String input_c = "..//IOArea\\inputoff.mesh";
-        Structs.Mesh aMesh = new MeshFactory().read(input_c);
-        meshADT.readInputMesh(aMesh);
-
-
         int seedint = (int) (Math.random() * 1000000);
 //        seedint =148000;
         System.out.println("seed is:"+seedint );
@@ -138,10 +131,6 @@ class MainTest {
 
     @Test
     void testBiomeRender() throws IOException {
-        MeshADT meshADT = new MeshADT();
-        String input_c = "..//IOArea\\inputoff.mesh";
-        Structs.Mesh aMesh = new MeshFactory().read(input_c);
-        meshADT.readInputMesh(aMesh);
         int seedint = (int) (Math.random() * 1000000);
         System.out.println("seed is:"+seedint );
         Seed s = new Seed(seedint);
@@ -197,10 +186,7 @@ class MainTest {
 
     @Test
     void testShape() throws IOException {
-        MeshADT meshADT = new MeshADT();
-        String input_c = "..//IOArea\\inputoff.mesh";
-        Structs.Mesh aMesh = new MeshFactory().read(input_c);
-        meshADT.readInputMesh(aMesh);
+
         int seedint = (int) (Math.random() * 1000000);
         System.out.println("seed is:"+seedint );
         Seed s = new Seed(seedint);
@@ -219,16 +205,7 @@ class MainTest {
     }
     @Test
     void  testE2() throws IOException {
-        MeshADT meshADT = new MeshADT();
-        String input_c = "..//IOArea\\inputoff.mesh";
-        Structs.Mesh aMesh = new MeshFactory().read(input_c);
 
-        Importer polygonImporter = new polygonImporter();
-        Importer segmentImporter = new segmentImporter();
-        Importer vertexImporter = new vertexImporter();
-        vertexImporter.read(aMesh, meshADT);
-        segmentImporter.read(aMesh, meshADT);
-        polygonImporter.read(aMesh, meshADT);
         int seedint = (int) (Math.random() * 1000000);
         seedint =148000;
         System.out.println("seed is:"+seedint );
