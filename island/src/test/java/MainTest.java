@@ -35,7 +35,7 @@ class MainTest {
         }
     }
     @BeforeEach
-    void   initial() throws IOException {
+    void  initial() throws IOException {
         this.meshADT = new MeshADT();
         String input_c = "..//IOArea\\inputoff.mesh";
         Structs.Mesh aMesh = new MeshFactory().read(input_c);
