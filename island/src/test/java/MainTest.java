@@ -4,7 +4,6 @@ import ca.mcmaster.cas.se2aa4.a2.io.Structs;
 import featureRenderer.*;
 import featureRenderer.Shape.BackGroundGenerator;
 import featureRenderer.Shape.LagoonGenerator;
-import jdk.swing.interop.DispatcherWrapper;
 import org.junit.jupiter.api.Test;
 import transformation.builtinADT.MeshADT;
 import transformation.builtinADT.PolygonADT;
@@ -16,7 +15,6 @@ import java.io.BufferedReader;
 import java.awt.*;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 
 class MainTest {
 
@@ -48,7 +46,7 @@ class MainTest {
 
         new ShapeRenderer().Rendering(meshADT,s);
         new ElevationRenderer().Rendering(meshADT,s);
-        new LakesRenderer().Rendering(meshADT,s);
+        new LakeRenderer().Rendering(meshADT,s);
         new RiversRenderer().Rendering(meshADT,s);
         new BiomeRenderer().Rendering(meshADT,s);
 
@@ -75,7 +73,7 @@ class MainTest {
 
         new ShapeRenderer().Rendering(meshADT,s);
         new ElevationRenderer().Rendering(meshADT,s);
-        new LakesRenderer().Rendering(meshADT,s);
+        new LakeRenderer().Rendering(meshADT,s);
         new RiversRenderer().Rendering(meshADT,s);
         Structs.Mesh output = meshADT.toMesh();
         new MeshFactory().write(output, "..//IOArea\\Test.mesh");//
@@ -127,7 +125,7 @@ class MainTest {
 
         new ShapeRenderer().Rendering(meshADT,s);
         new ElevationRenderer().Rendering(meshADT,s);
-        new LakesRenderer().Rendering(meshADT,s);
+        new LakeRenderer().Rendering(meshADT,s);
 
         Structs.Mesh output = meshADT.toMesh();
         new MeshFactory().write(output, "..//IOArea\\Test.mesh");//

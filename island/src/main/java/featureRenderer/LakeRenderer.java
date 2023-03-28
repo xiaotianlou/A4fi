@@ -8,7 +8,7 @@ import transformation.builtinADT.PolygonADT;
 import java.awt.*;
 
 
-public class LakesRenderer1 extends Tile implements Renderable {
+public class LakeRenderer extends Tile implements Renderable {
 
     private void checkAround(PolygonADT polygonADT){
         Color c= new Color(83, 147, 222);
