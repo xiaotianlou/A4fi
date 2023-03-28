@@ -31,7 +31,7 @@ public class Humidity {
                 sum += 100;
             }
         }
-        polygonADT.setHumidity(sum);
+        polygonADT.setHumidity(sum/2);
     }
 
 }
