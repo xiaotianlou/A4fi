@@ -62,37 +62,6 @@ public class Main {
         meshADT = humidity.humidityInitialization();
 
 
-//        for (var a:meshADT.getPolygons()){
-//            System.out.println("========");
-//            System.out.println(a.isLake());
-//            System.out.println(a.isIsland());
-//        }
-
-//        for (var a:meshADT.getVertices()){
-//            System.out.println("=========");
-//            System.out.println(a.isAroundWater());
-//            System.out.println(a.isLake());
-//            System.out.println(a.isCentroid());
-//        }
-
-//        for (var a:meshADT.getPolygons()){
-//            if (a.isIsland()){
-//                for (var d: a.getVertices()) {
-//                    System.out.println("===============");
-//                    System.out.println(d.isAroundWater());
-//                    System.out.println(d.isRiver());
-//                    System.out.println(d.isCentroid());
-//                }
-//            }
-//        }
-
-        for (var a:meshADT.getPolygons()){
-            if (a.isIsland()){
-                System.out.println("=========");
-                System.out.println(a.isLake());
-                System.out.println(a.getHumidity());
-            }
-        }
 
 
         Structs.Mesh output = meshADT.toMesh();
