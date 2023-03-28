@@ -76,7 +76,7 @@ class MainTest {
 
         new ShapeRenderer().Rendering(meshADT,s);
         new ElevationRenderer().Rendering(meshADT,s);
-        new LakesRenderer().Rendering(meshADT,s);
+
 //        new BiomeRenderer().Rendering(meshADT,s);
 
         Structs.Mesh output = meshADT.toMesh();
@@ -124,9 +124,10 @@ class MainTest {
         Seed s = new Seed(seedint);
 //    s= new Seed(802517);
         new ShapeRenderer().Rendering(meshADT,s);
-         new ElevationRenderer().Rendering(meshADT,s);
+        new ElevationRenderer().Rendering(meshADT,s);
+
         Structs.Mesh output = meshADT.toMesh();
-        new MeshFactory().write(output, "..//IOArea\\Test.mesh");//
+        new MeshFactory().write(output, "..//IOArea\\LakeTest.mesh");//
 
 //java -jar visualizer/visualizer.jar -i C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtest.mesh -o C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtest1.svg -x
 
