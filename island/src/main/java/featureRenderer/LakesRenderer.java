@@ -1,66 +1,54 @@
 package featureRenderer;
 
 import Reproducibility.Seed;
+import TerrainFeatures.Tile;
 import transformation.builtinADT.MeshADT;
+import transformation.builtinADT.PolygonADT;
+
+import java.awt.*;
 
 /**
  * @author loux8@mcmaster.ca
- * @date 2023/3/23 16:15
+ * @date 2023/3/24 11:06
  */
-public class LakesRenderer implements Renderable {
+public class LakesRenderer extends Tile implements Renderable {
+
+    private void checkAround(PolygonADT polygonADT){
+        Color c= new Color(83, 147, 222);
+        for (var p:polygonADT.getPolygons()){
+            if (p.getElevation()<polygonADT.getElevation()){
+                p.setIsland(false);
+
+                p.setColor(new int[]{c.getRed(),c.getGreen(),c.getBlue()});
+                p.setLake(true);
+                checkAround(p);
+                System.out.println("-");
+            }
+
+        }
+    }
 
 
     @Override
     public MeshADT Rendering(MeshADT m, Seed seed) {
-//        for (int n=2;n>0;n--){
-//            VertexADT vertexADT =
-//
-//            VertexADT vertexADT = meshADT.getVertices().get(n*i*666%3000);
-//            int id = vertexADT.getId();
-//            while (meshADT.getVertices().get(id).isCentroid()||meshADT.getVertices().get(id).isAroundWater()){
-//                id += 39;
-//            }
-//
-//            vertexADT = meshADT.getVertices().get(id);
-//
-//            VertexADT next_vertexADT = vertexADT;
-//
-//            boolean end = false;
-//
-//            vertexADT.setColor(105+","+200+","+225);
-//
-//            while (!vertexADT.isAroundWater()&&!end){
-//
-//                end = true;
-//
-//                double min = vertexADT.getElevation();
-//
-//                for (var v: vertexADT.getVertices()){
-//
-//                    if (!v.isCentroid()){
-//
-//                        if (min>v.getElevation()){
-//                            min = v.getElevation();
-//                            next_vertexADT = meshADT.getVertices().get(id);
-//                            end = false;
-//                        }
-//                    }
-//                }
-//                if (!end) {
-//                    SegmentADT segmentADT = meshADT.getSegment(vertexADT, next_vertexADT);
-//                    if(segmentADT.getThickness()!=1){
-//                        segmentADT.setThickness();
-//                    }
-//                    segmentADT.setColor(105 + "," + 200 + "," + 225);
-//                    vertexADT = next_vertexADT;
-//                }
-//
-//            }
-//
-//        }
+        int i = seed.getSeedArray().get(seed.getSeedArray().size()/3)+3;
+        Color c= new Color(59, 145, 238);
+        for (;0<i;i--) {
+            boolean flag=false;
 
-
-        return null;
+            int count=0;
+            for (var p : m.getPolygons()) {
+                if (p.isIsland() && count > i && !flag) {
+                    p.setIsland(false);
+                    p.setColor(new int[]{c.getRed(),c.getGreen(),c.getBlue()});
+                    p.setLake(true);
+                    flag=true;
+                    checkAround(p);
+                }
+                count +=1;
+                System.out.println(count);
+            }
+        }
+        return m;
     }
 }
-

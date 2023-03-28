@@ -1,34 +1,44 @@
 package transformation.builtinADT;
 
-import TerrainFeatures.Aquifers;
+import java.awt.*;
 
 public class InfoSet {
 
     private boolean isIsland = false;
     private Biome biome = Biome.None;
+//    private int humidity = 150;
     private int elevation = -1;
     private int waterContent;
     private int temperature = 25;
-
-
-    public int[] getColor() {
-        return color;
-    }
+    private int[] color = new int[]{255, 255, 255};
 
     public static int calculateHumidity(int waterContent, int distance) {
         return (int) (100 * waterContent / (waterContent + 0.05 * distance));
+    }
+
+    public int[] getColor() {
+        return color;
     }
 
     public void setColor(int[] color) {
         this.color = color;
     }
 
-    private int[] color = new int[]{255, 255, 255};
+    public void setColor(Color c) {
+        this.setColor(new int[]{c.getRed(), c.getGreen(), c.getBlue()});
+    }
+
+    public void setColor(String c) {
+        int n = 0;
+        for (String s : c.split(",")) {
+            color[n] = Integer.parseInt(s);
+            n++;
+        }
+    }
 
     public boolean isIsland() {
         return isIsland;
     }
-
 
     public void setIsland(boolean island) {
         this.isIsland = island;
@@ -41,13 +51,7 @@ public class InfoSet {
     public void setBiome(Biome biome) {
         this.biome = biome;
     }
-    public void setColor(String c) {
-        int n = 0;
-        for (String s : c.split(",")) {
-            color[n] = Integer.parseInt(s);
-            n++;
-        }
-    }
+
     public int getElevation() {
         return elevation;
     }
@@ -65,7 +69,7 @@ public class InfoSet {
     }
 
     public int getTemperature() {
-        this.temperature = (int) (15-0.25*getElevation());
+        this.temperature = (int) (15 - 0.25 * getElevation());
         return temperature;
     }
 
