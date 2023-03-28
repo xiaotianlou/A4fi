@@ -26,7 +26,6 @@ public class Lakes extends Tile{
                     checkAround(p);
                 }
                 count +=1;
-                System.out.println(count);
             }
         }
         return meshADT;
@@ -39,7 +38,6 @@ public class Lakes extends Tile{
                 p.setColor("130,158,185");
                 p.setLake(true);
                 checkAround(p);
-                System.out.println("-");
             }
 
         }

@@ -1,15 +1,11 @@
 import Reproducibility.Seed;
 import TerrainFeatures.Aquifers;
+import TerrainFeatures.Humidity;
 import TerrainFeatures.Lakes;
 import ca.mcmaster.cas.se2aa4.a2.io.MeshFactory;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs;
 import featureRenderer.ElevationRenderer;
 import featureRenderer.RiversRenderer;
-import featureRenderer.ShapeRenderer;
-import configuration.Configuration;
-import featureRenderer.ElevationRenderer;
-import featureRenderer.Shape.BackGroundGenerator;
-import featureRenderer.Shape.LagoonGenerator;
 import featureRenderer.ShapeRenderer;
 import transformation.builtinADT.MeshADT;
 import transformation.importation.Importer;
@@ -17,10 +13,7 @@ import transformation.importation.polygonImporter;
 import transformation.importation.segmentImporter;
 import transformation.importation.vertexImporter;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -65,6 +58,9 @@ public class Main {
 
         riversRenderer.Rendering(meshADT, s);
 
+        Humidity humidity = new Humidity(meshADT);
+        meshADT = humidity.humidityInitialization();
+
 
 //        for (var a:meshADT.getPolygons()){
 //            System.out.println("========");
@@ -79,14 +75,22 @@ public class Main {
 //            System.out.println(a.isCentroid());
 //        }
 
+//        for (var a:meshADT.getPolygons()){
+//            if (a.isIsland()){
+//                for (var d: a.getVertices()) {
+//                    System.out.println("===============");
+//                    System.out.println(d.isAroundWater());
+//                    System.out.println(d.isRiver());
+//                    System.out.println(d.isCentroid());
+//                }
+//            }
+//        }
+
         for (var a:meshADT.getPolygons()){
             if (a.isIsland()){
-                for (var d: a.getVertices()) {
-                    System.out.println("===============");
-                    System.out.println(d.isAroundWater());
-                    System.out.println(d.isLake());
-                    System.out.println(d.isCentroid());
-                }
+                System.out.println("=========");
+                System.out.println(a.isLake());
+                System.out.println(a.getHumidity());
             }
         }
 

@@ -27,7 +27,6 @@ public class PolygonADT {
     }
 
     public int getHumidity() {
-        calHumidity();
         return humidity;
     }
     public void calHumidity() {

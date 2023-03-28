@@ -1,8 +1,6 @@
 package featureRenderer;
 
 import Reproducibility.Seed;
-import ca.mcmaster.cas.se2aa4.a2.generator.adt.Mesh;
-import ca.mcmaster.cas.se2aa4.a2.io.Structs;
 import transformation.builtinADT.MeshADT;
 import transformation.builtinADT.SegmentADT;
 import transformation.builtinADT.VertexADT;
@@ -73,8 +71,8 @@ public class RiversRenderer implements Renderable {
                         segmentADT.setThickness(5);
                     }
                     segmentADT.setColor(100+ "," + 155 + "," + 255);
-                    vertexADT.setLake(true);
-                    next_vertexADT.setLake(true);
+                    vertexADT.setRiver(true);
+                    next_vertexADT.setRiver(true);
                     vertexADT.setColor(255 + "," + 100 + "," + 100);
                     float temp = segmentADT.getThickness();
                     segmentADT.setThickness(5+temp);

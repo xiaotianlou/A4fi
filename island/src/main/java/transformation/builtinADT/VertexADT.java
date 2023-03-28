@@ -18,7 +18,7 @@ public class VertexADT {
 
     private boolean aroundWater = true;
 
-    private boolean isLake = false;
+    private boolean isRiver = false;
 
     public VertexADT(double x, double y, int id) {
         this.x = x;
@@ -131,12 +131,12 @@ public class VertexADT {
         this.aroundWater = aroundWater;
     }
 
-    public boolean isLake() {
-        return isLake;
+    public boolean isRiver() {
+        return isRiver;
     }
 
-    public void setLake(boolean lake) {
-        isLake = lake;
+    public void setRiver(boolean lake) {
+        isRiver = lake;
     }
 
 
