@@ -36,7 +36,17 @@ mosser@azrael A2 % java -jar visualizer/visualizer.jar -i img/irregular.mesh -o 
 
 ### Create the graph
 ```
-mosser@azrael A2 % java -jar island/island.jar -i xxxxxx -o xxxxx -help          
+mosser@azrael A2 % java -jar island/island.jar -i xxxxxx -o xxxxx -help    
+mosser@azrael A2 % java -jar island/island.jar -help
+mosser@azrael A2 % java -jar island/island.jar -i IOArea/inputoff.mesh -o IOArea/lagoon.mesh -mode lagoon   
+mosser@azrael A2 % java -jar island/island.jar -i IOArea/inputoff.mesh -o IOArea/test.mesh   
+mosser@azrael A2 % 
+mosser@azrael A2 % 
+
+
+  
+
+
 
 ```
 

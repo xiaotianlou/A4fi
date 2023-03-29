@@ -38,7 +38,7 @@ public class Seed {
     }
 
     public void setMaxlakeNumber(int maxlakeNumber) {
-        MaxlakeNumber = maxlakeNumber;
+        this.MaxlakeNumber = maxlakeNumber;
     }
 
     private int MaxlakeNumber = getSeedArray().get(getSeedArray().size()/3)+3;;

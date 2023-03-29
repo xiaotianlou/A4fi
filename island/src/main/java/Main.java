@@ -30,7 +30,7 @@ public class Main {
         if (!(options.get(ConfigurationIsland.seed) == (null))) {
             defaultSeed = new Seed(Integer.parseInt(options.get(ConfigurationIsland.seed)));
         }
-        if (options.get(ConfigurationIsland.mode).equals( "lagoon")) {
+        if (!(options.get(ConfigurationIsland.mode)==null)&&options.get(ConfigurationIsland.mode).equals("lagoon")) {
             Structs.Mesh aMesh = new MeshFactory().read(input_c);
             meshADT.readInputMesh(aMesh);
             new BackGroundGenerator().Genering(meshADT, defaultSeed);
@@ -67,6 +67,9 @@ public class Main {
         if (!(options.get(ConfigurationIsland.riverNumber) == (null))) {
             defaultSeed.setRiverNumber(Integer.parseInt(ConfigurationIsland.riverNumber));
         }
+
+        defaultSeed.setRiverNumber(defaultSeed.getSeedArray().get(defaultSeed.getSeedArray().size() / 2) * 2 + 7);
+
         new RiversRenderer().Rendering(meshADT, defaultSeed);
         new BiomeRenderer().Rendering(meshADT, defaultSeed);
 
