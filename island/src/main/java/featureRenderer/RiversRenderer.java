@@ -26,9 +26,7 @@ public class RiversRenderer implements Renderable {
             }
         }
 
-        for (int n = 10; n > 0; n--) {
-
-
+        for (int n = i; n > 0; n--) {
             VertexADT vertexADT = meshADT.getVertices().get(n * 101 % 3000);
             int id = vertexADT.getId();
 

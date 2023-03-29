@@ -25,7 +25,7 @@ public class Main {
 
         String input_c = "..//IOArea\\inputoff.mesh";
         String outputaddress="..//IOArea\\outputoff.mesh";
-
+//        java -jar island.jar -i inputoff.mesh -o lagoon.mesh --mode lagoon
         if (!(options.get(Configuration.inputAddress) == (null))) {
             input_c = options.get(Configuration.inputAddress);}
         if (!(options.get(Configuration.outputAddress) == (null))) {
@@ -33,13 +33,13 @@ public class Main {
         if (!(options.get(Configuration.seed) == (null))) {
             defaultSeed = new Seed(Integer.parseInt(options.get(Configuration.seed)));
         }
-        if (options.get(Configuration.mode) == "lagoon") {
+        if (options.get(Configuration.mode).equals( "lagoon")) {
             Structs.Mesh aMesh = new MeshFactory().read(input_c);
             meshADT.readInputMesh(aMesh);
             new BackGroundGenerator().Genering(meshADT, defaultSeed);
             new LagoonGenerator().Genering(meshADT, defaultSeed);
             Structs.Mesh out = meshADT.toMesh();
-            new MeshFactory().write(out, options.get(outputaddress));//
+            new MeshFactory().write(out, options.get(outputaddress).toString());//
             System.exit(0);
         }
 
