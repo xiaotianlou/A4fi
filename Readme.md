@@ -58,7 +58,7 @@ usage: java -jar island.jar
 
 
 Note: PDF versions of the SVG files were created with `rsvg-convert`.
-### Feature plan
+### Feature plan and backlog
 | Feature(id) | Feature title | Who? | Start | End | Status |
 |:--:|---------------|------|-------|-----|--------|
 |F01 | MVP| xiaotian lou | 3/22 | 3/26 | D |
