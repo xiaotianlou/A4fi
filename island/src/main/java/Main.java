@@ -62,55 +62,20 @@ public class Main {
         }
 
         if (!(options.get(Configuration.lakeMaxNumber) == (null))) {
-            new ElevationRenderer().Rendering(meshADT, defaultSeed;
-        }else {
-            new ShapeRenderer().Rendering(meshADT,defaultSeed);
+            defaultSeed.setMaxlakeNumber(Integer.parseInt(Configuration.lakeMaxNumber));
         }
+        new LakeRenderer().Rendering(meshADT, defaultSeed);
 
 
-
-        new LakeRenderer().Rendering(meshADT, s);
-        new RiversRenderer().Rendering(meshADT, s);
-        new BiomeRenderer().Rendering(meshADT, s);
-
-
-
-
-
-
-        if (!(options.get(Configuration.altitudeSeed) == (null))) {
-//           seedBag.put(Configuration.altitudeSeed,options.get(Configuration.altitudeSeed));
-        } else {
-            new ElevationRenderer().Rendering(meshADT, seed);
+        if (!(options.get(Configuration.riverNumber) == (null))) {
+            defaultSeed.setRiverNumber(Integer.parseInt(Configuration.riverNumber));
         }
+        new RiversRenderer().Rendering(meshADT, defaultSeed);
+        new BiomeRenderer().Rendering(meshADT, defaultSeed);
 
-
-
-
-
-
-        int water = 1;
-        if (!(options.get(Configuration.aquifers) == (null))) {
-            water = Integer.parseInt(options.get(Configuration.seed));
+        if (!(options.get(Configuration.BiomeType) == (null))) {
+            new WhittakerDiagramsRenderer().Rendering(meshADT,defaultSeed);
         }
-        new Aquifers().aquifersInitialization(meshADT,water);
-
-        Structs.Mesh aMesh = new MeshFactory().read(input_c);
-
-
-        meshADT.readInputMesh(aMesh);
-
-
-        if (!(options.get(Configuration.shapeSeed) == (null))) {
-            new ShapeRenderer().Rendering(meshADT, new Seed(Integer.parseInt(options.get(Configuration.shapeSeed))));
-        } else {
-            new ShapeRenderer().Rendering(meshADT, seed);
-
-        }
-
-
-
-        new Aquifers().aquifersInitialization(meshADT,water);
 
         Structs.Mesh output = meshADT.toMesh();
         new MeshFactory().write(output, outputaddress);//
@@ -126,15 +91,4 @@ public class Main {
 
     }
 
-    private void exeCommands(String command) throws IOException {
-        Process p = Runtime.getRuntime().exec(command);
-        BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
-        String line;
-        String text = command + "\n";
-        System.out.println(text);
-        while ((line = input.readLine()) != null) {
-            text += line;
-            System.out.println("Line: " + line);
-        }
-    }
 }

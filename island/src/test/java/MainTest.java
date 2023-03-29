@@ -111,7 +111,7 @@ class MainTest {
         new ElevationRenderer().Rendering(meshADT, s);
         new BiomeRenderer().Rendering(meshADT, s);
         String type = "Tropical_Seasonal_Forest";
-        new WhittakerDiagramsRenderer().Rendering(meshADT, s, type);
+        new WhittakerDiagramsRenderer().Rendering(meshADT, s);
 
 
     }

@@ -13,6 +13,26 @@ public class Seed {
 
     private int seed;
 
+    public String getBiome() {
+        return biome;
+    }
+
+    public void setBiome(String biome) {
+        this.biome = biome;
+    }
+
+    private String biome;
+
+    public int getRiverNumber() {
+        return riverNumber;
+    }
+
+    public void setRiverNumber(int riverNumber) {
+        this.riverNumber = riverNumber;
+    }
+
+    private int riverNumber=getSeedArray().get(getSeedArray().size() / 2) * 2 + 7;
+
     public int getMaxlakeNumber() {
         return MaxlakeNumber;
     }

@@ -9,7 +9,7 @@ public class RiversRenderer implements Renderable {
 
     @Override
     public MeshADT Rendering(MeshADT meshADT, Seed seed) {
-        int i = seed.getSeedArray().get(seed.getSeedArray().size() / 2) * 2 + 7;
+        int i = seed.getRiverNumber();
 
         for (var p : meshADT.getPolygons()) {
             if (p.isIsland()) {

@@ -6,7 +6,7 @@ import transformation.builtinADT.PolygonADT;
 
 import java.util.Random;
 
-public class WhittakerDiagramsRenderer {
+public class WhittakerDiagramsRenderer implements Renderable{
     public PolygonADT BoundryColor(PolygonADT p,Seed seed){
         Random random = new Random();
         int ran = seed.getSeedArray().get(p.getId()%seed.getSeedArray().size())%4;
@@ -42,7 +42,11 @@ public class WhittakerDiagramsRenderer {
     }
 
 
-    public MeshADT Rendering(MeshADT m, Seed seed, String biome) {
+    public MeshADT Rendering(MeshADT m, Seed seed) {
+        String biome = seed.getBiome();
+        if (biome==""){
+            return null;
+        }
         for (PolygonADT p: m.getPolygons()){
             //all island color
             if(p.isIsland()){
