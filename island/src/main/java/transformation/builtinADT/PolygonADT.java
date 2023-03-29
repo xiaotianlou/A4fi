@@ -17,6 +17,8 @@ public class PolygonADT {
 
     private boolean isLake=false;
     private int humidity = 150;
+
+    private int soilAbsorption=0;
     private final InfoSet infoSet = new InfoSet();
 
     public PolygonADT(List<SegmentADT> segments, List<VertexADT> vertices, VertexADT centroid, int id) {
@@ -182,5 +184,13 @@ public class PolygonADT {
 
     public void setLake(boolean lake) {
         isLake = lake;
+    }
+
+    public int getSoilAbsorption() {
+        return soilAbsorption;
+    }
+
+    public void setSoilAbsorption(int soilAbsorption) {
+        this.soilAbsorption = soilAbsorption;
     }
 }

@@ -37,7 +37,7 @@ public class RiversRenderer implements Renderable {
                 if (id - 1 < 10 && flag) {
                     id += 2950;
                 } else {
-                    id -= 1;
+                    id -= 3;
                 }
             }
 

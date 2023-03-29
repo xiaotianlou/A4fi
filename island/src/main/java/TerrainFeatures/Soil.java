@@ -1,26 +1,40 @@
 package TerrainFeatures;
 
 import transformation.builtinADT.MeshADT;
+import transformation.builtinADT.PolygonADT;
 
-/**
- * @author loux8@mcmaster.ca
- * @date 2023/3/24 11:06
- */
 public class Soil{
 
-    MeshADT meshADT;
 
-    public Soil(MeshADT meshADT) {
-        this.meshADT = meshADT;
-    }
-
-    public MeshADT soilInitialization(){
-        for (var p:meshADT.getPolygons()){
-            double n = ((double) p.getHumidity()/350)*(0.2);
-            int [] temp = p.getColor();
-            int [] temp_color = new int[]{(int)(temp[0]*n),(int)(temp[0]*n),(int)(temp[0]*n)};
-            p.setColor(temp_color);
+    public void soilInitialization(MeshADT meshADT){
+        for(var p:meshADT.getPolygons()){
+            if (!p.isIsland()){
+                waterAbsorbing(p);
+            }
         }
-        return this.meshADT;
+        for (var p:meshADT.getPolygons()){
+            humidityInfluence(p);
+        }
     }
+    private void waterAbsorbing(PolygonADT polygonADT){
+        for (var p:polygonADT.getPolygons()){
+            p.setSoilAbsorption(p.getSoilAbsorption()+5);
+            for (var np:p.getPolygons()){
+                if (np!=p){
+                    p.setSoilAbsorption(p.getSoilAbsorption()+1);
+                }
+            }
+        }
+    }
+
+    private void humidityInfluence(PolygonADT polygonADT){
+        int tempA = polygonADT.getSoilAbsorption();
+        int tempB = polygonADT.getHumidity();
+        if (tempB-tempA>0){
+            polygonADT.setHumidity(tempB-tempA);
+        }
+    }
+
 }
+
+

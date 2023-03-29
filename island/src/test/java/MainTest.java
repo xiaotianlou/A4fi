@@ -1,4 +1,7 @@
 import Reproducibility.Seed;
+import TerrainFeatures.Aquifers;
+import TerrainFeatures.Humidity;
+import TerrainFeatures.Soil;
 import ca.mcmaster.cas.se2aa4.a2.io.MeshFactory;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs;
 import featureRenderer.*;
@@ -41,16 +44,15 @@ class MainTest {
 
         int seedint = (int) (Math.random() * 1000000);
 //        seedint =148000;
-        System.out.println("seed is:"+seedint );
+        System.out.println("seed is:" + seedint);
         Seed s = new Seed(seedint);
 
 
-        new ShapeRenderer().Rendering(meshADT,s);
-        new ElevationRenderer().Rendering(meshADT,s);
-        new LakeRenderer().Rendering(meshADT,s);
-        new RiversRenderer().Rendering(meshADT,s);
-        new BiomeRenderer().Rendering(meshADT,s);
-
+        new ShapeRenderer().Rendering(meshADT, s);
+        new ElevationRenderer().Rendering(meshADT, s);
+        new LakeRenderer().Rendering(meshADT, s);
+        new RiversRenderer().Rendering(meshADT, s);
+        new BiomeRenderer().Rendering(meshADT, s);
 
 
         Structs.Mesh output = meshADT.toMesh();
@@ -59,7 +61,7 @@ class MainTest {
     }
 
     @Test
-    void soilTest()throws IOException{
+    void soilTest() throws IOException {
         MeshADT meshADT = new MeshADT();
         String input_c = "..//IOArea\\inputoff.mesh";
         Structs.Mesh aMesh = new MeshFactory().read(input_c);
@@ -67,17 +69,22 @@ class MainTest {
         meshADT.readInputMesh(aMesh);
 
 
-        int seedint = (int) (Math.random() * 1000000);
-        System.out.println("seed is:"+seedint );
+//        int seedint = (int) (Math.random() * 1000000);
+        int seedint = 19814;
+        System.out.println("seed is:" + seedint);
         Seed s = new Seed(seedint);
 
 
-        new ShapeRenderer().Rendering(meshADT,s);
-        new ElevationRenderer().Rendering(meshADT,s);
-        new LakeRenderer().Rendering(meshADT,s);
-        new RiversRenderer().Rendering(meshADT,s);
-        new BiomeRenderer().Rendering(meshADT,s);
-
+        new ShapeRenderer().Rendering(meshADT, s);
+        new ElevationRenderer().Rendering(meshADT, s);
+        new LakeRenderer().Rendering(meshADT, s);
+        new RiversRenderer().Rendering(meshADT, s);
+        Aquifers aquifers = new Aquifers(meshADT,2);
+        meshADT = aquifers.aquifersInitialization();
+        new Humidity().humidityInitialization(meshADT);
+        new Soil().soilInitialization(meshADT);
+        new BiomeRenderer().Rendering(meshADT, s);
+        System.out.println("============================================");
 
 
         Structs.Mesh output = meshADT.toMesh();
@@ -85,9 +92,8 @@ class MainTest {
 //        java -jar visualizer/visualizer.jar -i IOArea//Test.mesh -o IOArea//Test.svg -x
 
 
-
-
     }
+
     @Test
     void testRiversRender() throws IOException {
         MeshADT meshADT = new MeshADT();
@@ -98,36 +104,37 @@ class MainTest {
 
         int seedint = (int) (Math.random() * 1000000);
 //        seedint =148000;
-        System.out.println("seed is:"+seedint );
+        System.out.println("seed is:" + seedint);
         Seed s = new Seed(seedint);
 
 
-        new ShapeRenderer().Rendering(meshADT,s);
-        new ElevationRenderer().Rendering(meshADT,s);
-        new LakeRenderer().Rendering(meshADT,s);
-        new RiversRenderer().Rendering(meshADT,s);
+        new ShapeRenderer().Rendering(meshADT, s);
+        new ElevationRenderer().Rendering(meshADT, s);
+        new LakeRenderer().Rendering(meshADT, s);
+        new RiversRenderer().Rendering(meshADT, s);
         Structs.Mesh output = meshADT.toMesh();
         new MeshFactory().write(output, "..//IOArea\\Test.mesh");//
 
 //        java -jar visualizer/visualizer.jar -i IOArea//Test.mesh -o IOArea//Test.svg -x
 
     }
+
     @Test
-    void  testDW() throws IOException {
+    void testDW() throws IOException {
 
         MeshADT meshADT = new MeshADT();
         String input_c = "..//IOArea\\inputoff.mesh";
         Structs.Mesh aMesh = new MeshFactory().read(input_c);
         meshADT.readInputMesh(aMesh);
         int seedint = (int) (Math.random() * 1000000);
-        System.out.println("seed is:"+seedint );
+        System.out.println("seed is:" + seedint);
         Seed s = new Seed(seedint);
 //    s= new Seed(802517);
-        new ShapeRenderer().Rendering(meshADT,s);
-        new ElevationRenderer().Rendering(meshADT,s);
-        new BiomeRenderer().Rendering(meshADT,s);
-        String type="Tropical_Seasonal_Forest";
-        new WhittakerDiagramsRenderer().Rendering(meshADT,s,type);
+        new ShapeRenderer().Rendering(meshADT, s);
+        new ElevationRenderer().Rendering(meshADT, s);
+        new BiomeRenderer().Rendering(meshADT, s);
+        String type = "Tropical_Seasonal_Forest";
+        new WhittakerDiagramsRenderer().Rendering(meshADT, s, type);
 
         Structs.Mesh output = meshADT.toMesh();
         new MeshFactory().write(output, "..//IOArea\\WDtest.mesh");//
@@ -150,13 +157,13 @@ class MainTest {
 
         int seedint = (int) (Math.random() * 1000000);
 //        seedint =148000;
-        System.out.println("seed is:"+seedint );
+        System.out.println("seed is:" + seedint);
         Seed s = new Seed(seedint);
 
 
-        new ShapeRenderer().Rendering(meshADT,s);
-        new ElevationRenderer().Rendering(meshADT,s);
-        new LakeRenderer().Rendering(meshADT,s);
+        new ShapeRenderer().Rendering(meshADT, s);
+        new ElevationRenderer().Rendering(meshADT, s);
+        new LakeRenderer().Rendering(meshADT, s);
 
         Structs.Mesh output = meshADT.toMesh();
         new MeshFactory().write(output, "..//IOArea\\Test.mesh");//
@@ -166,7 +173,6 @@ class MainTest {
     }
 
 
-
     @Test
     void testBiomeRender() throws IOException {
         MeshADT meshADT = new MeshADT();
@@ -174,12 +180,12 @@ class MainTest {
         Structs.Mesh aMesh = new MeshFactory().read(input_c);
         meshADT.readInputMesh(aMesh);
         int seedint = (int) (Math.random() * 1000000);
-        System.out.println("seed is:"+seedint );
+        System.out.println("seed is:" + seedint);
         Seed s = new Seed(seedint);
 //    s= new Seed(802517);
-        new ShapeRenderer().Rendering(meshADT,s);
-        new ElevationRenderer().Rendering(meshADT,s);
-        new BiomeRenderer().Rendering(meshADT,s);
+        new ShapeRenderer().Rendering(meshADT, s);
+        new ElevationRenderer().Rendering(meshADT, s);
+        new BiomeRenderer().Rendering(meshADT, s);
 
         Structs.Mesh output = meshADT.toMesh();
         new MeshFactory().write(output, "..//IOArea\\Biometest.mesh");//
@@ -204,12 +210,12 @@ class MainTest {
         segmentImporter.read(aMesh, meshADT);
         polygonImporter.read(aMesh, meshADT);
         int seedint = (int) (Math.random() * 100000);
-        System.out.println("seed is:"+seedint );
+        System.out.println("seed is:" + seedint);
         Seed s = new Seed(seedint);
 //    s= new Seed(802517);
-        new BackGroundGenerator().Genering(meshADT,s);
-        new LagoonGenerator().Genering(meshADT,s);
-    Structs.Mesh out=meshADT.toMesh();
+        new BackGroundGenerator().Genering(meshADT, s);
+        new LagoonGenerator().Genering(meshADT, s);
+        Structs.Mesh out = meshADT.toMesh();
         new MeshFactory().write(out, "MVP.mesh");//
 //        java -jar visualizer/visualizer.jar -i C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtest.mesh -o C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtest.svg -x
 
@@ -233,11 +239,11 @@ class MainTest {
         Structs.Mesh aMesh = new MeshFactory().read(input_c);
         meshADT.readInputMesh(aMesh);
         int seedint = (int) (Math.random() * 1000000);
-        System.out.println("seed is:"+seedint );
+        System.out.println("seed is:" + seedint);
         Seed s = new Seed(seedint);
 //    s= new Seed(802517);
-        new ShapeRenderer().Rendering(meshADT,s);
-        new ElevationRenderer().Rendering(meshADT,s);
+        new ShapeRenderer().Rendering(meshADT, s);
+        new ElevationRenderer().Rendering(meshADT, s);
 //        new BiomeRenderer().Rendering(meshADT,s);
 
         Structs.Mesh output = meshADT.toMesh();
@@ -248,8 +254,9 @@ class MainTest {
 //        exeCommands(command);
 
     }
+
     @Test
-    void  testE2() throws IOException {
+    void testE2() throws IOException {
         MeshADT meshADT = new MeshADT();
         String input_c = "..//IOArea\\inputoff.mesh";
         Structs.Mesh aMesh = new MeshFactory().read(input_c);
@@ -261,56 +268,47 @@ class MainTest {
         segmentImporter.read(aMesh, meshADT);
         polygonImporter.read(aMesh, meshADT);
         int seedint = (int) (Math.random() * 1000000);
-        seedint =148000;
-        System.out.println("seed is:"+seedint );
+        seedint = 148000;
+        System.out.println("seed is:" + seedint);
         Seed s = new Seed(seedint);
 //    s= new Seed(802517);
-        meshADT = new ShapeRenderer().Rendering(meshADT,s);
-        meshADT = new ElevationRenderer().Rendering(meshADT,s);
+        meshADT = new ShapeRenderer().Rendering(meshADT, s);
+        meshADT = new ElevationRenderer().Rendering(meshADT, s);
         Structs.Mesh output = meshADT.toMesh();
         new MeshFactory().write(output, "..//IOArea\\Test.mesh");//
 //java -jar visualizer/visualizer.jar -i C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtest.mesh -o C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtest1.svg -x
 
         new Color(22, 241, 140);
-        for (PolygonADT temp : meshADT.getPolygons()){
-            var info =temp.getInfoSet();
-            if (info.isIsland()){
-                int h=info.getElevation();
-                if(h>90) {
+        for (PolygonADT temp : meshADT.getPolygons()) {
+            var info = temp.getInfoSet();
+            if (info.isIsland()) {
+                int h = info.getElevation();
+                if (h > 90) {
                     info.setColor(new int[]{229, 5, 5});//red
-                }
-                else if(h>80){
+                } else if (h > 80) {
                     info.setColor(new int[]{158, 232, 29});//yellow
-                }
-                else if(h>70){
+                } else if (h > 70) {
                     info.setColor(new int[]{31, 34, 225});//blue
-                }
-                else if(h>60){
+                } else if (h > 60) {
                     info.setColor(new int[]{22, 241, 140});//green
                     System.out.println(info.getElevation());
-                }
-                else if(h>50){
+                } else if (h > 50) {
                     info.setColor(new int[]{22, 241, 140});//green
                     System.out.println(info.getElevation());
-                }
-                else if(h>40){
+                } else if (h > 40) {
                     info.setColor(new int[]{22, 241, 140});//green
                     System.out.println(info.getElevation());
-                }
-                else if(h>30){
+                } else if (h > 30) {
                     info.setColor(new int[]{22, 241, 140});//green
                     System.out.println(info.getElevation());
-                }
-                else if(h>20){
+                } else if (h > 20) {
                     info.setColor(new int[]{22, 241, 140});//green
                     System.out.println(info.getElevation());
-                }
-                else if(h>=0){
+                } else if (h >= 0) {
                     info.setColor(new int[]{22, 241, 140});//green
                     System.out.println(info.getElevation());
-                }
-                else if(h==-1){
-                    info.setColor(new int[]{0,0,0});//black
+                } else if (h == -1) {
+                    info.setColor(new int[]{0, 0, 0});//black
                     System.out.println(info.getElevation());
                 }
 
@@ -323,5 +321,4 @@ class MainTest {
 
 
     }
-
 }
