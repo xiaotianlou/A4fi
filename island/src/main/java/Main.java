@@ -24,8 +24,8 @@ public class Main {
 
 
 
-        String input_c = "..//IOArea\\inputoff.mesh";
-        String outputaddress="..//IOArea\\outputoff.mesh";
+        String input_c = "IOArea/inputoff.mesh";
+        String outputaddress="IOArea/outputoff.mesh";
 //        java -jar island/island.jar -i IOArea/inputoff.mesh -o IOArea/lagoon.mesh -mode lagoon
         if (!(options.get(ConfigurationIsland.inputAddress) == (null))) {
             input_c = "".concat(options.get(ConfigurationIsland.inputAddress));}
