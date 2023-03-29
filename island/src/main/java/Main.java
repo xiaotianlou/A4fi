@@ -12,30 +12,41 @@ import transformation.builtinADT.MeshADT;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-
         Configuration config = new Configuration(args);
         Map<String, String> options = config.export();
         MeshADT meshADT = new MeshADT();
+        HashMap<SeedType,Seed> seedBag = new HashMap();
+        int seedNumber = (int) (Math.random() * 100000);
+        System.out.println("default seed :"+seedNumber);
+        Seed defaultSeed = new Seed(seedNumber);
+        String input_c;
+        String outputadress;
 
-        String input_c = "..//IOArea\\inputoff.mesh";
-        String outputadress = "..//IOArea\\outputoff.mesh";
-        Seed s = new Seed((int) (Math.random() * 100000));
+        if (options.get(Configuration.INPUT) == (null)) {
+            input_c = "..//IOArea\\inputoff.mesh";
+        }else {input_c = options.get(Configuration.INPUT);}
+
+        if (options.get(Configuration.OUTPUT) == (null)) {
+            outputadress = "..//IOArea\\outputoff.mesh";
+        }else {outputadress = options.get(Configuration.OUTPUT);}
+
+
+
+
+
 
         if (options.get(Configuration.mode) == "lagoon") {
-            Structs.Mesh aMesh = new MeshFactory().read(options.get(Configuration.INPUT));
+            Structs.Mesh aMesh = new MeshFactory().read(input_c);
             meshADT.readInputMesh(aMesh);
-            int seedint = (int) (Math.random() * 100000);
-            System.out.println("seed is:" + seedint);
-            Seed seed = new Seed(seedint);
-            meshADT = new BackGroundGenerator().Genering(meshADT, s);
-            meshADT = new LagoonGenerator().Genering(meshADT, s);
+            meshADT = new BackGroundGenerator().Genering(meshADT, defaultSeed);
+            meshADT = new LagoonGenerator().Genering(meshADT, defaultSeed);
             Structs.Mesh out = meshADT.toMesh();
-            new MeshFactory().write(out, options.get(Configuration.OUTPUT));//
-
+            new MeshFactory().write(out, options.get(outputadress));//
         }
 
 
