@@ -30,6 +30,7 @@ public class Main {
 //        java -jar island/island.jar -i IOArea/inputoff.mesh -o IOArea/lagoon.mesh -mode lagoon
         if (!(options.get(ConfigurationIsland.inputAddress) == (null))) {
             input_c = "".concat(options.get(ConfigurationIsland.inputAddress));}
+        System.out.println(input_c);
         if (!(options.get(ConfigurationIsland.outputAddress) == (null))) {
             outputaddress = "".concat(options.get(ConfigurationIsland.outputAddress));}
         if (!(options.get(ConfigurationIsland.seed) == (null))) {
