@@ -160,7 +160,6 @@ public class PolygonADT {
 
         builder.addProperties(propertyBuilder.setKey("rgb_color").setValue(getColorCode()));
 
-
         builder.addProperties(propertyBuilder.setKey("elevation").setValue(String.valueOf(getElevation())));
 
         builder.addProperties(propertyBuilder.setKey("temperature").setValue(String.valueOf(getTemperature())));
