@@ -41,8 +41,26 @@ mosser@azrael A2 % java -jar island/island.jar -help
 mosser@azrael A2 % java -jar island/island.jar -i IOArea/inputoff.mesh -o IOArea/lagoon.mesh --mode lagoon   
 mosser@azrael A2 % java -jar island/island.jar -i IOArea/inputoff.mesh -o IOArea/test.mesh   
 mosser@azrael A2 % java -jar island/island.jar -i IOArea/inputoff.mesh -o IOArea/test.mesh 
-mosser@azrael A2 % 
+mosser@azrael A2 % java -jar island/island.jar -seed 42939
+mosser@azrael A2 % java -jar island/island.jar -seed 42939 -biomes Tropical_Rain_Forest
 
+
+seed is a positive integer
+
+usage: java -jar island.jar
+ -al <arg>         Seed for generator altitude
+ -aq <arg>         number of aquifers
+ -b <arg>          biomes name
+ -help             print help message
+ -i <arg>          input mesh adress
+ -l <arg>          max number of lake lake
+ -m,--mode <arg>   type lagoon to activate MVP mode, default is seed
+                   generator mode
+ -o <arg>          adress of output mesh
+ -r <arg>          number of river
+ -s <arg>          seed for soil
+ -seed <arg>       global seed
+ -shape <arg>      Seed for shape
 
   
 

@@ -82,7 +82,8 @@ public class Main {
         new BiomeRenderer().Rendering(meshADT, defaultSeed);
 
         if (!(options.get(ConfigurationIsland.BiomeType) == (null))) {
-            new WhittakerDiagramsRenderer().Rendering(meshADT,defaultSeed);
+            defaultSeed.setBiome(options.get(ConfigurationIsland.BiomeType));
+            meshADT =new WhittakerDiagramsRenderer().Rendering(meshADT,defaultSeed);
         }
 
 
