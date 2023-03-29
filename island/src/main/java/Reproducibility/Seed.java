@@ -13,6 +13,17 @@ public class Seed {
 
     private int seed;
 
+    public int getMaxlakeNumber() {
+        return MaxlakeNumber;
+    }
+
+    public void setMaxlakeNumber(int maxlakeNumber) {
+        MaxlakeNumber = maxlakeNumber;
+    }
+
+    private int MaxlakeNumber = getSeedArray().get(getSeedArray().size()/3)+3;;
+
+
     public List<Integer> getSeedArray(){
         List<Integer> l = new ArrayList<Integer>();
         int n =seed;

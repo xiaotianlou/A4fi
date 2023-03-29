@@ -1,5 +1,6 @@
 package transformation.builtinADT;
 
+import TerrainFeatures.Aquifers;
 import TerrainFeatures.Humidity;
 import TerrainFeatures.Soil;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs;
@@ -15,6 +16,16 @@ public class MeshADT {
     final ArrayList<PolygonADT> polygons = new ArrayList<>();
     final private ArrayList<VertexADT> vertices = new ArrayList<>();
     final private ArrayList<SegmentADT> segments = new ArrayList<>();
+
+    public int getNumAquifers() {
+        return numAquifers;
+    }
+
+    public void setNumAquifers(int numAquifers) {
+        this.numAquifers = numAquifers;
+    }
+
+    int numAquifers =20;
 
     public VertexADT getVertex(double x, double y) {
         for (VertexADT v : vertices) {
@@ -106,10 +117,14 @@ public class MeshADT {
             Soil.humidityInfluence(p);
         }
     }
+    public void aquifersInitialization(){
+        Aquifers.aquiferDistributor(this,numAquifers);
+    }
 
     public void calInfo(){
         humidityInitialization();
         soilInitialization();
+        aquifersInitialization();
 
     }
 

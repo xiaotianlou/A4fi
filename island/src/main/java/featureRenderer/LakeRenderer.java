@@ -25,7 +25,7 @@ public class LakeRenderer extends Tile implements Renderable {
     }
     @Override
     public MeshADT Rendering(MeshADT m, Seed seed) {
-        int i = seed.getSeedArray().get(seed.getSeedArray().size()/3)+3;
+        int i = seed.getMaxlakeNumber();
         Color c= new Color(59, 145, 238);
         for (;0<i;i--) {
             boolean flag=false;
