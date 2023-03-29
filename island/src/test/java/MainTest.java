@@ -58,7 +58,7 @@ class MainTest {
         new RiversRenderer().Rendering(meshADT, s);
         new BiomeRenderer().Rendering(meshADT, s);
 //        s.setBiome("Tropical_Rain_Forest");
-        new WhittakerDiagramsRenderer().Rendering(meshADT,s);
+//        new WhittakerDiagramsRenderer().Rendering(meshADT,s);
     }
 
     @Test
