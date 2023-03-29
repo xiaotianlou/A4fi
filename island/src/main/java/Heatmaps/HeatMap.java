@@ -10,19 +10,21 @@ import java.awt.*;
 
 public abstract class HeatMap implements Buildable{
     MeshADT m;
-    public void eliminationOfWaters(){
+    public void heatMapInitialization(){
         InfoSet temp;
-        Color c = new Color(0,0,0);
+        Color color1 = new Color(0,0,0);
+        Color color2 = new Color(255,255,255);
         for (PolygonADT p : m.getPolygons()){
             temp= p.getInfoSet();
-            if(!temp.isIsland()){
-            temp.setColor(c);
+            temp.setColor(color1);
+            if(temp.isIsland()||temp.isLake()){
+            temp.setColor(color2);
             }
         }
     }
 
 
-    public HeatMap(MeshADT m) {
-        this.m = m;
+    public HeatMap(MeshADT meshADT) {
+        this.m = meshADT;
     }
 }

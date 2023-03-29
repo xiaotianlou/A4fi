@@ -16,8 +16,6 @@ public class PolygonADT {
     private VertexADT centroid;
 
     private boolean isLake=false;
-    private int humidity = 150;
-
     private int soilAbsorption=0;
     private final InfoSet infoSet = new InfoSet();
 
@@ -29,11 +27,11 @@ public class PolygonADT {
     }
 
     public int getHumidity() {
-        return humidity;
+        return infoSet.getHumidity();
     }
 
     public void setHumidity(int humidity) {
-        this.humidity = humidity;
+        this.infoSet.setHumidity(humidity);
     }
 
     public InfoSet getInfoSet() {
@@ -179,11 +177,11 @@ public class PolygonADT {
     }
 
     public boolean isLake() {
-        return isLake;
+        return this.infoSet.isLake();
     }
 
     public void setLake(boolean lake) {
-        isLake = lake;
+        this.infoSet.setLake(lake);
     }
 
     public int getSoilAbsorption() {

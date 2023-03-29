@@ -3,12 +3,14 @@ package Heatmaps;
 import transformation.builtinADT.MeshADT;
 
 public class HumidityHeatMap extends HeatMap{
-    public HumidityHeatMap(MeshADT m) {
-        super(m);
+    public HumidityHeatMap(MeshADT meshADT) {
+        super(meshADT);
+        build(meshADT);
     }
 
     @Override
-    public void build() {
+    public void build(MeshADT meshADT) {
+        for (p)
 
     }
 }

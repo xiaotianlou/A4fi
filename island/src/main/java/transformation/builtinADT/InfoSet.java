@@ -10,6 +10,27 @@ public class InfoSet {
     private int elevation = -1;
     private int waterContent;
     private int temperature = 25;
+
+    private int humidity = 0;
+
+    private boolean isLake=false;
+
+    public boolean isLake() {
+        return isLake;
+    }
+
+    public void setLake(boolean lake) {
+        isLake = lake;
+    }
+
+    public int getHumidity() {
+        return humidity;
+    }
+
+    public void setHumidity(int humidity) {
+        this.humidity = humidity;
+    }
+
     private int[] color = new int[]{255, 255, 255};
 
     public static int calculateHumidity(int waterContent, int distance) {
