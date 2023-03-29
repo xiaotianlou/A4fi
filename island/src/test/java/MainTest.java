@@ -51,7 +51,7 @@ class MainTest {
 
 
     @Test
-    void main() throws IOException {
+    void main() {
         new ShapeRenderer().Rendering(meshADT, s);
         new ElevationRenderer().Rendering(meshADT, s);
         new LakeRenderer().Rendering(meshADT, s);
@@ -88,7 +88,7 @@ class MainTest {
 
 
     @Test
-    void testRiversRender() throws{
+    void testRiversRender() {
         new ShapeRenderer().Rendering(meshADT, s);
         new ElevationRenderer().Rendering(meshADT, s);
         new LakeRenderer().Rendering(meshADT, s);
@@ -96,11 +96,12 @@ class MainTest {
     }
 
     @Test
-    void testDW() throws {
+    void testDW()  {
         new ShapeRenderer().Rendering(meshADT, s);
         new ElevationRenderer().Rendering(meshADT, s);
         new BiomeRenderer().Rendering(meshADT, s);
         String type = "Tropical_Seasonal_Forest";
+        s.setBiome(type);
         new WhittakerDiagramsRenderer().Rendering(meshADT, s);
 
 
@@ -164,7 +165,7 @@ class MainTest {
     }
 
     @Test
-    void testShape() throws IOException {
+    void testShape() {
         new ShapeRenderer().Rendering(meshADT, s);
         new ElevationRenderer().Rendering(meshADT, s);
 
