@@ -19,27 +19,15 @@ import transformation.importation.segmentImporter;
 import transformation.importation.vertexImporter;
 
 import java.awt.*;
-import java.io.BufferedReader;
+
 import java.io.IOException;
-import java.io.InputStreamReader;
+
 
 class MainTest {
 
 
     MeshADT meshADT;
     Seed s;
-
-    private void exeCommands(String command) throws IOException {
-        Process p = Runtime.getRuntime().exec(command);
-        BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
-        String line;
-        String text = command + "\n";
-        System.out.println(text);
-        while ((line = input.readLine()) != null) {
-            text += line;
-            System.out.println("Line: " + line);
-        }//not working
-    }
 
     @BeforeEach
     void initial() throws IOException {
@@ -100,7 +88,7 @@ class MainTest {
 
 
     @Test
-    void testRiversRender() throws IOException {
+    void testRiversRender() throws{
         new ShapeRenderer().Rendering(meshADT, s);
         new ElevationRenderer().Rendering(meshADT, s);
         new LakeRenderer().Rendering(meshADT, s);
@@ -108,7 +96,7 @@ class MainTest {
     }
 
     @Test
-    void testDW() throws IOException {
+    void testDW() throws {
         new ShapeRenderer().Rendering(meshADT, s);
         new ElevationRenderer().Rendering(meshADT, s);
         new BiomeRenderer().Rendering(meshADT, s);
@@ -119,7 +107,7 @@ class MainTest {
     }
 
     @Test
-    void testLakeRender() throws IOException {
+    void testLakeRender() {
         new ShapeRenderer().Rendering(meshADT, s);
         new ElevationRenderer().Rendering(meshADT, s);
         new LakeRenderer().Rendering(meshADT, s);
@@ -127,7 +115,7 @@ class MainTest {
 
 
     @Test
-    void testBiomeRender() throws IOException {
+    void testBiomeRender() {
         new ShapeRenderer().Rendering(meshADT, s);
         new ElevationRenderer().Rendering(meshADT, s);
         new BiomeRenderer().Rendering(meshADT, s);
