@@ -1,7 +1,6 @@
 package featureRenderer;
 
 import Reproducibility.Seed;
-import transformation.builtinADT.Biome;
 import transformation.builtinADT.MeshADT;
 import transformation.builtinADT.PolygonADT;
 
