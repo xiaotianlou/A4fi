@@ -29,7 +29,7 @@ public abstract class HeatMap implements Buildable{
     public void build() {
         double max=0;
         for (var p: meshADT.getPolygons()){
-            if (p.getElevation()>max){
+            if (getValue(p)>max){
                 max = getValue(p);
             }
         }
