@@ -9,11 +9,11 @@ import java.util.Map;
  * @author loux8@mcmaster.ca
  * @date 2023/3/23 15:55
  */
-public class Configuration {
+public class ConfigurationIsland {
 
 
 
-    public static final String mode = "mode";
+    public static final String mode = "m";
     public static final String inputAddress = "i";
     public static final String outputAddress = "o";
     public static final String shapeSeed = "shape";
@@ -28,7 +28,7 @@ public class Configuration {
 
     private CommandLine cli;
 
-    public Configuration(String[] args) {
+    public ConfigurationIsland(String[] args) {
         try {
             this.cli = parser().parse(options(), args);
             if (cli.hasOption(HELP)) {
@@ -75,9 +75,11 @@ public class Configuration {
         options.addOption(new Option(BiomeType, true, "biomes name"));
         options.addOption(new Option(seed, true, "global seed"));
         options.addOption(new Option(HELP, false, "print help message"));
-        options.addOption(new Option(mode, true, "type lagoon to activate MVP mode, default is seed generator mode"));
+
+        Option mod =new Option(mode, true, "type lagoon to activate MVP mode, default is seed generator mode");
+        mod.setLongOpt("mode");
+        options.addOption(mod);
         options.addOption(new Option(inputAddress, true, "input mesh adress"));
-        options.hasLongOption("mode");
 
 
         return options;
