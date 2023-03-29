@@ -56,7 +56,7 @@ public class Main {
         if (!(options.get(Configuration.aquifers) == (null))) {
             water = Integer.parseInt(options.get(Configuration.seed));
         }
-        Aquifers aquifers = new Aquifers(meshADT, water);
+        new Aquifers().aquifersInitialization(meshADT,water);
 
         Structs.Mesh aMesh = new MeshFactory().read(input_c);
 
