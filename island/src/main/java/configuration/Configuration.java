@@ -11,17 +11,19 @@ import java.util.Map;
  */
 public class Configuration {
 
+
+
     public static final String mode = "mode";
-    public static final String INPUT = "i";
-    public static final String OUTPUT = "o";
-    public static final String shape = "s";
-    public static final String altitude  = "al";
-    public static final String lakes = "l";
-    public static final String rivers = "r";
+    public static final String inputAddress = "i";
+    public static final String outputAddress = "o";
+    public static final String shapeSeed = "s";
+    public static final String altitudeSeed = "al";
+    public static final String lakeMaxNumber = "l";
+    public static final String riverNumber = "r";
     public static final String HELP = "help";
-    public static final String aquifers = "aq";
-    public static final String soil = "s";
-    public static final String biomes = "b";
+    public static final String aquifersNumber = "aq";
+    public static final String soilSeed = "s";
+    public static final String BiomeType = "b";
     public static final String seed = "s";
 
     private CommandLine cli;
@@ -59,20 +61,22 @@ public class Configuration {
         return new DefaultParser();
     }
 
+
+    // shapeSeed,altitudeSeed,lakeMaxNumber,riverNumber,aquifersNumber,soilSeed,BiomeType,inputAddress,outputAddress
     private Options options() {
         Options options = new Options();
-        options.addOption(new Option(INPUT, true, "input mesh adress"));
-        options.addOption(new Option(OUTPUT, true, "adress of output mesh"));
-        options.addOption(new Option(shape, true, "Seed for shape"));
-        options.addOption(new Option(altitude, true, "Seed for generator altitude"));
-        options.addOption(new Option(lakes, true, "seed to generator lake"));
-        options.addOption(new Option(rivers, true, "seed to generator river"));
+        options.addOption(new Option(inputAddress, true, "input mesh adress"));
+        options.addOption(new Option(outputAddress, true, "adress of output mesh"));
+        options.addOption(new Option(shapeSeed, true, "Seed for shape"));
+        options.addOption(new Option(altitudeSeed, true, "Seed for generator altitude"));
+        options.addOption(new Option(lakeMaxNumber, true, "max number of lake lake"));
+        options.addOption(new Option(riverNumber, true, "number of river"));
 
-        options.addOption(new Option(aquifers, true, "a int as seed to generator for quifier"));
+        options.addOption(new Option(aquifersNumber, true, "number of aquifers"));
 
-        options.addOption(new Option(soil, true, "seed for soil"));
-        options.addOption(new Option(biomes, true, "seed for biomes"));
-        options.addOption(new Option(seed, true, "seed for all in one times"));
+        options.addOption(new Option(soilSeed, true, "seed for soil"));
+        options.addOption(new Option(BiomeType, true, "biomes name"));
+        options.addOption(new Option(seed, true, "global seed"));
         options.addOption(new Option(HELP, false, "print help message"));
         return options;
     }

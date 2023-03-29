@@ -12,57 +12,68 @@ import transformation.builtinADT.MeshADT;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
 import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         Configuration config = new Configuration(args);
         Map<String, String> options = config.export();
+
+
         MeshADT meshADT = new MeshADT();
-        HashMap<SeedType,Seed> seedBag = new HashMap();
         int seedNumber = (int) (Math.random() * 100000);
         System.out.println("default seed :"+seedNumber);
         Seed defaultSeed = new Seed(seedNumber);
-        String input_c;
-        String outputadress;
 
-        if (options.get(Configuration.INPUT) == (null)) {
+
+
+        if (!(options.get(Configuration.seed) == (null))) {
+            defaultSeed = new Seed(Integer.parseInt(options.get(Configuration.seed)));
+        }
+
+        for (InputType temp : InputType.values()){
+            seedBag.put(temp,defaultSeed);
+        }
+
+        String input_c;
+        String outputaddress;
+
+        if (options.get(Configuration.inputAddress) == (null)) {
             input_c = "..//IOArea\\inputoff.mesh";
-        }else {input_c = options.get(Configuration.INPUT);}
+        }else {input_c = options.get(Configuration.inputAddress);}
 
         if (options.get(Configuration.OUTPUT) == (null)) {
-            outputadress = "..//IOArea\\outputoff.mesh";
-        }else {outputadress = options.get(Configuration.OUTPUT);}
-
-
-
-
-
+            outputaddress = "..//IOArea\\outputoff.mesh";
+        }else {outputaddress = options.get(Configuration.OUTPUT);}
 
         if (options.get(Configuration.mode) == "lagoon") {
             Structs.Mesh aMesh = new MeshFactory().read(input_c);
             meshADT.readInputMesh(aMesh);
-            meshADT = new BackGroundGenerator().Genering(meshADT, defaultSeed);
-            meshADT = new LagoonGenerator().Genering(meshADT, defaultSeed);
+            new BackGroundGenerator().Genering(meshADT, defaultSeed);
+            new LagoonGenerator().Genering(meshADT, defaultSeed);
             Structs.Mesh out = meshADT.toMesh();
-            new MeshFactory().write(out, options.get(outputadress));//
+            new MeshFactory().write(out, options.get(outputaddress));//
         }
 
 
-        if (!(options.get(Configuration.INPUT) == (null))) {
-            input_c = options.get(Configuration.INPUT);
-        }
-        System.out.println(input_c);
-        if (!(options.get(Configuration.OUTPUT) == (null))) {
-            outputadress = options.get(Configuration.OUTPUT);
+
+
+
+
+
+
+
+        if (!(options.get(Configuration.altitudeSeed) == (null))) {
+           seedBag.put(Configuration.altitudeSeed,options.get(Configuration.altitudeSeed))
+        } else {
+            new ElevationRenderer().Rendering(meshADT, seed);
         }
 
-        Seed seed = new Seed((int) (Math.random() * 1000000));
-        System.out.println("seed is:   " + seed.getSeed());
-        if (!(options.get(Configuration.seed) == (null))) {
-            seed = new Seed(Integer.parseInt(options.get(Configuration.seed)));
-        }
+
+
+
+
+
         int water = 1;
         if (!(options.get(Configuration.aquifers) == (null))) {
             water = Integer.parseInt(options.get(Configuration.seed));
@@ -75,23 +86,27 @@ public class Main {
         meshADT.readInputMesh(aMesh);
 
 
-        if (!(options.get(Configuration.shape) == (null))) {
-            new ShapeRenderer().Rendering(meshADT, new Seed(Integer.parseInt(options.get(Configuration.shape))));
+        if (!(options.get(Configuration.shapeSeed) == (null))) {
+            new ShapeRenderer().Rendering(meshADT, new Seed(Integer.parseInt(options.get(Configuration.shapeSeed))));
         } else {
             new ShapeRenderer().Rendering(meshADT, seed);
 
         }
 
-        if (!(options.get(Configuration.altitude) == (null))) {
-            new ElevationRenderer().Rendering(meshADT, new Seed(Integer.parseInt(options.get(Configuration.altitude))));
-        } else {
-            new ElevationRenderer().Rendering(meshADT, seed);
-        }
+
 
         new Aquifers().aquifersInitialization(meshADT,water);
 
         Structs.Mesh output = meshADT.toMesh();
-        new MeshFactory().write(output, outputadress);//
+        new MeshFactory().write(output, outputaddress);//
+
+        //shape- seed
+        //altitude --seed
+        //lake max number
+        //river -number of river
+        //aquifers number of aquifers
+        //soil seed
+        //Biome string make island
 
 
     }
