@@ -1,3 +1,6 @@
+import Heatmaps.ElevationHeatMap;
+import Heatmaps.HeatMap;
+import Heatmaps.HumidityHeatMap;
 import Reproducibility.Seed;
 import ca.mcmaster.cas.se2aa4.a2.io.MeshFactory;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs;
@@ -82,9 +85,16 @@ public class Main {
             new WhittakerDiagramsRenderer().Rendering(meshADT,defaultSeed);
         }
 
+
         Structs.Mesh output = meshADT.toMesh();
         new MeshFactory().write(output, outputaddress);//
 
+        HeatMap hE = new ElevationHeatMap(meshADT);
+        HeatMap hH = new HumidityHeatMap(meshADT);
+        hE.build();
+        new MeshFactory().write(output,outputaddress.substring(0,outputaddress.length()-5)+"\\ElevationHeatMap.mesh");
+        hH.build();
+        new MeshFactory().write(output, outputaddress.substring(0,outputaddress.length()-5)+"\\HumidityHeatMap.mesh");
         //shape- seed
         //altitude --seed
         //lake max number
