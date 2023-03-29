@@ -1,0 +1,272 @@
+@startuml
+class transformation.builtinADT.MeshADT {
++ int getNumAquifers()
++ void setNumAquifers(int)
++ VertexADT getVertex(double,double)
++ SegmentADT getSegment(VertexADT,VertexADT)
++ ArrayList<VertexADT> getVertices()
++ ArrayList<SegmentADT> getSegments()
++ ArrayList<PolygonADT> getPolygons()
++ PolygonADT getPolygon(List<VertexADT>,List<SegmentADT>,VertexADT)
++ Structs.Mesh toMesh()
++ MeshADT readInputMesh(Structs.Mesh)
++ void humidityInitialization()
++ void soilInitialization()
++ void aquifersInitialization()
++ void calInfo()
+}
+class featureRenderer.Elevation.SnowMountainGenerator {
++ MeshADT Genering(MeshADT,Seed)
++ void SnowMountainDescentAlgorithm(PolygonADT)
+}
+class ConfigurationIsland {
+- void help()
++ Map<String,String> export()
++ String export(String)
+- CommandLineParser parser()
+- Options options()
+}
+class transformation.builtinADT.PolygonADT {
++ int getHumidity()
++ void setHumidity(int)
++ InfoSet getInfoSet()
++ Biome getBiome()
++ void setBiome(Biome)
++ int getId()
++ boolean equals(List<VertexADT>,List<SegmentADT>)
++ int[] getColor()
++ void setColor(int[])
++ void setColor(String)
++ String getColorCode()
++ List<VertexADT> getVertices()
++ void setVertices(List<VertexADT>)
++ VertexADT getCentroid()
++ void setCentroid(VertexADT)
++ int getElevation()
++ void setElevation(int)
++ boolean isIsland()
++ void setIsland(boolean)
++ int getWaterContent()
++ void setWaterContent(int)
++ int getTemperature()
++ void setTemperature(int)
++ List<PolygonADT> getPolygons()
++ void setPolygons(List<PolygonADT>)
++ List<SegmentADT> getSegments()
++ void setSegments(List<SegmentADT>)
++ Structs.Polygon toPolygon()
++ boolean isLake()
++ void setLake(boolean)
++ int getSoilAbsorption()
++ void setSoilAbsorption(int)
+}
+enum InputType {
++  shapeSeed
++  altitudeSeed
++  lakeMaxNumber
++  riverNumber
++  aquifersNumber
++  soilSeed
++  BiomeType
++  inputAddress
++  outputAddress
+}
+class TerrainFeatures.Soil {
++ {static} void waterAbsorbing(PolygonADT)
++ {static} void humidityInfluence(PolygonADT)
+}
+class featureRenderer.LakeRenderer {
+- void checkAround(PolygonADT)
++ MeshADT Rendering(MeshADT,Seed)
+}
+interface featureRenderer.Generable {
+~ MeshADT Genering(MeshADT,Seed)
+~ double Simulink(double)
+}
+class featureRenderer.Shape.LagoonGenerator {
++ MeshADT Genering(MeshADT,Seed)
+}
+class transformation.builtinADT.InfoSet {
++ boolean isLake()
++ void setLake(boolean)
++ int getHumidity()
++ void setHumidity(int)
++ {static} int calculateHumidity(int,int)
++ int[] getColor()
++ void setColor(int[])
++ void setColor(Color)
++ void setColor(String)
++ boolean isIsland()
++ void setIsland(boolean)
++ Biome getBiome()
++ void setBiome(Biome)
++ int getElevation()
++ void setElevation(int)
++ int getWaterContent()
++ void setWaterContent(int)
++ int getTemperature()
++ void setTemperature(int)
+}
+abstract class Heatmaps.HeatMap {
+- void heatMapInitialization()
++ void build()
++ {abstract}double getValue(PolygonADT)
+}
+class featureRenderer.Elevation.BasicElevationGenerator {
++ MeshADT Genering(MeshADT,Seed)
+}
+class featureRenderer.WhittakerDiagramsRenderer {
++ PolygonADT BoundryColor(PolygonADT,Seed)
++ PolygonADT InnerColor(PolygonADT,Seed,String)
++ MeshADT Rendering(MeshADT,Seed)
+}
+class Heatmaps.ElevationHeatMap {
++ double getValue(PolygonADT)
+}
+class TerrainFeatures.Aquifers {
++ {static} void aquiferDistributor(MeshADT,int)
+}
+class transformation.importation.polygonImporter {
++ void read(Structs.Mesh,MeshADT)
+}
+class featureRenderer.ElevationRenderer {
++ MeshADT Rendering(MeshADT,Seed)
+}
+class transformation.importation.vertexImporter {
++ void read(Structs.Mesh,MeshADT)
+}
+interface transformation.importation.Importer {
+~ void read(Structs.Mesh,MeshADT)
+}
+class Heatmaps.HumidityHeatMap {
++ double getValue(PolygonADT)
+}
+class transformation.builtinADT.VertexADT {
++ double getElevation()
++ double getX()
++ void setX(double)
++ double getY()
++ void setY(double)
++ int[] getColor()
++ void setColor(int[])
++ void setColor(String)
++ String getColorCode()
++ int getId()
++ Structs.Vertex toVertex()
++ ArrayList<SegmentADT> getSegments()
++ void addSegments(SegmentADT)
++ ArrayList<PolygonADT> getPolygons()
++ void addPolygons(PolygonADT)
++ boolean isCentroid()
++ void setCentroid(boolean)
++ ArrayList<VertexADT> getVertices()
++ boolean isAroundWater()
++ void setAroundWater(boolean)
++ boolean isRiver()
++ void setRiver(boolean)
+}
+class TerrainFeatures.Humidity {
++ void humidityInitialization(MeshADT)
++ {static} void humiditySum(PolygonADT)
+}
+class transformation.importation.segmentImporter {
++ void read(Structs.Mesh,MeshADT)
+}
+class featureRenderer.RiversRenderer {
++ MeshADT Rendering(MeshADT,Seed)
+}
+class featureRenderer.Shape.BackGroundGenerator {
++ MeshADT Genering(MeshADT,Seed)
+}
+interface Heatmaps.Buildable {
+~ void build()
+}
+class Heatmaps.ResourcesHeatMap {
++ void build()
++ double getValue(PolygonADT)
+}
+class Main {
++ {static} void main(String[])
+}
+class featureRenderer.Shape.RandomShapeGenerator {
++ MeshADT Genering(MeshADT,Seed)
+}
+class Reproducibility.Seed {
++ int getSeed()
++ String getBiome()
++ void setBiome(String)
++ int getRiverNumber()
++ void setRiverNumber(int)
++ int getMaxlakeNumber()
++ void setMaxlakeNumber(int)
++ List<Integer> getSeedArray()
+}
+enum transformation.builtinADT.Biome {
++  Tropical_Rain_Forest
++  Tropical_Seasonal_Forest
++  Temperate_Rain_Forest
++  Temperate_Deciduous_Forest
++  None
++  Temperate_Grassland_and_Desert
++  Taiga
++  Tundra
++  Subtropical_Desert
+}
+class featureRenderer.ShapeRenderer {
++ MeshADT Rendering(MeshADT,Seed)
+}
+class MainTest {
+~ void initial()
+~ void TestOutput()
+~ void main()
+~ void testElevationHeatMap()
+~ void testHumidityHeatMap()
+~ void testRiversRender()
+~ void testDW()
+~ void testLakeRender()
+~ void testBiomeRender()
+~ void MVP()
+~ void testSimulink()
+~ void testShape()
+~ void testE2()
+}
+class featureRenderer.BiomeRenderer {
+- {static} void setColor(PolygonADT,Color)
++ MeshADT Rendering(MeshADT,Seed)
+}
+interface featureRenderer.Renderable {
+~ MeshADT Rendering(MeshADT,Seed)
+}
+class transformation.builtinADT.SegmentADT {
++ VertexADT getStart()
++ VertexADT getEnd()
++ int getId()
++ int[] getColor()
++ void setColor(int[])
++ void setColor(String)
++ String getColorCode()
++ Structs.Segment toSegment()
++ float getThickness()
++ void setThickness(float)
+}
+
+
+featureRenderer.Generable <|.. featureRenderer.Elevation.SnowMountainGenerator
+featureRenderer.Renderable <|.. featureRenderer.LakeRenderer
+featureRenderer.Generable <|.. featureRenderer.Shape.LagoonGenerator
+Heatmaps.Buildable <|.. Heatmaps.HeatMap
+featureRenderer.Generable <|.. featureRenderer.Elevation.BasicElevationGenerator
+featureRenderer.Renderable <|.. featureRenderer.WhittakerDiagramsRenderer
+Heatmaps.HeatMap <|-- Heatmaps.ElevationHeatMap
+transformation.importation.Importer <|.. transformation.importation.polygonImporter
+featureRenderer.Renderable <|.. featureRenderer.ElevationRenderer
+transformation.importation.Importer <|.. transformation.importation.vertexImporter
+Heatmaps.HeatMap <|-- Heatmaps.HumidityHeatMap
+transformation.importation.Importer <|.. transformation.importation.segmentImporter
+featureRenderer.Renderable <|.. featureRenderer.RiversRenderer
+featureRenderer.Generable <|.. featureRenderer.Shape.BackGroundGenerator
+Heatmaps.HeatMap <|-- Heatmaps.ResourcesHeatMap
+featureRenderer.Generable <|.. featureRenderer.Shape.RandomShapeGenerator
+featureRenderer.Renderable <|.. featureRenderer.ShapeRenderer
+featureRenderer.Renderable <|.. featureRenderer.BiomeRenderer
+@enduml
