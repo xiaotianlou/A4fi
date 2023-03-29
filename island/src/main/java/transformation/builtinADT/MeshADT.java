@@ -1,6 +1,7 @@
 package transformation.builtinADT;
 
 import TerrainFeatures.Humidity;
+import TerrainFeatures.Soil;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs;
 import transformation.importation.Importer;
 import transformation.importation.polygonImporter;
@@ -95,9 +96,20 @@ public class MeshADT {
             }
         }
     }
+    public void soilInitialization(){
+        for(var p:this.getPolygons()){
+            if (!p.isIsland()){
+                Soil.waterAbsorbing(p);
+            }
+        }
+        for (var p:this.getPolygons()){
+            Soil.humidityInfluence(p);
+        }
+    }
 
     public void calInfo(){
         humidityInitialization();
+        soilInitialization();
 
     }
 

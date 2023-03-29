@@ -8,7 +8,6 @@ public class ElevationHeatMap extends HeatMap{
 
     public ElevationHeatMap(MeshADT meshADT) {
         super(meshADT);
-
     }
     @Override
     public void build() {

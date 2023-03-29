@@ -17,6 +17,7 @@ public class BiomeRenderer implements Renderable {
     @Override
     public MeshADT Rendering(MeshADT m, Seed seed) {
         InfoSet p;
+        m.calInfo();
         for (PolygonADT poly : m.getPolygons()) {
             p=poly.getInfoSet();
             int temperature = p.getTemperature();

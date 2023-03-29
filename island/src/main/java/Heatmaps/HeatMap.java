@@ -23,6 +23,8 @@ public abstract class HeatMap implements Buildable{
 
     public HeatMap(MeshADT meshADT) {
         this.meshADT = meshADT;
+        meshADT.calInfo();
         heatMapInitialization();
+
     }
 }

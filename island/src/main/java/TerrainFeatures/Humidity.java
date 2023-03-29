@@ -30,7 +30,7 @@ public class Humidity {
                 sum += 100;
             }
         }
-        i.setHumidity(sum/2);
+        i.setHumidity(sum);
     }
 
 }

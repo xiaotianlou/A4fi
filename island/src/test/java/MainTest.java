@@ -1,5 +1,6 @@
 import Heatmaps.ElevationHeatMap;
 import Heatmaps.HeatMap;
+import Heatmaps.HumidityHeatMap;
 import Reproducibility.Seed;
 import ca.mcmaster.cas.se2aa4.a2.io.MeshFactory;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs;
@@ -71,7 +72,7 @@ class MainTest {
     }
 
     @Test
-    void testHeatMap() {
+    void testElevationHeatMap() {
         new ShapeRenderer().Rendering(meshADT, s);
         new ElevationRenderer().Rendering(meshADT, s);
         new LakeRenderer().Rendering(meshADT, s);
@@ -79,6 +80,18 @@ class MainTest {
         new BiomeRenderer().Rendering(meshADT, s);
 
         HeatMap h = new ElevationHeatMap(meshADT);
+        h.build();
+
+    }
+    @Test
+    void testHumidityHeatMap() {
+        new ShapeRenderer().Rendering(meshADT, s);
+        new ElevationRenderer().Rendering(meshADT, s);
+        new LakeRenderer().Rendering(meshADT, s);
+        new RiversRenderer().Rendering(meshADT, s);
+        new BiomeRenderer().Rendering(meshADT, s);
+
+        HeatMap h = new HumidityHeatMap(meshADT);
         h.build();
 
     }
