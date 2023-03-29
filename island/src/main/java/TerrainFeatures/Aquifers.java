@@ -5,12 +5,8 @@ import transformation.builtinADT.MeshADT;
 
 public class Aquifers {
 
-
-
-
     public MeshADT aquifersInitialization(){
         aquiferDistributor();
-        return this.meshADT;
     }
 
     private void aquiferDistributor(){
