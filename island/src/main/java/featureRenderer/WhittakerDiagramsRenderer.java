@@ -61,7 +61,7 @@ public class WhittakerDiagramsRenderer implements Renderable{
                         //2 from sea
                         for(PolygonADT nei: p.getPolygons()){
                             //2 from sea island
-                            if (nei.isIsland() ){
+                            if (!nei.isIsland() ){
                                 BoundryColor(nei,seed);
                             }
                         }
