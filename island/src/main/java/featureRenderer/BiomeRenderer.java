@@ -11,7 +11,6 @@ import java.awt.*;
 public class BiomeRenderer implements Renderable {
 
     private static void setColor(PolygonADT p, Color c) {
-
         p.setColor(new int[]{c.getRed(), c.getGreen(), c.getBlue()});
     }
 
@@ -26,7 +25,6 @@ public class BiomeRenderer implements Renderable {
             if (!p.isIsland()) {
                 continue;
             }
-
             if (20 <= temperature) {
                 if (humidity >= 250) {
                     p.setBiome(Biome.Tropical_Rain_Forest);
