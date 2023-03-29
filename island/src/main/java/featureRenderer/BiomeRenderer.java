@@ -25,7 +25,6 @@ public class BiomeRenderer implements Renderable {
             if (!p.isIsland()) {
                 continue;
             }
-
             if (20 <= temperature) {
                 if (humidity >= 250) {
                     p.setBiome(Biome.Tropical_Rain_Forest);

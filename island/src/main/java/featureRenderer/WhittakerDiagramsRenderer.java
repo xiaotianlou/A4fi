@@ -49,6 +49,7 @@ public class WhittakerDiagramsRenderer {
             if(p.isIsland()){
                 InnerColor(p,seed,biome);
             }
+            //bound colour
             for(PolygonADT neighbour: p.getPolygons()){
                 if(p.isIsland()){
                     //1 from sea
