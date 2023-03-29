@@ -11,7 +11,6 @@ public class ElevationHeatMap extends HeatMap{
         heatMapInitialization();
         build(this.meshADT);
     }
-
     @Override
     public void build(MeshADT meshADT) {
         double max=0;
