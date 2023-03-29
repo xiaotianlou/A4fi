@@ -5,9 +5,6 @@ import transformation.builtinADT.MeshADT;
 import java.awt.*;
 
 public class ElevationHeatMap extends HeatMap{
-//    public ElevationHeatMap(MeshADT m) {
-//        super(m);
-//    }
 
     public ElevationHeatMap(MeshADT meshADT) {
         super(meshADT);
