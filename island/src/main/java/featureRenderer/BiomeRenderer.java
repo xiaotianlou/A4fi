@@ -11,7 +11,6 @@ import java.awt.*;
 public class BiomeRenderer implements Renderable {
 
     private static void setColor(PolygonADT p, Color c) {
-
         p.setColor(new int[]{c.getRed(), c.getGreen(), c.getBlue()});
     }
 
