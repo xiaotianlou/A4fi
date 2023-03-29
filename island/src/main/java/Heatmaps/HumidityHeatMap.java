@@ -10,7 +10,16 @@ public class HumidityHeatMap extends HeatMap{
 
     @Override
     public void build(MeshADT meshADT) {
-        for (p)
+        int max=0;
+        for (var p: meshADT.getPolygons()){
+            if (p.getHumidity()>max){
+                max = p.getHumidity();
+            }
+        }
+        for (var p: meshADT.getPolygons()){
+           double n = p.getHumidity()/max;
+
+        }
 
     }
 }
