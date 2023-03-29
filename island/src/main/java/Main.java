@@ -25,12 +25,6 @@ public class Main {
         String outputadress = "..//IOArea\\outputoff.mesh";
         Seed s = new Seed((int) (Math.random() * 100000));
 
-
-
-
-
-
-
         if (options.get(Configuration.mode) == "lagoon") {
             Structs.Mesh aMesh = new MeshFactory().read(options.get(Configuration.INPUT));
             meshADT.readInputMesh(aMesh);
@@ -43,6 +37,7 @@ public class Main {
             new MeshFactory().write(out, options.get(Configuration.OUTPUT));//
 
         }
+
 
         if (!(options.get(Configuration.INPUT) == (null))) {
             input_c = options.get(Configuration.INPUT);
