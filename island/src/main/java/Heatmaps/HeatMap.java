@@ -8,7 +8,7 @@ import java.awt.*;
 
 public abstract class HeatMap implements Buildable{
     MeshADT meshADT;
-    public void heatMapInitialization(){
+    private void heatMapInitialization(){
         InfoSet temp;
         Color color1 = new Color(0,0,0);
         Color color2 = new Color(255,255,255);
@@ -23,5 +23,6 @@ public abstract class HeatMap implements Buildable{
 
     public HeatMap(MeshADT meshADT) {
         this.meshADT = meshADT;
+        heatMapInitialization();
     }
 }

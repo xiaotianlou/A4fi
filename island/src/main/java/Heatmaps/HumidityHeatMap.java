@@ -7,12 +7,10 @@ import java.awt.*;
 public class HumidityHeatMap extends HeatMap{
     public HumidityHeatMap(MeshADT meshADT) {
         super(meshADT);
-        heatMapInitialization();
-        build(this.meshADT);
     }
 
     @Override
-    public void build(MeshADT meshADT) {
+    public void build() {
         double max=0;
         for (var p: meshADT.getPolygons()){
             if (p.getHumidity()>max){

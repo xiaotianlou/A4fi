@@ -1,7 +1,9 @@
 package TerrainFeatures;
 
+import transformation.builtinADT.InfoSet;
 import transformation.builtinADT.MeshADT;
 import transformation.builtinADT.PolygonADT;
+import transformation.builtinADT.VertexADT;
 
 public class Humidity {
 
@@ -11,15 +13,16 @@ public class Humidity {
     public void humidityInitialization(MeshADT meshADT){
         for (var p:meshADT.getPolygons()){
             if (p.isIsland()){
-                humiditySum(p);
+                Humidity.humiditySum(p);
             }
         }
     }
 
-    private void humiditySum(PolygonADT polygonADT){
+    public static void humiditySum(PolygonADT polygonADT){
         int sum=0;
-        sum = polygonADT.getWaterContent();
-        for (var v: polygonADT.getVertices()){
+        InfoSet i =polygonADT.getInfoSet();
+        sum = i.getWaterContent();
+        for (VertexADT v: polygonADT.getVertices()){
             if (v.isAroundWater()){
                 sum += 115;
             }
@@ -27,7 +30,7 @@ public class Humidity {
                 sum += 100;
             }
         }
-        polygonADT.setHumidity(sum/2);
+        i.setHumidity(sum/2);
     }
 
 }

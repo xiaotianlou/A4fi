@@ -8,11 +8,10 @@ public class ElevationHeatMap extends HeatMap{
 
     public ElevationHeatMap(MeshADT meshADT) {
         super(meshADT);
-        heatMapInitialization();
-        build(this.meshADT);
+
     }
     @Override
-    public void build(MeshADT meshADT) {
+    public void build() {
         double max=0;
         for (var p: meshADT.getPolygons()){
             if (p.getElevation()>max){

@@ -24,6 +24,7 @@ public class InfoSet {
     }
 
     public int getHumidity() {
+
         return humidity;
     }
 

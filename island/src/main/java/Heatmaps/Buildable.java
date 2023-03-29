@@ -5,6 +5,6 @@ import transformation.builtinADT.MeshADT;
 import java.util.Map;
 
 public interface Buildable {
-    void build(MeshADT meshADT);
+    void build();
 
 }

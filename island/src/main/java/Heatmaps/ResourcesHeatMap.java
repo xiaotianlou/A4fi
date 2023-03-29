@@ -8,7 +8,7 @@ public class ResourcesHeatMap extends HeatMap{
     }
 
     @Override
-    public void build(MeshADT meshADT) {
+    public void build() {
 
     }
 }

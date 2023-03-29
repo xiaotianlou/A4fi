@@ -41,6 +41,8 @@
         </MavenRunnerParameters>
       </option>
     </MavenSettings>
-    <method v="2" />
+    <method v="2">
+      <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/visualizer/pom.xml" goal="compile" />
+    </method>
   </configuration>
 </component>
