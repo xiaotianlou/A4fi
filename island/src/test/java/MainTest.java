@@ -4,9 +4,7 @@ import ca.mcmaster.cas.se2aa4.a2.io.Structs;
 import featureRenderer.*;
 import featureRenderer.Shape.BackGroundGenerator;
 import featureRenderer.Shape.LagoonGenerator;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import transformation.builtinADT.MeshADT;
 import transformation.builtinADT.PolygonADT;
 import transformation.importation.Importer;
@@ -22,6 +20,7 @@ class MainTest {
 
 
     MeshADT meshADT;
+    Seed s;
 
     private void exeCommands(String command) throws IOException {
         Process p = Runtime.getRuntime().exec(command);
@@ -40,111 +39,63 @@ class MainTest {
         String input_c = "..//IOArea\\inputoff.mesh";
         Structs.Mesh aMesh = new MeshFactory().read(input_c);
         meshADT.readInputMesh(aMesh);
-        System.out.println("test11111");
+
+        int seedint = (int) (Math.random() * 1000000);
+        System.out.println("seed is:"+seedint );
+        this.s = new Seed(seedint);
 
     }
 
+    @AfterEach
+
+    void TestOutput() throws IOException {
+        Structs.Mesh output = meshADT.toMesh();
+        new MeshFactory().write(output, "..//IOArea\\Test.mesh");//
+//        java -jar visualizer/visualizer.jar -i IOArea//Test.mesh -o IOArea//Test.svg -x
+    }
 
 
     @Test
     void main() throws IOException {
-        int seedint = (int) (Math.random() * 1000000);
-//        seedint =148000;
-        System.out.println("seed is:"+seedint );
-        Seed s = new Seed(seedint);
-
-
         new ShapeRenderer().Rendering(meshADT,s);
         new ElevationRenderer().Rendering(meshADT,s);
         new LakeRenderer().Rendering(meshADT,s);
         new RiversRenderer().Rendering(meshADT,s);
         new BiomeRenderer().Rendering(meshADT,s);
-
-
-
-        Structs.Mesh output = meshADT.toMesh();
-        new MeshFactory().write(output, "..//IOArea\\Test.mesh");//
-//        java -jar visualizer/visualizer.jar -i IOArea//Test.mesh -o IOArea//Test.svg -x
     }
 
     @Test
     void testRiversRender() throws IOException {
-        int seedint = (int) (Math.random() * 1000000);
-//        seedint =148000;
-        System.out.println("seed is:"+seedint );
-        Seed s = new Seed(seedint);
-
-
         new ShapeRenderer().Rendering(meshADT,s);
         new ElevationRenderer().Rendering(meshADT,s);
         new LakeRenderer().Rendering(meshADT,s);
         new RiversRenderer().Rendering(meshADT,s);
-        Structs.Mesh output = meshADT.toMesh();
-        new MeshFactory().write(output, "..//IOArea\\Test.mesh");//
-
-//        java -jar visualizer/visualizer.jar -i IOArea//Test.mesh -o IOArea//Test.svg -x
-
     }
     @Test
     void  testDW() throws IOException {
-        int seedint = (int) (Math.random() * 1000000);
-        System.out.println("seed is:"+seedint );
-        Seed s = new Seed(seedint);
-//    s= new Seed(802517);
         new ShapeRenderer().Rendering(meshADT,s);
         new ElevationRenderer().Rendering(meshADT,s);
         new BiomeRenderer().Rendering(meshADT,s);
         String type="Tropical_Seasonal_Forest";
         new WhittakerDiagramsRenderer().Rendering(meshADT,s,type);
 
-        Structs.Mesh output = meshADT.toMesh();
-        new MeshFactory().write(output, "..//IOArea\\WDtest.mesh");//
-        new MeshFactory().write(output, "..//IOArea\\Test.mesh");//
-
-//java -jar visualizer/visualizer.jar -i IOArea//Biometest.mesh -o IOArea//Biometest.svg -x
-        String command = "java -jar visualizer/visualizer.jar -i IOArea//WDtest.mesh -o IOArea//WDtest.svg -x";
-
-        exeCommands(command);
 
     }
 
     @Test
     void testLakeRender() throws IOException {
-        int seedint = (int) (Math.random() * 1000000);
-//        seedint =148000;
-        System.out.println("seed is:"+seedint );
-        Seed s = new Seed(seedint);
-
-
         new ShapeRenderer().Rendering(meshADT,s);
         new ElevationRenderer().Rendering(meshADT,s);
         new LakeRenderer().Rendering(meshADT,s);
-
-        Structs.Mesh output = meshADT.toMesh();
-        new MeshFactory().write(output, "..//IOArea\\Test.mesh");//
-
-//        java -jar visualizer/visualizer.jar -i IOArea//Test.mesh -o IOArea//Test.svg -x
-
     }
 
 
 
     @Test
     void testBiomeRender() throws IOException {
-        int seedint = (int) (Math.random() * 1000000);
-        System.out.println("seed is:"+seedint );
-        Seed s = new Seed(seedint);
-//    s= new Seed(802517);
         new ShapeRenderer().Rendering(meshADT,s);
         new ElevationRenderer().Rendering(meshADT,s);
         new BiomeRenderer().Rendering(meshADT,s);
-
-        Structs.Mesh output = meshADT.toMesh();
-        new MeshFactory().write(output, "..//IOArea\\Biometest.mesh");//
-
-//java -jar visualizer/visualizer.jar -i IOArea//Biometest.mesh -o IOArea//Biometest.svg -x
-        String command = "java -jar visualizer/visualizer.jar -i IOArea//Biometest.mesh -o IOArea//Biometest111.svg -x";
-        exeCommands(command);
 
     }
 
@@ -176,31 +127,23 @@ class MainTest {
 
     @Test
     void testSimulink() {
-        System.out.println(new Generable() {
-            @Override
-            public MeshADT Genering(MeshADT m, Seed seed) {
-                return null;
-            }
-        }.Simulink(1) * 700);
+
+        for (int i = 0; i < 100; i++) {
+            double t = (double) new Generable() {
+                @Override
+                public MeshADT Genering(MeshADT m, Seed seed) {
+                    return null;
+                }
+            }.Simulink(i) * 700;
+            System.out.println(t);
+            Assertions.assertEquals(t, 700, 700 / 2);
+        }
     }
 
     @Test
     void testShape() throws IOException {
-
-        int seedint = (int) (Math.random() * 1000000);
-        System.out.println("seed is:"+seedint );
-        Seed s = new Seed(seedint);
-//    s= new Seed(802517);
         new ShapeRenderer().Rendering(meshADT,s);
         new ElevationRenderer().Rendering(meshADT,s);
-//        new BiomeRenderer().Rendering(meshADT,s);
-
-        Structs.Mesh output = meshADT.toMesh();
-        new MeshFactory().write(output, "..//IOArea\\Shapetest.mesh");//
-
-//java -jar visualizer/visualizer.jar -i IOArea//Shapetest.mesh -o IOArea//Shapetest.svg -x
-        String command = "java -jar visualizer/visualizer.jar -i IOArea//Shapetest.mesh -o IOArea//Shapetest.svg -x";
-//        exeCommands(command);
 
     }
     @Test
@@ -263,11 +206,6 @@ class MainTest {
 
             }
         }
-        Structs.Mesh output2 = meshADT.toMesh();
-        new MeshFactory().write(output, "..//IOArea\\Test.mesh");//
-//java -jar visualizer/visualizer.jar -i C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtestH.mesh -o C:\Users\22091\IdeaProjects\a2---mesh-generator-team-28_new1\IOArea\lagtest1H.svg -x
-
-
     }
 
 }
