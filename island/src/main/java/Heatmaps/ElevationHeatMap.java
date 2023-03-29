@@ -20,10 +20,12 @@ public class ElevationHeatMap extends HeatMap{
                 max = p.getElevation();
             }
         }
-        for (var p: meshADT.getPolygons()){
-            double n = p.getElevation()/max;
-            Color color=new Color((int)(50*n), (int)(50*n), 255);
-            p.getInfoSet().setColor(color);
+        for (var p: meshADT.getPolygons()) {
+            if (p.isLake() || p.isIsland()) {
+                double n = p.getElevation() / max;
+                Color color = new Color((int) (50 * n), (int) (50 * n), 255);
+                p.getInfoSet().setColor(color);
+            }
         }
     }
 
