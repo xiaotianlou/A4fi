@@ -163,9 +163,9 @@ public class PolygonADT {
 
         builder.addProperties(propertyBuilder.setKey("elevation").setValue(String.valueOf(getElevation())));
 
-        builder.addProperties(propertyBuilder.setKey("temperature").setValue(getTemperature() + ""));
+        builder.addProperties(propertyBuilder.setKey("temperature").setValue(String.valueOf(getTemperature())));
 
-        builder.addProperties(propertyBuilder.setKey("waterContent").setValue(getWaterContent() + ""));
+        builder.addProperties(propertyBuilder.setKey("waterContent").setValue(String.valueOf(getWaterContent())));
 
         builder.setCentroidIdx(centroid.id);
 
