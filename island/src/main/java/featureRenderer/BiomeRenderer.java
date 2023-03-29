@@ -22,6 +22,7 @@ public class BiomeRenderer implements Renderable {
             p=poly.getInfoSet();
             int temperature = p.getTemperature();
             int humidity = poly.getHumidity();
+            //sea break
             if (!p.isIsland()) {
                 continue;
             }
