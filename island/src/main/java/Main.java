@@ -77,7 +77,7 @@ public class Main {
             new ElevationRenderer().Rendering(meshADT, seed);
         }
 
-        new Aquifers().aquifersInitialization(meshADT,1);
+        new Aquifers().aquifersInitialization(meshADT,water);
 
         Structs.Mesh output = meshADT.toMesh();
         new MeshFactory().write(output, outputadress);//
