@@ -3,4 +3,4 @@ Everyone in our group uses masf, and all can be calculated together
 
 xiaotian lou(400313139):
 Elevation,shape,Heatmap,Seed,all Test work, CLI in main,Optimization Code,fix the bug in the whole project,readme
-,connection and implement feature.
+,connection and implement feature,sequence diagram
