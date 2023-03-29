@@ -90,9 +90,9 @@ public class Main {
         new MeshFactory().write(output, outputaddress);//
 
         HeatMap hE = new ElevationHeatMap(meshADT);
-        Structs.Mesh outputHE = meshADT.toMesh();
         HeatMap hH = new HumidityHeatMap(meshADT);
         hE.build();
+        Structs.Mesh outputHE = meshADT.toMesh();
         new MeshFactory().write(outputHE,"IOArea\\ElevationHeatMap.mesh");
         hH.build();
         Structs.Mesh outputHH = meshADT.toMesh();
