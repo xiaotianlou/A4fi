@@ -1,14 +1,13 @@
 package featureRenderer;
 
 import Reproducibility.Seed;
-import TerrainFeatures.Tile;
 import transformation.builtinADT.MeshADT;
 import transformation.builtinADT.PolygonADT;
 
 import java.awt.*;
 
 
-public class LakeRenderer extends Tile implements Renderable {
+public class LakeRenderer implements Renderable {
 
     private void checkAround(PolygonADT polygonADT){
         Color c= new Color(83, 147, 222);
