@@ -17,12 +17,10 @@ public class MeshADT {
     public VertexADT getVertex(double x, double y) {
         for (VertexADT v : vertices) {
             if (v.getX() == x && v.getY() == y) {
-//                ((v.getX() - x)<0.01||x-v.getX()<0.01) && ((v.getY() - y)<0.01||y-v.getY()<0.01)
                 return v;
             }
         }
         VertexADT v = new VertexADT(x, y, vertices.size());
-//        Color.setColor(v);
         vertices.add(v);
         return v;
     }
@@ -63,15 +61,9 @@ public class MeshADT {
         polygons.add(p);
         return p;
     }
-//    private void centroidToVertex(){
-//        for (PolygonADT p:polygons){
-//            vertices.add(p.getCentroid());
-//        }
-//    }
 
     public Structs.Mesh toMesh() {
         Structs.Mesh.Builder builder = Structs.Mesh.newBuilder();
-//        centroidToVertex();
         for (VertexADT v : vertices) {
             builder.addVertices(v.toVertex());
         }
@@ -81,12 +73,6 @@ public class MeshADT {
         for (PolygonADT p : polygons) {
             builder.addPolygons(p.toPolygon());
         }
-//        for (Structs.Polygon p:builder.getPolygonsList()){
-//            System.out.println(p);
-//        }
-//        for (Structs.Segment s:builder.getSegmentsList()){
-//            System.out.println(s);
-//        }
         return builder.build();
     }
     public MeshADT readInputMesh(Structs.Mesh aMesh) {

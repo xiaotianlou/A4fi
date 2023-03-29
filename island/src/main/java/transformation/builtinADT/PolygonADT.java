@@ -8,14 +8,12 @@ import java.util.List;
 
 public class PolygonADT {
     final int id;
-    //    private final MeshADT mesh;
+
     private int[] color = new int[]{125, 125, 125};
     private List<PolygonADT> polygons;
     private List<SegmentADT> segments;
     private List<VertexADT> vertices;
     private VertexADT centroid;
-
-    private boolean isLake=false;
     private int soilAbsorption=0;
     private final InfoSet infoSet = new InfoSet();
 
