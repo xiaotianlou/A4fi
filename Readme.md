@@ -22,18 +22,6 @@ mosser@azrael A2 % java -jar generator/generator.jar -k grid -h 1080 -w 1920 -p 
 mosser@azrael A2 % java -jar generator/generator.jar -k irregular -h 1080 -w 1920 -p 1000 -s 20 -o img/irregular.mesh
 mosser@azrael A2 % java -jar generator/generator.jar -k irregular -h 1920 -w 1920 -p 1000 -r 5 -o ireg.mesh
 ```
-
-One can run the generator with `-help` as option to see the different command line arguments that are available
-
-### Visualizing a mesh, (regular or debug mode)
-
-```
-mosser@azrael A2 % java -jar visualizer/visualizer.jar -i img/grid.mesh -o img/grid.svg          
-mosser@azrael A2 % java -jar visualizer/visualizer.jar -i img/grid.mesh -o img/grid_debug.svg -x
-mosser@azrael A2 % java -jar visualizer/visualizer.jar -i img/irregular.mesh -o img/irregular.svg   
-mosser@azrael A2 % java -jar visualizer/visualizer.jar -i img/irregular.mesh -o img/irregular_debug.svg -x
-```
-
 ### Create the graph
 ```
 mosser@azrael A2 % java -jar island/island.jar -i xxxxxx -o xxxxx -help    
