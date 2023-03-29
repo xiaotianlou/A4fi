@@ -25,6 +25,21 @@ public abstract class HeatMap implements Buildable{
         this.meshADT = meshADT;
         meshADT.calInfo();
         heatMapInitialization();
-
     }
+    public void build() {
+        double max=0;
+        for (var p: meshADT.getPolygons()){
+            if (p.getElevation()>max){
+                max = p.getElevation();
+            }
+        }
+        for (var p: meshADT.getPolygons()) {
+            if (p.isLake() || p.isIsland()) {
+                double n = 1-(getValue(p) / max);
+                Color color = new Color((int) (220 * n), (int) (220 * n), 255);
+                p.getInfoSet().setColor(color);
+            }
+        }
+    }
+    public abstract double getValue(PolygonADT p);
 }
