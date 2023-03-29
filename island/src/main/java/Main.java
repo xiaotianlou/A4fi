@@ -90,11 +90,13 @@ public class Main {
         new MeshFactory().write(output, outputaddress);//
 
         HeatMap hE = new ElevationHeatMap(meshADT);
+        Structs.Mesh outputHE = meshADT.toMesh();
         HeatMap hH = new HumidityHeatMap(meshADT);
         hE.build();
-        new MeshFactory().write(output,outputaddress.substring(0,outputaddress.length()-5)+"\\ElevationHeatMap.mesh");
+        new MeshFactory().write(outputHE,"IOArea\\ElevationHeatMap.mesh");
         hH.build();
-        new MeshFactory().write(output, outputaddress.substring(0,outputaddress.length()-5)+"\\HumidityHeatMap.mesh");
+        Structs.Mesh outputHH = meshADT.toMesh();
+        new MeshFactory().write(outputHH, "IOArea\\HumidityHeatMap.mesh");
         //shape- seed
         //altitude --seed
         //lake max number
