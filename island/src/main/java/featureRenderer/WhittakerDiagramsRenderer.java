@@ -45,6 +45,7 @@ public class WhittakerDiagramsRenderer {
 
     public MeshADT Rendering(MeshADT m, Seed seed, String biome) {
         for (PolygonADT p: m.getPolygons()){
+            //all island color
             if(p.isIsland()){
                 InnerColor(p,seed,biome);
             }
