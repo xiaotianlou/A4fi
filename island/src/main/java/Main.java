@@ -20,13 +20,15 @@ public class Main {
         System.out.println("default seed :"+seedNumber);
         Seed defaultSeed = new Seed(seedNumber);
 
+
+
         String input_c = "..//IOArea\\inputoff.mesh";
         String outputaddress="..//IOArea\\outputoff.mesh";
 //        java -jar island/island.jar -i IOArea/inputoff.mesh -o IOArea/lagoon.mesh -mode lagoon
         if (!(options.get(ConfigurationIsland.inputAddress) == (null))) {
-            input_c = options.get(ConfigurationIsland.inputAddress);}
+            input_c = "".concat(options.get(ConfigurationIsland.inputAddress));}
         if (!(options.get(ConfigurationIsland.outputAddress) == (null))) {
-            outputaddress = options.get(ConfigurationIsland.outputAddress);}
+            outputaddress = "".concat(options.get(ConfigurationIsland.outputAddress));}
         if (!(options.get(ConfigurationIsland.seed) == (null))) {
             defaultSeed = new Seed(Integer.parseInt(options.get(ConfigurationIsland.seed)));
         }
@@ -39,37 +41,40 @@ public class Main {
             new MeshFactory().write(out, options.get(ConfigurationIsland.outputAddress));//
             System.exit(0);
         }
-
-
         if (!(options.get(ConfigurationIsland.aquifersNumber) == (null))) {
             meshADT.setNumAquifers(Integer.parseInt(options.get(ConfigurationIsland.aquifersNumber)));
         }
+        Structs.Mesh aMesh = new MeshFactory().read(input_c);
+        meshADT.readInputMesh(aMesh);
 
 
         if (!(options.get(ConfigurationIsland.shapeSeed) == (null))) {
             new ShapeRenderer().Rendering(meshADT, new Seed(Integer.parseInt(options.get(ConfigurationIsland.shapeSeed))));
+            System.out.println("1");
         }else {
             new ShapeRenderer().Rendering(meshADT,defaultSeed);
+            System.out.println("2");
         }
 
         if (!(options.get(ConfigurationIsland.altitudeSeed) == (null))) {
+            System.out.println("3");
             new ElevationRenderer().Rendering(meshADT, new Seed(Integer.parseInt(options.get(ConfigurationIsland.altitudeSeed))));
+
         }else {
-            new ShapeRenderer().Rendering(meshADT,defaultSeed);
+            System.out.println("4");
+            new ElevationRenderer().Rendering(meshADT,defaultSeed);
+
         }
 
         if (!(options.get(ConfigurationIsland.lakeMaxNumber) == (null))) {
-            defaultSeed.setMaxlakeNumber(Integer.parseInt(ConfigurationIsland.lakeMaxNumber));
+            defaultSeed.setMaxlakeNumber(Integer.parseInt(options.get(ConfigurationIsland.lakeMaxNumber)));
         }
         new LakeRenderer().Rendering(meshADT, defaultSeed);
 
 
         if (!(options.get(ConfigurationIsland.riverNumber) == (null))) {
-            defaultSeed.setRiverNumber(Integer.parseInt(ConfigurationIsland.riverNumber));
+            defaultSeed.setRiverNumber(Integer.parseInt(options.get(ConfigurationIsland.riverNumber)));
         }
-
-        defaultSeed.setRiverNumber(defaultSeed.getSeedArray().get(defaultSeed.getSeedArray().size() / 2) * 2 + 7);
-
         new RiversRenderer().Rendering(meshADT, defaultSeed);
         new BiomeRenderer().Rendering(meshADT, defaultSeed);
 
