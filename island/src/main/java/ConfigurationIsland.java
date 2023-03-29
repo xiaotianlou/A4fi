@@ -1,7 +1,4 @@
-package configuration;
-
 import org.apache.commons.cli.*;
-
 import java.util.HashMap;
 import java.util.Map;
 

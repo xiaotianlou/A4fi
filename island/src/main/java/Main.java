@@ -4,7 +4,6 @@ import Heatmaps.HumidityHeatMap;
 import Reproducibility.Seed;
 import ca.mcmaster.cas.se2aa4.a2.io.MeshFactory;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs;
-import configuration.ConfigurationIsland;
 import featureRenderer.*;
 import featureRenderer.Shape.BackGroundGenerator;
 import featureRenderer.Shape.LagoonGenerator;
@@ -25,8 +24,8 @@ public class Main {
 
 
 
-        String input_c = "..//IOArea\\inputoff.mesh";
-        String outputaddress="..//IOArea\\outputoff.mesh";
+        String input_c = "IOArea/inputoff.mesh";
+        String outputaddress="IOArea/outputoff.mesh";
 //        java -jar island/island.jar -i IOArea/inputoff.mesh -o IOArea/lagoon.mesh -mode lagoon
         if (!(options.get(ConfigurationIsland.inputAddress) == (null))) {
             input_c = "".concat(options.get(ConfigurationIsland.inputAddress));}
