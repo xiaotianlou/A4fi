@@ -17,11 +17,15 @@ public class ResourcesHeatMap extends HeatMap{
 
     @Override
     public void build() {
-        for (var p:meshADT.getPolygons()){
-            if (250<p.getHumidity()&&p.getHumidity()<400){
-                Color color1 = new Color(6, 243, 37);
-                p.getInfoSet().setColor(color1);
-                if (50<p.getElevation()&&p.getElevation()<500){
+        for (var p:meshADT.getPolygons()) {
+            if (350 < p.getHumidity() && p.getHumidity() < 500) {
+                if (50 < p.getElevation() && p.getElevation() < 1000) {
+                    Color color1 = new Color(13, 157, 33);
+                    p.getInfoSet().setColor(color1);
+                }
+            }
+            if (100 < p.getHumidity() && p.getHumidity() < 400) {
+                if (100<p.getElevation()&&p.getElevation()<300){
                     Color color2 = new Color(194, 89, 6);
                     p.getInfoSet().setColor(color2);
                 }
