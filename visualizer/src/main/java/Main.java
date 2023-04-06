@@ -19,6 +19,8 @@ public class Main {
         Renderer renderer = (config.debug()? new DebugRenderer(): new GraphicRenderer());
         renderer.render(aMesh, canvas);
         SVGCanvasProvider.write(canvas, config.output());
+
+
     }
 
 }
