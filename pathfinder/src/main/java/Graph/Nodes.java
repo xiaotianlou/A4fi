@@ -9,9 +9,10 @@ import java.util.List;
 public class Nodes {
 
     List<Nodes> adjacent;
-    private int x;
-    private int y;
+    private double x;
+    private double y;
     private int elevation;
+    private String name;
 
    public Nodes(int x, int y, int elevation, List<Nodes> adjacent) {
 
@@ -29,12 +30,12 @@ public class Nodes {
         return adjacent;
     }
 
-    public int getX() {
+    public double getX() {
         return x;
 
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
