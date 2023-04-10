@@ -1,6 +1,5 @@
 package Graph;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,33 +8,35 @@ import java.util.List;
  */
 public class Nodes {
 
-   private int x;
-   private int y;
+    List<Nodes> adjacent;
+    private int x;
+    private int y;
+    private int elevation;
 
-   List<Nodes> adjacent;
+   public Nodes(int x, int y, int elevation, List<Nodes> adjacent) {
 
-   public Nodes(int x, int y, List<Nodes> adjacent) {
       this.x = x;
       this.y = y;
+      this.elevation = elevation;
       this.adjacent = adjacent;
    }
 
-   public int getX() {
-      return x;
+   public int getElevation() {
+        return elevation;
+    }
 
-   }
+    public List<Nodes> getAdjacent() {
+        return adjacent;
+    }
 
-   public int getY() {
-      return y;
-   }
+    public int getX() {
+        return x;
 
+    }
 
-
-
-
-
-
-
+    public int getY() {
+        return y;
+    }
 
 
 }

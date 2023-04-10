@@ -8,6 +8,14 @@ import java.util.ArrayList;
  */
 public class Graph {
 
+    public ArrayList<Nodes> getNodesList() {
+        return nodesList;
+    }
+
+    public ArrayList<Edges> getEdgesList() {
+        return edgesList;
+    }
+
     ArrayList<Nodes> nodesList;
     ArrayList<Edges> edgesList;
 

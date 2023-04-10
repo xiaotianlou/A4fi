@@ -6,21 +6,28 @@ package Graph;
  */
 public class Edges {
 
-    Nodes start;
-    Nodes end;
+    private final Nodes start;
+    private final Nodes end;
     private double lengthEdge;
-
     public Edges(Nodes start, Nodes end) {
         this.start = start;
         this.end = end;
         findLength();
     }
 
+    public Nodes getStart() {
+        return start;
+    }
+
+    public Nodes getEnd() {
+        return end;
+    }
+
     public double getLengthEdge() {
         return lengthEdge;
     }
 
-    public void findLength() {
+    private void findLength() {
         double x1 = start.getX();
         double y1 = start.getY();
         double x2 = end.getX();
