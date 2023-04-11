@@ -7,7 +7,9 @@ import org.junit.jupiter.api.Test;
 import transformation.builtinADT.MeshADT;
 import transformation.builtinADT.PolygonADT;
 import transformation.builtinADT.SegmentADT;
+import transformation.builtinADT.VertexADT;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +59,19 @@ public class ShortestPathTest {
 
        List<Edges> ouput= pf.find(nodeList.get(30),nodeList.get(200));
         System.out.println("结束测试");
+        //把线段加进graph
+
+
+        new Color(123, 183, 64);
+       SegmentADT s = meshADT1.getSegment(meshADT1.getVertex(0,0),meshADT1.getVertex(100,100));
+       s.setColor(new int[]{123, 183, 64});
+       s.setThickness(100);
+//        for (Edges e: ouput){
+//            meshADT1.getSegment(meshADT1.getVertex(e.getStart().getX(),e.getStart().getY()),meshADT1.getVertex(e.getEnd().getX(),e.getEnd().getY()));
+//
+//
+//        }
+
 
 
 

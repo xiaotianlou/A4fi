@@ -14,8 +14,9 @@ import java.util.List;
 
 public class MeshADT {
     final ArrayList<PolygonADT> polygons = new ArrayList<>();
-    final private ArrayList<VertexADT> vertices = new ArrayList<>();
+    final  private  ArrayList<VertexADT> vertices = new ArrayList<>();
     final private ArrayList<SegmentADT> segments = new ArrayList<>();
+    int numAquifers = 20;
 
     public int getNumAquifers() {
         return numAquifers;
@@ -24,8 +25,6 @@ public class MeshADT {
     public void setNumAquifers(int numAquifers) {
         this.numAquifers = numAquifers;
     }
-
-    int numAquifers =20;
 
     public VertexADT getVertex(double x, double y) {
         for (VertexADT v : vertices) {
@@ -40,10 +39,7 @@ public class MeshADT {
 
     public SegmentADT getSegment(VertexADT start, VertexADT end) {
         for (SegmentADT s : segments) {
-            if (
-                    ((start == s.getStart() && end == s.getEnd()) ||
-                            (start == s.getEnd() && end == s.getStart()))
-            ) {
+            if (((start == s.getStart() && end == s.getEnd()) ||(start == s.getEnd() && end == s.getStart()))) {
                 return s;
             }
         }
@@ -88,6 +84,7 @@ public class MeshADT {
         }
         return builder.build();
     }
+
     public MeshADT readInputMesh(Structs.Mesh aMesh) {
 
         Importer polygonImporter = new polygonImporter();
@@ -100,28 +97,31 @@ public class MeshADT {
 
         return this;
     }
-    public void humidityInitialization(){
-        for (var p:this.getPolygons()){
-            if (p.isIsland()){
+
+    public void humidityInitialization() {
+        for (var p : this.getPolygons()) {
+            if (p.isIsland()) {
                 Humidity.humiditySum(p);
             }
         }
     }
-    public void soilInitialization(){
-        for(var p:this.getPolygons()){
-            if (!p.isIsland()){
+
+    public void soilInitialization() {
+        for (var p : this.getPolygons()) {
+            if (!p.isIsland()) {
                 Soil.waterAbsorbing(p);
             }
         }
-        for (var p:this.getPolygons()){
+        for (var p : this.getPolygons()) {
             Soil.humidityInfluence(p);
         }
     }
-    public void aquifersInitialization(){
-        Aquifers.aquiferDistributor(this,numAquifers);
+
+    public void aquifersInitialization() {
+        Aquifers.aquiferDistributor(this, numAquifers);
     }
 
-    public void calInfo(){
+    public void calInfo() {
         humidityInitialization();
         soilInitialization();
         aquifersInitialization();
