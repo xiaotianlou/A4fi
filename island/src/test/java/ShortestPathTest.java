@@ -18,7 +18,7 @@ public class ShortestPathTest {
     @Test
     void shortestPathTest() throws IOException {
 
-
+        System.out.println("开始测试");
         List<Nodes> nodeList = new ArrayList<>();
         for (PolygonADT p : meshADT1.getPolygons()) {
             double cenx = p.getCentroid().getX();
@@ -27,6 +27,7 @@ public class ShortestPathTest {
             //先把nodes放到nodeslist里，然后再从list里xy找邻居
             nodeList.add(n);
         }
+        System.out.println("开始加邻居");
 
         for (Nodes n : nodeList) {//从list里找n的邻居
 
@@ -44,19 +45,19 @@ public class ShortestPathTest {
                 }
             }
             n.setAdjacent(new ArrayList<>(adjList));
-//            System.out.println("2");
-            if(n.getAdjacent()==null){
-                System.out.println(3);
-            }
         }
 
+        System.out.println("finished initial ");
 
         Graph a = new Graph(nodeList);
-
+        System.out.println("nodelist length "+nodeList.size());
+        System.out.println("graph 创建");
         PathFinder pf = new DijkstraShortestPath(a);
+        System.out.println("dij 创建");
 
-        pf.find(nodeList.get(3),nodeList.get(100));
 
+        pf.find(nodeList.get(3),nodeList.get(20));
+        System.out.println("结束测试");
 
 
     }
@@ -65,7 +66,7 @@ public class ShortestPathTest {
     @BeforeEach
     void initial() throws IOException {
         meshADT1 = new MeshADT();
-        String input_c = "..//IOArea\\inputoff.mesh";
+        String input_c = "..//IOArea\\inputoff1.mesh";
         Structs.Mesh aMesh = new MeshFactory().read(input_c);
         meshADT1.readInputMesh(aMesh);
     }

@@ -40,7 +40,7 @@ public class DijkstraShortestPath extends ShortestPath{
     public Nodes visitClosetOne(){
         Nodes shortestNode =FarthestNodes;
         for (Nodes n:nodesList){
-        if(!n.isVisited()&&n.getShortDistance()<shortestNode.getShortDistance()){
+        if(!n.isVisited()&&(n.getShortDistance()<shortestNode.getShortDistance())){
             shortestNode=n;
         }
         }
@@ -51,35 +51,39 @@ public class DijkstraShortestPath extends ShortestPath{
 
     @Override
     public void find(Nodes start, Nodes end) {
-
-//        for(Nodes node:nodesList){
-//            if (node.getX()==start.getX()){
-//
-//            }
-//
-//        }
-
-
         start.tryUpdateShortDistance(0,null);//Initialize source node
         start.visit();
 
         Nodes newVisitedNode=start;
         List<Edges> toBeSearched;
+
+//        System.out.println("检测end在不在里面");
+//        for (var t:nodesList){
+//            if(t==end){
+//                System.out.println("找到");
+//            }
+//        }
+//        System.out.println("查找结束");
+
+
         while (!end.isVisited()){
             toBeSearched=findUnmarkedEdges(newVisitedNode);
             updateShortestDistance(toBeSearched,newVisitedNode);
             newVisitedNode=visitClosetOne();
+
         }
 
         //返回路径
         Nodes tail=end;
+
         while(tail!=null){
+            System.out.println(tail.getX());
             for (Edges e:edgeList){
                 if(e.getEnd()==tail&&e.getStart()==tail.getPrNodes()){
                     outPutEdge.add(e);
                 }
             }
-            tail=end.getPrNodes();
+            tail=tail.getPrNodes();
         }
     }
 }

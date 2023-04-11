@@ -10,7 +10,7 @@ import java.util.List;
 public class Graph {
 
     private List<Nodes> nodesList;
-    private List<Edges> edgesList;
+    private List<Edges> edgesList= new ArrayList<Edges>();
 
     public Graph(List<Nodes> nodesList) {
         this.nodesList = nodesList;
