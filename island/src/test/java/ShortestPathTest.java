@@ -25,7 +25,7 @@ public class ShortestPathTest {
             double cenx = p.getCentroid().getX();
             double ceny = p.getCentroid().getY();
             Nodes n = new Nodes(cenx, ceny, p.getElevation());
-            //先把nodes放到nodeslist里，然后再从list里xy找邻居
+            //First put the nodes into the nodeslist, and then find the neighbors from the list xy
             nodeList.add(n);
         }
         System.out.println("adding Neighborhood");
@@ -49,7 +49,7 @@ public class ShortestPathTest {
 
         Graph a = new Graph(nodeList);
         PathFinder pf = new DijkstraShortestPath(a);
-       List<Edges> ouPut= pf.find(nodeList.get(10),nodeList.get(900));
+       List<Edges> ouPut= pf.find(nodeList.get(75),nodeList.get(900));
 
         for (Edges e: ouPut){
             SegmentADT s =meshADT1.getSegment(meshADT1.getVertex(e.getStart().getX(),e.getStart().getY()),meshADT1.getVertex(e.getEnd().getX(),e.getEnd().getY()));

@@ -24,8 +24,12 @@ public class Edges {
     }
 
     public double getLengthEdge() {
-        return lengthEdge;
+        findLength();
+
+//        return lengthEdge;
+        return 1.0;
     }
+
 
     private void findLength() {
         double x1 = start.getX();

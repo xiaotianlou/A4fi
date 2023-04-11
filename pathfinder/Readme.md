@@ -14,43 +14,91 @@ It creates jars:
 
 
 ## Examples of execution
-
-### Generating a mesh, grid or irregular
+### basic example find shortest path 
 
 ```
-mosser@azrael A2 % java -jar generator/generator.jar -k grid -h 1080 -w 1920 -p 1000 -s 20 -o img/grid.mesh
-mosser@azrael A2 % java -jar generator/generator.jar -k irregular -h 1080 -w 1920 -p 1000 -s 20 -o img/irregular.mesh
-mosser@azrael A2 % java -jar generator/generator.jar -k irregular -h 1920 -w 1920 -p 1000 -r 5 -o IOArea/inputoff.mesh
+List<Nodes> nodeList = new ArrayList<>();
+        Nodes start = new Nodes(0, 0, 14);
+        Nodes end = new Nodes(100, 0, 14);
+        Nodes middle1 = new Nodes(50, 100, 14);
+        Nodes middle2 = new Nodes(49, 50, 14);
+        start.getAdjacent().add(middle1);
+        start.getAdjacent().add(middle2);
+        middle1.getAdjacent().add(end);
+        middle2.getAdjacent().add(end);
+
+        nodeList.add(start);
+        nodeList.add(end);
+        nodeList.add(middle1);
+        nodeList.add(middle2);
+
+        **Graph a = new Graph(nodeList);**
+        **PathFinder pf = new DijkstraShortestPath(a);**
+        **List<Edges> result = pf.find(start, end);**
+
+        for (Edges temp : result) {
+            System.out.print(temp.getStart().getX()+"   ");
+            System.out.println(temp.getStart().getY());
+            System.out.print(temp.getEnd().getX()+"   ");
+            System.out.println(temp.getEnd().getY());
+        }
+        
+        //it found middle2 is the shortest path
+
 ```
-### Create the graph
+### mesh example shortest path (connected to ADT) the result is in 
+
+example graph:![exampleGraph.svg](exampleGraph.svg)
+
 ```
-mosser@azrael A2 % java -jar island/island.jar -i xxxxxx -o xxxxx -help    
-mosser@azrael A2 % java -jar island/island.jar -help
-mosser@azrael A2 % java -jar island/island.jar -i IOArea/inputoff.mesh -o IOArea/lagoon.mesh --mode lagoon   
-mosser@azrael A2 % java -jar island/island.jar -i IOArea/inputoff.mesh -o IOArea/test.mesh   
-mosser@azrael A2 % java -jar island/island.jar -i IOArea/inputoff.mesh -o IOArea/test.mesh 
-mosser@azrael A2 % java -jar island/island.jar -seed 42939
-mosser@azrael A2 % java -jar island/island.jar -seed 42939 -biomes Tropical_Rain_Forest
+        MeshADT meshADT1 = new MeshADT();//start adt
+        String input_c = "..//IOArea\\inputoff.mesh";
+        Structs.Mesh aMesh = new MeshFactory().read(input_c);
+        meshADT1.readInputMesh(aMesh);
+        
+        
+       //Preparation parameter of mesh adt to pathfinder
+        List<Nodes> nodeList = new ArrayList<>();
+        for (PolygonADT p : meshADT1.getPolygons()) {
+            double cenx = p.getCentroid().getX();
+            double ceny = p.getCentroid().getY();
+            Nodes n = new Nodes(cenx, ceny, p.getElevation());
+            //First put the nodes into the nodeslist, and then find the neighbors from the list xy
+            nodeList.add(n);
+        }
+        System.out.println("adding Neighborhood");
+        for (Nodes n : nodeList) {//Find n's neighbors from the list
+            List<Nodes> adjList = new ArrayList<>();
+            for (PolygonADT p : meshADT1.getPolygons()) {
+                if (n.getX() == p.getCentroid().getX() && n.getY() == p.getCentroid().getY()) {//Find the poly corresponding to the node
+                    for (PolygonADT adjp : p.getPolygons()) {//Find Poly Neighbors
+                        for (Nodes node : nodeList) {//Find instance of neighbors in nodelist
+                            if (node.getX() == adjp.getCentroid().getX() && node.getY() == adjp.getCentroid().getY()) {
+                                adjList.add(node);
+                            }
+                        }
+                    }
+                }
+            }
+            n.setAdjacent(new ArrayList<>(adjList));
+        }
+        System.out.println("finished initialization ");
+        //finished pass
 
+        **Graph a = new Graph(nodeList);
+        PathFinder pf = new DijkstraShortestPath(a);
+       List<Edges> ouPut= pf.find(nodeList.get(75),nodeList.get(900));** // core part
 
-seed is a positive integer
-
-usage: java -jar island.jar
- -al <arg>         Seed for generator altitude
- -aq <arg>         number of aquifers
- -b <arg>          biomes name
- -help             print help message
- -i <arg>          input mesh adress
- -l <arg>          max number of lake lake
- -m,--mode <arg>   type lagoon to activate MVP mode, default is seed
-                   generator mode
- -o <arg>          adress of output mesh
- -r <arg>          number of river
- -s <arg>          seed for soil
- -seed <arg>       global seed
- -shape <arg>      Seed for shape
-
-  
+        for (Edges e: ouPut){
+            SegmentADT s =meshADT1.getSegment(meshADT1.getVertex(e.getStart().getX(),e.getStart().getY()),meshADT1.getVertex(e.getEnd().getX(),e.getEnd().getY()));
+            s.setColor(new int[]{123, 183, 64});
+            s.setThickness(10);
+        }//draw result
+        
+        
+                Structs.Mesh output = meshADT1.toMesh();
+        new MeshFactory().write(output, "..//IOArea\\Test.mesh");//output adt tograph
+//        java -jar visualizer/visualizer.jar -i IOArea//Test.mesh -o IOArea//Test.svg -x
 
 
 
