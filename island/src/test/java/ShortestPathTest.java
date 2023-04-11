@@ -34,25 +34,28 @@ public class ShortestPathTest {
             for (PolygonADT p : meshADT1.getPolygons()) {
                 if (n.getX() == p.getCentroid().getX() && n.getY() == p.getCentroid().getY()) {//找node对应的poly
                     for (PolygonADT adjp : p.getPolygons()) {//找poly邻居
-
                         for (Nodes node : nodeList) {//找邻居在nodelist里的实例
                             if (node.getX() == adjp.getCentroid().getX() && node.getY() == adjp.getCentroid().getY()) {
                                 adjList.add(node);
+//                                System.out.println("1");
                             }
-
                         }
                     }
-
                 }
             }
-
-            n.setAdjacent(adjList);
+            n.setAdjacent(new ArrayList<>(adjList));
+//            System.out.println("2");
+            if(n.getAdjacent()==null){
+                System.out.println(3);
+            }
         }
 
 
         Graph a = new Graph(nodeList);
 
         PathFinder pf = new DijkstraShortestPath(a);
+
+        pf.find(nodeList.get(3),nodeList.get(100));
 
 
 

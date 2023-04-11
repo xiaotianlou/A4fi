@@ -52,6 +52,13 @@ public class DijkstraShortestPath extends ShortestPath{
     @Override
     public void find(Nodes start, Nodes end) {
 
+//        for(Nodes node:nodesList){
+//            if (node.getX()==start.getX()){
+//
+//            }
+//
+//        }
+
 
         start.tryUpdateShortDistance(0,null);//Initialize source node
         start.visit();
