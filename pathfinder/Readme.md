@@ -11,6 +11,13 @@ mosser@azrael A2 % mvn install
 It creates jars:
 
 1. `pathfinder/pathfinder.jar` to use as import as library found and return a edge list for the shortest path.
+2. to use this lib, add as dependes import the Graph.*, create instance and use find ()
+3. to get the Edge list for shortest path
+```
+        **Graph a = new Graph(nodeList);**
+        **PathFinder pf = new DijkstraShortestPath(a);**
+        **List<Edges> result = pf.find(start, end);**
+```
 
 ## Examples of execution
 ### basic example find shortest path 
