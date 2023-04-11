@@ -1,6 +1,6 @@
-import Graph.Graph;
-import Graph.Nodes;
+import Graph.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,12 +14,62 @@ public class DijkstraShortestPath extends ShortestPath{
         super(g);
     }
 
+    public List<Edges> findUnmarkedEdges(Nodes start){
+        List<Edges> unmarkedEdges = new ArrayList<Edges>();
+        for (Edges e:edgeList){
+            if(e.getStart()==start&&(!e.getEnd().isVisited())){
+                unmarkedEdges.add(e);
+            }
+        }
+        return unmarkedEdges;
+    }
+    public void updateShortestDistance(List<Edges> toBeSearched,Nodes preNode){
+        for (Edges e: toBeSearched){
+            Nodes target = e.getEnd();
+            target.tryUpdateShortDistance(preNode.getShortDistance()+e.getLengthEdge(),preNode);
+
+        }
+    }
+    final Nodes FarthestNodes=new Nodes(0,0,0,null);;
+    {
+        System.out.println("初始化最远节点");
+        FarthestNodes.tryUpdateShortDistance(Double.MAX_VALUE,new Nodes(0,0,0,null));
+    }
+
+
+    public Nodes visitClosetOne(){
+        Nodes shortestNode =FarthestNodes;
+        for (Nodes n:nodesList){
+        if(!n.isVisited()&&n.getShortDistance()<shortestNode.getShortDistance()){
+            shortestNode=n;
+        }
+        }
+        shortestNode.visit();
+
+        return shortestNode;
+    }
+
+
     @Override
     public void find(Nodes start, Nodes end) {
+        List<Edges> outPutEdge = new ArrayList<>();
+
+        start.tryUpdateShortDistance(0,null);//Initialize source node
+        start.visit();
+
+        Nodes newVisitedNode=start;
+        List<Edges> toBeSearched;
+        while (!end.isVisited()){
+            toBeSearched=findUnmarkedEdges(newVisitedNode);
+            updateShortestDistance(toBeSearched,newVisitedNode);
+            newVisitedNode=visitClosetOne();
 
 
 
 
+
+
+        }
 
 
     }
