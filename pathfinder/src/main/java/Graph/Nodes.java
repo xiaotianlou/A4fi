@@ -6,23 +6,20 @@ import java.util.List;
  * @author loux8@mcmaster.ca
  * @date 2023/4/5 20:33
  */
-public class Nodes {
+public class Nodes {//重写equal
 
     private final double x;
     private final double y;
     private final int elevation;
-    private final List<Nodes> adjacent;
+    private List<Nodes> adjacent;
     private double shortDistance = 1000000;//shortDistance from start node
     private String name;
     private Nodes prNodes = null;
     private boolean isVisited = false;
-
-    public Nodes(int x, int y, int elevation, List<Nodes> adjacent) {
-
+    public Nodes(int x, int y, int elevation) {
         this.x = x;
         this.y = y;
         this.elevation = elevation;
-        this.adjacent = adjacent;
     }
 
     public Nodes getPrNodes() {
@@ -37,10 +34,10 @@ public class Nodes {
         return shortDistance;
     }
 
-    public void tryUpdateShortDistance(double shortDistance,Nodes preNode) {
+    public void tryUpdateShortDistance(double shortDistance, Nodes preNode) {
         if (shortDistance < this.shortDistance) {
             this.shortDistance = shortDistance;
-            this.prNodes=preNode;
+            this.prNodes = preNode;
         }
     }
 
@@ -58,6 +55,10 @@ public class Nodes {
 
     public List<Nodes> getAdjacent() {
         return adjacent;
+    }
+
+    public void setAdjacent(List<Nodes> adjacent) {
+        this.adjacent = adjacent;
     }
 
     public double getX() {

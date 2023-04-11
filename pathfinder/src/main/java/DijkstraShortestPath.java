@@ -30,10 +30,10 @@ public class DijkstraShortestPath extends ShortestPath{
 
         }
     }
-    final Nodes FarthestNodes=new Nodes(0,0,0,null);;
+    final Nodes FarthestNodes=new Nodes(0,0,0);;
     {
         System.out.println("初始化最远节点");
-        FarthestNodes.tryUpdateShortDistance(Double.MAX_VALUE,new Nodes(0,0,0,null));
+        FarthestNodes.tryUpdateShortDistance(Double.MAX_VALUE,new Nodes(0,0,0));
     }
 
 
