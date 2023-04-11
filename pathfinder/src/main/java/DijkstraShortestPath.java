@@ -67,15 +67,12 @@ public class DijkstraShortestPath extends ShortestPath{
         //返回路径
         Nodes tail=end;
         while(tail!=null){
-
-
+            for (Edges e:edgeList){
+                if(e.getEnd()==tail&&e.getStart()==tail.getPrNodes()){
+                    outPutEdge.add(e);
+                }
+            }
+            tail=end.getPrNodes();
         }
-
-
-
-
-
-
-
     }
 }
