@@ -12,7 +12,6 @@ It creates jars:
 
 1. `pathfinder/pathfinder.jar` to use as import as library found and return a edge list for the shortest path.
 
-
 ## Examples of execution
 ### basic example find shortest path 
 
