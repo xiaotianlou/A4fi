@@ -14,6 +14,17 @@ public class Nodes {
     private int elevation;
     private String name;
 
+    public boolean isMarked() {
+        return isMarked;
+    }
+
+    public void Mark() {
+        isMarked = true;
+    }
+
+    private boolean isMarked =false;
+
+
    public Nodes(int x, int y, int elevation, List<Nodes> adjacent) {
 
       this.x = x;
