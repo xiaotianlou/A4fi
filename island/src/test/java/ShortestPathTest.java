@@ -28,26 +28,32 @@ public class ShortestPathTest {
             nodeList.add(n);
         }
 
-        for (Nodes n :nodeList){
+        for (Nodes n : nodeList) {//从list里找n的邻居
+
             List<Nodes> adjList = new ArrayList<>();
-            for (PolygonADT p:meshADT1.getPolygons()){
-             if(n.getX()==p.getCentroid().getX()&&n.getY()==p.getCentroid().getY()){
+            for (PolygonADT p : meshADT1.getPolygons()) {
+                if (n.getX() == p.getCentroid().getX() && n.getY() == p.getCentroid().getY()) {//找node对应的poly
+                    for (PolygonADT adjp : p.getPolygons()) {//找poly邻居
 
+                        for (Nodes node : nodeList) {//找邻居在nodelist里的实例
+                            if (node.getX() == adjp.getCentroid().getX() && node.getY() == adjp.getCentroid().getY()) {
+                                adjList.add(node);
+                            }
 
-             }
+                        }
+                    }
 
-
+                }
             }
 
             n.setAdjacent(adjList);
         }
 
 
+        Graph a = new Graph(nodeList);
 
+        PathFinder pf = new DijkstraShortestPath(a);
 
-        Graph a = new Graph();
-
-        PathFinder pf = new DijkstraShortestPath();
 
 
     }

@@ -1,6 +1,7 @@
 package Graph;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author loux8@mcmaster.ca
@@ -8,10 +9,10 @@ import java.util.ArrayList;
  */
 public class Graph {
 
-    private ArrayList<Nodes> nodesList;
-    private ArrayList<Edges> edgesList;
+    private List<Nodes> nodesList;
+    private List<Edges> edgesList;
 
-    public Graph(ArrayList<Nodes> nodesList) {
+    public Graph(List<Nodes> nodesList) {
         this.nodesList = nodesList;
 //        Set<Edges> edgeSet = new HashSet<Edges>();
 
@@ -25,11 +26,11 @@ public class Graph {
 //找x开始或者结尾的边 然后拿出
     }
 
-    public ArrayList<Nodes> getNodesList() {
+    public List<Nodes> getNodesList() {
         return nodesList;
     }
 
-    public ArrayList<Edges> getEdgesList() {
+    public List<Edges> getEdgesList() {
         return edgesList;
     }
 
