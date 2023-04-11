@@ -12,6 +12,11 @@ public abstract class ShortestPath implements PathFinder{
 
     List<Nodes> nodesList;
     List<Edges> edgeList;
+
+    public List<Edges> getOutPutEdge() {
+        return outPutEdge;
+    }
+
     List<Edges> outPutEdge = new ArrayList<>();
     public ShortestPath(Graph g) {
         nodesList = g.getNodesList();

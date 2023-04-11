@@ -1,5 +1,8 @@
-import Graph.Graph;
-import Graph.Nodes;
+
+import Graph.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author loux8@mcmaster.ca
@@ -7,7 +10,7 @@ import Graph.Nodes;
  */
 public interface PathFinder {
 
-public void find(Nodes start, Nodes end);
+public List<Edges> find(Nodes start, Nodes end);
 
 
 }

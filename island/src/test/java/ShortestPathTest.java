@@ -1,5 +1,4 @@
-import Graph.Graph;
-import Graph.Nodes;
+import Graph.*;
 import ca.mcmaster.cas.se2aa4.a2.io.MeshFactory;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs;
 import org.junit.jupiter.api.AfterEach;
@@ -7,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import transformation.builtinADT.MeshADT;
 import transformation.builtinADT.PolygonADT;
+import transformation.builtinADT.SegmentADT;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -55,9 +55,21 @@ public class ShortestPathTest {
         PathFinder pf = new DijkstraShortestPath(a);
         System.out.println("dij 创建");
 
-
-        pf.find(nodeList.get(3),nodeList.get(20));
+       List<Edges> ouput= pf.find(nodeList.get(30),nodeList.get(200));
         System.out.println("结束测试");
+
+
+
+//        for (var s:mesh.getSegmentsList()){
+//            SegmentADT segmentADT = meshADT.getSegment(meshADT.getVertices().get(s.getV1Idx()),meshADT.getVertices().get(s.getV2Idx()));
+//            segmentADT.getStart().addSegments(segmentADT);
+//            segmentADT.getEnd().addSegments(segmentADT);
+//            for (int n = mesh.getPropertiesCount();n>0;n--){
+//                if (n == 1){
+//                    segmentADT .setColor(s.getProperties(0).getValue());
+//                }
+//            }
+//        }
 
 
     }
@@ -66,7 +78,7 @@ public class ShortestPathTest {
     @BeforeEach
     void initial() throws IOException {
         meshADT1 = new MeshADT();
-        String input_c = "..//IOArea\\inputoff1.mesh";
+        String input_c = "..//IOArea\\inputoff.mesh";
         Structs.Mesh aMesh = new MeshFactory().read(input_c);
         meshADT1.readInputMesh(aMesh);
     }

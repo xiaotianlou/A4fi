@@ -50,7 +50,7 @@ public class DijkstraShortestPath extends ShortestPath{
 
 
     @Override
-    public void find(Nodes start, Nodes end) {
+    public List<Edges> find(Nodes start, Nodes end) {
         start.tryUpdateShortDistance(0,null);//Initialize source node
         start.visit();
 
@@ -85,5 +85,6 @@ public class DijkstraShortestPath extends ShortestPath{
             }
             tail=tail.getPrNodes();
         }
+        return outPutEdge;
     }
 }
