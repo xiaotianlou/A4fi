@@ -115,17 +115,8 @@ Note: PDF versions of the SVG files were created with `rsvg-convert`.
 ### Feature plan and backlog
 | Feature(id) | Feature title | Who? | Start | End | Status |
 |:--:|---------------|------|-------|-----|--------|
-|F01 | MVP| xiaotian lou | 3/22 | 3/26 | D |
-|F02 | Reproducibility and seed| xiaotian lou | 3/25 | 3/29  | D |
-|F03 | Shape and Reproducibility| xiaotian lou | 3/25| 3/29 | D |
-|F04 | Elevation and Reproducibility| xiaotian lou | 3/25 | 3/27 | D |
-|F05 | test case| xiaotian lou | 3/25 | 2/13 | D |
-|F06 | generation and vislise depoly| xiaotian lou | 3/25 | 3/29  | D |
-|F7 | Lakes| Changhao Wu | 3/25 | 3/29 | D |
-|F8 | Rivers| Changhao Wu | 3/25 | 3/29 | D |
-|F9 | River flow| Changhao Wu | 3/25 | 3/29  | D |
-|F10 | Aquifers| Changhao Wu | 3/25 | 3/29 | D |
-|F11 | SetColor| Changhao Wu | 3/25 | 3/29  | D |
-|F12 |Biomes| Jiaming Li | 3/25 | 3/26 | D |
-|F13 |Soil absorption| Jiaming Li | 3/25 | 3/29 | D |
-|F14| Whittaker Diagrams| Jiaming Li | 3/25 | 3/29  | D |
+|F01 | implement dij shortest path| xiaotian lou | 4/10 | 4/11 | D |
+|F02 | connecte shortest path lib to mesh| xiaotian lou | 4/10 | 4/11 | D |
+|F03 | step1 readme.md| xiaotian lou | 4/10 | 4/11 | D |
+
+
