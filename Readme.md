@@ -54,7 +54,7 @@ List<Nodes> nodeList = new ArrayList<>();
 ```
 ### mesh example shortest path (connected to ADT) the result is in 
 
-example graph:![exampleGraph.svg](exampleGraph.svg)
+example graph:![exampleGraph.svg](pathfinder%2FexampleGraph.svg)
 
 ```
         MeshADT meshADT1 = new MeshADT();//start adt
