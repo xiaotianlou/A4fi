@@ -22,6 +22,8 @@ public class ShortestPathTest {
 
         System.out.println("开始测试");
         List<Nodes> nodeList = new ArrayList<>();
+
+
         for (PolygonADT p : meshADT1.getPolygons()) {
             double cenx = p.getCentroid().getX();
             double ceny = p.getCentroid().getY();
@@ -30,7 +32,6 @@ public class ShortestPathTest {
             nodeList.add(n);
         }
         System.out.println("开始加邻居");
-
         for (Nodes n : nodeList) {//从list里找n的邻居
 
             List<Nodes> adjList = new ArrayList<>();
@@ -52,8 +53,9 @@ public class ShortestPathTest {
 
 
         Graph a = new Graph(nodeList);
-
         PathFinder pf = new DijkstraShortestPath(a);
+
+
 
        List<Edges> ouput= pf.find(nodeList.get(3),nodeList.get(900));
         System.out.println("结束测试");
