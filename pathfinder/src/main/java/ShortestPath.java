@@ -5,12 +5,14 @@
 import Graph.*;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class ShortestPath implements PathFinder{
 
     List<Nodes> nodesList;
     List<Edges> edgeList;
+    List<Edges> outPutEdge = new ArrayList<>();
     public ShortestPath(Graph g) {
         nodesList = g.getNodesList();
         edgeList = g.getEdgesList();

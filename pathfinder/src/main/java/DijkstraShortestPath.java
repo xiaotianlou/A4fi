@@ -45,14 +45,13 @@ public class DijkstraShortestPath extends ShortestPath{
         }
         }
         shortestNode.visit();
-
         return shortestNode;
     }
 
 
     @Override
     public void find(Nodes start, Nodes end) {
-        List<Edges> outPutEdge = new ArrayList<>();
+
 
         start.tryUpdateShortDistance(0,null);//Initialize source node
         start.visit();
@@ -63,13 +62,19 @@ public class DijkstraShortestPath extends ShortestPath{
             toBeSearched=findUnmarkedEdges(newVisitedNode);
             updateShortestDistance(toBeSearched,newVisitedNode);
             newVisitedNode=visitClosetOne();
+        }
 
-
-
-
+        //返回路径
+        Nodes tail=end;
+        while(tail!=null){
 
 
         }
+
+
+
+
+
 
 
     }
