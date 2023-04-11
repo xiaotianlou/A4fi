@@ -15,6 +15,8 @@ import java.util.List;
  */
 public class MainTest {
 
+
+
     @BeforeEach
     void initial() throws IOException {
 //        MeshADT meshADT = new MeshADT();
@@ -28,12 +30,12 @@ public class MainTest {
     }
     @Test
     void main() {
-        List<Nodes> nodesList=new ArrayList<>();
+  double a=3.23214121241243341234;
+  double b=a;
+  a=b;
+  b=a;
+        System.out.println(a==b);
 
-
-//        Graph a = new Graph();
-
-//        PathFinder pf = new DijkstraShortestPath();
 
 
     }

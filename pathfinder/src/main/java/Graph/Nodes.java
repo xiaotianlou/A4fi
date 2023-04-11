@@ -16,7 +16,7 @@ public class Nodes {//重写equal
     private String name;
     private Nodes prNodes = null;
     private boolean isVisited = false;
-    public Nodes(int x, int y, int elevation) {
+    public Nodes(double x, double y, int elevation) {
         this.x = x;
         this.y = y;
         this.elevation = elevation;
