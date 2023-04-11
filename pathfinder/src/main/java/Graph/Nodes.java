@@ -1,5 +1,6 @@
 package Graph;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ public class Nodes {//重写equal
     private final double x;
     private final double y;
     private final int elevation;
-    private List<Nodes> adjacent;
+    private List<Nodes> adjacent = new ArrayList<>();
     private double shortDistance = 1000000;//shortDistance from start node
     private String name;
     private Nodes prNodes = null;

@@ -32,7 +32,7 @@ public class DijkstraShortestPath extends ShortestPath{
     }
     final Nodes FarthestNodes=new Nodes(0,0,0);;
     {
-        System.out.println("初始化最远节点");
+        System.out.println("Initialize the farthest node");
         FarthestNodes.tryUpdateShortDistance(Double.MAX_VALUE,new Nodes(0,0,0));
     }
 
@@ -57,15 +57,6 @@ public class DijkstraShortestPath extends ShortestPath{
         Nodes newVisitedNode=start;
         List<Edges> toBeSearched;
 
-//        System.out.println("检测end在不在里面");
-//        for (var t:nodesList){
-//            if(t==end){
-//                System.out.println("找到");
-//            }
-//        }
-//        System.out.println("查找结束");
-
-
         while (!end.isVisited()){
             toBeSearched=findUnmarkedEdges(newVisitedNode);
             updateShortestDistance(toBeSearched,newVisitedNode);
@@ -77,7 +68,6 @@ public class DijkstraShortestPath extends ShortestPath{
         Nodes tail=end;
 
         while(tail!=null){
-            System.out.println(tail.getX());
             for (Edges e:edgeList){
                 if(e.getEnd()==tail&&e.getStart()==tail.getPrNodes()){
                     outPutEdge.add(e);
