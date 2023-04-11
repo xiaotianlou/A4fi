@@ -48,16 +48,14 @@ public class ShortestPathTest {
             }
             n.setAdjacent(new ArrayList<>(adjList));
         }
-
         System.out.println("finished initial ");
 
-        Graph a = new Graph(nodeList);
-        System.out.println("nodelist length "+nodeList.size());
-        System.out.println("graph 创建");
-        PathFinder pf = new DijkstraShortestPath(a);
-        System.out.println("dij 创建");
 
-       List<Edges> ouput= pf.find(nodeList.get(30),nodeList.get(200));
+        Graph a = new Graph(nodeList);
+
+        PathFinder pf = new DijkstraShortestPath(a);
+
+       List<Edges> ouput= pf.find(nodeList.get(3),nodeList.get(900));
         System.out.println("结束测试");
         //把线段加进graph
 
