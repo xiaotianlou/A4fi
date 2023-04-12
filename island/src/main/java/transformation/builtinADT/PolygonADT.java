@@ -2,6 +2,7 @@ package transformation.builtinADT;
 
 import TerrainFeatures.Aquifers;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs;
+import featureRenderer.City.CityType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,15 @@ import java.util.List;
 public class PolygonADT {
     final int id;
 
+    public CityType getCityType() {
+        return cityType;
+    }
+
+    public void setCityType(CityType cityType) {
+        this.cityType = cityType;
+    }
+
+    private CityType cityType;
     private int[] color = new int[]{125, 125, 125};
     private List<PolygonADT> polygons;
     private List<SegmentADT> segments;
