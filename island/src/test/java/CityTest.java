@@ -23,7 +23,7 @@ public class CityTest {
         new LakeRenderer().Rendering(meshADT, s);
         new RiversRenderer().Rendering(meshADT, s);
         new BiomeRenderer().Rendering(meshADT, s);
-        s.setCityNumber(6);
+        s.setCityNumber(10);
         new CityRenderer().Rendering(meshADT,s);
 
     }
