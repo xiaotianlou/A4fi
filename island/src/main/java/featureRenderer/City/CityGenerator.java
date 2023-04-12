@@ -3,14 +3,28 @@ package featureRenderer.City;
 import Reproducibility.Seed;
 import featureRenderer.Generable;
 import transformation.builtinADT.MeshADT;
+import transformation.builtinADT.PolygonADT;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CityGenerator implements Generable {
     @Override
     public MeshADT Genering(MeshADT m, Seed seed) {
 
-        //这里改polygen根据种子
+        int cityNumber = seed.getCityNumber();
 
+        ArrayList<PolygonADT> temp = new ArrayList<>();
 
-        return null;
+        for (PolygonADT p:m.getPolygons()){
+            if(p.isIsland()){
+                temp.add(p);
+            }
+        }
+
+        for (int i = 0; i < cityNumber; i++) {
+            temp.get((temp.size()-1)/seed.getSeedArray().get(seed.getSeedArray().size()/i)).setCityType(CityType.values()[4/((i+seed.getSeedArray().get(0)%4))]);
+        }
+        return m;
     }
 }

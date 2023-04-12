@@ -28,8 +28,8 @@ public class RandomShapeGenerator implements Generable {
 
         Color c;
         for (PolygonADT p : m.getPolygons()) {
-            double x = p.getCentroid().getX();
-            double y = p.getCentroid().getY();
+            double x = p.getCentrVertex().getX();
+            double y = p.getCentrVertex().getY();
 
             double seedpara1=Simulink(seed.getSeedArray().get(seed.getSeedArray().size()/2))*0.01;
             double seedpara2=Simulink(seed.getSeedArray().get(seed.getSeedArray().size()/3))*0.07;

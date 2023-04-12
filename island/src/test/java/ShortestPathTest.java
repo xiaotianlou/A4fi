@@ -7,9 +7,7 @@ import org.junit.jupiter.api.Test;
 import transformation.builtinADT.MeshADT;
 import transformation.builtinADT.PolygonADT;
 import transformation.builtinADT.SegmentADT;
-import transformation.builtinADT.VertexADT;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +20,8 @@ public class ShortestPathTest {
         //Preparation parameter of mesh adt to pathfinder
         List<Nodes> nodeList = new ArrayList<>();
         for (PolygonADT p : meshADT1.getPolygons()) {
-            double cenx = p.getCentroid().getX();
-            double ceny = p.getCentroid().getY();
+            double cenx = p.getCentrVertex().getX();
+            double ceny = p.getCentrVertex().getY();
             Nodes n = new Nodes(cenx, ceny, p.getElevation());
             //First put the nodes into the nodeslist, and then find the neighbors from the list xy
             nodeList.add(n);
@@ -32,10 +30,10 @@ public class ShortestPathTest {
         for (Nodes n : nodeList) {//Find n's neighbors from the list
             List<Nodes> adjList = new ArrayList<>();
             for (PolygonADT p : meshADT1.getPolygons()) {
-                if (n.getX() == p.getCentroid().getX() && n.getY() == p.getCentroid().getY()) {//Find the poly corresponding to the node
+                if (n.getX() == p.getCentrVertex().getX() && n.getY() == p.getCentrVertex().getY()) {//Find the poly corresponding to the node
                     for (PolygonADT adjp : p.getPolygons()) {//Find Poly Neighbors
                         for (Nodes node : nodeList) {//Find instance of neighbors in nodelist
-                            if (node.getX() == adjp.getCentroid().getX() && node.getY() == adjp.getCentroid().getY()) {
+                            if (node.getX() == adjp.getCentrVertex().getX() && node.getY() == adjp.getCentrVertex().getY()) {
                                 adjList.add(node);
                             }
                         }

@@ -27,8 +27,8 @@ public class LagoonGenerator implements Generable {
 
 
         for (PolygonADT p : m.getPolygons()) {
-            double x = p.getCentroid().getX();
-            double y = p.getCentroid().getY();
+            double x = p.getCentrVertex().getX();
+            double y = p.getCentrVertex().getY();
             //先找
             double distance = Math.sqrt(Math.pow(x - cen_x, 2) + Math.pow(y - cen_y, 2));
 

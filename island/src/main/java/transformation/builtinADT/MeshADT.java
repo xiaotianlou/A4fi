@@ -9,6 +9,7 @@ import transformation.importation.polygonImporter;
 import transformation.importation.segmentImporter;
 import transformation.importation.vertexImporter;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,11 @@ public class MeshADT {
     final  private  ArrayList<VertexADT> vertices = new ArrayList<>();
     final private ArrayList<SegmentADT> segments = new ArrayList<>();
     int numAquifers = 20;
-
+    public void drawCity(VertexADT v,Color c, float thickness){
+        SegmentADT s = this.getSegment(v,v);
+        s.setColor(new int[]{c.getRed(),c.getGreen(),c.getBlue()});
+        s.setThickness(thickness);
+    }
     public int getNumAquifers() {
         return numAquifers;
     }

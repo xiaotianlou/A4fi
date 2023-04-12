@@ -1,6 +1,5 @@
 package transformation.builtinADT;
 
-import TerrainFeatures.Aquifers;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs;
 import featureRenderer.City.CityType;
 
@@ -101,7 +100,7 @@ public class PolygonADT {
         this.vertices = vertices;
     }
 
-    public VertexADT getCentroid() {
+    public VertexADT getCentrVertex() {
         return centroid;
     }
 

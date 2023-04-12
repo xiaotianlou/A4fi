@@ -35,8 +35,8 @@ public class CityTest {
         new BiomeRenderer().Rendering(meshADT1, s);
 
         for (var temp : meshADT1.getPolygons()) {
-            double x = temp.getCentroid().getX();
-            double y = temp.getCentroid().getY();
+            double x = temp.getCentrVertex().getX();
+            double y = temp.getCentrVertex().getY();
             SegmentADT s1 = meshADT1.getSegment(meshADT1.getVertex(x, y), meshADT1.getVertex(x, y));
             s1.setColor(new int[]{123, 183, 64});
             s1.setThickness(30);

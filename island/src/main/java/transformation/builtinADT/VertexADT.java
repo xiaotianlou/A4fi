@@ -1,18 +1,21 @@
 package transformation.builtinADT;
 
 import ca.mcmaster.cas.se2aa4.a2.io.Structs;
+import featureRenderer.City.CityType;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class VertexADT {
-    private ArrayList<VertexADT> vertices = new ArrayList<>();
-    private ArrayList<SegmentADT> segments = new ArrayList<>();
-    private ArrayList<PolygonADT> polygons = new ArrayList<>();
     final int id;
+    private final ArrayList<VertexADT> vertices = new ArrayList<>();
+    private final ArrayList<SegmentADT> segments = new ArrayList<>();
+    private final ArrayList<PolygonADT> polygons = new ArrayList<>();
     private int[] color = new int[]{0, 0, 0};
     private double elevation = 0;
     private double x;
     private double y;
+    private CityType cityType;
 
     private boolean isCentroid = true;
 
@@ -27,7 +30,7 @@ public class VertexADT {
     }
 
     public double getElevation() {
-        for (var p: this.polygons){
+        for (var p : this.polygons) {
             this.elevation += p.getElevation();
         }
         return elevation;
@@ -94,10 +97,10 @@ public class VertexADT {
 
     public void addSegments(SegmentADT segments) {
         this.segments.add(segments);
-        if (segments.getStart()!=this){
+        if (segments.getStart() != this) {
             this.vertices.add(segments.getStart());
         }
-        if (segments.getEnd()!=this){
+        if (segments.getEnd() != this) {
             this.vertices.add(segments.getEnd());
         }
     }
@@ -140,4 +143,12 @@ public class VertexADT {
     }
 
 
+
+    public CityType getCityType() {
+        return cityType;
+    }
+
+    public void setCityType(CityType cityType) {
+        this.cityType = cityType;
+    }
 }
