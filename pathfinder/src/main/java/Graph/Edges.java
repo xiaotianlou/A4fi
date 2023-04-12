@@ -12,7 +12,6 @@ public class Edges {
     public Edges(Nodes start, Nodes end) {
         this.start = start;
         this.end = end;
-        findLength();
     }
 
     public Nodes getStart() {
