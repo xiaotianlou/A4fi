@@ -63,7 +63,7 @@ public class StarNetworkRenderer implements Renderable {
     public MeshADT Rendering(MeshADT m, Seed seed) {
         this.mesh = m;
         connectToPathFinder();
-        Nodes start;
+        Nodes start=nodeList.get(0);
         LinkedList<Nodes> cityBag = new LinkedList<Nodes>();
         //finished pass
         Graph a = new Graph(nodeList);

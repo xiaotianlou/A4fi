@@ -26,10 +26,11 @@ public class CityGenerator implements Generable {
             int seedNumber=i+(seed.getSeedArray().get(i%seed.getSeedArray().size())%temp.size());
             if(i==0){
                 temp.get(seedNumber).setCityType(CityType.Capital);
-          }
+                temp.remove(seedNumber);
+          }else {
             temp.get(seedNumber).setCityType(CityType.values()[1+((i+seed.getSeedArray().get(0)%4))%3]);
             temp.remove(seedNumber);
-        }
+        }}
         return m;
     }
 }
