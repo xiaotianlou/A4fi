@@ -29,7 +29,7 @@ public class Edges {
         double y2 = end.getY();
         int bias = 0;
         if(!end.isIsland()){bias=100;}
-        return Math.sqrt(Math.pow(Math.abs(x1 - x2), 2) + Math.pow(Math.abs(y1 - y2), 2))+end.getElevation()/50+bias;
+        return Math.sqrt(Math.pow(Math.abs(x1 - x2), 2) + Math.pow(Math.abs(y1 - y2), 2))+Math.abs(start.getElevation()-end.getElevation())/10+bias;
     }
 
 

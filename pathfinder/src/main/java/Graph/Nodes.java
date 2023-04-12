@@ -13,19 +13,13 @@ public class Nodes {//重写equal
     private final double y;
     private final int elevation;
 
-    public void setIsland(boolean island) {
-        isIsland = island;
-    }
+
 
     public Nodes(double x, double y, int elevation, boolean isIsland) {
         this.x = x;
         this.y = y;
         this.elevation = elevation;
         this.isIsland = isIsland;
-    }
-
-    public boolean isIsland() {
-        return isIsland;
     }
 
     private boolean isIsland=true;
@@ -85,4 +79,7 @@ public class Nodes {//重写equal
     }
 
 
+    public boolean isIsland() {
+        return isIsland;
+    }
 }
