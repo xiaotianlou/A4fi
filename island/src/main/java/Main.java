@@ -1,3 +1,4 @@
+import Graph.Graph;
 import Heatmaps.ElevationHeatMap;
 import Heatmaps.HeatMap;
 import Heatmaps.HumidityHeatMap;

@@ -25,7 +25,7 @@ public class CityTest {
         new BiomeRenderer().Rendering(meshADT, s);
         s.setCityNumber(10);
         new CityRenderer().Rendering(meshADT,s);
-
+        new StarNetworkRenderer().Rendering(meshADT,s);
     }
 
 
