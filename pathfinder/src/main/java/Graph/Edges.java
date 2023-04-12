@@ -24,20 +24,13 @@ public class Edges {
     }
 
     public double getLengthEdge() {
-        findLength();
-
-//        return lengthEdge;
-        return 1.0;
-    }
-
-
-    private void findLength() {
         double x1 = start.getX();
         double y1 = start.getY();
         double x2 = end.getX();
         double y2 = end.getY();
-
-        this.lengthEdge = Math.sqrt(Math.pow(Math.abs(x1 - y1), 2) + Math.pow(Math.abs(x2 - y2), 2));
+        int bias = 0;
+        if(!end.isIsland()){bias=100;}
+        return Math.sqrt(Math.pow(Math.abs(x1 - x2), 2) + Math.pow(Math.abs(y1 - y2), 2))+end.getElevation()/50+bias;
     }
 
 

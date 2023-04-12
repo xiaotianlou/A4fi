@@ -12,16 +12,29 @@ public class Nodes {//重写equal
     private final double x;
     private final double y;
     private final int elevation;
+
+    public void setIsland(boolean island) {
+        isIsland = island;
+    }
+
+    public Nodes(double x, double y, int elevation, boolean isIsland) {
+        this.x = x;
+        this.y = y;
+        this.elevation = elevation;
+        this.isIsland = isIsland;
+    }
+
+    public boolean isIsland() {
+        return isIsland;
+    }
+
+    private boolean isIsland=true;
+
     private List<Nodes> adjacent = new ArrayList<>();
     private double shortDistance = 1000000;//shortDistance from start node
     private String name;
     private Nodes prNodes = null;
     private boolean isVisited = false;
-    public Nodes(double x, double y, int elevation) {
-        this.x = x;
-        this.y = y;
-        this.elevation = elevation;
-    }
 
     public Nodes getPrNodes() {
         return prNodes;

@@ -12,11 +12,11 @@ import java.util.List;
 public class DijkstraShortestPath extends ShortestPath {
 
 
-    final Nodes FarthestNodes = new Nodes(0, 0, 0);
+    final Nodes FarthestNodes = new Nodes(0, 0, 0,true);
 
     {
         System.out.println("Initialize the farthest node");
-        FarthestNodes.tryUpdateShortDistance(Double.MAX_VALUE, new Nodes(0, 0, 0));
+        FarthestNodes.tryUpdateShortDistance(Double.MAX_VALUE, new Nodes(0, 0, 0,true));
     }
 
     public DijkstraShortestPath(Graph g) {

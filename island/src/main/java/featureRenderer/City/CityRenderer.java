@@ -27,23 +27,23 @@ public class CityRenderer implements Renderable {
             }
             if (v.getCityType().equals(CityType.Capital)){
                 Color c= new Color(250, 2, 37);
-                m.drawCity(v,c,40);
+                m.drawCity(v,c,60);
             }
             if (v.getCityType().equals(CityType.cities)){
                 Color c= new Color(24, 0, 245);
-                m.drawCity(v,c,35);
+                m.drawCity(v,c,55);
             }
             if (v.getCityType().equals(CityType.towns)){
                 Color c= new Color(0, 0, 0);
-                m.drawCity(v,c,30);
+                m.drawCity(v,c,50);
             }
             if (v.getCityType().equals(CityType.hamlets)){
                 Color c= new Color(255, 255, 255);
-                m.drawCity(v,c,25);
+                m.drawCity(v,c,45);
             }
             if (v.getCityType().equals(CityType.villages)){
                 Color c= new Color(83, 147, 222);
-                m.drawCity(v,c,20);
+                m.drawCity(v,c,40);
             }
 
         }

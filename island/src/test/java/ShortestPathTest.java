@@ -22,7 +22,7 @@ public class ShortestPathTest {
         for (PolygonADT p : meshADT1.getPolygons()) {
             double cenx = p.getCentrVertex().getX();
             double ceny = p.getCentrVertex().getY();
-            Nodes n = new Nodes(cenx, ceny, p.getElevation());
+            Nodes n = new Nodes(cenx, ceny, p.getElevation(),p.isIsland());
             //First put the nodes into the nodeslist, and then find the neighbors from the list xy
             nodeList.add(n);
         }
