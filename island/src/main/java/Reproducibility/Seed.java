@@ -13,6 +13,17 @@ public class Seed {
 
     private int seed;
 
+    public int getCityNumber() {
+        return cityNumber;
+    }
+
+    public void setCityNumber(int cityNumber) {
+        this.cityNumber = cityNumber;
+    }
+
+    private int cityNumber=0;
+
+
     public String getBiome() {
         return biome;
     }
