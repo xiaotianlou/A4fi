@@ -23,7 +23,7 @@ public class CityGenerator implements Generable {
         }
 
         for (int i = 0; i < cityNumber; i++) {
-            temp.get((temp.size()-1)/seed.getSeedArray().get(seed.getSeedArray().size()/i)).setCityType(CityType.values()[4/((i+seed.getSeedArray().get(0)%4))]);
+            temp.get(i+(seed.getSeedArray().get(i%seed.getSeedArray().size())%temp.size())).setCityType(CityType.values()[((i+seed.getSeedArray().get(0)%4))%4]);
         }
         return m;
     }
