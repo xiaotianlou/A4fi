@@ -43,11 +43,8 @@ class ShortestPathTests {
         List<Edges> result = pf.find(start, end);
 
         for (Edges temp : result) {
-            System.out.print(temp.getEnd().getX() + "   ");
             System.out.println(temp.getEnd().getY());
-
             System.out.print(temp.getStart().getX() + "   ");
-            System.out.println(temp.getStart().getY());
             System.out.println();
         }//test pass
 
@@ -67,24 +64,24 @@ class ShortestPathTests {
         nodeList = new ArrayList<>();
         start = new Nodes(0, 0, 14, true);
         end = new Nodes(100, 0, 14, true);
-        middle1 = new Nodes(50, 100, 14, true);
-        middle2 = new Nodes(49, 50, 14, false);
+        middle1 = new Nodes(20, 1000, 14, true);
+        middle2 = new Nodes(51, 100, 14, false);
 
     }@Test
     void basicTest3() {
         nodeList = new ArrayList<>();
         start = new Nodes(0, 0, 14, true);
         end = new Nodes(100, 0, 14, true);
-        middle1 = new Nodes(50, 100, 14, true);
-        middle2 = new Nodes(49, 50, 140, true);
+        middle1 = new Nodes(50, 50, 14, true);
+        middle2 = new Nodes(49, 20, 140, true);
 
     }@Test
     void basicTest4() {
         nodeList = new ArrayList<>();
         start = new Nodes(0, 0, 14, true);
         end = new Nodes(100, 0, 14, true);
-        middle1 = new Nodes(50, 100, 14, true);
-        middle2 = new Nodes(49, 50, 14, true);
+        middle1 = new Nodes(50, 100, 14, false);
+        middle2 = new Nodes(49, 50, 14, false);
 
     }
 
