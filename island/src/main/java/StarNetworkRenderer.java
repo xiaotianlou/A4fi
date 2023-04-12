@@ -2,6 +2,7 @@ import Graph.Edges;
 import Graph.Graph;
 import Graph.Nodes;
 import Reproducibility.Seed;
+import featureRenderer.City.CityType;
 import featureRenderer.Renderable;
 import transformation.builtinADT.MeshADT;
 import transformation.builtinADT.PolygonADT;
@@ -69,15 +70,28 @@ public class StarNetworkRenderer implements Renderable {
         pf = new DijkstraShortestPath(a);
 
         for (VertexADT v : m.getVertices()) {
-            if (v.getCityType() != null) {
+
+            if(v.getCityType()==null){continue;}
+
+            if (v.getCityType() == CityType.Capital) {
+                for (Nodes s : nodeList) {
+                    if (s.getX() == v.getX() && s.getY() == v.getY()) {
+                        start=s;
+                    }
+                }
+            }else {
                 for (Nodes s : nodeList) {
                     if (s.getX() == v.getX() && s.getY() == v.getY()) {
                         cityBag.add(s);
                     }
                 }
             }
+
+
         }
-        start = cityBag.pop();
+
+
+
         while (!cityBag.isEmpty()) {
             drawRoad(start, cityBag.pop());
         }
